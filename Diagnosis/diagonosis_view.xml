@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="diagonosis_type_view" model="ir.ui.view">
+            <field name="name">diagonosis.view</field>
+            <field name="model">diagonosis</field>
+            <field name="arch" type="xml">
+            <form string="Expense Type">
+                <header>
+                    <button name="action_blf" string="Test Order" type="object" groups="base.group_user"/>
+                    <button name="action_quotation_send" string="Email" type="object" groups="base.group_user"/>
+                    <button name="action_cancel" string="Cancel" type="object" groups="base.group_user"/>
+                </header>
+
+                <sheet>
+
+                    <group>
+                        <field name="patient_id"/>
+                        <field name="present_date"/>
+                        <field name="payment"/>
+                        <field name="gender"/>
+
+                        <field name="first_name"/>
+                        <field name="last_name"/>
+
+                        <field name="father__name"/>
+                        <field name="mother_name"/>
+                        <field name="age"/>
+                    </group>
+                    <notebook>
+                        <page string="address" groups="base.group_user">
+                            <group>
+                                <group name="one" groups="base.group_user">
+                                    <field name="p_address"/>
+
+
+                                </group>
+                                <group name="two">
+                                    <field name="per_address"/>
+
+                                </group>
+
+                            </group>
+                        </page>
+
+                        <page string="Contact Informations" groups="base.group_user">
+                            <group>
+                                <group name="onea" groups="base.group_user">
+                                    <field name="phone"/>
+                                    <field name="nid"/>
+
+                                </group>
+                                <group name="twoa">
+                                    <field name="email"/>
+
+
+                                </group>
+
+                            </group>
+                        </page>
+                    </notebook>
+
+                </sheet>
+            </form>
+            </field>
+        </record>
+
+        <record id="diagonosis_type_action" model="ir.actions.act_window">
+            <field name="name">diagonosis.form</field>
+            <field name="res_model">diagonosis</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="alu_type_tree" >
+            <field name="name">diagonosis.tree</field>
+            <field name="model">diagonosis</field>
+            <field name="arch" type="xml">
+            <tree string="diagonosis List">
+                <field name="first_name"/>
+                <field name="last_name"/>
+                <field name="age"/>
+                <field name="phone"/>
+                <field name="nid"/>
+                <field name="gender"/>
+
+
+
+            </tree>
+            </field>
+        </record>
+
+
+        <menuitem name="Hospital" id="leih_group_menu" parent="leih_menu" sequence="1"/>
+<!--        <menuitem name="Diagonosiss" id="diagonosis_menu_mainform" parent="leih_group_menu" action="diagonosis_type_action"/>-->
+
+
+
+    </data>
+</openerp>

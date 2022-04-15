@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_group_layout">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    Date:
+                                    <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                                </div>
+                            </div>
+
+                            <div class="oe_structure"/>
+
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>Group Name #
+                                        <span t-field="o.name"/>
+                                    </span>
+                                    <br/>
+                                    <span>Department #
+                                        <span t-field="o.department.name"/>
+                                    </span>
+                                    <br/>
+                                    <span>Year #
+                                        <span t-field="o.year"/>
+                                    </span>
+                                </div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                            </div>
+
+                            <hr/>
+                            <br/>
+                            <br/>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

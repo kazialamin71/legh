@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_diagnosis_room_layout">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    Date:
+                                    <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                                </div>
+                            </div>
+
+                            <div class="oe_structure"/>
+
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>Room No #
+                                        <span t-field="o.room_no"/>
+                                    </span>
+                                    <br/>
+                                    <span>Room Name #
+                                        <span t-field="o.name"/>
+                                    </span>
+                                    <br/>
+                                    <span>Floor #
+                                        <span t-field="o.floor"/>
+                                    </span>
+                                    <br/>
+                                    <span>Building Name #
+                                        <span t-field="o.building_name"/>
+                                    </span>
+                                </div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                            </div>
+
+                            <hr/>
+                            <br/>
+                            <br/>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

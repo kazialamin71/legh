@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+
+
+        <record model="ir.ui.view" id="bill_graph_view">
+                <field name="name">Bill Register Graph</field>
+                <field name="model">bill.register.line</field>
+                <field name="arch" type="xml">
+                    <graph string="">
+                        <field name="state"/>
+
+                    </graph>
+                </field>
+        </record>
+
+
+
+        <record id="investigation_action" model="ir.actions.act_window">
+            <field name="name">Bill Register</field>
+            <field name="res_model">bill.register.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,graph</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="investigation_tree" >
+            <field name="name">leih</field>
+            <field name="model">bill.register.line</field>
+            <field name="arch" type="xml">
+            <tree string="Alu List">
+
+                <field name="name"/>
+                <field name="bill_register_id"/>
+                <field name="department"/>
+
+
+
+            </tree>
+            </field>
+        </record>
+
+
+<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
+        <menuitem name="Billing" id="leih_billing_menu" parent="leih_menu" sequence="2"/>
+        <menuitem name="Bill Register" id="investigation_menu_mainform" parent="leih_billing_menu" action="investigation_action"/>
+
+        <template id="assets_backends" name="bill_team assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/leih/static/assets/js/example.js"></script>
+            </xpath>
+        </template>
+    </data>
+</openerp>

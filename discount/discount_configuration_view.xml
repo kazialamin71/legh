@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+                <record model="ir.ui.view" id="discount_configuration_form_view" >
+			<field name="name">Discount Configuration</field>
+			<field name="model">discount.configuration</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Discount Configuration">
+                    <header>
+
+                    </header>
+
+                    <sheet>
+                        <h1>
+                            <label string="Discount Configuration"/>
+                        </h1>
+                        <group string="Basic Information">
+                            <group>
+                                <field name="id" invisible="1"/>
+                                <field name="name"/>
+                                <field name="type"/>
+                                <field name="overall_discount"/>
+                                <field name="department"/>
+                                <field name="from_date"/>
+                                <field name="to_date"/>
+
+                            </group>
+
+                        </group>
+
+                        <!--Tab information-->
+                        <notebook>
+
+                            <page string="Discount Configuration Lines">
+                                <field name="discount_donfiguration_line_ids" mode="tree">
+                                    <tree string="Configuration Lines" editable="top">
+                                        <field name="department_id"/>
+                                        <field name="test_id"/>
+                                        <field name="applicable"/>
+                                        <field name="test_price"/>
+                                        <field name="fixed_amount"/>
+                                        <field name="variance_amount"/>
+                                        <field name="after_discount"/>
+
+
+                                    </tree>
+                                </field>
+                            </page>
+
+
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--disocunt starting action-->
+        <record model="ir.actions.act_window" id="discount_configuration_action" >
+			<field name="name">Discount Configuration List</field>
+			<field name="res_model">discount.configuration</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context" eval="{'search_default_my_courses': 1}"/>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Click to create a new discount configuration list.
+				</p>
+			</field>
+		</record>
+
+
+
+        <!--discount record list tree-->
+        <record model="ir.ui.view" id="discount_configuration_tree_view" >
+            <field name="name">discount.configuration.tree</field>
+            <field name="model">discount.configuration</field>
+            <field name="arch" type="xml">
+                <tree string="Disocunt Configuration List">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="name"/>
+                    <field name="from_date"/>
+                    <field name="to_date"/>
+
+                </tree>
+            </field>
+        </record>
+        <menuitem name="Discount Configuration" id="discount_type_mainform" parent="leih_billing_menu" action="discount_configuration_action" groups="leih.group_billing_menu_discount_configuration"/>
+
+
+    </data>
+
+</openerp>

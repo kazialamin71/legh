@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_detail">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    Date: <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                                </div>
+                            </div>
+
+                            <div class="oe_structure"/>
+
+                            <div style="align:center">
+                                <h2>
+                                    <span>Report No # <span t-field="o.name"/></span>
+                                </h2>
+                            </div>
+
+                            <div class="row">
+                            <div class="col-md-6 pull-right">
+                                <h1>
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>
+                                </h1>
+                            </div>
+                                </div>
+
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <strong>Bill No #</strong>
+                                    <p t-field="o.bill_register_id"/>
+                                </div>
+                                <div class="col-xs-4">
+                                    <strong>Patient Name #</strong>
+                                    <p t-field="o.bill_register_id.patient_name.name"/>
+                                </div>
+                                <div class="col-xs-4">
+                                    <strong>Age #</strong>
+                                    <p t-field="o.bill_register_id.age"/>
+                                </div>
+                                <div class="col-xs-4">
+                                    <strong>Gender #</strong>
+                                    <p t-field="o.bill_register_id.sex"/>
+                                </div>
+                                <div class="col-xs-4">
+                                    <strong>Address #</strong>
+                                    <p t-field="o.bill_register_id.address"/>
+                                </div>
+                                <div class="col-xs-4">
+                                    <strong>Refferred By #</strong>
+                                    <p t-field="o.bill_register_id.ref_doctors.name"/>
+                                </div>
+                                 <div class="col-xs-4">
+                                    <strong>Checked By #</strong>
+                                    <p t-field="o.doctor_id.name"/>
+                                </div>
+
+
+                            </div>
+                            <hr/>
+                            <br/><br/>
+
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>S.N.</th>
+                                        <th>Name</th>
+                                        <th>Result</th>
+                                        <th>Reference Value</th>
+                                        <th>Remarks</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="sample_report_tbody">
+                                    <t t-set="i" t-value="1" />
+                                    <t t-foreach="o.sticker_line_id" t-as="z">
+                                        <tr>
+                                            <td>
+                                                <span t-esc="i"/>
+                                                <t t-set="i" t-value="i+1"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="z.test_name"/>
+
+                                            </td>
+                                            <td>
+                                                <span t-field="z.result"/>
+
+                                            </td>
+
+                                            <td>
+                                                <span t-field="z.ref_value"/>
+
+                                            </td>
+
+ <td>
+                                                <span t-field="z.remarks"/>
+
+                                            </td>
+
+
+
+                                        </tr>
+
+                                    </t>
+
+                                </tbody>
+
+                            </table>
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

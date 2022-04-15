@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!--commission form-->
+        <record model="ir.ui.view" id="commission_calculation_form_view" >
+			<field name="name">Commission Calculation</field>
+			<field name="model">commission.calculation</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Commission Calculation">
+                    <header>
+
+                    </header>
+
+                    <sheet>
+                        <h1>
+                            <label string="Commission Calculation"/>
+                        </h1>
+                        <group string="Basic Information">
+                            <group>
+                                <field name="id" invisible="1"/>
+                                <field name="doctor_id"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="total_commission_amount"/>
+                                <field name="given_discount_amount"/>
+                                <field name="total_paybale_amount"/>
+                                <field name="no_of_total_patient"/>
+                                <field name="no_of_total_bill"/>
+                                <field name="no_of_total_bill_amount"/>
+                                <field name="no_of_total_test"/>
+
+
+
+                            </group>
+
+                        </group>
+
+                        <!--Tab information-->
+                        <notebook>
+
+                            <page string="Calculation Lines">
+                                <field name="commission_calculation_line_ids" mode="tree">
+                                    <tree string="Calculation Lines" editable="top">
+                                        <field name="department_id"/>
+                                        <field name="test_id"/>
+                                        <field name="discount_amount"/>
+                                        <field name="test_amount"/>
+                                        <field name="mou_payable_commission_var"/>
+                                        <field name="mou_payable_commission"/>
+                                        <field name="payble_amount"/>
+                                        <field name="after_discount_amount"/>
+                                        <field name="mou_max_cap"/>
+
+
+
+                                    </tree>
+                                </field>
+                            </page>
+
+
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--commission starting action-->
+        <record model="ir.actions.act_window" id="commission_calculation_new_action" >
+			<field name="name">Commission Calculation List</field>
+			<field name="res_model">commission.calculation</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context" eval="{'search_default_my_courses': 1}"/>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Click to create a new Commission Calculation list.
+				</p>
+			</field>
+		</record>
+
+
+
+        <!--commission record list tree-->
+        <record model="ir.ui.view" id="commission_calculation_tree_view" >
+            <field name="name">commission.calculation.tree</field>
+            <field name="model">commission.calculation</field>
+            <field name="arch" type="xml">
+                <tree string="Commission Calculation List">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="doctor_id"/>
+                    <field name="start_date"/>
+                    <field name="state"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <menuitem id="main_commissioncalculationlist_menu" name="Commission Calculation"/>
+
+        <menuitem id="commissioncalculationlist_menu" name="Commission Calculation" parent="main_commissioncalculationlist_menu"/>
+        <menuitem id="courses_menu3" name="Commission Calculation" parent="main_commissioncalculationlist_menu" action="commission_calculation_new_action"/>
+
+
+        <menuitem name="Commission Calculation list" id="main_commissioncalculationlist_menu"
+            groups="base.group_sale_salesman"
+            parent="base.menu_base_partner" sequence="9" />
+
+
+
+
+
+
+
+
+    </data>
+</openerp>

@@ -1,0 +1,4 @@
+import appointment_booking
+import appointment_booking_paid
+import appointment_payment
+import appointment_report

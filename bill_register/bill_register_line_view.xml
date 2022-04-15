@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="investigation_line_view" model="ir.ui.view">
+            <field name="name">bill.register.view</field>
+            <field name="model">bill.register.line</field>
+            <field name="arch" type="xml">
+            <form string="Investigation">
+
+                <sheet>
+
+
+
+
+                                    <field name="name"/>
+                                    <field name="department"/>
+                                    <field name="price"/>
+                                    <field name="discount"/>
+                                    <field name="total_discount"/>
+                                    <field name="total_amount"/>
+                                    <field name="assign_doctors"/>
+
+                </sheet>
+            </form>
+
+            </field>
+
+        </record>
+
+        <record model="ir.ui.view" id="bill_line_graph_view">
+                <field name="name">Bill Register Graph</field>
+                <field name="model">bill.register.line</field>
+                <field name="arch" type="xml">
+                    <graph string="">
+                       <field name="name"/>
+                    </graph>
+                </field>
+        </record>
+
+
+
+        <record id="investigation_line_action" model="ir.actions.act_window">
+            <field name="name">Investigation</field>
+            <field name="res_model">bill.register.line</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="investigation_line_tree" >
+            <field name="name">leih</field>
+            <field name="model">bill.register.line</field>
+            <field name="arch" type="xml">
+            <tree string="Alu List">
+
+                                    <field name="name"/>
+                                    <field name="department"/>
+                                    <field name="price"/>
+                                    <field name="discount"/>
+                                    <field name="total_discount"/>
+                                    <field name="total_amount"/>
+
+
+            </tree>
+            </field>
+        </record>
+
+
+<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
+
+        <menuitem name="Investigation Line" id="investigation_line_menu_mainform" parent="leih_billing_menu" action="investigation_line_action" groups="leih.group_billing_menu_bill_register_line"/>
+
+    </data>
+</openerp>

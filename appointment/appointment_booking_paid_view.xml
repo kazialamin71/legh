@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="appointment_paid_view" model="ir.ui.view">
+            <field name="name">appointment.view</field>
+            <field name="model">appointment.paid</field>
+            <field name="arch" type="xml">
+            <form string="appointment paid">
+
+                <sheet>
+
+                    <group>
+
+                        <field name="patient_status"/>
+                        <field name="amount"/>
+
+                    </group>
+                                    <footer>
+                        <button name="button_add_payment_action" string="Pay" class="oe_highlight" type="object"/> or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+
+                </sheet>
+            </form>
+
+            </field>
+
+        </record>
+
+
+        <record id="appointment_paid_action" model="ir.actions.act_window">
+            <field name="name">Appointment</field>
+            <field name="res_model">appointment.paid</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="appointment_paid_tree" >
+            <field name="name">appointment</field>
+            <field name="model">appointment.paid</field>
+            <field name="arch" type="xml">
+            <tree string="Alu List">
+
+
+                        <field name="patient_status"/>
+                        <field name="amount"/>
+
+            </tree>
+            </field>
+        </record>
+
+
+<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
+
+        <menuitem name="Appointment Paid" id="appointment_paid_menu" parent="appointment_parent" action="appointment_paid_action" groups="leih.group_appointment_menu_paid"/>
+
+
+    </data>
+</openerp>

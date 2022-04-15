@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+
+        <!-- LEIH Access Title -->
+        <record model="ir.module.category" id="module_category_leih">
+            <field name="name">LEIH User Access Layer</field>
+            <field name="sequence">20</field>
+        </record>
+
+            <!-- Hospital Menu Access -->
+            <record model="ir.module.category" id="module_category_hospital">
+                <field name="name">LEIH- Hospital</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">1</field>
+            </record>
+
+                <!-- Hospital Menu Access -->
+                <record id="group_hospital_menu_ward" model="res.groups">
+                    <field name="name">Menu1- Ward</field>
+                    <field name="category_id" ref="module_category_hospital"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_hospital_menu_pending_cash_coll" model="res.groups">
+                    <field name="name">Menu2- Pending Cash Collection</field>
+                    <field name="category_id" ref="module_category_hospital"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_hospital_menu_confirm_cash_coll" model="res.groups">
+                    <field name="name">Menu3- Confirmed Cash Collection</field>
+                    <field name="category_id" ref="module_category_hospital"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_hospital_menu_cancel_cash_coll" model="res.groups">
+                    <field name="name">Menu4- Cancelled Cash Collection</field>
+                    <field name="category_id" ref="module_category_hospital"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                <!-- Hospital Button Access -->
+                <record id="group_hospital_button_confirm" model="res.groups">
+                    <field name="name">Button1- Confirm (Cash Collection)</field>
+                    <field name="category_id" ref="module_category_hospital"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_hospital_button_cancel" model="res.groups">
+                    <field name="name">Button2- Cancel (Cash Collection)</field>
+                    <field name="category_id" ref="module_category_hospital"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+            <!-- Billing Menu Access -->
+            <record model="ir.module.category" id="module_category_billing">
+                <field name="name">LEIH- Billing</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">2</field>
+            </record>
+
+                <!-- Billing Menu Access -->
+                <record id="group_billing_menu_bill_register" model="res.groups">
+                    <field name="name">Menu1- Bill Register</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_billing_menu_money_receipt" model="res.groups">
+                    <field name="name">Menu2- Money receipt</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_billing_menu_discount_category" model="res.groups">
+                    <field name="name">Menu3- Discount Category</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_billing_menu_discount_configuration" model="res.groups">
+                    <field name="name">Menu4- Discount Configuration</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_billing_menu_corporate_discount" model="res.groups">
+                    <field name="name">Menu5- Corporate Discount</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                <record id="group_billing_menu_ipe" model="res.groups">
+                    <field name="name">Menu6- Inventory Product Entry</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+            <record id="group_billing_menu_confirmed_ipe" model="res.groups">
+                    <field name="name">Menu7-Confirmed Inventory Product Entry</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+        <record id="group_billing_menu_verified_ipe" model="res.groups">
+                    <field name="name">Menu8-Verified Inventory Product Entry</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+            <record id="group_billing_menu_ir" model="res.groups">
+                    <field name="name">Menu7- Inventory Requisition</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+            <record id="group_billing_menu_bill_register_line" model="res.groups">
+                    <field name="name">Menu8- Bill Register Line</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                <!-- Billing Button Access -->
+                <record id="group_bill_register_button_add_discount" model="res.groups">
+                    <field name="name">Button1- Add Discount (Bill Register)</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_bill_register_button_add_payment" model="res.groups">
+                    <field name="name">Button2- Add Payment (Bill Register)</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_bill_register_button_corporate_discount" model="res.groups">
+                    <field name="name">Button3- Corporate Discount (Bill Register)</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_bill_register_button_confirm_print" model="res.groups">
+                    <field name="name">Button4- Confirm and Print (Bill Register)</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_bill_register_button_cancel" model="res.groups">
+                    <field name="name">Button5- Cancel (Bill Register)</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+<!--optics billing menu-->
+                        <record id="group_billing_menu_optics_sale" model="res.groups">
+                    <field name="name">Menu1- Optics Sale</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                <record id="group_billing_menu_payment_type" model="res.groups">
+                    <field name="name">Menu- Payment Type</field>
+                    <field name="category_id" ref="module_category_billing"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+<!--        security for edit-->
+<record model="ir.module.category" id="module_category_billing_edit">
+                <field name="name">LEIH- Billing for Edit</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">15</field>
+            </record>
+
+                <!-- Billing Menu Access -->
+                <record id="group_billing_menu_bill_register_edit" model="res.groups">
+                    <field name="name">Menu1- Bill Register Edit</field>
+                    <field name="category_id" ref="module_category_billing_edit"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                        <record id="group_admission_menu_edit" model="res.groups">
+                    <field name="name">Menu2- Activated Admission</field>
+                    <field name="category_id" ref="module_category_billing_edit"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+<!--        end for edit-->
+
+
+            <!-- OPD Menu Access -->
+            <record model="ir.module.category" id="module_category_opd">
+                <field name="name">LEIH- OPD</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">3</field>
+            </record>
+
+                <!-- OPD Menu Access -->
+                <record id="group_opd_menu_opd_ticket" model="res.groups">
+                    <field name="name">Menu1- OPD Ticket</field>
+                    <field name="category_id" ref="module_category_opd"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_opd_menu_opd_ticket_a" model="res.groups">
+                    <field name="name">Menu2- All</field>
+                    <field name="category_id" ref="module_category_opd"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+
+            <!-- Admission Menu Access -->
+            <record model="ir.module.category" id="module_category_admission">
+                <field name="name">LEIH- Admission</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">4</field>
+            </record>
+
+                <!-- Admission Menu Access -->
+                <record id="group_admission_menu_pending" model="res.groups">
+                    <field name="name">Menu1- Pending Admission</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_menu_activated" model="res.groups">
+                    <field name="name">Menu2- Activated Admission</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_menu_released" model="res.groups">
+                    <field name="name">Menu3- Released Admission</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_menu_cancelled" model="res.groups">
+                    <field name="name">Menu4- Cancelled Admission</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_menu_add_new" model="res.groups">
+                    <field name="name">Menu5- Add New</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_menu_admission_payment" model="res.groups">
+                    <field name="name">Menu6- Admission Payment</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_menu_bill_payment" model="res.groups">
+                    <field name="name">Menu7- Bill Payment</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_menu_payment_configuration" model="res.groups">
+                    <field name="name">Menu8- Admission Payment Configuration</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                <!-- Billing Button Access -->
+                <record id="group_admission_button_confirm_print" model="res.groups">
+                    <field name="name">Button1- Confirm and Print (Admission)</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_button_add_test" model="res.groups">
+                    <field name="name">Button2- Add Test (Admission)</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_button_add_discount" model="res.groups">
+                    <field name="name">Button3- Add Discount (Admission)</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_button_settlement" model="res.groups">
+                    <field name="name">Button4- Final Settlement (Admission)</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_button_payment" model="res.groups">
+                    <field name="name">Button5- Payment (Admission)</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_button_cancel" model="res.groups">
+                    <field name="name">Button6- Cancel (Admission)</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                <record id="group_admission_configuration_button_payment" model="res.groups">
+                    <field name="name">Button7- Confirm (Admission Payment Configuration)</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_admission_configuration_button_cancel" model="res.groups">
+                    <field name="name">Button8- Cancel (Admission Payment Configuration)</field>
+                    <field name="category_id" ref="module_category_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+            <!-- Lab Menu Access -->
+            <record model="ir.module.category" id="module_category_lab">
+                <field name="name">LEIH- Lab</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">5</field>
+            </record>
+
+                <!-- Lab Menu Access -->
+                <record id="group_lab_menu_sample_collection" model="res.groups">
+                    <field name="name">Menu1- Sample Collection</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_menu_pending_lab" model="res.groups">
+                    <field name="name">Menu2- Pending in Lab</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                <!-- Lab Button Access -->
+                <record id="group_lab_button_print_sticker" model="res.groups">
+                    <field name="name">Button1- Print Sticker (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_button_complete_print_report" model="res.groups">
+                    <field name="name">Button2- Complete and Print Report (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_button_set_to_lab" model="res.groups">
+                    <field name="name">Button3- Set to Lab (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_button_set_to_sample" model="res.groups">
+                    <field name="name">Button4- Set to Sample (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_button_hematology" model="res.groups">
+                    <field name="name">Button5- Hematology (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_button_serology" model="res.groups">
+                    <field name="name">Button6- Serology (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_button_microbiology" model="res.groups">
+                    <field name="name">Button7- Microbiology (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_button_biochemistry" model="res.groups">
+                    <field name="name">Button8- Biochemistry (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_button_urine" model="res.groups">
+                    <field name="name">Button9- Urine (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_button_stool" model="res.groups">
+                    <field name="name">Button91- Stool (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_button_complete_reporting" model="res.groups">
+                    <field name="name">Button92- Complete Reporting (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_lab_button_make_delivered" model="res.groups">
+                    <field name="name">Button93- Make Delivered (Lab)</field>
+                    <field name="category_id" ref="module_category_lab"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+            <!-- Discount Menu Access -->
+            <record model="ir.module.category" id="module_category_discount">
+                <field name="name">LEIH- Discount</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">6</field>
+            </record>
+
+                <!-- Discount Menu Access -->
+                <record id="group_discount_menu_pending" model="res.groups">
+                    <field name="name">Menu1- Pending Discount</field>
+                    <field name="category_id" ref="module_category_discount"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_discount_menu_approved" model="res.groups">
+                    <field name="name">Menu2- Approved Discount</field>
+                    <field name="category_id" ref="module_category_discount"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_discount_menu_cancelled" model="res.groups">
+                    <field name="name">Menu3- Cancelled Discount</field>
+                    <field name="category_id" ref="module_category_discount"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                <!-- Discount Button Access -->
+                <record id="group_discount_button_approve" model="res.groups">
+                    <field name="name">Button1- Approve (Discount)</field>
+                    <field name="category_id" ref="module_category_discount"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_discount_button_cancel" model="res.groups">
+                    <field name="name">Button2- Cancel (Discount)</field>
+                    <field name="category_id" ref="module_category_discount"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+            <!-- Emergency Menu Access -->
+            <record model="ir.module.category" id="module_category_emergency">
+                <field name="name">LEIH- Emergency</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">7</field>
+            </record>
+
+                <!-- Emergency Menu Access -->
+                <record id="group_emergency_menu_activated" model="res.groups">
+                    <field name="name">Menu1- Activated Emergency</field>
+                    <field name="category_id" ref="module_category_emergency"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_emergency_menu_pending" model="res.groups">
+                    <field name="name">Menu2- Pending Emergency</field>
+                    <field name="category_id" ref="module_category_emergency"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_emergency_menu_released" model="res.groups">
+                    <field name="name">Menu3- Released Emergency</field>
+                    <field name="category_id" ref="module_category_emergency"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                <!-- Emergency Button Access -->
+                <record id="group_emergency_button_confirm_print" model="res.groups">
+                    <field name="name">Button1- Confirm and Print (Emergency)</field>
+                    <field name="category_id" ref="module_category_emergency"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_emergency_button_add_test" model="res.groups">
+                    <field name="name">Button2- Add Test (Emergency)</field>
+                    <field name="category_id" ref="module_category_emergency"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_emergency_button_add_discount" model="res.groups">
+                    <field name="name">Button3- Add Discount (Emergency)</field>
+                    <field name="category_id" ref="module_category_emergency"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_emergency_button_final_settlement" model="res.groups">
+                    <field name="name">Button4- Final Settlement (Emergency)</field>
+                    <field name="category_id" ref="module_category_emergency"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_emergency_button_convert_admission" model="res.groups">
+                    <field name="name">Button5- Convert to Admission (Emergency)</field>
+                    <field name="category_id" ref="module_category_emergency"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_emergency_button_payment" model="res.groups">
+                    <field name="name">Button6- Payment (Emergency)</field>
+                    <field name="category_id" ref="module_category_emergency"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_emergency_button_cancel" model="res.groups">
+                    <field name="name">Button7- Cancel (Emergency)</field>
+                    <field name="category_id" ref="module_category_emergency"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+            <!-- Report Reception Menu Access -->
+            <record model="ir.module.category" id="module_category_report_reception">
+                <field name="name">LEIH- Report Reception</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">8</field>
+            </record>
+
+                <!-- Report Reception Menu Access -->
+                <record id="group_report_reception_menu_report" model="res.groups">
+                    <field name="name">Menu1- Report</field>
+                    <field name="category_id" ref="module_category_report_reception"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_report_reception_menu_common_admin" model="res.groups">
+                    <field name="name">Menu2- Common Admin</field>
+                    <field name="category_id" ref="module_category_report_reception"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+            <!-- Profile Menu Access -->
+            <record model="ir.module.category" id="module_category_profile">
+                <field name="name">LEIH- Profile</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">9</field>
+            </record>
+
+                <!-- Profile Menu Access -->
+                <record id="group_profile_menu_doctors" model="res.groups">
+                    <field name="name">Menu1- Doctors</field>
+                    <field name="category_id" ref="module_category_profile"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_profile_menu_patients" model="res.groups">
+                    <field name="name">Menu2- Patients</field>
+                    <field name="category_id" ref="module_category_profile"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+
+            <!-- Blood Bank Menu Access -->
+            <record model="ir.module.category" id="module_category_blood_bank">
+                <field name="name">LEIH- Blood Bank</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">10</field>
+            </record>
+
+                <!-- Blood Bank Menu Access -->
+                <record id="group_blood_bank_menu_donor" model="res.groups">
+                    <field name="name">Menu1- Blood Donor</field>
+                    <field name="category_id" ref="module_category_blood_bank"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_blood_bank_menu_receiver" model="res.groups">
+                    <field name="name">Menu2- Blood Receiver</field>
+                    <field name="category_id" ref="module_category_blood_bank"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+            <!-- Appointment Menu Access -->
+            <record model="ir.module.category" id="module_category_appointment">
+                <field name="name">LEIH- Appointment</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">11</field>
+            </record>
+
+                <!-- Appointment Menu Access -->
+                <record id="group_appointment_menu_booking" model="res.groups">
+                    <field name="name">Menu1- Appointment Booking</field>
+                    <field name="category_id" ref="module_category_appointment"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_appointment_menu_paid" model="res.groups">
+                    <field name="name">Menu2- Appointment Paid</field>
+                    <field name="category_id" ref="module_category_appointment"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_appointment_menu_payment" model="res.groups">
+                    <field name="name">Menu3- Appointment Payment</field>
+                    <field name="category_id" ref="module_category_appointment"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_appointment_menu_investigation_payment" model="res.groups">
+                    <field name="name">Menu4- Investigation Payment</field>
+                    <field name="category_id" ref="module_category_appointment"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+
+            <!-- Laundry and Linen Menu Access -->
+            <record model="ir.module.category" id="module_category_laundry_linen">
+                <field name="name">LEIH- Laundry and Linen</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">12</field>
+            </record>
+
+                <!-- Laundry and Linen Menu Access -->
+                <record id="group_laundry_linen_menu_entry" model="res.groups">
+                    <field name="name">Menu1- Linen Entry</field>
+                    <field name="category_id" ref="module_category_laundry_linen"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_laundry_linen_menu_send_to" model="res.groups">
+                    <field name="name">Menu2- Send to Laundry</field>
+                    <field name="category_id" ref="module_category_laundry_linen"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_laundry_linen_menu_receive_from" model="res.groups">
+                    <field name="name">Menu3- Receive from Laundry</field>
+                    <field name="category_id" ref="module_category_laundry_linen"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+            <!-- Expense Menu Access -->
+            <record model="ir.module.category" id="module_category_expense">
+                <field name="name">LEIH- Expense</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">13</field>
+            </record>
+
+                <!-- Expense Menu Access -->
+                <record id="group_expense_menu_expense" model="res.groups">
+                    <field name="name">Menu1- Expense</field>
+                    <field name="category_id" ref="module_category_expense"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_expense_menu_approved" model="res.groups">
+                    <field name="name">Menu2- Approved Expense</field>
+                    <field name="category_id" ref="module_category_expense"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_expense_menu_cancel" model="res.groups">
+                    <field name="name">Menu3- Expense Cancel</field>
+                    <field name="category_id" ref="module_category_expense"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+
+
+
+        <!-- Configuration Menu Access -->
+            <record model="ir.module.category" id="module_category_configuration">
+                <field name="name">LEIH- Configuration</field>
+                <field name="category_id" ref="module_category_leih"/>
+                <field name="sequence">14</field>
+            </record>
+
+                <!-- Configuration Menu Access -->
+<!--                <record id="group_configuration_menu_room" model="res.groups">-->
+<!--                    <field name="name">Menu1- Room</field>-->
+<!--                    <field name="category_id" ref="module_category_configuration"/>-->
+<!--                    <field name="users" eval="[(4, ref('base.user_root'))]"/>-->
+<!--                </record>-->
+                <record id="group_configuration_menu_department" model="res.groups">
+                    <field name="name">Menu2- Department</field>
+                    <field name="category_id" ref="module_category_configuration"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_configuration_menu_group" model="res.groups">
+                    <field name="name">Menu3- Group</field>
+                    <field name="category_id" ref="module_category_configuration"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_configuration_menu_item_entry" model="res.groups">
+                    <field name="name">Menu4- Item Entry</field>
+                    <field name="category_id" ref="module_category_configuration"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_configuration_menu_package" model="res.groups">
+                    <field name="name">Menu5- Package</field>
+                    <field name="category_id" ref="module_category_configuration"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_configuration_menu_opd_ticket_entry" model="res.groups">
+                    <field name="name">Menu6- OPD Ticket Entry</field>
+                    <field name="category_id" ref="module_category_configuration"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+
+
+    </data>
+</openerp>

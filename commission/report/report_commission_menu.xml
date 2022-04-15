@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+                id="action_report_commission"
+                model="commission"
+                string="Print"
+                report_type="qweb-pdf"
+                name="leih.report_commission"
+                file="leih.report_commission"
+                menu="True"
+
+        />
+
+
+
+       </data>
+</openerp>

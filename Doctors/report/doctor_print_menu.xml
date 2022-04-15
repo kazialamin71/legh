@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            string="Print Doctor Profile"
+            id="action_report_doctor_layout"
+            model="doctors.profile"
+            report_type="qweb-pdf"
+            name="leih.report_doctor_layout"
+            file="leih.report_doctor_layout"
+
+        />
+       </data>
+</openerp>

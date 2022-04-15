@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            string="Print Test Info"
+            id="action_report_examine_entry_layout"
+            model="examination.entry"
+            report_type="qweb-pdf"
+            name="leih.report_examine_entry_layout"
+            file="leih.report_examine_entry_layout"
+
+        />
+       </data>
+</openerp>

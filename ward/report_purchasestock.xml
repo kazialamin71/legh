@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_purchasestock">
+    <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+    <t t-call="report.external_layout">
+        <div class="page">
+            <div class="oe_structure"/>
+
+            <div class="row mt32 mb32">
+                <div class="col-xs-6">
+                    <strong>Shipping address:</strong>
+                    <div t-if="o.dest_address_id">
+                        <div t-field="o.dest_address_id"
+                            t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                    </div>
+                    <div t-if="not o.dest_address_id and o.picking_type_id.warehouse_id">
+                        <span t-field="o.picking_type_id.warehouse_id.name"/>
+                        <div t-field="o.picking_type_id.warehouse_id.partner_id"
+                            t-field-options='{"widget": "contact", "fields": ["address", "phone", "fax"], "no_marker": true}'/>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Stock of the products <span t-field="o.name"/></h2>
+
+            <table class="table table-condensed">
+                <thead>
+                    <tr>
+                        <th><strong>Description</strong></th>
+                        <th><strong>Last Date of Purchase</strong></th>
+                        <th><strong>Last Purchased Quantity</strong></th>
+                        <th><strong>Current Balance</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="o.order_line" t-as="order_line">
+                        <td>
+                            <span t-field="order_line.name"/>
+                        </td>
+                        <t t-set="date"/>
+                        <t t-set="qty"/>
+                        <t t-foreach="request.env['stock.move'].search([('product_id', '=', order_line.product_id.id),('location_id','=',8)], limit=1)" t-as="obj" >
+<!--                            <t t-if="obj.location_id.usage=='supplier'">-->
+<!--                                <t t-foreach="o.order_line" t-as="order_line"></t>-->
+                         <t t-set="date" t-value="obj.date"/>
+                         <t t-set="qty" t-value="obj.product_uom_qty"/>
+<!--                            <t t-if="obj.date is not False">-->
+<!--                            <td><span t-field="obj.date"/></td>-->
+<!--                            <td><span t-field="obj.product_uom_qty"/></td>-->
+<!--                             </t>-->
+<!--                            <t t-else="">-->
+<!--                                <td></td>-->
+<!--                            <td></td>-->
+<!--                            </t>-->
+                        </t>
+                        <td><span t-esc="date"/></td>
+                        <td><span t-esc="qty"/></td>
+                        <td><span t-field="order_line.product_id.qty_available"/></td>
+<!--                            </t>-->
+<!--                       <td class="text-center">-->
+<!--                             <span t-field="order_line.date_planned"/>-->
+<!--                        </td>-->
+<!--                        <td class="text-right">-->
+<!--                            <span t-field="order_line.product_qty"/>-->
+<!--                            <span t-field="order_line.product_uom" groups="product.group_uom"/>-->
+<!--                        </td>-->
+                    </tr>
+                </tbody>
+            </table>
+
+            <p t-field="o.notes"/>
+            <span>Regards,</span>
+            <span t-field="user.signature"/>
+
+            <div class="oe_structure"/>
+        </div>
+    </t>
+        </t>
+    </t>
+</template>
+
+</data>
+</openerp>
+

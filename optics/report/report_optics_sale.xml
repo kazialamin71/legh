@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_optics_sale">
+            <t t-call="report.html_container">
+<!--                <t t-call="report.external_layout">-->
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page" style="font-size: 16px !important;">
+                            <div class="row form-group" style="margin-top:30px;">
+                                 <div class="col-xs-4">
+                                        <span t-field="o.patient_id"/>
+                                 </div>
+
+                                <div class="col-xs-2">
+                                        <span t-field="o.name"/>
+                                </div>
+                                <div class="col-xs-2">
+
+                                </div>
+                                <div class="col-xs-4 text-center">
+                                        <span t-field="o.date"/>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                            </div>
+
+
+                                  <div class="row form-group">
+
+
+                                    <div class="col-xs-7">
+                                        <span t-esc="o.patient_name.name"/>
+                                    </div>
+
+                                    <div class="col-xs-3 text-left">
+
+
+
+                                </div>
+                                <div class="col-xs-2 text-center">
+
+
+                                </div>
+
+                                </div>
+                                <div class="row">
+
+                                </div>
+
+                                    <div class="row form-group">
+                                    <div class="col-xs-10">
+                                        <span t-esc="o.address"/>
+                                    </div>
+
+
+
+
+                                    <div class="col-xs-2">
+                                        <span t-esc="o.mobile"/>
+                                    </div>
+                                </div>
+                             <div class="row">
+
+                                </div>
+                            <section>
+                            <div class="row">
+                                <div class="col-xs-9">
+                                    <div class="row">
+
+                                    </div>
+                                    <div class="row">
+
+                                    </div>
+                                    <div class="row" style="margin-top:30px;">
+                                        <div class="col-xs-2">
+                                            <span t-esc="o.right_eye_sph"/>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <span t-esc="o.right_eye_cyl"/>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                             <span t-esc="o.right_eye_axis"/>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                            <span t-esc="o.left_eye_sph"/>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <span t-esc="o.left_eye_cyl"/>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                             <span t-esc="o.left_eye_axis"/>
+                                        </div>
+
+                                    </div>
+                                    <div class="row" style="margin-top:20px;">
+                                        <div class="col-xs-2">
+                                            <span t-esc="o.right_eye_sph_n"/>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <span t-esc="o.right_eye_cyl_n"/>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                             <span t-esc="o.right_eye_axis_n"/>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                            <span t-esc="o.left_eye_sph_n"/>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <span t-esc="o.left_eye_cyl_n"/>
+                                        </div>
+
+                                        <div class="col-xs-2">
+                                             <span t-esc="o.left_eye_axis_n"/>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="col-xs-3">
+                                    <div class="row">
+                                        <div class="text-right">
+                                            <span t-esc="o.price"/></div>
+                                    </div>
+                                    <div class="row"></div>
+                                           <div class="row text-right" style="margin-top:15px;">
+                                     <t t-foreach="o.optics_lens_sale_line_id" t-as="z">
+                                                <span t-field="z.total_amount"/>
+
+                                    </t>
+                                    </div>
+
+                                    <div class="row text-right" style="margin-top:15px;">
+                                       <span t-esc="o.total"/>
+                                    </div>
+                                    <div class="row text-right" style="margin-top:15px;">
+                                        <span t-esc="o.paid"/>
+                                    </div>
+                                    <div class="row text-right">
+                                        <span t-esc="o.due"/>
+                                    </div>
+
+                                </div>
+                            </div>
+                                <div class="row">
+
+                                </div>
+
+                                <div class="row" style="margin-top:20px;">
+                                 <div class="col-xs-6">
+                                        Frame: <span t-field="o.frame_id"/>
+                                 </div>
+
+                                <div class="col-xs-6">
+                                    <t t-foreach="o.optics_lens_sale_line_id" t-as="z">
+                                                <span t-field="z.name"/>
+
+                                    </t>
+                                </div>
+
+                            </div>
+
+                            </section>
+
+<!--                                <div class="row">-->
+<!--                                    <div class="col-xs-10">-->
+<!--                                        <span t-esc="o.opd_ticket_line_id.name.name"/>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+
+
+
+
+
+<!--                            <table class="table table-condensed">-->
+<!--                                <thead>-->
+<!--                                    <tr>-->
+<!--                                        <th>S.N.</th>-->
+<!--                                        <th>Item Name</th>-->
+<!--                                        <th>Amount</th>-->
+<!--                                        <th>Delivery Date</th>-->
+
+<!--                                    </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody class="bill_register_tbody">-->
+<!--                                    <t t-set="i" t-value="1" />-->
+<!--                                    <t t-foreach="o.bill_register_line_id" t-as="z">-->
+<!--                                        <tr>-->
+<!--                                            <td>-->
+<!--                                                <span t-esc="i"/>-->
+<!--                                                <t t-set="i" t-value="i+1"/>-->
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <span t-field="z.name"/>-->
+
+<!--                                            </td>-->
+
+<!--                                            <td>-->
+<!--                                                <span t-field="z.total_amount"/>-->
+
+<!--                                            </td>-->
+<!--                                            <td>-->
+<!--                                                <span t-field="z.delivery_date"/>-->
+
+<!--                                            </td>-->
+
+
+<!--                                        </tr>-->
+
+<!--                                    </t>-->
+
+<!--                                </tbody>-->
+
+<!--                            </table>-->
+<!--                                                         <div align="right">-->
+<!--                                    <strong>Sub Total:</strong>-->
+<!--                                    <span t-field="o.total"/>-->
+<!--                                </div>-->
+<!--                                <div align="right">-->
+<!--                                    <strong>Referral  Discount:</strong>-->
+<!--                                    <span t-field="o.after_discount"/>-->
+<!--                                </div>-->
+<!--                                <div align="right">-->
+<!--                                    <strong>Others  Discount:</strong>-->
+<!--                                    <span t-field="o.other_discount"/>-->
+<!--                                </div>-->
+
+<!--                                 <div align="right">-->
+<!--                                    <strong>Grand Total:</strong>-->
+<!--                                    <span t-field="o.grand_total"/>-->
+<!--                                </div>-->
+<!--                                 <div align="right">-->
+<!--                                    <strong>Paid Amount:</strong>-->
+<!--                                    <span t-field="o.paid"/>-->
+<!--                                </div>-->
+<!--                                 <div align="right">-->
+<!--                                    <strong>Due Amount:</strong>-->
+<!--                                    <span t-field="o.due"/>-->
+<!--                                </div>-->
+
+
+
+
+
+                        </div>
+                    </t>
+                </t>
+<!--            </t>-->
+        </template>
+    </data>
+</openerp>

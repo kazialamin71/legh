@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+                id="action_report_detail"
+                model="diagnosis.sticker"
+                string="Print Report"
+                report_type="qweb-pdf"
+                name="leih.report_detail"
+                file="leih.report_detail"
+                menu="False"
+
+        />
+
+
+        <report
+                id="action_haematology_report"
+                model="diagnosis.sticker"
+                string="Haematology"
+                report_type="qweb-pdf"
+                name="leih.report_haematology"
+                file="leih.report_haematology"
+                menu="False"
+
+        />
+
+        <report
+                id="action_biochemistry_report"
+                model="diagnosis.sticker"
+                string="Biochemistry"
+                report_type="qweb-pdf"
+                name="leih.report_biochemistry"
+                file="leih.report_biochemistry"
+                menu="False"
+
+        />
+
+        <report
+                id="action_microbiology_report"
+                model="diagnosis.sticker"
+                string="Microbiology"
+                report_type="qweb-pdf"
+                name="leih.report_microbiology"
+                file="leih.report_microbiology"
+                menu="False"
+
+        />
+
+        <report
+                id="action_serology_report"
+                model="diagnosis.sticker"
+                string="Serology"
+                report_type="qweb-pdf"
+                name="leih.report_serology"
+                file="leih.report_serology"
+                menu="False"
+
+        />
+
+        <report
+                id="action_stool_report"
+                model="diagnosis.sticker"
+                string="stool"
+                report_type="qweb-pdf"
+                name="leih.report_stool"
+                file="leih.report_stool"
+                menu="False"
+
+        />
+
+        <report
+                id="action_urine_report"
+                model="diagnosis.sticker"
+                string="Urine"
+                report_type="qweb-pdf"
+                name="leih.report_urine"
+                file="leih.report_urine"
+                menu="False"
+
+        />
+
+       </data>
+</openerp>

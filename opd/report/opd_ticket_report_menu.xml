@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            string="Print Ticket"
+            id="action_report_opd_layout"
+            model="opd.ticket"
+            report_type="qweb-pdf"
+            name="leih.opd_ticket_report"
+            file="leih.opd_ticket_report"
+
+        />
+       </data>
+</openerp>

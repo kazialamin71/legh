@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_diagnosis_layout">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    Date:
+                                    <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                                </div>
+                            </div>
+
+                            <div class="oe_structure"/>
+
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>Name #
+                                        <span t-field="o.name"/>
+                                    </span>
+                                    <br/>
+                                    <span>Transaction ID #
+                                        <span t-field="o.patient_id"/>
+                                    </span>
+                                    <br/>
+                                    <span>Test date #
+                                        <span t-field="o.present_date"/>
+                                    </span>
+                                    <br/>
+                                    <span>Test date #
+                                        <span t-field="o.payment"/>
+                                    </span>
+                                </div>
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>First Name #
+                                        <span t-field="o.first_name"/>
+                                    </span>
+                                    <br/>
+                                    <span>Last Name #
+                                        <span t-field="o.last_name"/>
+                                    </span>
+                                    <br/>
+                                    <span>Fathers Name #
+                                        <span t-field="o.father__name"/>
+                                    </span>
+                                    <br/>
+                                    <span>Mothers Name #
+                                        <span t-field="o.mother_name"/>
+                                    </span>
+                                    <br/>
+                                </div>
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>Age #
+                                        <span t-field="o.age"/>
+                                    </span>
+                                    <br/>
+                                    <span>Gender #
+                                        <span t-field="o.gender"/>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <br/>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>Phone No #
+                                        <span t-field="o.phone"/>
+                                    </span>
+                                    <br/>
+                                    <span>NID #
+                                        <span t-field="o.nid"/>
+                                    </span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>Email #
+                                        <span t-field="o.email"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>Peasant Address #
+                                        <span t-field="o.p_address"/>
+                                    </span>
+
+                                </div>
+                                <div class="col-xs-6">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>Permanents Address #
+                                        <span t-field="o.per_address"/>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <hr/>
+                            <br/>
+                            <br/>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

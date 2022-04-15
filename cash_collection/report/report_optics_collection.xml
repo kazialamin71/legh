@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_optics_collection">
+            <t t-call="report.html_container">
+               <t t-call="report.internal_layout">
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-md-6 pull-center">
+                                <h3>Lions Eye Institute &amp; Hospital</h3>
+                                <h4>Optics Sale Report</h4>
+                                <span t-esc="get_user_context(data['form']['date_start'],data['form']['date_end'])"/>
+                            </div>
+                        </div>
+
+                <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Sl</th>
+                            <th>Optics Bill ID</th>
+                            <th>Total Amount</th>
+                            <th>Advance</th>
+                            <th>Due</th>
+                            <th>Due Received</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="sl" t-value="0"/>
+                        <t t-set="due_amount" t-value="0"/>
+                        <t t-set="total_due_amount" t-value="0"/>
+                        <t t-set="test_variable" t-value="0"/>
+                        <t t-set="due_collection" t-value="0"/>
+                        <t t-set="adv_collection" t-value="0"/>
+                        <t t-set="total" t-value="0"/>
+                        <t t-set="total_due" t-value="0"/>
+                       <tr t-foreach="get_user_names(data['form']['date_start'],data['form']['date_end'])" t-as="move_a">
+                           <t t-set="sl" t-value="sl+1"/>
+                                <td><span t-esc="sl"/></td>
+                                <td><span t-esc="move_a['bill_id']"/></td>
+                           <t t-if="move_a['p_type'] == 'advance'">
+                               <t t-set="zero" t-value="0"/>
+                                <td><span t-esc="move_a['total_amount']"/></td>
+                                <td><span t-esc="move_a['received_amount']"/></td>
+                               <t t-set="due_amount" t-value="move_a['total_amount']-move_a['received_amount']"/>
+                               <t t-set="total_due_amount" t-value="total_due_amount+due_amount"/>
+                                <td><span t-esc="due_amount"/></td>
+                                <td><span t-esc="zero"/></td>
+                           </t>
+                           <t t-if="move_a['p_type'] == 'due_payment'">
+                               <t t-set="zero" t-value="0"/>
+                               <td><span t-esc="zero"/></td>
+                                <td><span t-esc="zero"/></td>
+                                <td><span t-esc="zero"/></td>
+                                <td><span t-esc="move_a['received_amount']"/></td>
+
+                                 <t t-set="due_collection" t-value="due_collection+move_a['received_amount']"/>
+                           </t>
+                           <t t-if="move_a['p_type'] == 'advance'">
+                                 <t t-set="adv_collection" t-value="adv_collection+move_a['received_amount']"/>
+                                 <t t-set="total" t-value="total+move_a['total_amount']"/>
+                           </t>
+
+                           <t t-set="test_variable" t-value="test_variable+move_a['received_amount']"/>
+                           <t t-set="total_due" t-value="total-adv_collection"/>
+
+
+<!--                                <td><span t-esc="move_a['total']"/></td>-->
+<!--                                <td><span t-esc="move_a['test_amnt']"/></td>-->
+
+
+                       </tr>
+                        <tr>
+                            <th>-</th>
+                            <th>-</th>
+                            <th>Total:<t t-esc="total"/></th>
+                            <th>Adv:<t t-esc="adv_collection"/></th>
+                            <th>Due:<t t-esc="total_due_amount"/></th>
+                            <th>Due Coll-<t t-esc="due_collection"/></th>
+
+                        </tr>
+
+<!--                        <h3>Total=<t t-esc="total"/></h3>-->
+<!--                        <p>Advance Collection=<t t-esc="adv_collection"/> </p>-->
+<!--                        <p>Due Collection=<t t-esc="due_collection"/> </p>-->
+<!--                         <h3>Total Received =<t t-esc="test_variable"/></h3>-->
+<!--                        <p>Total Due=<t t-esc="total_due"/> </p>-->
+
+
+                    </tbody>
+
+                </table>
+                        <h3>Total Received =<t t-esc="test_variable"/></h3>
+
+
+
+
+
+
+
+
+                    </div>
+
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>
+
+

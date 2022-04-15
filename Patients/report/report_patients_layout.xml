@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_patients_layout">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    Date:
+                                    <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                                </div>
+                            </div>
+
+                            <div class="oe_structure"/>
+
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+
+                                    <span>Name #
+                                        <span t-field="o.name"/>
+                                    </span>
+                                    <br/>
+                                    <span>Mobile No #
+                                        <span t-field="o.mobile"/>
+                                    </span>
+                                    <br/>
+
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+
+                                    <span>Patient Id #
+                                        <span t-field="o.patient_id"/>
+                                    </span>
+                                    <br/>
+                                    <span>Age #
+                                        <span t-field="o.age"/>
+                                    </span>
+                                    <br/>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+
+                                    <span>Address #
+                                        <span t-field="o.address"/>
+                                    </span>
+                                    <br/>
+                                    <span>Sex #
+                                        <span t-field="o.sex"/>
+                                    </span>
+                                    <br/>
+                                </div>
+                            </div>
+
+                            <hr/>
+                            <br/>
+                            <br/>
+
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Test Name</th>
+                                        <th>Bill ID</th>
+                                        <th>Department</th>
+                                        <th>Delivery Date</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody class="invoice_tbody">
+                                    <t t-set="i" t-value="1" />
+                                    <t t-foreach="o.bills" t-as="m">
+                                        <t t-foreach="m.bill_register_line_id" t-as="z">
+                                            <tr>
+
+                                            <td>
+                                                <span t-field="z.name"/>
+
+                                            </td>
+
+                                            <td>
+                                                <span t-field="z.bill_register_id"/>
+
+                                            </td>
+                                            <td>
+                                                <span t-field="z.department"/>
+
+                                            </td>
+                                            <td>
+                                                <span t-field="z.delivery_date"/>
+
+                                            </td>
+
+
+                                        </tr>
+                                        </t>
+
+
+                                    </t>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

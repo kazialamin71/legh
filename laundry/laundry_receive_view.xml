@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="receive_view" model="ir.ui.view">
+            <field name="name">laundry.receive</field>
+            <field name="model">laundry.receive</field>
+            <field name="arch" type="xml">
+            <form string="Clean">
+                <sheet>
+
+                    <group>
+
+                        <field name="name"/>
+                        <field name="laundry_name"/>
+                        <field name="color"/>
+                        <field name="quantity"/>
+                        <field name="receive_date"/>
+
+                    </group>
+
+                </sheet>
+            </form>
+
+            </field>
+
+        </record>
+
+
+
+
+        <record id="receiving_action" model="ir.actions.act_window">
+            <field name="name">laundry.receive</field>
+            <field name="res_model">laundry.receive</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="receive_tree" >
+            <field name="name">laundry.receive.tree</field>
+            <field name="model">laundry.receive</field>
+            <field name="arch" type="xml">
+            <tree string="Alu List">
+                        <field name="name"/>
+                        <field name="laundry_name"/>
+                        <field name="color"/>
+                        <field name="quantity"/>
+                        <field name="receive_date"/>
+            </tree>
+            </field>
+        </record>
+
+
+<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
+<!--        <menuitem name="Laundry - Linen" id="leih_laundry_menu" parent="leih_menu"/>-->
+        <menuitem name="Receive from Laundry" id="receive_menu_mainform" parent="leih_laundry_menu" action="receiving_action" groups="leih.group_laundry_linen_menu_receive_from"/>
+
+
+    </data>
+</openerp>

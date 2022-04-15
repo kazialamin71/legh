@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<openerp>
+    <data>
+
+        <report
+            string="Print Stock"
+            id="report_purchase_stock"
+            model="purchase.order"
+            report_type="qweb-pdf"
+            name="leih.report_purchasestock"
+            file="leih.report_purchasestock"
+        />
+
+    <template id="contactusss_test" name="Contact Form" inherit_id="purchase.report_purchasequotation_document">
+        <xpath expr="//h2" position="replace">
+            <h2>Purchase Requisition <span t-field="o.name"/></h2>
+        </xpath>
+                <xpath expr="//h2" position="before">
+                    <h5><b>Order Date:</b> <span t-field="o.date_order"/></h5>
+        </xpath>
+	    <xpath expr="//thead//tr//th[2]" position="replace">
+	    </xpath>
+
+        <xpath expr="//tbody//tr//td[2]" position="replace">
+	    </xpath>
+           <xpath expr="//tbody//tr//td[2]" position="replace">
+               <td class="text-right">
+                 <span t-field="order_line.product_qty"/> pcs
+                   <span t-field="order_line.product_uom" groups="product.group_uom"/> pcs
+               </td>
+	    </xpath>
+
+
+       <xpath expr="(//p)[position()=last()]" position="after">
+           <br/>
+           <br/>
+            <div class="row">
+                <div class="col-xs-3 text-right">
+                    <strong><u>RS(LEI&amp;H)</u></strong>
+                </div>
+                <div class="col-xs-3 text-right">
+                    <strong><u>DG(LEI&amp;H)</u></strong>
+                </div>
+                <div class="col-xs-3 text-right">
+                    <strong><u>Treasurer</u></strong>
+                </div>
+                <div class="col-xs-3 text-right">
+                    <strong><u>S. General</u></strong>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+
+
+<!--        inherit code for purchase oreder pages-->
+
+         <template id="templatepurchase" name="Contact Form" inherit_id="purchase.report_purchaseorder_document">
+
+       <xpath expr="(//p)[position()=last()]" position="after">
+           <br/>
+           <br/>
+            <div class="row">
+                <div class="col-xs-3 text-right">
+                    <strong><u>RS(LEI&amp;H)</u></strong>
+                </div>
+                <div class="col-xs-3 text-right">
+                    <strong><u>DG(LEI&amp;H)</u></strong>
+                </div>
+                <div class="col-xs-3 text-right">
+                    <strong><u>Treasurer</u></strong>
+                </div>
+                <div class="col-xs-3 text-right">
+                    <strong><u>S. General</u></strong>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    </data>
+</openerp>

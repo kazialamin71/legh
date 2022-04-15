@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            string="Print Diagnosis Room"
+            id="action_report_diagnosis_room_layout"
+            model="diagnosis.room"
+            report_type="qweb-pdf"
+            name="leih.report_diagnosis_room_layout"
+            file="leih.report_diagnosis_room_layout"
+
+        />
+       </data>
+</openerp>

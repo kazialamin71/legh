@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="ambulance_booking_view" model="ir.ui.view">
+            <field name="name">Ambulance Booking</field>
+            <field name="model">ambulance.booking</field>
+            <field name="arch" type="xml">
+            <form string="Room">
+                <sheet>
+
+                    <group>
+                        <field name="date"/>
+                        <field name="booking_type"/>
+                        <field name="name"/>
+                        <field name="patient_id"/>
+                        <field name="mobile_no"/>
+                        <field name="start_from"/>
+                        <field name="destination"/>
+                        <field name="amount"/>
+                        <field name="advance_amount"/>
+                        <field name="paid_amount"/>
+                        <field name="unpaid_amount"/>
+                        <field name="grace_time"/>
+                    </group>
+
+                </sheet>
+            </form>
+
+            </field>
+
+        </record>
+
+
+
+
+        <record id="ambulance_booking_action" model="ir.actions.act_window">
+            <field name="name">Ambulance Booking</field>
+            <field name="res_model">ambulance.booking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="ambulance_booking_tree" >
+            <field name="name">Ambulance Booking</field>
+            <field name="model">ambulance.booking</field>
+            <field name="arch" type="xml">
+            <tree string="Alu List">
+                        <field name="date"/>
+                        <field name="booking_type"/>
+                        <field name="name"/>
+                        <field name="patient_id"/>
+                        <field name="mobile_no"/>
+                        <field name="start_from"/>
+                        <field name="destination"/>
+                        <field name="amount"/>
+                        <field name="advance_amount"/>
+                        <field name="paid_amount"/>
+                        <field name="unpaid_amount"/>
+                        <field name="grace_time"/>
+
+            </tree>
+            </field>
+        </record>
+
+        <menuitem name="Ambulance Booking" id="ambulance_booking_menu_mainform" parent="leih_group_menu" action="ambulance_booking_action"/>
+
+    </data>
+</openerp>

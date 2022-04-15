@@ -1,0 +1,2 @@
+import inventory_requisition
+import inventory_product_entry

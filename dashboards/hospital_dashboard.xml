@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+
+
+  <template  id="hospital_chart" name="hospital Chart">&lt;!DOCTYPE html&gt;
+
+      <html>
+  <head>
+
+      <title>Hospital Chart</title>
+
+    <t t-call-assets="web.assets_common" t-css="false"/>
+        <t t-call-assets="web.assets_backend" t-css="false" />
+
+    <link rel="stylesheet" href="/leih/static/assets/css/shared/style.css"/>
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="/leih/static/assets/css/demo_1/style.css"/>
+
+
+      <script type="text/javascript">
+            var list;
+            var _labels;
+            var _values;
+            var _vals;
+            var s = new openerp.init();
+            var _all_users;
+            var _all_users_vals;
+            var _nodes;
+
+
+
+            $(function() {
+
+
+
+
+                var params = ([[]], []);
+
+
+
+
+                new s.web.Model("hospital.dashboard").call("dashboard_data", (params)).then(function(results) {
+
+
+
+                    document.getElementById('total_income').innerHTML=results[0];
+                    document.getElementById('total_cash_collected').innerHTML=results[1];
+                    document.getElementById('total_patients').innerHTML=results[2];
+                    document.getElementById('new_patients').innerHTML=results[3];
+                    document.getElementById('total_tests').innerHTML=results[4];
+                    document.getElementById('pathology_tests').innerHTML=results[5];
+                    document.getElementById('total_expense').innerHTML=results[6];
+                    document.getElementById('total_expense_head').innerHTML=results[7];
+                    _labels = results[8];
+                    _values = results[9];
+                    _all_users = results[10];
+                    _all_users_vals = results[11];
+
+
+
+                    generatesaleshospitaloverviewbarchart(_labels,_values);
+                    generatesaleshospitaloverviewpiechart(_labels,_values);
+                    generatesaleshospitalpersonwisechart(_all_users,_all_users_vals);
+
+                    generatesaleshospitaloverviewdoughnutchart(_all_users,_all_users_vals);
+
+
+
+
+
+
+
+            });
+            });
+
+
+          function generatesaleshospitaloverviewbarchart(_labels,_values){
+
+                var ctx = document.getElementById('sales_hospital_bar');
+                var sales_hospital_bar = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: _labels,
+                        datasets: [{
+                            label: 'Amount',
+                            data: _values,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.9)',
+                                'rgba(54, 162, 235, 0.9)',
+                                'rgba(255, 206, 86, 0.9)',
+                                'rgba(75, 192, 192, 0.9)',
+                                'rgba(153, 102, 255, 0.9)',
+                                'rgba(255, 159, 64, 0.9)',
+                                 'rgba(215, 51, 83, 0.9)',
+                                 'rgba(51, 215, 70, 0.9)',
+                                'rgba(46, 80, 184, 0.9)',
+                                'rgba(46, 184, 163, 0.9)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(215, 51, 83, 1)',
+                                'rgba(51, 215, 70, 1)',
+                                'rgba(46, 80, 184, 0.9)',
+                                'rgba(46, 184, 163, 0.9)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+          };
+
+          function generatesaleshospitaloverviewpiechart(_labels,_values){
+
+                var ctx = document.getElementById('sales_hospital_pie');
+                var sales_hospital_bar = new Chart(ctx, {
+                    type: 'pie',
+                    data: {
+                        labels: _labels,
+                        datasets: [{
+                            label: 'Amount',
+                            data: _values,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                 'rgba(215, 51, 83, 1)',
+                                 'rgba(51, 215, 70, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(215, 51, 83, 1)',
+                                'rgba(51, 215, 70, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+          };
+
+
+
+         function generatesaleshospitalpersonwisechart(_all_users,_all_users_vals){
+
+          var ctx = document.getElementById('sales_hospital_person_wise_bar');
+                var sales_hospital_bar = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: _all_users,
+                        datasets: [{
+                            label: 'Expense',
+                            data: _all_users_vals,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.9)',
+                                'rgba(54, 162, 235, 0.9)',
+                                'rgba(255, 206, 86, 0.9)',
+                                'rgba(75, 192, 192, 0.9)',
+                                'rgba(153, 102, 255, 0.9)',
+                                'rgba(255, 159, 64, 0.9)',
+                                 'rgba(215, 51, 83, 0.9)',
+                                 'rgba(51, 215, 70, 0.9)',
+                                'rgba(46, 80, 184, 0.9)',
+                                'rgba(46, 184, 163, 0.9)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(215, 51, 83, 1)',
+                                'rgba(51, 215, 70, 1)',
+                                'rgba(46, 80, 184, 1)',
+                                'rgba(46, 184, 163, 1)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    }
+                });
+
+          };
+
+
+
+
+          function generatesaleshospitaloverviewdoughnutchart(_labels,_values){
+
+                var ctx = document.getElementById('sales_hospital_doughnut');
+                var sales_hospital_bar = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: _all_users,
+                        datasets: [{
+                            label: 'Expense Type',
+                            data: _all_users_vals,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.9)',
+                                'rgba(54, 162, 235, 0.9)',
+                                'rgba(255, 206, 86, 0.9)',
+                                'rgba(75, 192, 192, 0.9)',
+                                'rgba(153, 102, 255, 0.9)',
+                                'rgba(255, 159, 64, 0.9)',
+                                 'rgba(215, 51, 83, 0.9)',
+                                 'rgba(51, 215, 70, 0.9)',
+                                'rgba(46, 80, 184, 0.9)',
+                                'rgba(46, 184, 163, 0.9)'
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(215, 51, 83, 1)',
+                                'rgba(51, 215, 70, 1)',
+                                'rgba(46, 80, 184, 1)',
+                                'rgba(46, 184, 163, 1)',
+                            ],
+                            borderWidth: 1
+
+
+                        }]
+                    }
+
+                });
+          };
+
+
+
+
+
+
+
+        </script>
+
+
+
+
+
+  </head>
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
+            
+            <a href="javascript:window.open('','_self').close();">QUIT</a>
+
+
+        </div>
+      </nav>
+
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+
+        <!-- partial -->
+        <div class="main-panel">
+          <div class="content-wrapper">
+            <!-- Page Title Header Starts-->
+            <div class="row page-title-header">
+              <div class="col-12">
+                <div class="page-header justify-content-center">
+                  <h2 class="page-title">Hospital Dashboard</h2>
+                </div>
+              </div>
+
+            </div>
+            <!-- Page Title Header Ends-->
+
+            <div class="row">
+              <div class="col-md-12 grid-margin">
+                <div class="card top_chart_bar">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-lg-3 col-md-6">
+                        <div class="d-flex bg-blue">
+                          <div class="wrapper">
+                            <h3 class="mb-0 font-weight-semibold">Income Summary</h3>
+                              <div id="total_income"></div>
+                              <div id="total_cash_collected"></div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                        <div class="d-flex bg-green">
+                          <div class="wrapper">
+                            <h3 class="mb-0 font-weight-semibold">Patients Summary</h3>
+                               <div id="total_patients"></div>
+                              <div id="new_patients"></div>
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                        <div class="d-flex bg-yellow">
+                          <div class="wrapper">
+                            <h3 class="mb-0 font-weight-semibold">Tests Summary</h3>
+
+                              <div id="total_tests"></div>
+                              <div id="pathology_tests"></div>
+
+                          </div>
+
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6 mt-md-0 mt-4">
+                        <div class="d-flex bg-red">
+                          <div class="wrapper">
+                            <h3 class="mb-0 font-weight-semibold">Expense Summary</h3>
+                              <div id="total_expense"></div>
+                              <div id="total_expense_head"></div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h2 class="card-title mb-0">Top Ten Visited Doctors </h2>
+
+
+                    <canvas class="mt-5" height="120" id="sales_hospital_bar"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body d-flex flex-column">
+                    <div class="wrapper">
+                      <h4 class="card-title mb-0">Top Ten Doctors Overview</h4>
+
+
+                    </div>
+                    <canvas class="my-auto mx-auto" height="250" id="sales_hospital_pie"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="row">
+
+                  <div class="col-md-12 grid-margin">
+                    <div class="card">
+                      <div class="card-body">
+                        <h4 class="card-title mb-0">Expense Type</h4>
+
+                        <canvas class="mt-4" height="100" id="sales_hospital_person_wise_bar"></canvas>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+                <div class="col-md-4 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body d-flex flex-column">
+                    <div class="wrapper">
+                      <h4 class="card-title mb-0">Expense Overview</h4>
+
+
+                    </div>
+                    <canvas class="my-auto mx-auto" height="100" id="sales_hospital_doughnut"></canvas>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+
+
+
+
+
+          <!-- content-wrapper ends -->
+          <!-- partial:partials/_footer.html -->
+          <footer class="footer">
+            <div class="container-fluid clearfix">
+              <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © BLF IT Team </span>
+              <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"><i class="mdi mdi-heart text-danger"></i>
+              </span>
+            </div>
+          </footer>
+          <!-- partial -->
+        </div>
+        <!-- main-panel ends -->
+      </div>
+      </div>
+
+      <!-- page-body-wrapper ends -->
+
+    <!-- container-scroller -->
+
+      <!-- plugins:js -->
+    <script src="/leih/static/assets/vendors/js/vendor.bundle.base.js"></script>
+    <script src="/leih/static/assets/vendors/js/vendor.bundle.addons.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="/leih/static/assets/js/shared/off-canvas.js"></script>
+    <script src="/leih/static/assets/js/shared/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+
+
+
+  </body>
+</html>
+
+
+
+  </template>
+
+<template id="user_navbar" inherit_id="leih.hospital_chart" groups="base.group_user">
+<xpath expr="//div['id=divtitle']" position="before">
+
+
+<t t-if="website and menu_data">
+    <nav id="oe_main_menu_navbar" class="navbar1 navbar-inverse" role="navigation">
+
+
+        <ul id="oe_applications" class="nav navbar-nav navbar-left navbar-collapse collapse">
+            <li class="dropdown active">
+                <a href="#" class="dropdown-toggle hidden-xs" data-toggle="dropdown"><i class="fa fa-th-large"></i> Your Menu<b class="caret"/></a>
+                <ul class="dropdown-menu">
+                    <li t-foreach="menu_data['children']" t-as="menu">
+                        <t t-call="web.menu_link"/>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="navbar-header navbar-form navbar-right">
+
+        </div>
+    </nav>
+</t>
+
+</xpath>
+</template>
+
+
+
+</data>
+</openerp>

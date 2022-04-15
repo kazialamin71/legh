@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            string="Print Group"
+            id="action_report_group_layout"
+            model="diagnosis.group"
+            report_type="qweb-pdf"
+            name="leih.report_group_layout"
+            file="leih.report_group_layout"
+
+        />
+       </data>
+</openerp>

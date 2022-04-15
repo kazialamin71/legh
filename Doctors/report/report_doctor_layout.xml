@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_doctor_layout">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    Date:
+                                    <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                                </div>
+                            </div>
+
+                            <div class="oe_structure"/>
+
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+
+                                    <span>Doctor Name #
+                                        <span t-field="o.name"/>
+                                    </span>
+                                    <br/>
+                                    <span>Parent Department Name #
+                                        <span t-field="o.department"/>
+                                    </span>
+                                    <br/>
+
+                                </div>
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>Designation #
+                                        <span t-field="o.status"/>
+                                    </span>
+                                    <br/>
+                                    <span>Type #
+                                        <span t-field="o.type"/>
+                                    </span>
+                                    <br/>
+                                </div>
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <span>Status #
+                                        <span t-field="o.status"/>
+                                    </span>
+                                    <br/>
+                                    <span>Others #
+                                        <span t-field="o.others"/>
+                                    </span>
+                                    <br/>
+                                </div>
+
+                            </div>
+
+                            <hr/>
+                            <br/>
+                            <br/>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            string="Print Department"
+            id="action_report_department_layout"
+            model="diagnosis.department"
+            report_type="qweb-pdf"
+            name="leih.report_department_layout"
+            file="leih.report_department_layout"
+
+        />
+       </data>
+</openerp>

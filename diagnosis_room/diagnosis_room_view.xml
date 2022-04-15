@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="room_view" model="ir.ui.view">
+            <field name="name">diagnostic.view</field>
+            <field name="model">diagnosis.room</field>
+            <field name="arch" type="xml">
+            <form string="Room">
+                <sheet>
+
+                    <group>
+
+                        <field name="room_no"/>
+                        <field name="name"/>
+                        <field name="floor"/>
+                        <field name="building_name"/>
+                    </group>
+
+                </sheet>
+            </form>
+
+            </field>
+
+        </record>
+
+
+
+
+        <record id="room_action" model="ir.actions.act_window">
+            <field name="name">Diagnostic form</field>
+            <field name="res_model">diagnosis.room</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="room_tree" >
+            <field name="name">diagnostic</field>
+            <field name="model">diagnosis.room</field>
+            <field name="arch" type="xml">
+            <tree string="Alu List">
+                        <field name="room_no"/>
+                        <field name="name"/>
+                        <field name="floor"/>
+                        <field name="building_name"/>
+
+
+            </tree>
+            </field>
+        </record>
+
+        <menuitem name="LEIH" id="leih_menu" sequence="1"/>
+        <menuitem name="Configuration" id="leih_config_menu" parent="leih_menu" sequence="20"/>
+<!--        <menuitem name="Room" id="room_menu_mainform" parent="leih_config_menu" action="room_action" groups="leih.group_configuration_menu_room"/>-->
+
+
+    </data>
+</openerp>

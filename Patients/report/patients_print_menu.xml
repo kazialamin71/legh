@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            string="Patient info"
+            id="action_report_patients_layout"
+            model="patient.info"
+            report_type="qweb-pdf"
+            name="leih.report_patients_layout"
+            file="leih.report_patients_layout"
+
+        />
+       </data>
+</openerp>

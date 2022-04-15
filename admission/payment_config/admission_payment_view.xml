@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <!--admission form-->
+        <record model="ir.ui.view" id="admission_configuration_form_view" >
+			<field name="name">admission Configuration</field>
+			<field name="model">admission.payment.configuration</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="admission Configuration">
+                    <header>
+                        <button string="Confirm" type="object" name="confirm_configuration" groups="base.group_user"/>
+                        <button string="Cancel" type="object" name="cancel_configuration" groups="leih.group_admission_configuration_button_cancel"/>
+
+                    </header>
+
+                    <sheet>
+                        <h1>
+                            <label string="admission Configuration"/>
+                        </h1>
+                        <group string="Basic Information">
+                            <group>
+                                <field name="id" invisible="1"/>
+                                <field name="doctor_id"/>
+                                <field name="start_date"/>
+                                <field name="end_date"/>
+                                <field name="overall_admission_rate"/>
+                                <field name="overall_default_discount"/>
+                                <field name="max_default_discount"/>
+                                <field name="deduct_from_discount"/>
+                                <field name="department_ids"/>
+
+
+                            </group>
+
+                        </group>
+
+                        <!--Tab information-->
+                        <notebook>
+
+                            <page string="Configuration Lines">
+                                <field name="admission_configuration_line_ids" mode="tree">
+                                    <tree string="Configuration Lines" editable="top">
+                                        <field name="department_id"/>
+                                        <field name="test_id"/>
+                                        <field name="applicable"/>
+                                        <field name="fixed_amount"/>
+                                        <field name="variance_amount"/>
+                                        <field name="test_price"/>
+                                        <field name="est_admission_amount"/>
+                                        <field name="max_admission_amount"/>
+
+
+                                    </tree>
+                                </field>
+                            </page>
+
+
+
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--admission starting action-->
+        <record model="ir.actions.act_window" id="admission_configuration_new_action" >
+			<field name="name">admission Configuration List</field>
+			<field name="res_model">admission.payment.configuration</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context" eval="{'search_default_my_courses': 1}"/>
+			<field name="help" type="html">
+				<p class="oe_view_nocontent_create">Click to create a new admission configuration list.
+				</p>
+			</field>
+		</record>
+
+
+
+        <!--admission record list tree-->
+        <record model="ir.ui.view" id="admission_configuration_tree_view" >
+            <field name="name">admission.payment.tree</field>
+            <field name="model">admission.payment.configuration</field>
+            <field name="arch" type="xml">
+                <tree string="admission Configuration List">
+                    <field name="name"/>
+                    <field name="doctor_id"/>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                    <field name="state"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <menuitem name="Admission Payment Configration" id="admission_payment_configuration_mainform" parent="leih_admission_menu" action="admission_configuration_new_action" groups="leih.group_admission_menu_payment_configuration"/>
+
+
+
+
+
+
+
+
+    </data>
+</openerp>

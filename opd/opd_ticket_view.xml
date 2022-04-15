@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="opd_ticket_entry_view" model="ir.ui.view">
+            <field name="name">opd.ticket.views</field>
+            <field name="model">opd.ticket.entry</field>
+            <field name="arch" type="xml">
+            <form string="Investigation">
+                <sheet>
+
+                    <group>
+
+<!--                        <field name="patient_id"/>-->
+<!--                        <field name="name"/>-->
+                        <field name="name"/>
+                        <field name="department"/>
+                        <field name="fee"/>
+                        <field name="accounts_id"/>
+
+
+                    </group>
+
+                </sheet>
+            </form>
+
+            </field>
+
+        </record>
+
+
+
+
+
+
+        <record id="opd_ticekt_entry_action" model="ir.actions.act_window">
+            <field name="name">OPD</field>
+            <field name="res_model">opd.ticket.entry</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="opd_ticket_entry_tree" >
+            <field name="name">leih</field>
+            <field name="model">opd.ticket.entry</field>
+            <field name="arch" type="xml">
+            <tree string="Alu List">
+                        <field name="name"/>
+                        <field name="department"/>
+                        <field name="fee"/>
+                        <field name="accounts_id"/>
+            </tree>
+            </field>
+        </record>
+
+
+<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
+        <menuitem name="OPD Ticket Entry" id="opd_ticket_menu_mainform" parent="leih_config_menu" action="opd_ticekt_entry_action" groups="leih.group_configuration_menu_opd_ticket_entry"/>
+
+
+    </data>
+</openerp>

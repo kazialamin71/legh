@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="appointment_view" model="ir.ui.view">
+            <field name="name">appointment.view</field>
+            <field name="model">appointment.booking</field>
+            <field name="arch" type="xml">
+            <form string="appointment">
+                <header>
+                    <button string="Reached" type="object" name="reached_appointment" groups="base.group_user"/>
+                        <button string="Done" type="object" name="done_appointment" groups="base.group_user"/>
+                        <button string="Cancel" type="object" name="cancel_appointment" groups="base.group_user"/>
+                </header>
+                <sheet>
+
+                    <group>
+
+                        <field name="name"/>
+                        <field name="patient_name"/>
+                        <field name="age"/>
+                        <field name="sex"/>
+                        <field name="phone"/>
+                        <field name="address"/>
+                        <field name="doctor_name"/>
+                        <field name="time"/>
+                        <field name="date"/>
+                        <field name="status"/>
+                        <field name="patient_status"/>
+                        <field name="amount"/>
+
+                    </group>
+
+                </sheet>
+            </form>
+
+            </field>
+
+        </record>
+
+
+        <record id="appointment_action" model="ir.actions.act_window">
+            <field name="name">Appointment</field>
+            <field name="res_model">appointment.booking</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="appointment_tree" >
+            <field name="name">appointment</field>
+            <field name="model">appointment.booking</field>
+            <field name="arch" type="xml">
+            <tree string="Alu List">
+
+                 <field name="date"/>
+                 <field name="name"/>
+                <field name="patient_name"/>
+                        <field name="age"/>
+                        <field name="phone"/>
+                        <field name="address"/>
+                        <field name="doctor_name"/>
+
+            </tree>
+            </field>
+        </record>
+
+
+<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
+        <menuitem name="Appointment" id="appointment_parent" parent="leih_menu" sequence="6"/>
+        <menuitem name="Appointment Booking" id="appointment_booking_menu" parent="appointment_parent" action="appointment_action" groups="leih.group_appointment_menu_booking"/>
+
+
+    </data>
+</openerp>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="laundry_view" model="ir.ui.view">
+            <field name="name">laundry.laundry</field>
+            <field name="model">laundry.laundry</field>
+            <field name="arch" type="xml">
+            <form string="laundry Entry Form">
+                <sheet>
+
+                    <group>
+
+                        <field name="name"/>
+                        <field name="address"/>
+
+                    </group>
+
+                </sheet>
+            </form>
+
+            </field>
+
+        </record>
+
+
+
+
+        <record id="laundry_action" model="ir.actions.act_window">
+            <field name="name">laundry.laundry</field>
+            <field name="res_model">laundry.laundry</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+<!--        <record model="ir.ui.view" id="linen_tree" >-->
+<!--            <field name="name">laundry.product.tree</field>-->
+<!--            <field name="model">laundry.product</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--            <tree string="Alu List">-->
+<!--                        <field name="name"/>-->
+<!--                        <field name="color"/>-->
+<!--                        <field name="quantity"/>-->
+<!--                        <field name="type"/>-->
+<!--                        <field name="others"/>-->
+
+
+<!--            </tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+
+<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
+<!--        <menuitem name="Laundry - Linen" id="leih_laundry_menu" parent="leih_menu"/>-->
+<!--        <menuitem name="Linen" id="linen_menu_mainform" parent="leih_laundry_menu" action="linen_action"/>-->
+
+
+    </data>
+</openerp>

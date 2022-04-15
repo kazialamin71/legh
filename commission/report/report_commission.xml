@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_commission">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    Date: <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                                </div>
+                            </div>
+
+                            <div class="oe_structure"/>
+
+                            <div style="align:center">
+                                <h2>
+                                    <span><span t-field="o.name"/></span>
+                                </h2>
+                            </div>
+
+                            <div class="row">
+                            <div class="col-md-6 pull-right">
+                                <h1>
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>
+                                </h1>
+                            </div>
+                                </div>
+
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <strong>Name:</strong>
+                                    <p t-field="o.ref_doctors"/>
+                                </div>
+                                <div class="col-xs-4">
+                                    <strong>From Date:</strong>
+                                    <p t-field="o.cal_st_date"/>
+                                </div>
+                                <div class="col-xs-4">
+                                    <strong>End Date:</strong>
+                                    <p t-field="o.cal_end_date"/>
+                                </div>
+<!--                                <div class="col-xs-4">-->
+<!--                                    <strong>Discount:</strong>-->
+<!--                                    <p t-field="o.discounts"/>-->
+<!--                                </div>-->
+                                <div class="col-xs-4">
+                                    <strong>Total Payable:</strong>
+                                    <p t-field="o.total_payable_amount"/>
+                                </div>
+
+                            </div>
+                            <hr/>
+                            <br/><br/>
+
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>S.N.</th>
+                                        <th>Department Name</th>
+                                        <th>Test Name</th>
+                                        <th>Discount Amount</th>
+                                        <th>Test Amount</th>
+                                        <th>MOU Payable Commission Amount (%)</th>
+                                        <th>MOU Payable Commission Fixed</th>
+                                        <th>MOU Max CAP Amount</th>
+                                        <th>After Discount Amount</th>
+                                        <th>Payable Amount</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="commission_line_tbody">
+                                    <t t-set="i" t-value="1" />
+                                    <t t-foreach="o.commission_line_ids" t-as="z">
+                                        <tr>
+                                            <td>
+                                                <span t-esc="i"/>
+                                                <t t-set="i" t-value="i+1"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="z.department_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="z.name"/>
+
+                                            </td>
+
+                                            <td>
+                                                <span t-field="z.discount_amount"/>
+
+                                            </td>
+
+                                            <td>
+                                                <span t-field="z.test_amount"/>
+
+                                            </td>
+                                            <td>
+                                                <span t-field="z.mou_payable_comm_var"/>
+
+                                            </td>
+                                            <td>
+                                                <span t-field="z.mou_payable_comm_fixed"/>
+
+                                            </td>
+
+                                              <td>
+                                                <span t-field="z.mou_payable_comm_max_cap"/>
+
+                                            </td>
+
+
+                                            <td>
+                                                <span t-field="z.after_discount"/>
+
+                                            </td>
+                                            <td>
+                                                <span t-field="z.payable_amount"/>
+
+                                            </td>
+
+
+
+                                        </tr>
+
+                                    </t>
+
+                                </tbody>
+
+                            </table>
+
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="inventory_product_entry_view" model="ir.ui.view">
+            <field name="name">inventory.product.entry.view</field>
+            <field name="model">inventory.product.entry</field>
+            <field name="arch" type="xml">
+            <form string="Issue of products">
+                                    <header>
+
+<!--                        <button string="Add Test" type="object" name="add_new_test" groups="base.group_user"/>-->
+
+                        <button string="Product Receive" type="object" name="confirm_transfer" groups="base.group_user"/>
+                        <button string="Verify for Adjustment" type="object" name="confirm_finance" groups="base.group_user" attrs="{'invisible':[('state','=','pending')]}"/>
+                        <button string="Cancel" type="object" name="inventory_requsition_cancel" groups="base.group_user"/>
+                    </header>
+                <sheet>
+
+                    <group>
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="reference_no"/>
+                        <field name="invoice_no"/>
+                        <field name="partner_id" domain="[('customer','=',True)]"/>
+                        <field name="department"/>
+                        <field name="warehouse_id"/>
+                        <field name="total"/>
+                        <field name="state"/>
+
+                    </group>
+                    <notebook>
+                        <page string="Item Entry">
+                            <field name="inventory_product_entry_line_ids" mode="tree">
+                                <tree string="Select Product" editable="bottom">
+
+<!--                                    <field name="product_name" on_change="onchange_product(product_name, context)" domain="[('categ_id', '!=', 3),('categ_id', '!=', 4)]"/>-->
+                                    <field name="product_name" on_change="onchange_product(product_name, context)" domain="[('categ_id','not in',(3,4,5,6,7,8,9,10,11,12))]"/>
+                                    <field name="account_id"/>
+                                    <field name="quantity" on_change="onchange_quantity(quantity,unit_price, context)"/>
+                                     <field name="unit_price" on_change="onchange_unitprice(unit_price,quantity,context)"/>
+                                    <field name="total_price"/>
+
+                                </tree>
+                            </field>
+
+                        </page>
+
+                    </notebook>
+
+
+                </sheet>
+            </form>
+
+            </field>
+
+        </record>
+
+        <record model="ir.ui.view" id="inventory_entry_graph_view">
+                <field name="name">Entry Graph</field>
+                <field name="model">inventory.product.entry</field>
+                <field name="arch" type="xml">
+                    <graph string="">
+                        <field name="name"/>
+
+                    </graph>
+                </field>
+        </record>
+
+
+
+        <record id="inventory_product_entry_action" model="ir.actions.act_window">
+            <field name="name">Product Entry</field>
+            <field name="res_model">inventory.product.entry</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+             <field name="domain">[('state','=','pending')]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="inventory_product_entry_tree" >
+            <field name="name">Inventory</field>
+            <field name="model">inventory.product.entry</field>
+            <field name="arch" type="xml">
+            <tree string="Issue List">
+
+                <field name="name"/>
+                <field name="date"/>
+                <field name="reference_no"/>
+                <field name="department"/>
+                <field name="grn_id"/>
+                <field name="grn_journal_id"/>
+                <field name="advance_journal_id"/>
+                <field name="state"/>
+            </tree>
+            </field>
+        </record>
+
+
+<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
+         <menuitem name="Inventory Product Entry" id="ipe_menu" parent="leih_menu"/>
+
+        <menuitem name="Pending Inventory Product Entry" id="inventory_entry_menu_mainform" parent="ipe_menu" action="inventory_product_entry_action" sequence="23" groups="leih.group_billing_menu_ipe"/>
+
+    </data>
+</openerp>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<openerp>
+    <data>
+<!--        <record id="action_hospital_cart_menu" model="ir.actions.client">-->
+<!--            <field name="name">Hospital Chart</field>-->
+<!--            <field name="tag">Hospital chart</field>-->
+<!--            <field name="target">new</field>-->
+<!--        </record>-->
+
+<!--        <record id="action_hospital_cart_rpt" model="ir.actions.act_url">-->
+<!--            <field name="name">Hospital Chart</field>-->
+<!--            <field name="url">/hospital/chart/</field>-->
+<!--            <field name="target">new</field>-->
+<!--        </record>-->
+
+<!--        <menuitem name="OT Dashboard" id="oy_dashboard_menu_mainform" parent="leih_group_menu" action="action_hospital_cart_rpt"/>-->
+
+    </data>
+</openerp>

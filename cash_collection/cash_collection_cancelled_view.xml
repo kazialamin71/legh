@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="cc_graph_view">
+                <field name="name">Cash Collection Graph</field>
+                <field name="model">cash.collection</field>
+                <field name="arch" type="xml">
+                    <graph string="">
+                        <field name="type"/>
+
+                    </graph>
+                </field>
+        </record>
+
+
+        <record id="cash_collection_cancelled_action" model="ir.actions.act_window">
+            <field name="name">cash.collection</field>
+            <field name="res_model">cash.collection</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="domain">[('state','=','cancel')]</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="cash_collection_cancelled_tree" >
+            <field name="name">cash.collection.tree</field>
+            <field name="model">cash.collection</field>
+            <field name="arch" type="xml">
+            <tree string="Cash Collection List">
+                        <field name="name"/>
+                        <field name="date"/>
+                        <field name="type"/>
+                        <field name="journal_id"/>
+                        <field name="debit_act_id"/>
+                        <field name="credit_act_id"/>
+                        <field name="total"/>
+                        <field name="state"/>
+
+
+            </tree>
+            </field>
+        </record>
+
+
+<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
+        <menuitem name="Cancelled Cash Collection" id="cash_collection_menu_cancelled_mainform" parent="leih_group_menu" action="cash_collection_cancelled_action" groups="leih.group_hospital_menu_cancel_cash_coll"/>
+    </data>
+</openerp>

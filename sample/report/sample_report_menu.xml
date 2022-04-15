@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+                id="action_report_sample_report"
+                model="diagnosis.sticker"
+                string="Print Sticker"
+                report_type="qweb-pdf"
+                name="leih.report_sample_report"
+                file="leih.report_sample_report"
+                menu="True"
+
+        />
+
+
+
+       </data>
+</openerp>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+                id="action_report_optics_sale"
+                model="optics.sale"
+                string="Print Optics"
+                report_type="qweb-pdf"
+                name="leih.report_optics_sale"
+                file="leih.report_optics_sale"
+                menu="True"
+
+        />
+
+
+
+       </data>
+</openerp>

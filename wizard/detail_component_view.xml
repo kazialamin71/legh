@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+
+        <record id="view_detail_component" model="ir.ui.view">
+            <field name="name">Collection Report</field>
+            <field name="model">detail.component</field>
+            <field name="arch" type="xml">
+                <form string="Collection Details">
+                    <group col="4" string="Dates">
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                    </group>
+
+                    <footer>
+                        <button name="print_detail_report" type="object" string="Collection Report" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_report_detail_component" model="ir.actions.act_window">
+            <field name="name">Collection Report</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">detail.component</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+
+        <menuitem icon="STOCK_PRINT" action="action_report_detail_component"
+                id="menu_detail_component" parent="leih_group_menu" sequence="12" />
+
+
+    </data>
+</openerp>
