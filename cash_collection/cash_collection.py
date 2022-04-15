@@ -14,12 +14,12 @@ class cash_collection(osv.osv):
         child_list=[]
         total=0
 
-        # mr_obj = self.pool.get("leih.money.receipt").search(self.cr, self.uid, [('date','>=',self.date)])
+
         if self.type=='bill':
             vals_parameter = [('bill_id', '!=', False),('diagonostic_bill', '=', True),('already_collected','!=',True),('state','!=','cancel')]
             if self.date:
                 vals_parameter.append(('date','=',self.date))
-            mr_obj=self.env['leih.money.receipt'].search(vals_parameter)
+            mr_obj=self.env['legh.money.receipt'].search(vals_parameter)
 
             for record in mr_obj:
                 abc = {}
@@ -33,7 +33,7 @@ class cash_collection(osv.osv):
             vals_parameter = [('bill_id', '!=', False),('diagonostic_bill', '!=', True),('already_collected','!=',True),('state','!=','cancel')]
             if self.date:
                 vals_parameter.append(('date','=',self.date))
-            mr_obj=self.env['leih.money.receipt'].search(vals_parameter)
+            mr_obj=self.env['legh.money.receipt'].search(vals_parameter)
 
             for record in mr_obj:
                 abc = {}
@@ -48,7 +48,7 @@ class cash_collection(osv.osv):
             vals_parameter = [('admission_id', '!=', False), ('already_collected', '!=', True),('state','!=','cancel')]
             if self.date:
                 vals_parameter.append(('date', '=', self.date))
-            mr_obj=self.env['leih.money.receipt'].search(vals_parameter)
+            mr_obj=self.env['legh.money.receipt'].search(vals_parameter)
 
             for record in mr_obj:
                 abc = {}
@@ -62,7 +62,7 @@ class cash_collection(osv.osv):
             vals_parameter = [('optics_sale_id', '!=', False),('already_collected','!=',True),('state','!=','cancel')]
             if self.date:
                 vals_parameter.append(('date','=',self.date))
-            mr_obj=self.env['leih.money.receipt'].search(vals_parameter)
+            mr_obj=self.env['legh.money.receipt'].search(vals_parameter)
 
             for record in mr_obj:
                 abc = {}
@@ -160,7 +160,7 @@ class cash_collection(osv.osv):
                     for line_items in cc_obj.cash_collection_lines:
                         if line_items.mr_no.id != False:
                             mr_id = line_items.mr_no.id
-                            cr.execute( "UPDATE leih_money_receipt SET already_collected=True WHERE id={0}".format(mr_id))
+                            cr.execute( "UPDATE legh_money_receipt SET already_collected=True WHERE id={0}".format(mr_id))
                             cr.commit()
                         else:
                             mr_id = line_items.opd_id.id
@@ -240,7 +240,7 @@ class cash_collection_line(osv.osv):
 
     _columns = {
         'cash_collection_line_id':fields.many2one("cash.collection","Cash Collection"),
-        'mr_no':fields.many2one('leih.money.receipt', 'MR No. '),
+        'mr_no':fields.many2one('legh.money.receipt', 'MR No. '),
         'opd_id':fields.many2one('opd.ticket', 'OPD No. '),
         'bill_admission_opd_id':fields.char("Bill/Admission/OPD Number"),
         'amount':fields.float("Amount")

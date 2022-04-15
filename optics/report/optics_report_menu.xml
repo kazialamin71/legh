@@ -7,8 +7,8 @@
                 model="optics.sale"
                 string="Print Optics"
                 report_type="qweb-pdf"
-                name="leih.report_optics_sale"
-                file="leih.report_optics_sale"
+                name="legh.report_optics_sale"
+                file="legh.report_optics_sale"
                 menu="True"
 
         />

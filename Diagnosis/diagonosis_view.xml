@@ -95,8 +95,7 @@
         </record>
 
 
-        <menuitem name="Hospital" id="leih_group_menu" parent="leih_menu" sequence="1"/>
-<!--        <menuitem name="Diagonosiss" id="diagonosis_menu_mainform" parent="leih_group_menu" action="diagonosis_type_action"/>-->
+        <menuitem name="Hospital" id="legh_group_menu" parent="legh_menu" sequence="1"/>
 
 
 

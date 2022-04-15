@@ -7,5 +7,5 @@ class org_chart_dept(http.Controller):
     def view(self, message=False, **post):
         values = {
         }
-        return request.website.render('leih.hospital_chart', values)
+        return request.website.render('legh.hospital_chart', values)
 

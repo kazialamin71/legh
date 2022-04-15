@@ -88,7 +88,7 @@
                 </tree>
             </field>
         </record>
-        <menuitem name="Discount Configuration" id="discount_type_mainform" parent="leih_billing_menu" action="discount_configuration_action" groups="leih.group_billing_menu_discount_configuration"/>
+        <menuitem name="Discount Configuration" id="discount_type_mainform" parent="legh_billing_menu" action="discount_configuration_action" groups="legh.group_billing_menu_discount_configuration"/>
 
 
     </data>

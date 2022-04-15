@@ -90,7 +90,7 @@
                                 </thead>
                                 <tbody class="bill_register_tbody">
                                     <t t-set="i" t-value="1" />
-                                    <t t-foreach="o.leih_admission_line_id" t-as="z">
+                                    <t t-foreach="o.legh_admission_line_id" t-as="z">
                                         <tr>
 <!--                                            <td>-->
 <!--                                                <span t-esc="i"/>-->
@@ -125,7 +125,7 @@
                             <div class="row">
                                 <div class="col-xs-5">
                                     <p style="align:center"><strong>Payment Details</strong></p>
-                                    <t t-foreach="request.env['leih.money.receipt'].search([('admission_id', '=', o.name)])" t-as="obj">
+                                    <t t-foreach="request.env['legh.money.receipt'].search([('admission_id', '=', o.name)])" t-as="obj">
                                                              <div>
 
                                                                  <span t-if="obj.p_type=='advance'">Advance: <t t-esc="obj.amount" /></span>
@@ -194,146 +194,6 @@
 
                         </div>
 
-
-
-
-
-<!--                        <div class="page">-->
-<!--                            <div class="row">-->
-<!--                                <div class="col-xs-3"></div>-->
-<!--                                <div class="col-xs-3"></div>-->
-<!--                                <div class="col-xs-3"></div>-->
-<!--                                <div class="col-xs-3">-->
-<!--                                    Date: <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-<!--                            <div class="oe_structure"/>-->
-<!--                            <div class="row">-->
-<!--                            <div style="col-md-6 align:left">-->
-<!--                                <h2>-->
-<!--                                    <b>Admission ID</b><span t-field="o.name"/>-->
-<!--                                </h2>-->
-<!--                            </div>-->
-
-
-<!--                            <div class="col-md-6 pull-right">-->
-<!--                                <h1>-->
-<!--                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>-->
-<!--                                </h1>-->
-<!--                            </div>-->
-<!--                                </div>-->
-
-<!--                            <div class="row">-->
-<!--                                <div class="col-xs-4">-->
-<!--                                    <strong>Name: </strong> <span t-field="o.patient_name"/>-->
-<!--&lt;!&ndash;                                    <p t-field="o.patient_name"/>&ndash;&gt;-->
-<!--                                </div>-->
-<!--                                <div class="col-xs-4">-->
-<!--                                    <strong>Patient ID:</strong>-->
-<!--                                    <span t-field="o.name"/>-->
-<!--                                </div>-->
-<!--                                <div class="col-xs-4">-->
-<!--                                    <strong>Age:</strong>-->
-<!--                                    <span t-field="o.age"/>-->
-<!--                                </div>-->
-<!--                                <div class="col-xs-4">-->
-<!--                                    <strong>Address:</strong>-->
-<!--                                    <span t-field="o.address"/>-->
-<!--                                </div>-->
-<!--                                <div class="col-xs-4">-->
-<!--                                    <strong>Reffered By:</strong>-->
-<!--                                    <span t-field="o.ref_doctors"/>-->
-<!--                                </div>-->
-
-<!--                                 <t t-set="i" t-value="1" />-->
-<!--                                    <t t-foreach="o.guarantor_line_id" t-as="z">-->
-<!--                                                                            <div class="col-xs-4">-->
-<!--                                    <strong>Guarantor Name:</strong>-->
-<!--                                    <span t-field="z.name"/>-->
-<!--                                </div>-->
-
-<!--                                        <div class="col-xs-4">-->
-<!--                                    <strong>Contact:</strong>-->
-<!--                                    <span t-field="z.contact"/>-->
-<!--                                </div>-->
-<!--                                    </t>-->
-
-
-<!--                            </div>-->
-<!--                            <hr/>-->
-<!--                            <br/><br/>-->
-
-<!--                            <table class="table table-condensed">-->
-<!--                                <thead>-->
-<!--                                    <tr>-->
-<!--                                        <th>Service Name</th>-->
-<!--                                        <th>Price</th>-->
-<!--                                        <th>Package Name</th>-->
-<!--                                        <th>Total Amount</th>-->
-
-<!--                                    </tr>-->
-<!--                                </thead>-->
-<!--                                <tbody class="bill_register_tbody">-->
-<!--                                    <t t-set="i" t-value="1" />-->
-<!--                                    <t t-foreach="o.leih_admission_line_id" t-as="z">-->
-<!--                                        <tr>-->
-<!--                                            <td>-->
-<!--                                                <span t-esc="i"/>-->
-<!--                                                <t t-set="i" t-value="i+1"/>-->
-<!--                                            </td>-->
-<!--                                            <td>-->
-<!--                                                <span t-field="z.name"/>-->
-
-<!--                                            </td>-->
-
-<!--                                            <td>-->
-<!--                                                <span t-field="z.price"/>-->
-
-<!--                                            </td>-->
-<!--                                            <td>-->
-<!--                                                <span t-field="z.name"/>-->
-
-<!--                                            </td>-->
-<!--                                            <td>-->
-<!--                                                <span t-field="z.total_amount"/>-->
-
-<!--                                            </td>-->
-
-
-
-
-<!--                                        </tr>-->
-
-<!--                                    </t>-->
-
-<!--                                </tbody>-->
-
-<!--                            </table>-->
-
-<!--                             <div align="right">-->
-<!--                                    <strong>Total Amount:</strong>-->
-<!--                                    <span t-field="o.total"/>-->
-<!--                                </div>-->
-<!--                            <div align="right">-->
-<!--                                    <strong>Discount:</strong>-->
-<!--                                    <span t-field="o.discounts"/>-->
-<!--                                </div>-->
-<!--                                 <div align="right">-->
-<!--                                    <strong>Grand Total:</strong>-->
-<!--                                    <span t-field="o.grand_total"/>-->
-<!--                                </div>-->
-<!--                                 <div align="right">-->
-<!--                                    <strong>Paid Amount:</strong>-->
-<!--                                    <span t-field="o.paid"/>-->
-<!--                                </div>-->
-<!--                                 <div align="right">-->
-<!--                                    <strong>Due:</strong>-->
-<!--                                    <span t-field="o.due"/>-->
-<!--                                </div>-->
-
-
-<!--                        </div>-->
 
 
                     </t>

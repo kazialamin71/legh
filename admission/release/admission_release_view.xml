@@ -55,8 +55,8 @@
         </record>
 
 
-<!--        <menuitem name="Department" id="leih_dep_menu" parent="leih_menu"/>-->
-        <menuitem name="Add new" id="add_new_items" parent="leih_admission_menu" action="action_admission_release_view" groups="leih.group_admission_menu_add_new"/>
+
+        <menuitem name="Add new" id="add_new_items" parent="legh_admission_menu" action="action_admission_release_view" groups="legh.group_admission_menu_add_new"/>
 
 
     </data>

@@ -13,7 +13,7 @@ class optics_collcetion_details(report_sxw.rml_parse):
         end_date= end_date
         result = []
 
-        query_for_optics="select optics_sale.name, optics_sale.total,leih_money_receipt.amount,leih_money_receipt.p_type from optics_sale,leih_money_receipt where leih_money_receipt.optics_sale_id=optics_sale.id and (leih_money_receipt.create_date <= '%s') and (leih_money_receipt.create_date >= '%s') group by optics_sale.name,optics_sale.total, leih_money_receipt.amount,leih_money_receipt.p_type order by optics_sale.name asc"
+        query_for_optics="select optics_sale.name, optics_sale.total,legh_money_receipt.amount,legh_money_receipt.p_type from optics_sale,legh_money_receipt where legh_money_receipt.optics_sale_id=optics_sale.id and (legh_money_receipt.create_date <= '%s') and (legh_money_receipt.create_date >= '%s') group by optics_sale.name,optics_sale.total, legh_money_receipt.amount,legh_money_receipt.p_type order by optics_sale.name asc"
         self.cr.execute(query_for_optics % (end_date,st_dat))
         participant_ids = []
         opd_info = []
@@ -45,7 +45,7 @@ class optics_collcetion_details(report_sxw.rml_parse):
 
 
 class report_optics_collection(osv.AbstractModel):
-    _name = 'report.leih.report_optics_collection'
+    _name = 'report.legh.report_optics_collection'
     _inherit = 'report.abstract_report'
-    _template = 'leih.report_optics_collection'
+    _template = 'legh.report_optics_collection'
     _wrapped_report_class = optics_collcetion_details

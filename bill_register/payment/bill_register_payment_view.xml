@@ -68,7 +68,7 @@
             </field>
         </record>
 
-        <menuitem id="bill_payment_menu" name="Bill Payment" parent="leih_admission_menu" action="bill_register_payment_new_action" groups="leih.group_admission_menu_bill_payment"/>
+        <menuitem id="bill_payment_menu" name="Bill Payment" parent="legh_admission_menu" action="bill_register_payment_new_action" groups="legh.group_admission_menu_bill_payment"/>
 
     </data>
 </openerp>

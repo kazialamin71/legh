@@ -3,14 +3,14 @@ from openerp.tools.translate import _
 from datetime import date, time
 
 class money_receipt(osv.osv):
-    _name = "leih.money.receipt"
+    _name = "legh.money.receipt"
 
 
     _columns = {
         'name':fields.char("MR ID"),
         'date':fields.date("Date"),
         'bill_id':fields.many2one("bill.register","BIll ID"),
-        'admission_id':fields.many2one("leih.admission","Admission ID"),
+        'admission_id':fields.many2one("legh.admission","Admission ID"),
         'optics_sale_id':fields.many2one("optics.sale","Optics Sale ID"),
         'amount':fields.float("Paid Amount"),
         'bill_total_amount':fields.float("Total Amount"),

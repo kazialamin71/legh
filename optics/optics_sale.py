@@ -58,9 +58,7 @@ class optics_sale(osv.osv):
         'optics_lens_sale_line_id': fields.one2many('optics.lens.sale.line', 'optics_sale_id', 'Lens Entry'),
         'optics_sale_payment_line_id': fields.one2many("optics.sale.payment.line", "optics_sale_payment_line_id",
                                                        "Bill Register Payment"),
-        # 'footer_connection': fields.one2many('leih.footer', 'relation', 'Parameters', required=True),
-        # 'relation': fields.many2one("leih.investigation"),
-        # 'total': fields.float(_totalpayable,string="Total",type='float',store=True),
+
         'total': fields.float(string="Total"),
         'doctors_discounts': fields.float("Discount(%)"),
         'after_discount': fields.float("Discount Amount"),
@@ -327,11 +325,11 @@ class optics_sale(osv.osv):
                             'bill_total_amount': stored_obj.total,
                             'due_amount': stored_obj.due,
                         }
-                    mr_obj = self.pool.get('leih.money.receipt')
+                    mr_obj = self.pool.get('legh.money.receipt')
                     mr_id = mr_obj.create(cr, uid, mr_value, context=context)
                     if mr_id is not None:
                         mr_name = 'MR#' + str(mr_id)
-                        cr.execute('update leih_money_receipt set name=%s where id=%s', (mr_name, mr_id))
+                        cr.execute('update legh_money_receipt set name=%s where id=%s', (mr_name, mr_id))
                         cr.commit()
                 except:
                     import pdb
@@ -400,7 +398,7 @@ class optics_sale(osv.osv):
             saved_jv_ids = jvv_entry.create(cr, uid, nj_vals, context=context)
 
 
-        return self.pool['report'].get_action(cr, uid, ids, 'leih.report_optics_sale', context=context)
+        return self.pool['report'].get_action(cr, uid, ids, 'legh.report_optics_sale', context=context)
 
     def onchange_patient(self, cr, uid, ids, name, context=None):
         tests = {}
@@ -422,7 +420,7 @@ class optics_sale(osv.osv):
             raise osv.except_osv(_('Warning'), _('Please Confirm and Print the Optics Form'))
         if inv.total == inv.paid:
             raise osv.except_osv(_('Full Paid'), _('Nothing to Pay Here. Already Full Paid'))
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih',
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh',
                                                                              'optics_sale_payment_form_view')
         #
         # total=inv.total
@@ -655,5 +653,5 @@ class admission_payment_line(osv.osv):
         'type': fields.char('Type'),
         'card_no': fields.char('Card Number'),
         'bank_name': fields.char('Bank Name'),
-        'money_receipt_id': fields.many2one('leih.money.receipt', 'Money Receipt ID'),
+        'money_receipt_id': fields.many2one('legh.money.receipt', 'Money Receipt ID'),
     }

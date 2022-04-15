@@ -7,8 +7,8 @@
                 model="diagnosis.sticker"
                 string="Print Report"
                 report_type="qweb-pdf"
-                name="leih.report_detail"
-                file="leih.report_detail"
+                name="legh.report_detail"
+                file="legh.report_detail"
                 menu="False"
 
         />
@@ -19,8 +19,8 @@
                 model="diagnosis.sticker"
                 string="Haematology"
                 report_type="qweb-pdf"
-                name="leih.report_haematology"
-                file="leih.report_haematology"
+                name="legh.report_haematology"
+                file="legh.report_haematology"
                 menu="False"
 
         />
@@ -30,8 +30,8 @@
                 model="diagnosis.sticker"
                 string="Biochemistry"
                 report_type="qweb-pdf"
-                name="leih.report_biochemistry"
-                file="leih.report_biochemistry"
+                name="legh.report_biochemistry"
+                file="legh.report_biochemistry"
                 menu="False"
 
         />
@@ -41,8 +41,8 @@
                 model="diagnosis.sticker"
                 string="Microbiology"
                 report_type="qweb-pdf"
-                name="leih.report_microbiology"
-                file="leih.report_microbiology"
+                name="legh.report_microbiology"
+                file="legh.report_microbiology"
                 menu="False"
 
         />
@@ -52,8 +52,8 @@
                 model="diagnosis.sticker"
                 string="Serology"
                 report_type="qweb-pdf"
-                name="leih.report_serology"
-                file="leih.report_serology"
+                name="legh.report_serology"
+                file="legh.report_serology"
                 menu="False"
 
         />
@@ -63,8 +63,8 @@
                 model="diagnosis.sticker"
                 string="stool"
                 report_type="qweb-pdf"
-                name="leih.report_stool"
-                file="leih.report_stool"
+                name="legh.report_stool"
+                file="legh.report_stool"
                 menu="False"
 
         />
@@ -74,8 +74,8 @@
                 model="diagnosis.sticker"
                 string="Urine"
                 report_type="qweb-pdf"
-                name="leih.report_urine"
-                file="leih.report_urine"
+                name="legh.report_urine"
+                file="legh.report_urine"
                 menu="False"
 
         />

@@ -48,7 +48,7 @@
         </record>
 
 
-        <menuitem name="Discount Category" id="discount_category_mainform" parent="leih_billing_menu" action="discount_category_action" groups="leih.group_billing_menu_discount_category"/>
+        <menuitem name="Discount Category" id="discount_category_mainform" parent="legh_billing_menu" action="discount_category_action" groups="legh.group_billing_menu_discount_category"/>
 
 
     </data>

@@ -7,8 +7,8 @@
                 model="commission"
                 string="Print"
                 report_type="qweb-pdf"
-                name="leih.report_commission"
-                file="leih.report_commission"
+                name="legh.report_commission"
+                file="legh.report_commission"
                 menu="True"
 
         />

@@ -50,7 +50,7 @@
             </field>
         </record>
 
-        <menuitem name="Ambulance Registration" id="ambulance_registration_menu_mainform" parent="leih_group_menu" action="ambulance_registration_action"/>
+        <menuitem name="Ambulance Registration" id="ambulance_registration_menu_mainform" parent="legh_group_menu" action="ambulance_registration_action"/>
 
     </data>
 </openerp>

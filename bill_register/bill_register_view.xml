@@ -14,7 +14,7 @@
                         <button string="Add payment" type="object" name="btn_pay_bill" groups="base.group_user"/>
                         <button string="Corporate Discount" type="object" name="btn_corporate_discount" groups="base.group_user"/>
                         <button string="Confirm and Print" type="object" name="bill_confirm" groups="base.group_user"/>
-                        <button string="Cancel" type="object" name="bill_cancel" groups="leih.group_bill_register_button_cancel"/>
+                        <button string="Cancel" type="object" name="bill_cancel" groups="legh.group_bill_register_button_cancel"/>
                     </header>
                 <sheet>
 
@@ -124,7 +124,7 @@
 
         <!-- expense type tree -->
         <record model="ir.ui.view" id="investigation_tree" >
-            <field name="name">leih</field>
+            <field name="name">legh</field>
             <field name="model">bill.register</field>
             <field name="arch" type="xml">
             <tree string="Alu List">
@@ -145,14 +145,12 @@
             </field>
         </record>
 
-
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-        <menuitem name="Billing" id="leih_billing_menu" parent="leih_menu" sequence="2"/>
-        <menuitem name="Investigation" id="investigation_menu_mainform" parent="leih_billing_menu" action="investigation_action" groups="leih.group_billing_menu_bill_register,leih.group_billing_menu_bill_register_edit"/>
+        <menuitem name="Billing" id="legh_billing_menu" parent="legh_menu" sequence="2"/>
+        <menuitem name="Investigation" id="investigation_menu_mainform" parent="legh_billing_menu" action="investigation_action" groups="legh.group_billing_menu_bill_register,legh.group_billing_menu_bill_register_edit"/>
 
         <template id="assets_backends" name="bill_team assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                <script type="text/javascript" src="/leih/static/assets/js/example.js"></script>
+                <script type="text/javascript" src="/legh/static/assets/js/example.js"></script>
             </xpath>
         </template>
     </data>

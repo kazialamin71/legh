@@ -121,7 +121,7 @@
                             <div class="row">
                                 <div class="col-xs-5">
                                     <p style="align:center"><strong>Payment Details</strong></p>
-                                    <t t-foreach="request.env['leih.money.receipt'].search([('bill_id', '=', o.name)])" t-as="obj">
+                                    <t t-foreach="request.env['legh.money.receipt'].search([('bill_id', '=', o.name)])" t-as="obj">
                                                              <div>
 
                                                                  <span t-if="obj.p_type=='advance'">Advance: <t t-esc="obj.amount"/></span>
@@ -156,22 +156,6 @@
                                     <strong>Grand Total:</strong>
                                     <span t-field="o.grand_total"/>
                                 </div>
-
-<!--                                <t t-foreach="request.env['leih.money.receipt'].search([('bill_id', '=', o.name)])" t-as="obj">-->
-<!--                                                             <div align="center" style="mergin-right:25px;">-->
-<!--                                                                 <t t-if="obj.p_type=='advance'"><strong>Advance:</strong>-->
-<!--                                                                 <span t-field="obj.amount"/>-->
-<!--                                                                 </t>-->
-<!--                                                             </div>-->
-<!--                                                                 <t t-if="obj.p_type=='due_payment'">-->
-
-<!--                                                                     <div align="center" style="mergin-right:25px;">-->
-<!--                                                                             <strong><t t-esc="obj.date"/>:</strong>-->
-<!--                                                                          <span t-field="obj.amount"/>-->
-<!--                                                                     </div>-->
-<!--                                                                </t>-->
-<!--                                </t>-->
-
 
                                 <t t-if="o.advance_paid(o.name)['paid']==0">
                                 <div align="center" style="mergin-right:25px;">

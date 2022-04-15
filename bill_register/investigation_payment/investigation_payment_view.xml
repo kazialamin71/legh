@@ -81,10 +81,7 @@
             </field>
         </record>
 
-
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-<!--        <menuitem name="investigation" id="investigation_parent" parent="leih_menu" sequence="6"/>-->
-        <menuitem name="investigation payment" id="investigation_payment_menu" parent="appointment_parent" action="investigation_payment_action" groups="leih.group_appointment_menu_investigation_payment"/>
+        <menuitem name="investigation payment" id="investigation_payment_menu" parent="appointment_parent" action="investigation_payment_action" groups="legh.group_appointment_menu_investigation_payment"/>
 
 
     </data>

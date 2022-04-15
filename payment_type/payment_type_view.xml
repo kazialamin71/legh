@@ -37,7 +37,7 @@
         <record id="bill_register_inherit_payment" model="ir.ui.view">
         <field name="name">Bill Register</field>
         <field name="model">bill.register</field>
-        <field name="inherit_id" ref="leih.investigation_view"/>
+        <field name="inherit_id" ref="legh.investigation_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='total_without_discount']" position="before">
                 <field name="payment_type"/>
@@ -51,10 +51,10 @@
         </record>
 
 <!--        inherit admission form-->
-        <record id="leih_admission_inherit_payment" model="ir.ui.view">
-        <field name="name">Leih Admission</field>
-        <field name="model">leih.admission</field>
-        <field name="inherit_id" ref="leih.admission_view"/>
+        <record id="legh_admission_inherit_payment" model="ir.ui.view">
+        <field name="name">legh Admission</field>
+        <field name="model">legh.admission</field>
+        <field name="inherit_id" ref="legh.admission_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='total_without_discount']" position="before">
                 <field name="payment_type"/>
@@ -67,10 +67,10 @@
         </field>
         </record>
 
-        <record id="leih_optics_inherit_payment" model="ir.ui.view">
+        <record id="legh_optics_inherit_payment" model="ir.ui.view">
         <field name="name">optics.sale</field>
         <field name="model">optics.sale</field>
-        <field name="inherit_id" ref="leih.optics_sale_view"/>
+        <field name="inherit_id" ref="legh.optics_sale_view"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='total']" position="before">
                 <field name="payment_type"/>
@@ -83,7 +83,7 @@
         </field>
         </record>
 
-        <menuitem name="Payment type" id="payment_type" parent="leih_opd_menu" action="payment_type_action" groups="leih.group_billing_menu_payment_type,leih.group_billing_menu_bill_register"/>
+        <menuitem name="Payment type" id="payment_type" parent="legh_opd_menu" action="payment_type_action" groups="legh.group_billing_menu_payment_type,legh.group_billing_menu_bill_register"/>
 
 
     </data>

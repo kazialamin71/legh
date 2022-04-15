@@ -1,4 +1,4 @@
-import leih_admission
+import legh_admission
 import guarantor
 import release
 import payment

@@ -3,7 +3,7 @@ from openerp.tools.translate import _
 from datetime import date, time
 
 class laundry(osv.osv):
-    _name = "leih.expense"
+    _name = "legh.expense"
 
 
 
@@ -26,12 +26,12 @@ class laundry(osv.osv):
 
     def approve_expense(self,cr,uid,ids,context=None):
         if ids is not None:
-            cr.execute("update leih_expense set state='approved' where id=%s", (ids))
+            cr.execute("update legh_expense set state='approved' where id=%s", (ids))
             cr.commit()
         return True
 
     def cancel_expense(self,cr,uid,ids,context=None):
         if ids is not None:
-            cr.execute("update leih_expense set state='canceled' where id=%s", (ids))
+            cr.execute("update legh_expense set state='canceled' where id=%s", (ids))
             cr.commit()
         return True

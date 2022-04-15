@@ -11,7 +11,7 @@ class admission_release(osv.osv):
         'total':fields.float("Total"),
         'paid': fields.float("Paid"),
         'unpaid':fields.float("Unpaid"),
-        'admission_id':fields.many2one("leih.admission", 'Admission'),
+        'admission_id':fields.many2one("legh.admission", 'Admission'),
         'pay': fields.float("Pay"),
         'release_note':fields.text("Release Note")
 
@@ -26,7 +26,7 @@ class admission_release(osv.osv):
             admission_id = stored_obj.admission_id.id
             note = stored_obj.release_note
 
-            cr.execute('update leih_admission set release_note=%s,state=%s where id=%s', (note,state, admission_id))
+            cr.execute('update legh_admission set release_note=%s,state=%s where id=%s', (note,state, admission_id))
             cr.commit()
         except:
             pass

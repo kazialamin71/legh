@@ -14,7 +14,7 @@ class doctors_profile(osv.osv):
         'status': fields.selection([('active', 'Active'), ('inactive', 'Inactive')], string='Status', default='active'),
         'others': fields.char("Others"),
         'bill_info':fields.one2many("bill.register",'ref_doctors',"Bill Register"),
-        'admission_info':fields.many2one("leih.admission",'ref_doctors',"Admission Info"),
+        'admission_info':fields.many2one("legh.admission",'ref_doctors',"Admission Info"),
         'commission':fields.many2one("commission",'ref_doctors',"Commission"),
 
         'commission_rate':fields.float("Commission Rate (%) "),

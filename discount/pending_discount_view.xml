@@ -41,13 +41,11 @@
             </field>
         </record>
 
-        <!-- expense type tree -->
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-        <menuitem name="Discount" id="leih_discount_menu" parent="leih_menu" sequence="3"/>
+        <menuitem name="Discount" id="legh_discount_menu" parent="legh_menu" sequence="3"/>
 
 
-        <menuitem name="Pending Discount" id="pending_discount_menu_mainform" parent="leih_discount_menu" action="pending_discount_action" groups="leih.group_discount_menu_pending"/>
+        <menuitem name="Pending Discount" id="pending_discount_menu_mainform" parent="legh_discount_menu" action="pending_discount_action" groups="legh.group_discount_menu_pending"/>
 
 
     </data>

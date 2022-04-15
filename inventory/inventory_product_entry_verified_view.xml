@@ -46,9 +46,7 @@
         </record>
 
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-
-        <menuitem name="Verified Inventory Product Entry" id="inventory_entry_menu_verified_mainform" parent="ipe_menu" action="inventory_product_entry_verified_action" sequence="26" groups="leih.group_billing_menu_verified_ipe"/>
+        <menuitem name="Verified Inventory Product Entry" id="inventory_entry_menu_verified_mainform" parent="ipe_menu" action="inventory_product_entry_verified_action" sequence="26" groups="legh.group_billing_menu_verified_ipe"/>
 
     </data>
 </openerp>

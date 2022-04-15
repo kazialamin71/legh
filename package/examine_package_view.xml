@@ -68,9 +68,7 @@
             </field>
         </record>
 
-
-<!--        <menuitem name="Patients" id="leih_patients_menu" parent="leih_menu"/>-->
-        <menuitem name="Package" id="package_menu_mainform" parent="leih_config_menu" action="examine_view_action" groups="leih.group_configuration_menu_package"/>
+        <menuitem name="Package" id="package_menu_mainform" parent="legh_config_menu" action="examine_view_action" groups="legh.group_configuration_menu_package"/>
 
 
     </data>

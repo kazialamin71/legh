@@ -22,17 +22,17 @@ class collcetion_details(report_sxw.rml_parse):
         result = []
         if self.uid == 1:
 
-            bill_q = "select sum(amount) as totla_collection, create_uid from leih_money_receipt where bill_id is not Null " \
+            bill_q = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where bill_id is not Null " \
                      "and state='confirm' and diagonostic_bill=TRUE and (create_date <= '%s') and (create_date >= '%s') group by create_uid"
 
 
-            bill_others = "select sum(amount) as totla_collection, create_uid from leih_money_receipt where bill_id is not Null " \
+            bill_others = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where bill_id is not Null " \
                      "and state='confirm' and (diagonostic_bill=FALSE OR diagonostic_bill IS NULL) and (create_date <= '%s') and (create_date >= '%s') group by create_uid"
 
-            add_q= "select sum(amount) as totla_collection, create_uid from leih_money_receipt where admission_id is not Null" \
+            add_q= "select sum(amount) as totla_collection, create_uid from legh_money_receipt where admission_id is not Null" \
                    " and state='confirm' and (create_date <= '%s') and (create_date >= '%s') group by create_uid"
 
-            optic_q = "select sum(amount) as totla_collection, create_uid from leih_money_receipt where optics_sale_id is not Null" \
+            optic_q = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where optics_sale_id is not Null" \
                       " and state='confirm' and (create_date <= '%s') and (create_date >= '%s') group by create_uid"
 
             self.cr.execute(bill_q % (end_date, st_dat))
@@ -86,7 +86,7 @@ class collcetion_details(report_sxw.rml_parse):
                 opd_info[items[1]] = items[0]
 
         elif self.uid==31:
-            bill_q = "select sum(amount) as totla_collection, create_uid from leih_money_receipt where bill_id is not Null " \
+            bill_q = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where bill_id is not Null " \
                      "and state='confirm' and diagonostic_bill=TRUE and (create_date <= '%s') and (create_date >= '%s') group by create_uid"
             self.cr.execute(bill_q % (end_date, st_dat))
             participant_ids = []
@@ -96,13 +96,13 @@ class collcetion_details(report_sxw.rml_parse):
                     participant_ids.append(items[1])
                 bill_info[items[1]] = items[0]
         elif self.uid==21 or self.uid==26:
-            bill_others = "select sum(amount) as totla_collection, create_uid from leih_money_receipt where bill_id is not Null " \
+            bill_others = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where bill_id is not Null " \
                           "and state='confirm' and (diagonostic_bill=FALSE OR diagonostic_bill IS NULL) and (create_date <= '%s') and (create_date >= '%s') group by create_uid"
 
-            add_q = "select sum(amount) as totla_collection, create_uid from leih_money_receipt where admission_id is not Null" \
+            add_q = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where admission_id is not Null" \
                     " and state='confirm' and (create_date <= '%s') and (create_date >= '%s') group by create_uid"
 
-            optic_q = "select sum(amount) as totla_collection, create_uid from leih_money_receipt where optics_sale_id is not Null" \
+            optic_q = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where optics_sale_id is not Null" \
                       " and state='confirm' and (create_date <= '%s') and (create_date >= '%s') group by create_uid"
 
             self.cr.execute(bill_others % (end_date, st_dat))
@@ -151,16 +151,16 @@ class collcetion_details(report_sxw.rml_parse):
 
 
         else:
-            bill_q = "select sum(amount) as totla_collection, create_uid from leih_money_receipt where bill_id is not Null " \
+            bill_q = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where bill_id is not Null " \
                      "and state='confirm' and diagonostic_bill=TRUE and (create_date <= '%s') and (create_date >= '%s') and (create_uid=%s) group by create_uid"
 
-            bill_others = "select sum(amount) as totla_collection, create_uid from leih_money_receipt where bill_id is not Null " \
+            bill_others = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where bill_id is not Null " \
                           "and state='confirm' and (diagonostic_bill=FALSE OR diagonostic_bill IS NULL) and (create_date <= '%s') and (create_date >= '%s') and (create_uid=%s) group by create_uid"
 
-            add_q = "select sum(amount) as totla_collection, create_uid from leih_money_receipt where admission_id is not Null" \
+            add_q = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where admission_id is not Null" \
                     " and state='confirm' and (create_date <= '%s') and (create_date >= '%s') and (create_uid=%s) group by create_uid"
 
-            optic_q = "select sum(amount) as totla_collection, create_uid from leih_money_receipt where optics_sale_id is not Null" \
+            optic_q = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where optics_sale_id is not Null" \
                       " and state='confirm' and (create_date <= '%s') and (create_date >= '%s') and (create_uid=%s) group by create_uid"
 
             self.cr.execute(bill_q % (end_date, st_dat, user_id))
@@ -328,7 +328,7 @@ class collcetion_details(report_sxw.rml_parse):
 
 
 class report_cc_collection(osv.AbstractModel):
-    _name = 'report.leih.report_cc_collection'
+    _name = 'report.legh.report_cc_collection'
     _inherit = 'report.abstract_report'
-    _template = 'leih.report_cc_collection'
+    _template = 'legh.report_cc_collection'
     _wrapped_report_class = collcetion_details

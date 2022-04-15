@@ -98,11 +98,9 @@
             </field>
         </record>
 
+         <menuitem name="Inventory Product Entry" id="ipe_menu" parent="legh_menu"/>
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-         <menuitem name="Inventory Product Entry" id="ipe_menu" parent="leih_menu"/>
-
-        <menuitem name="Pending Inventory Product Entry" id="inventory_entry_menu_mainform" parent="ipe_menu" action="inventory_product_entry_action" sequence="23" groups="leih.group_billing_menu_ipe"/>
+        <menuitem name="Pending Inventory Product Entry" id="inventory_entry_menu_mainform" parent="ipe_menu" action="inventory_product_entry_action" sequence="23" groups="legh.group_billing_menu_ipe"/>
 
     </data>
 </openerp>

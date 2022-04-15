@@ -51,7 +51,7 @@
 
 
 
-        <menuitem name="Department" id="dep_menu_mainform" parent="leih_config_menu" action="dep_action" groups="leih.group_configuration_menu_department"/>
+        <menuitem name="Department" id="dep_menu_mainform" parent="legh_config_menu" action="dep_action" groups="legh.group_configuration_menu_department"/>
 
 
     </data>

@@ -42,9 +42,8 @@
         </record>
 
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
 
-        <menuitem name="Confirmed Inventory Requisition " id="inventory_confirmed_menu_mainform" parent="leih_billing_menu" action="inventory_requisition_confirmed_action"/>
+        <menuitem name="Confirmed Inventory Requisition " id="inventory_confirmed_menu_mainform" parent="legh_billing_menu" action="inventory_requisition_confirmed_action"/>
 
     </data>
 </openerp>

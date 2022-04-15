@@ -91,9 +91,9 @@
         </record>
 
 
-        <menuitem name="Requisition" id="requisition_menu" parent="leih_menu"/>
+        <menuitem name="Requisition" id="requisition_menu" parent="legh_menu"/>
 
-        <menuitem name="Inventory Requisition" id="inventory_issue_menu_mainform" parent="requisition_menu" action="inventory_requisition_action" sequence="21" groups="leih.group_billing_menu_ir"/>
+        <menuitem name="Inventory Requisition" id="inventory_issue_menu_mainform" parent="requisition_menu" action="inventory_requisition_action" sequence="21" groups="legh.group_billing_menu_ir"/>
 
     </data>
 </openerp>

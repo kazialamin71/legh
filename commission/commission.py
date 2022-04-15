@@ -41,7 +41,7 @@ class commission(osv.osv):
     def btn_pay_bill(self, cr, uid, ids, context=None):
         if not ids: return []
 
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih','commission_payment_form_view')
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh','commission_payment_form_view')
         #
         inv = self.browse(cr, uid, ids[0], context=context)
 

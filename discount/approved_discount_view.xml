@@ -43,9 +43,8 @@
 
         <!-- expense type tree -->
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
 
-        <menuitem name="Approved Discount" id="approved_discount_menu_mainform" parent="leih_discount_menu" action="approved_discount_action" groups="leih.group_discount_menu_approved"/>
+        <menuitem name="Approved Discount" id="approved_discount_menu_mainform" parent="legh_discount_menu" action="approved_discount_action" groups="legh.group_discount_menu_approved"/>
 
 
     </data>

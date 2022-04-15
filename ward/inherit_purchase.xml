@@ -8,8 +8,8 @@
             id="report_purchase_stock"
             model="purchase.order"
             report_type="qweb-pdf"
-            name="leih.report_purchasestock"
-            file="leih.report_purchasestock"
+            name="legh.report_purchasestock"
+            file="legh.report_purchasestock"
         />
 
     <template id="contactusss_test" name="Contact Form" inherit_id="purchase.report_purchasequotation_document">

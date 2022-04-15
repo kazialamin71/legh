@@ -44,8 +44,6 @@
             </field>
         </record>
 
-
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-        <menuitem name="Confirmed Cash Collection" id="cash_collection_menu_confirmed_mainform" parent="leih_group_menu" action="cash_collection_confirmed_action" groups="leih.group_hospital_menu_confirm_cash_coll"/>
+        <menuitem name="Confirmed Cash Collection" id="cash_collection_menu_confirmed_mainform" parent="legh_group_menu" action="cash_collection_confirmed_action" groups="legh.group_hospital_menu_confirm_cash_coll"/>
     </data>
 </openerp>

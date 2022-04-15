@@ -33,7 +33,7 @@ class laundry_clean(osv.osv):
 
     def cancel_clean(self,cr,uid,ids,context=None):
         if ids is not None:
-            cr.execute("update leih_expense set state='cancelled' where id=%s", (ids))
+            cr.execute("update legh_expense set state='cancelled' where id=%s", (ids))
             cr.commit()
         return True
 

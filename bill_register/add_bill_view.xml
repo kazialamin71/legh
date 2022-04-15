@@ -51,9 +51,5 @@
         </record>
 
 
-<!--        <menuitem name="Department" id="leih_dep_menu" parent="leih_menu"/>-->
-<!--        <menuitem name="add new" id="add_new_item" parent="leih_group_menu" action="action_add_bill_view"/>-->
-
-
     </data>
 </openerp>

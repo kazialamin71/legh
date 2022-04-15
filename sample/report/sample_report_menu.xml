@@ -7,8 +7,8 @@
                 model="diagnosis.sticker"
                 string="Print Sticker"
                 report_type="qweb-pdf"
-                name="leih.report_sample_report"
-                file="leih.report_sample_report"
+                name="legh.report_sample_report"
+                file="legh.report_sample_report"
                 menu="True"
 
         />

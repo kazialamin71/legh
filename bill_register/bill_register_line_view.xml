@@ -51,7 +51,7 @@
 
         <!-- expense type tree -->
         <record model="ir.ui.view" id="investigation_line_tree" >
-            <field name="name">leih</field>
+            <field name="name">legh</field>
             <field name="model">bill.register.line</field>
             <field name="arch" type="xml">
             <tree string="Alu List">
@@ -69,9 +69,7 @@
         </record>
 
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-
-        <menuitem name="Investigation Line" id="investigation_line_menu_mainform" parent="leih_billing_menu" action="investigation_line_action" groups="leih.group_billing_menu_bill_register_line"/>
+        <menuitem name="Investigation Line" id="investigation_line_menu_mainform" parent="legh_billing_menu" action="investigation_line_action" groups="legh.group_billing_menu_bill_register_line"/>
 
     </data>
 </openerp>

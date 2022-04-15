@@ -174,7 +174,7 @@ class bill_register_payment(osv.osv):
         'service_charge': fields.float("Service Charge"),
         'to_be_paid': fields.float("To be Paid"),
         'account_number':fields.char('Account No.'),
-        'money_receipt_id': fields.many2one('leih.money.receipt', 'Money Receipt ID'),
+        'money_receipt_id': fields.many2one('legh.money.receipt', 'Money Receipt ID'),
     }
 
     def create(self,cr,uid,vals,context):
@@ -196,11 +196,11 @@ class bill_register_payment(osv.osv):
         diagonostic_bill = stored_obj.diagonostic_bill
         value['diagonostic_bill'] = diagonostic_bill
 
-        mr_object=self.pool.get("leih.money.receipt")
+        mr_object=self.pool.get("legh.money.receipt")
         mr_id=mr_object.create(cr, uid, value, context=context)
         if mr_id is not None:
             mr_name='MR#' +str(mr_id)
-            cr.execute('update leih_money_receipt set name=%s where id=%s',(mr_name,mr_id))
+            cr.execute('update legh_money_receipt set name=%s where id=%s',(mr_name,mr_id))
             cr.execute('update bill_register_payment set money_receipt_id=%s where id=%s',(mr_id,storedpayment))
             cr.commit()
 

@@ -6,8 +6,8 @@ from datetime import date, time
 from openerp.tools.amount_to_text_en import amount_to_text
 PACKAGE_FIELDS=('name','price')
 
-class leih_admission(osv.osv):
-    _name = "leih.admission"
+class legh_admission(osv.osv):
+    _name = "legh.admission"
     _order = 'id desc'
 
 
@@ -16,9 +16,9 @@ class leih_admission(osv.osv):
     def _totalpayable(self, cr, uid, ids, field_name, arg, context=None):
         Percentance_calculation = {}
         sum = 0
-        for items in self.pool.get("leih.admission").browse(cr,uid,ids,context=None):
+        for items in self.pool.get("legh.admission").browse(cr,uid,ids,context=None):
             total_list=[]
-            for amount in items.leih_admission_line_id:
+            for amount in items.legh_admission_line_id:
                 total_list.append(amount.total_amount)
 
             for item in total_list:
@@ -48,7 +48,7 @@ class leih_admission(osv.osv):
         'operation_date': fields.date("Operation Date"),
         'release_note': fields.text("Release Note"),
         'package_name': fields.many2one("examine.package", string="Package"),
-        'leih_admission_line_id': fields.one2many('leih.admission.line', 'leih_admission_id', 'Investigations'),
+        'legh_admission_line_id': fields.one2many('legh.admission.line', 'legh_admission_id', 'Investigations'),
         'guarantor_line_id':fields.one2many("patient.guarantor","admission_id","Guarantor Name"),
         'bill_register_admission_line_id': fields.one2many("bill.register.admission.line","admission_line_id","Bill Register"),
         'admission_payment_line_id': fields.one2many("admission.payment.line","admission_payment_line_id","Admission Payment"),
@@ -112,14 +112,14 @@ class leih_admission(osv.osv):
 
     @api.multi
     def advance_paid(self,name):
-        mr = self.env['leih.money.receipt'].search([('admission_id', '=', name)])
+        mr = self.env['legh.money.receipt'].search([('admission_id', '=', name)])
         advance = 0
         paid = 0
         if len(mr)>2:
             for i in range(len(mr)-1):
                 advance=advance+mr[i].amount
             paid=mr[len(mr)-1].amount
-        # mr_ids=self.pool.get('leih.money.receipt').search([('bill_id', '=', name)], context=context)
+
 
             lists={
                 'advance':advance,
@@ -145,7 +145,7 @@ class leih_admission(osv.osv):
 
     def onchange_total(self,cr,uid,ids,name,context=None):
         tests = {'values': {}}
-        dep_object = self.pool.get('leih.tests').browse(cr, uid, name, context=None)
+        dep_object = self.pool.get('legh.tests').browse(cr, uid, name, context=None)
         abc = {'total': dep_object.rate}
         tests['value'] = abc
         # import pdb
@@ -187,7 +187,7 @@ class leih_admission(osv.osv):
         if not package_name:
             return {}
         total_amount = 0.0
-        abc={'leih_admission_line_id':[]}
+        abc={'legh_admission_line_id':[]}
         package_object=self.pool.get('examine.package').browse(cr,uid,package_name,context=None)
 
         for item in package_object.examine_package_line_id:
@@ -196,7 +196,7 @@ class leih_admission(osv.osv):
             total_amount = total_amount + item.total_amount
 
 
-            abc['leih_admission_line_id'].append([0, False, {'name':item.name.id,'total_amount':item.total_amount}])
+            abc['legh_admission_line_id'].append([0, False, {'name':item.name.id,'total_amount':item.total_amount}])
         values['value']=abc
 
         return values
@@ -218,7 +218,7 @@ class leih_admission(osv.osv):
 
         get_all_tested_ids = []
 
-        for items in stored_obj.leih_admission_line_id:
+        for items in stored_obj.legh_admission_line_id:
             get_all_tested_ids.append(items.name.id)
 
         ### Ends here merged Section
@@ -226,7 +226,7 @@ class leih_admission(osv.osv):
         already_merged = []
         custom_name = ''
 
-        for items in stored_obj.leih_admission_line_id:
+        for items in stored_obj.legh_admission_line_id:
             custom_name = ''
             state = 'sample'
             ### Create LAB/SAMPLE From Here
@@ -337,7 +337,7 @@ class leih_admission(osv.osv):
                     'partner_id': False,
                 }))
 
-            for cc_obj in stored_obj.leih_admission_line_id:
+            for cc_obj in stored_obj.legh_admission_line_id:
                 ledger_id = 611
                 try:
                     ledger_id = cc_obj.name.accounts_id.id
@@ -393,7 +393,7 @@ class leih_admission(osv.osv):
                 journal_id = saved_jv_id
                 try:
                     jv_entry.button_validate(cr, uid, [saved_jv_id], context)
-                    cr.execute("update leih_admission set state='activated' where id=%s", (ids))
+                    cr.execute("update legh_admission set state='activated' where id=%s", (ids))
                     cr.commit()
                     journal_dict = {'journal_id': journal_id, 'admission_journal_relation_id': stored_obj.id}
                     journal_object.create(cr, uid, vals=journal_dict, context=context)
@@ -408,11 +408,11 @@ class leih_admission(osv.osv):
                             'due_amount': stored_obj.due,
                         }
                         has_been_paid = stored_obj.paid
-                        mr_obj = self.pool.get('leih.money.receipt')
+                        mr_obj = self.pool.get('legh.money.receipt')
                         mr_id = mr_obj.create(cr, uid, ad_vals, context=context)
                         if mr_id is not None:
                             mr_name = 'MR#' + str(mr_id)
-                            cr.execute('update leih_money_receipt set name=%s where id=%s', (mr_name, mr_id))
+                            cr.execute('update legh_money_receipt set name=%s where id=%s', (mr_name, mr_id))
                             cr.commit()
                             admission_payment_obj = self.pool.get('admission.payment.line')
                             service_dict = {'date': stored_obj.date, 'amount': stored_obj.paid,
@@ -425,13 +425,13 @@ class leih_admission(osv.osv):
                     pdb.set_trace()
             ###close here
 
-        return self.pool['report'].get_action(cr, uid, ids, 'leih.report_admission', context=context)
+        return self.pool['report'].get_action(cr, uid, ids, 'legh.report_admission', context=context)
 
 
     def admission_cancel(self, cr, uid, ids, context=None):
 
         #unlink journal items
-        cr.execute("select  id as jounral_id from account_move where ref = (select name from leih_admission where id=%s limit 1)",(ids))
+        cr.execute("select  id as jounral_id from account_move where ref = (select name from legh_admission where id=%s limit 1)",(ids))
         joural_ids = cr.fetchall()
         context = context
 
@@ -443,7 +443,7 @@ class leih_admission(osv.osv):
             moves.unlink()  ### Deleting Journal
         ## Bill Status Will Change
 
-        cr.execute("update leih_admission set state='cancelled' where id=%s", (ids))
+        cr.execute("update legh_admission set state='cancelled' where id=%s", (ids))
         cr.commit()
         ## Lab WIll be Deleted
 
@@ -451,7 +451,7 @@ class leih_admission(osv.osv):
         # cr.commit()
 
         #for updates on cash collection
-        cr.execute("update leih_money_receipt set state='cancel' where admission_id=%s", (ids))
+        cr.execute("update legh_money_receipt set state='cancel' where admission_id=%s", (ids))
         cr.commit()
         return True
 
@@ -460,7 +460,7 @@ class leih_admission(osv.osv):
     def add_new_test(self, cr, uid, ids, context=None):
         if not ids: return []
 
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih', 'add_bill_view')
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh', 'add_bill_view')
         #
         inv = self.browse(cr, uid, ids[0], context=context)
         # import pdb
@@ -476,7 +476,7 @@ class leih_admission(osv.osv):
             'target': 'new',
             'domain': '[]',
             'context': {
-                'leih_admission_id': ids[0]
+                'legh_admission_id': ids[0]
 
                 # 'default_partner_id': self.pool.get('res.partner')._find_accounting_partner(inv.partner_id).id,
                 # 'default_amount': inv.type in ('out_refund', 'in_refund') and -inv.residual or inv.residual,
@@ -493,7 +493,7 @@ class leih_admission(osv.osv):
     def btn_final_settlement(self, cr, uid, ids, context=None):
         if not ids: return []
 
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih', 'admission_release_view')
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh', 'admission_release_view')
         #
         inv = self.browse(cr, uid, ids[0], context=context)
         total=inv.total
@@ -527,7 +527,7 @@ class leih_admission(osv.osv):
         if inv.total <= inv.paid:
             raise osv.except_osv(_('Full Paid'), _('Nothing to Pay Here. Already Full Paid'))
 
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih', 'admission_payment_form_view')
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh', 'admission_payment_form_view')
         #
 
         # total=inv.total
@@ -556,7 +556,7 @@ class leih_admission(osv.osv):
         # pdb.set_trace()
         if not ids: return []
 
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih', 'discount_view')
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh', 'discount_view')
         #
         inv = self.browse(cr, uid, ids[0], context=context)
         # import pdb
@@ -599,19 +599,19 @@ class leih_admission(osv.osv):
             context = {}
         # import pdb
         # pdb.set_trace()
-        stored = super(leih_admission, self).create(cr, uid, vals, context)  # return ID int object
+        stored = super(legh_admission, self).create(cr, uid, vals, context)  # return ID int object
 
         if vals.get("emergency")==False:
 
 
             if stored is not None:
                 name_text = 'A-0' + str(stored)
-                cr.execute('update leih_admission set name=%s where id=%s', (name_text, stored))
+                cr.execute('update legh_admission set name=%s where id=%s', (name_text, stored))
                 cr.commit()
         else:
             if stored is not None:
                 name_text = 'E-0' + str(stored)
-                cr.execute('update leih_admission set name=%s where id=%s', (name_text, stored))
+                cr.execute('update legh_admission set name=%s where id=%s', (name_text, stored))
                 cr.commit()
 
 
@@ -623,8 +623,8 @@ class leih_admission(osv.osv):
                 raise osv.except_osv(_('Warning!'),
                                      _("Check paid and grand total!"))
 
-        if vals.get('leih_admission_line_id') or uid == 1:
-            cr.execute("select id as journal_ids from account_move where ref = (select name from leih_admission where id=%s limit 1)",(ids))
+        if vals.get('legh_admission_line_id') or uid == 1:
+            cr.execute("select id as journal_ids from account_move where ref = (select name from legh_admission where id=%s limit 1)",(ids))
             journal_ids = cr.fetchall()
             context=context
 
@@ -662,7 +662,7 @@ class leih_admission(osv.osv):
                 # pdb.set_trace()
 
                 moves.unlink()
-                updated=super(leih_admission, self).write(cr, uid, ids, vals, context=context)
+                updated=super(legh_admission, self).write(cr, uid, ids, vals, context=context)
                 #journal entry will be here
 
 
@@ -711,7 +711,7 @@ class leih_admission(osv.osv):
                             'partner_id': False,
                         }))
 
-                    for cc_obj in stored_obj.leih_admission_line_id:
+                    for cc_obj in stored_obj.legh_admission_line_id:
                         ledger_id=611
                         try:
                             ledger_id = cc_obj.name.accounts_id.id
@@ -764,18 +764,18 @@ class leih_admission(osv.osv):
                     return updated
                     ### Ends the journal Entry Here
             else:
-                updated = super(leih_admission, self).write(cr, uid, ids, vals, context=context)
+                updated = super(legh_admission, self).write(cr, uid, ids, vals, context=context)
                 # raise osv.except_osv(_('Warning!'),
                 #                      _("You cannot Edit the bill"))
                 return updated
 
 
 
-    @api.onchange('leih_admission_line_id')
+    @api.onchange('legh_admission_line_id')
     def onchange_admission_line(self):
         sumalltest=0
         total_without_discount = 0
-        for item in self.leih_admission_line_id:
+        for item in self.legh_admission_line_id:
             sumalltest=sumalltest+item.total_amount
             total_without_discount = total_without_discount + item.price
 
@@ -805,7 +805,7 @@ class leih_admission(osv.osv):
         discount = self.doctors_discounts
 
 
-        for item in self.leih_admission_line_id:
+        for item in self.legh_admission_line_id:
             item.discount_percent=round((item.price*discount)/100)
             item.discount=discount
             item.total_discount = item.flat_discount + item.discount_percent
@@ -826,7 +826,7 @@ class leih_admission(osv.osv):
         total = self.total_without_discount
         if total > 0:
             discount_distribution = other_discount / total
-            for item in self.leih_admission_line_id:
+            for item in self.legh_admission_line_id:
                 item.flat_discount = 0
                 item.flat_discount = round(item.price * discount_distribution)
                 item.total_discount = item.flat_discount + item.discount_percent
@@ -847,12 +847,12 @@ class leih_admission(osv.osv):
 
 
 class test_information(osv.osv):
-    _name = 'leih.admission.line'
+    _name = 'legh.admission.line'
 
 
 
     def _amount_all(self, cr, uid, ids, field_name, arg, context=None):
-        cur_obj = self.pool.get('leih.admission')
+        cur_obj = self.pool.get('legh.admission')
         res = {}
         for record in self.browse(cr, uid, ids, context=context):
             rate=record.price
@@ -867,7 +867,7 @@ class test_information(osv.osv):
     _columns = {
 
         'name': fields.many2one("examination.entry","Item Name",ondelete='cascade'),
-        'leih_admission_id': fields.many2one('leih.admission', "Information"),
+        'legh_admission_id': fields.many2one('legh.admission', "Information"),
         'department': fields.char("Department"),
         # 'currency_id': fields.related('pricelist_id', 'currency_id', type="many2one", relation="res.currency",
         #                               string="Currency", readonly=True, required=True),
@@ -902,7 +902,7 @@ class admission_bill_register(osv.osv):
     _name = 'bill.register.admission.line'
 
     _columns = {
-        'admission_line_id': fields.many2one('leih.admission', 'admission'),
+        'admission_line_id': fields.many2one('legh.admission', 'admission'),
         'bill_id':fields.many2one("bill.register","Bill ID"),
         'total':fields.float('Total')
     }
@@ -918,12 +918,12 @@ class admission_payment_line(osv.osv):
     _name = 'admission.payment.line'
 
     _columns = {
-        'admission_payment_line_id': fields.many2one('leih.admission', 'admission payment'),
+        'admission_payment_line_id': fields.many2one('legh.admission', 'admission payment'),
         'date':fields.datetime("Date"),
         'amount':fields.float('amount'),
         'type':fields.char('Type'),
         'card_no':fields.char('Card Number'),
         'bank_name':fields.char('Bank Name'),
-        'money_receipt_id': fields.many2one('leih.money.receipt', 'Money Receipt ID'),
+        'money_receipt_id': fields.many2one('legh.money.receipt', 'Money Receipt ID'),
 
     }

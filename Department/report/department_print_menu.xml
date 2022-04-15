@@ -7,8 +7,8 @@
             id="action_report_department_layout"
             model="diagnosis.department"
             report_type="qweb-pdf"
-            name="leih.report_department_layout"
-            file="leih.report_department_layout"
+            name="legh.report_department_layout"
+            file="legh.report_department_layout"
 
         />
        </data>

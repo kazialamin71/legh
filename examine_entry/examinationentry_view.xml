@@ -83,7 +83,7 @@
 
         <!-- expense type tree -->
         <record model="ir.ui.view" id="testentry_tree">
-            <field name="name">leih</field>
+            <field name="name">LEGH</field>
             <field name="model">examination.entry</field>
             <field name="arch" type="xml">
             <tree string="Alu List">
@@ -99,7 +99,7 @@
 
 
 
-        <menuitem name="Item Entry" id="testentry_menu_mainform" parent="leih_config_menu" action="examinationentry_action" groups="leih.group_configuration_menu_item_entry"/>
+        <menuitem name="Item Entry" id="testentry_menu_mainform" parent="legh_config_menu" action="examinationentry_action" groups="legh.group_configuration_menu_item_entry"/>
 
 
     </data>

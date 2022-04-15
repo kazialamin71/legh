@@ -52,7 +52,7 @@ class hospital_dashboard(osv.osv):
             v5 = v6 = test_data[0][0]
 
         cr.execute(
-            "select sum(amount) from leih_expense")
+            "select sum(amount) from legh_expense")
         expense_data = cr.fetchall()
         if len(expense_data) > 0:
             v7 = expense_data[0][0]
@@ -69,7 +69,7 @@ class hospital_dashboard(osv.osv):
         total_collected = "Total Expense Head Count : " +str(v8)
 
 
-        cr.execute("select sum(amount), expense_type from leih_expense group by expense_type")
+        cr.execute("select sum(amount), expense_type from legh_expense group by expense_type")
         expense_data_type_wise=cr.fetchall()
         all_user_list=[]
         all_user_value_list=[]

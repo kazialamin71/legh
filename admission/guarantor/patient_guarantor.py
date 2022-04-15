@@ -12,6 +12,6 @@ class patient_guarantor(osv.osv):
 
         'name': fields.char("Guarantor Name"),
         'contact': fields.char("Contact"),
-        'admission_id':fields.many2one('leih.admission','parent')
+        'admission_id':fields.many2one('legh.admission','parent')
 
     }

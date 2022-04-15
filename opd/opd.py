@@ -79,7 +79,7 @@ class opd_ticket(osv.osv):
 
     def onchange_total(self,cr,uid,ids,name,context=None):
         tests = {'values': {}}
-        dep_object = self.pool.get('leih.tests').browse(cr, uid, name, context=None)
+        dep_object = self.pool.get('legh.tests').browse(cr, uid, name, context=None)
         abc = {'total': dep_object.rate}
         tests['value'] = abc
         # import pdb

@@ -11,7 +11,7 @@
                 <form string="admission Configuration">
                     <header>
                         <button string="Confirm" type="object" name="confirm_configuration" groups="base.group_user"/>
-                        <button string="Cancel" type="object" name="cancel_configuration" groups="leih.group_admission_configuration_button_cancel"/>
+                        <button string="Cancel" type="object" name="cancel_configuration" groups="legh.group_admission_configuration_button_cancel"/>
 
                     </header>
 
@@ -96,7 +96,7 @@
             </field>
         </record>
 
-        <menuitem name="Admission Payment Configration" id="admission_payment_configuration_mainform" parent="leih_admission_menu" action="admission_configuration_new_action" groups="leih.group_admission_menu_payment_configuration"/>
+        <menuitem name="Admission Payment Configration" id="admission_payment_configuration_mainform" parent="legh_admission_menu" action="admission_configuration_new_action" groups="legh.group_admission_menu_payment_configuration"/>
 
 
 

@@ -7,8 +7,8 @@
             id="action_report_examine_entry_layout"
             model="examination.entry"
             report_type="qweb-pdf"
-            name="leih.report_examine_entry_layout"
-            file="leih.report_examine_entry_layout"
+            name="legh.report_examine_entry_layout"
+            file="legh.report_examine_entry_layout"
 
         />
        </data>

@@ -28,7 +28,7 @@
 
         <!-- expense type tree -->
         <record model="ir.ui.view" id="lab_tree" >
-            <field name="name">leih</field>
+            <field name="name">legh</field>
             <field name="model">diagnosis.sticker</field>
             <field name="arch" type="xml">
             <tree string="Alu List">
@@ -45,10 +45,7 @@
         </record>
 
 
-
-
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-        <menuitem name="Pending in Lab" id="pending_in_lab" parent="leih_labs_menu" action="lab_action" groups="leih.group_lab_menu_pending_lab"/>
+        <menuitem name="Pending in Lab" id="pending_in_lab" parent="legh_labs_menu" action="lab_action" groups="legh.group_lab_menu_pending_lab"/>
 
 
     </data>

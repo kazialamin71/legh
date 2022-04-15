@@ -25,7 +25,7 @@
 
         <!-- expense type tree -->
         <record model="ir.ui.view" id="report_tree">
-            <field name="name">leih</field>
+            <field name="name">legh</field>
             <field name="model">diagnosis.sticker</field>
             <field name="arch" type="xml">
              <tree string="Alu List">
@@ -42,12 +42,8 @@
             </field>
         </record>
 
-
-
-
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-        <menuitem name="Report Receiption" id="leih_reportreceiption_menu" parent="leih_menu" sequence="4"/>
-        <menuitem name="Report" id="report_print" parent="leih_reportreceiption_menu" action="report_action" groups="leih.group_report_reception_menu_report"/>
+        <menuitem name="Report Receiption" id="legh_reportreceiption_menu" parent="legh_menu" sequence="4"/>
+        <menuitem name="Report" id="report_print" parent="legh_reportreceiption_menu" action="report_action" groups="legh.group_report_reception_menu_report"/>
 
 
     </data>

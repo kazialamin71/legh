@@ -2,9 +2,9 @@
 <openerp>
     <data>
 
-        <record model="ir.ui.view" id="leih_emergency_graph_view">
+        <record model="ir.ui.view" id="legh_emergency_graph_view">
                 <field name="name">Emergency Patient</field>
-                <field name="model">leih.admission</field>
+                <field name="model">legh.admission</field>
                 <field name="arch" type="xml">
                     <graph string="">
                         <field name="patient_name"/>
@@ -14,7 +14,7 @@
 
         <record id="emergency_patient_action" model="ir.actions.act_window">
             <field name="name">Emergency Patient</field>
-            <field name="res_model">leih.admission</field>
+            <field name="res_model">legh.admission</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
@@ -26,8 +26,8 @@
 
         <!-- expense type tree -->
         <record model="ir.ui.view" id="emergency_activated_tree" >
-            <field name="name">leih</field>
-            <field name="model">leih.admission</field>
+            <field name="name">legh</field>
+            <field name="model">legh.admission</field>
             <field name="arch" type="xml">
             <tree string="Alu List">
 
@@ -47,9 +47,8 @@
         </record>
 
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-         <menuitem name="Emergency" id="leih_emergency_menu" parent="leih_menu" sequence="3"/>
-        <menuitem name="Pending Emergency" id="emergency_menu_mainform" parent="leih_emergency_menu" action="emergency_patient_action" groups="leih.group_emergency_menu_pending"/>
+         <menuitem name="Emergency" id="legh_emergency_menu" parent="legh_menu" sequence="3"/>
+        <menuitem name="Pending Emergency" id="emergency_menu_mainform" parent="legh_emergency_menu" action="emergency_patient_action" groups="legh.group_emergency_menu_pending"/>
 
 
     </data>

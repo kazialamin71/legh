@@ -7,8 +7,8 @@
             id="action_report_opd_layout"
             model="opd.ticket"
             report_type="qweb-pdf"
-            name="leih.opd_ticket_report"
-            file="leih.opd_ticket_report"
+            name="legh.opd_ticket_report"
+            file="legh.opd_ticket_report"
 
         />
        </data>

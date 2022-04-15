@@ -26,4 +26,4 @@ class cc_collection(osv.osv_memory):
 
 
 
-        return self.pool['report'].get_action(cr, uid, [], 'leih.report_detail_component', data=datas, context=context)
+        return self.pool['report'].get_action(cr, uid, [], 'legh.report_detail_component', data=datas, context=context)

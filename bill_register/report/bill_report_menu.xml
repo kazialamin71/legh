@@ -7,8 +7,8 @@
                 model="bill.register"
                 string="Print Bill"
                 report_type="qweb-pdf"
-                name="leih.report_bill_register"
-                file="leih.report_bill_register"
+                name="legh.report_bill_register"
+                file="legh.report_bill_register"
                 menu="True"
 
         />

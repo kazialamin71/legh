@@ -79,9 +79,6 @@ class bill_register(osv.osv):
         'bill_register_line_id': fields.one2many('bill.register.line', 'bill_register_id', 'Item Entry',required=True),
         'bill_register_payment_line_id': fields.one2many("bill.register.payment.line", "bill_register_payment_line_id","Bill Register Payment"),
         'bill_journal_relation_id': fields.one2many("bill.journal.relation", "bill_journal_relation_id","Journal"),
-        # 'footer_connection': fields.one2many('leih.footer', 'relation', 'Parameters', required=True),
-        # 'relation': fields.many2one("leih.investigation"),
-        # 'total': fields.float(_totalpayable,string="Total",type='float',store=True),
         'total_without_discount': fields.float(string="Total without discount"),
         'total': fields.float(string="Total"),
         'doctors_discounts': fields.float("Doctor Discount(%)"),
@@ -143,14 +140,13 @@ class bill_register(osv.osv):
             raise osv.except_osv(_('Warning!'),
                                  _('Confirm your bill first.'))
         elif bill_obj.state=='confirmed':
-            mr = self.env['leih.money.receipt'].search([('bill_id', '=', name)])
+            mr = self.env['legh.money.receipt'].search([('bill_id', '=', name)])
             advance = 0
             paid = 0
             if len(mr)>2:
                 for i in range(len(mr)-1):
                     advance=advance+mr[i].amount
                 paid=mr[len(mr)-1].amount
-            # mr_ids=self.pool.get('leih.money.receipt').search([('bill_id', '=', name)], context=context)
 
                 lists={
                     'advance':advance,
@@ -426,12 +422,12 @@ class bill_register(osv.osv):
                                     'bill_total_amount': stored_obj.total,
                                     'due_amount': stored_obj.due
                                 }
-                            mr_obj = self.pool.get('leih.money.receipt')
+                            mr_obj = self.pool.get('legh.money.receipt')
                             mr_id = mr_obj.create(cr, uid, mr_value, context=context)
 
                             if mr_id is not None:
                                 mr_name = 'MR#' + str(mr_id)
-                                cr.execute('update leih_money_receipt set name=%s,diagonostic_bill=%s where id=%s',
+                                cr.execute('update legh_money_receipt set name=%s,diagonostic_bill=%s where id=%s',
                                            (mr_name, diagonostic_bill, mr_id))
                                 cr.commit()
                                 bill_payment_obj = self.pool.get('bill.register.payment.line')
@@ -444,7 +440,7 @@ class bill_register(osv.osv):
                 ### Ends the journal Entry Here
 
 
-            return self.pool['report'].get_action(cr, uid, ids, 'leih.report_bill_register', context=context)
+            return self.pool['report'].get_action(cr, uid, ids, 'legh.report_bill_register', context=context)
         else:
             raise osv.except_osv(_('Warning!'),
                                  _('PLease Pay minimum amount.'))
@@ -455,7 +451,7 @@ class bill_register(osv.osv):
 
     def onchange_total(self,cr,uid,ids,name,context=None):
         tests = {'values': {}}
-        dep_object = self.pool.get('leih.tests').browse(cr, uid, name, context=None)
+        dep_object = self.pool.get('legh.tests').browse(cr, uid, name, context=None)
         abc = {'total': dep_object.rate}
         tests['value'] = abc
         return tests
@@ -470,7 +466,7 @@ class bill_register(osv.osv):
     def add_new_test(self, cr, uid, ids, context=None):
         if not ids: return []
 
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih', 'add_bill_view')
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh', 'add_bill_view')
         #
         inv = self.browse(cr, uid, ids[0], context=context)
         # import pdb
@@ -540,7 +536,7 @@ class bill_register(osv.osv):
         cr.commit()
 
         #for updates on cash collection
-        cr.execute("update leih_money_receipt set state='cancel' where bill_id=%s", (ids))
+        cr.execute("update legh_money_receipt set state='cancel' where bill_id=%s", (ids))
         cr.commit()
 
 
@@ -556,7 +552,7 @@ class bill_register(osv.osv):
         if inv.total <= inv.paid:
             raise osv.except_osv(_('Full Paid'), _('Nothing to Pay Here. Already Full Paid'))
 
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih','bill_register_payment_form_view')
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh','bill_register_payment_form_view')
         #
 
         # total=inv.total
@@ -585,7 +581,7 @@ class bill_register(osv.osv):
         # pdb.set_trace()
         if not ids: return []
 
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih', 'discount_view')
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh', 'discount_view')
         #
         inv = self.browse(cr, uid, ids[0], context=context)
         # import pdb
@@ -1012,7 +1008,7 @@ class admission_payment_line(osv.osv):
         'type':fields.char("Type"),
         'card_no':fields.char('Card Number'),
         'bank_name':fields.char('Bank Name'),
-        'money_receipt_id': fields.many2one('leih.money.receipt', 'Money Receipt ID'),
+        'money_receipt_id': fields.many2one('legh.money.receipt', 'Money Receipt ID'),
 
     }
 
@@ -1021,7 +1017,7 @@ class bill_journal_relations(osv.osv):
 
     _columns = {
         'bill_journal_relation_id': fields.many2one('bill.register', 'bill register payment'),
-        'admission_journal_relation_id': fields.many2one('leih.admission', 'Admission Journal'),
+        'admission_journal_relation_id': fields.many2one('legh.admission', 'Admission Journal'),
         'journal_id': fields.integer("Journal Id"),
     }
 

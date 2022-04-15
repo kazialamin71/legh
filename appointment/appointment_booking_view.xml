@@ -67,10 +67,8 @@
             </field>
         </record>
 
-
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-        <menuitem name="Appointment" id="appointment_parent" parent="leih_menu" sequence="6"/>
-        <menuitem name="Appointment Booking" id="appointment_booking_menu" parent="appointment_parent" action="appointment_action" groups="leih.group_appointment_menu_booking"/>
+        <menuitem name="Appointment" id="appointment_parent" parent="legh_menu" sequence="6"/>
+        <menuitem name="Appointment Booking" id="appointment_booking_menu" parent="appointment_parent" action="appointment_action" groups="legh.group_appointment_menu_booking"/>
 
 
     </data>

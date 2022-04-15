@@ -75,9 +75,7 @@
         </record>
 
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-
-        <menuitem name="Advance Cash" id="advance_cash_menu_mainform" parent="leih_billing_menu" action="advance_cash_action" sequence="24"/>
+        <menuitem name="Advance Cash" id="advance_cash_menu_mainform" parent="legh_billing_menu" action="advance_cash_action" sequence="24"/>
 
     </data>
 </openerp>

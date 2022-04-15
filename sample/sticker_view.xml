@@ -90,7 +90,7 @@
 
         <!-- expense type tree -->
         <record model="ir.ui.view" id="sample_tree" >
-            <field name="name">leih</field>
+            <field name="name">legh</field>
             <field name="model">diagnosis.sticker</field>
             <field name="arch" type="xml">
 
@@ -109,12 +109,8 @@
             </field>
         </record>
 
-
-
-
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-        <menuitem name="Lab" id="leih_labs_menu" parent="leih_menu" sequence="3"/>
-        <menuitem name="Sample Collection" id="sample_menu_mainform" parent="leih_labs_menu" action="sample_action" groups="leih.group_lab_menu_sample_collection"/>
+        <menuitem name="Lab" id="legh_labs_menu" parent="legh_menu" sequence="3"/>
+        <menuitem name="Sample Collection" id="sample_menu_mainform" parent="legh_labs_menu" action="sample_action" groups="legh.group_lab_menu_sample_collection"/>
 
 
     </data>

@@ -8,8 +8,8 @@
             <field name="arch" type="xml">
             <form string="Cash Collection">
                 <header>
-                    <button name="action_button_confirm" string="Confirm" type="object" groups="leih.group_hospital_button_confirm"/>
-                    <button name="action_button_cancel" string="Cancel" type="object" groups="leih.group_hospital_button_cancel"/>
+                    <button name="action_button_confirm" string="Confirm" type="object" groups="legh.group_hospital_button_confirm"/>
+                    <button name="action_button_cancel" string="Cancel" type="object" groups="legh.group_hospital_button_cancel"/>
                 </header>
                 <sheet>
 
@@ -89,8 +89,8 @@
                 model="cash.collection"
                 string="stool"
                 report_type="qweb-pdf"
-                name="leih.report_cc_collection"
-                file="leih.report_cc_collection"
+                name="legh.report_cc_collection"
+                file="legh.report_cc_collection"
                 menu="False"
 
         />
@@ -100,8 +100,8 @@
                 model="cash.collection"
                 string="stool"
                 report_type="qweb-pdf"
-                name="leih.report_detail_component"
-                file="leih.report_detail_component"
+                name="legh.report_detail_component"
+                file="legh.report_detail_component"
                 menu="False"
 
         />
@@ -111,13 +111,12 @@
                 model="cash.collection"
                 string="Optics Collection"
                 report_type="qweb-pdf"
-                name="leih.report_optics_collection"
-                file="leih.report_optics_collection"
+                name="legh.report_optics_collection"
+                file="legh.report_optics_collection"
                 menu="False"
 
         />
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-<!--        <menuitem name="Cash Collection" id="cash_collection_menu_mainform" parent="leih_group_menu" action="cash_collection_action"/>-->
+
     </data>
 </openerp>

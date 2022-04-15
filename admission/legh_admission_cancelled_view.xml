@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <openerp>
     <data>
-
-        <record model="ir.ui.view" id="leih_admission_graph_view">
+        <record model="ir.ui.view" id="legh_admission_graph_view">
                 <field name="name">Admission Graph</field>
-                <field name="model">leih.admission</field>
+                <field name="model">legh.admission</field>
                 <field name="arch" type="xml">
                     <graph string="">
                         <field name="patient_name"/>
@@ -12,22 +11,22 @@
                 </field>
         </record>
 
-        <record id="admission_activated_action" model="ir.actions.act_window">
+
+        <record id="admission_cancelled_action" model="ir.actions.act_window">
             <field name="name">Admission Form</field>
-            <field name="res_model">leih.admission</field>
+            <field name="res_model">legh.admission</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
-            <field name="domain">[('state','=','activated'),('emergency','=',False)]</field>
+            <field name="domain">[('state','=','cancelled')]</field>
+
             <field name="context">{}</field>
         </record>
 
-
-
         <!-- expense type tree -->
-        <record model="ir.ui.view" id="admission_activated_tree" >
-            <field name="name">leih</field>
-            <field name="model">leih.admission</field>
+        <record model="ir.ui.view" id="admission_cancelled_tree" >
+            <field name="name">legh</field>
+            <field name="model">legh.admission</field>
             <field name="arch" type="xml">
             <tree string="Alu List">
 
@@ -47,8 +46,8 @@
         </record>
 
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-        <menuitem name="Activated Admission" id="admission_activated_menu_mainform" parent="leih_admission_menu" action="admission_activated_action" groups="leih.group_admission_menu_activated,leih.group_billing_menu_bill_register_edit"/>
+
+        <menuitem name="Cancelled Admission" id="admission_cancelled_menu_mainform" parent="legh_admission_menu" action="admission_cancelled_action" groups="legh.group_admission_menu_cancelled"/>
 
 
     </data>

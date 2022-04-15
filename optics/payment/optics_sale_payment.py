@@ -141,7 +141,7 @@ class optics_sale_payment(osv.osv):
         'service_charge': fields.float("Service Charge"),
         'to_be_paid': fields.float("To be Paid"),
         'account_number':fields.char('Account No.'),
-        'money_receipt_id': fields.many2one('leih.money.receipt', 'Money Receipt ID'),
+        'money_receipt_id': fields.many2one('legh.money.receipt', 'Money Receipt ID'),
     }
 
     def create(self,cr,uid,vals,context):
@@ -159,7 +159,7 @@ class optics_sale_payment(osv.osv):
         value['p_type']='due_payment'
         # value['user_id']=vals['user_id']
 
-        mr_object=self.pool.get("leih.money.receipt")
+        mr_object=self.pool.get("legh.money.receipt")
         mr_id=mr_object.create(cr, uid, value, context=context)
 
         stored_obj = self.pool.get("optics.sale").browse(cr, uid, vals['optics_sale_id'], context=None)
@@ -184,7 +184,7 @@ class optics_sale_payment(osv.osv):
 
         if mr_id is not None:
             mr_name='MR#' +str(mr_id)
-            cr.execute('update leih_money_receipt set name=%s where id=%s',(mr_name,mr_id))
+            cr.execute('update legh_money_receipt set name=%s where id=%s',(mr_name,mr_id))
             cr.execute('update optics_sale_payment set money_receipt_id=%s where id=%s',(mr_id,storedpayment))
             cr.commit()
         return storedpayment

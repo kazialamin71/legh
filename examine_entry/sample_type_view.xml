@@ -49,10 +49,5 @@
             </field>
         </record>
 
-
-
-<!--        <menuitem name="Test Entry" id="testentry_menu_mainform" parent="leih_group_menu" action="examinationentry_action"/>-->
-
-
     </data>
 </openerp>

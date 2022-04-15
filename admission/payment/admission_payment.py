@@ -32,7 +32,7 @@ class admission_payment(osv.osv):
         service_dict={'date': pay_date,'amount':pay_amount,'type': pay_type,'card_no':pay_card ,'admission_payment_line_id': admission_id,'money_receipt_id':money_receipt_id}
         service_id = eve_mee_obj.create(cr, uid, vals=service_dict, context=context)
 
-        cr.execute("update leih_admission set due=%s,paid=%s where id=%s", (updated_amount, updated_paid, admission_id))
+        cr.execute("update legh_admission set due=%s,paid=%s where id=%s", (updated_amount, updated_paid, admission_id))
         cr.commit()
 
         ###journal_entry
@@ -157,14 +157,14 @@ class admission_payment(osv.osv):
 
     _columns = {
         'name':fields.char("Cash COllection ID", readonly=True),
-        'admission_id': fields.many2one('leih.admission', 'Admission ID', readoly=True),
+        'admission_id': fields.many2one('legh.admission', 'Admission ID', readoly=True),
         'date': fields.date('Date'),
         'amount': fields.float('Receive Amount', required=True),
         'payment_type': fields.many2one('payment.type','Payment Type',default=_default_payment_type),
         'service_charge': fields.float("Service Charge"),
         'to_be_paid': fields.float("To be Paid"),
         'account_number':fields.char('Account No.'),
-        'money_receipt_id': fields.many2one('leih.money.receipt', 'Money Receipt ID'),
+        'money_receipt_id': fields.many2one('legh.money.receipt', 'Money Receipt ID'),
 
 
     }
@@ -185,11 +185,11 @@ class admission_payment(osv.osv):
         value['p_type'] = 'due_payment'
         # value['user_id']=vals['user_id']
 
-        mr_object=self.pool.get("leih.money.receipt")
+        mr_object=self.pool.get("legh.money.receipt")
         mr_id=mr_object.create(cr, uid, value, context=context)
         if mr_id is not None:
             mr_name='MR#' +str(mr_id)
-            cr.execute('update leih_money_receipt set name=%s where id=%s',(mr_name,mr_id))
+            cr.execute('update legh_money_receipt set name=%s where id=%s',(mr_name,mr_id))
             cr.execute('update admission_payment set money_receipt_id=%s where id=%s', (mr_id, stored))
             cr.commit()
         return stored
@@ -208,12 +208,4 @@ class admission_payment(osv.osv):
         return "X"
 
 
-
-# class inherited_admision(osv.osv):
-#     _inherits = "leih.admission"
-#
-#     _columns = {
-#         ''
-#     }
-#
 

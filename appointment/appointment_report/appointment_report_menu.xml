@@ -7,8 +7,8 @@
                 model="appointment.booking"
                 string="Print appointment slip"
                 report_type="qweb-pdf"
-                name="leih.report_appointment"
-                file="leih.report_appointment"
+                name="legh.report_appointment"
+                file="legh.report_appointment"
                 menu="True"
 
         />

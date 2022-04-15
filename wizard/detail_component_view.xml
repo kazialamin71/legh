@@ -34,7 +34,7 @@
 
 
         <menuitem icon="STOCK_PRINT" action="action_report_detail_component"
-                id="menu_detail_component" parent="leih_group_menu" sequence="12" />
+                id="menu_detail_component" parent="legh_group_menu" sequence="12" />
 
 
     </data>

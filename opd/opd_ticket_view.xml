@@ -44,7 +44,7 @@
 
         <!-- expense type tree -->
         <record model="ir.ui.view" id="opd_ticket_entry_tree" >
-            <field name="name">leih</field>
+            <field name="name">legh</field>
             <field name="model">opd.ticket.entry</field>
             <field name="arch" type="xml">
             <tree string="Alu List">
@@ -57,8 +57,7 @@
         </record>
 
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-        <menuitem name="OPD Ticket Entry" id="opd_ticket_menu_mainform" parent="leih_config_menu" action="opd_ticekt_entry_action" groups="leih.group_configuration_menu_opd_ticket_entry"/>
+        <menuitem name="OPD Ticket Entry" id="opd_ticket_menu_mainform" parent="legh_config_menu" action="opd_ticekt_entry_action" groups="legh.group_configuration_menu_opd_ticket_entry"/>
 
 
     </data>

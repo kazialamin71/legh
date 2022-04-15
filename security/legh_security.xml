@@ -2,16 +2,16 @@
 <openerp>
     <data noupdate="0">
 
-        <!-- LEIH Access Title -->
-        <record model="ir.module.category" id="module_category_leih">
-            <field name="name">LEIH User Access Layer</field>
+        <!-- legh Access Title -->
+        <record model="ir.module.category" id="module_category_legh">
+            <field name="name">legh User Access Layer</field>
             <field name="sequence">20</field>
         </record>
 
             <!-- Hospital Menu Access -->
             <record model="ir.module.category" id="module_category_hospital">
-                <field name="name">LEIH- Hospital</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Hospital</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">1</field>
             </record>
 
@@ -53,8 +53,8 @@
 
             <!-- Billing Menu Access -->
             <record model="ir.module.category" id="module_category_billing">
-                <field name="name">LEIH- Billing</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Billing</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">2</field>
             </record>
 
@@ -157,8 +157,8 @@
 
 <!--        security for edit-->
 <record model="ir.module.category" id="module_category_billing_edit">
-                <field name="name">LEIH- Billing for Edit</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Billing for Edit</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">15</field>
             </record>
 
@@ -180,8 +180,8 @@
 
             <!-- OPD Menu Access -->
             <record model="ir.module.category" id="module_category_opd">
-                <field name="name">LEIH- OPD</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- OPD</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">3</field>
             </record>
 
@@ -202,8 +202,8 @@
 
             <!-- Admission Menu Access -->
             <record model="ir.module.category" id="module_category_admission">
-                <field name="name">LEIH- Admission</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Admission</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">4</field>
             </record>
 
@@ -296,8 +296,8 @@
 
             <!-- Lab Menu Access -->
             <record model="ir.module.category" id="module_category_lab">
-                <field name="name">LEIH- Lab</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Lab</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">5</field>
             </record>
 
@@ -379,8 +379,8 @@
 
             <!-- Discount Menu Access -->
             <record model="ir.module.category" id="module_category_discount">
-                <field name="name">LEIH- Discount</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Discount</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">6</field>
             </record>
 
@@ -417,8 +417,8 @@
 
             <!-- Emergency Menu Access -->
             <record model="ir.module.category" id="module_category_emergency">
-                <field name="name">LEIH- Emergency</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Emergency</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">7</field>
             </record>
 
@@ -480,8 +480,8 @@
 
             <!-- Report Reception Menu Access -->
             <record model="ir.module.category" id="module_category_report_reception">
-                <field name="name">LEIH- Report Reception</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Report Reception</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">8</field>
             </record>
 
@@ -501,8 +501,8 @@
 
             <!-- Profile Menu Access -->
             <record model="ir.module.category" id="module_category_profile">
-                <field name="name">LEIH- Profile</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Profile</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">9</field>
             </record>
 
@@ -523,8 +523,8 @@
 
             <!-- Blood Bank Menu Access -->
             <record model="ir.module.category" id="module_category_blood_bank">
-                <field name="name">LEIH- Blood Bank</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Blood Bank</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">10</field>
             </record>
 
@@ -544,8 +544,8 @@
 
             <!-- Appointment Menu Access -->
             <record model="ir.module.category" id="module_category_appointment">
-                <field name="name">LEIH- Appointment</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Appointment</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">11</field>
             </record>
 
@@ -576,8 +576,8 @@
 
             <!-- Laundry and Linen Menu Access -->
             <record model="ir.module.category" id="module_category_laundry_linen">
-                <field name="name">LEIH- Laundry and Linen</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Laundry and Linen</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">12</field>
             </record>
 
@@ -602,8 +602,8 @@
 
             <!-- Expense Menu Access -->
             <record model="ir.module.category" id="module_category_expense">
-                <field name="name">LEIH- Expense</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Expense</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">13</field>
             </record>
 
@@ -631,8 +631,8 @@
 
         <!-- Configuration Menu Access -->
             <record model="ir.module.category" id="module_category_configuration">
-                <field name="name">LEIH- Configuration</field>
-                <field name="category_id" ref="module_category_leih"/>
+                <field name="name">legh- Configuration</field>
+                <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">14</field>
             </record>
 

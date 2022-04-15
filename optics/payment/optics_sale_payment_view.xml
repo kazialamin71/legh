@@ -68,7 +68,7 @@
             </field>
         </record>
 
-        <menuitem id="optics_payment_menu" name="Optics Payment" parent="leih_admission_menu" action="optics_sale_payment_new_action" groups="leih.group_billing_menu_optics_sale"/>
+        <menuitem id="optics_payment_menu" name="Optics Payment" parent="legh_admission_menu" action="optics_sale_payment_new_action" groups="legh.group_billing_menu_optics_sale"/>
 
     </data>
 </openerp>

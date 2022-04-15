@@ -80,7 +80,6 @@ class examination_entry(osv.osv):
 
 
 
-# many2one('leih.doctors',"Test Names", required=True, ondelete='cascade', select=True)
 
 class testentryparamaerte(osv.osv):
     _name = 'examination.entry.line'

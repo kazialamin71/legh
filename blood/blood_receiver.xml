@@ -90,7 +90,7 @@
             </field>
         </record>
 
-        <menuitem name="Blood Receiver" id="blood_receiver_menu_mainform" parent="leih_blood_menu" action="blood_receiver_action" groups="leih.group_blood_bank_menu_receiver"/>
+        <menuitem name="Blood Receiver" id="blood_receiver_menu_mainform" parent="legh_blood_menu" action="blood_receiver_action" groups="legh.group_blood_bank_menu_receiver"/>
 
 
     </data>

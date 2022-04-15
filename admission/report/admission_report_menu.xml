@@ -4,11 +4,11 @@
 
         <report
                 id="action_report_admission"
-                model="leih.admission"
+                model="legh.admission"
                 string="Print Admission"
                 report_type="qweb-pdf"
-                name="leih.report_admission"
-                file="leih.admission_report"
+                name="legh.report_admission"
+                file="legh.admission_report"
                 menu="True"
 
         />

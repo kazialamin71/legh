@@ -54,9 +54,8 @@
         </record>
 
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
 
-        <menuitem name="Appointment Paid" id="appointment_paid_menu" parent="appointment_parent" action="appointment_paid_action" groups="leih.group_appointment_menu_paid"/>
+        <menuitem name="Appointment Paid" id="appointment_paid_menu" parent="appointment_parent" action="appointment_paid_action" groups="legh.group_appointment_menu_paid"/>
 
 
     </data>

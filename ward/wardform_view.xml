@@ -55,7 +55,7 @@
         </record>
 
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-        <menuitem name="Ward" id="ward_menu_mainform" parent="leih_group_menu" action="ward_action" groups="leih.group_hospital_menu_ward"/>
+
+        <menuitem name="Ward" id="ward_menu_mainform" parent="legh_group_menu" action="ward_action" groups="legh.group_hospital_menu_ward"/>
     </data>
 </openerp>

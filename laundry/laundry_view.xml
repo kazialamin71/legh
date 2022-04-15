@@ -53,10 +53,6 @@
 <!--        </record>-->
 
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-<!--        <menuitem name="Laundry - Linen" id="leih_laundry_menu" parent="leih_menu"/>-->
-<!--        <menuitem name="Linen" id="linen_menu_mainform" parent="leih_laundry_menu" action="linen_action"/>-->
-
 
     </data>
 </openerp>

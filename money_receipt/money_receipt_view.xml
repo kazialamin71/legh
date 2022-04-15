@@ -4,7 +4,7 @@
         <!--proforma_invoice form-->
         <record model="ir.ui.view" id="money_receipt_form_view" >
 			<field name="name">Money receipt Information</field>
-			<field name="model">leih.money.receipt</field>
+			<field name="model">legh.money.receipt</field>
             <field name="type">form</field>
             <field name="arch" type="xml">
                 <form string="PI">
@@ -31,7 +31,7 @@
 
         <record model="ir.ui.view" id="mr_graph_view">
                 <field name="name">MR Graph</field>
-                <field name="model">leih.money.receipt</field>
+                <field name="model">legh.money.receipt</field>
                 <field name="arch" type="xml">
                     <graph string="">
                         <field name="type"/>
@@ -45,7 +45,7 @@
         <!--proforma_invoice starting action-->
         <record model="ir.actions.act_window" id="money_receipt_new_action" >
 			<field name="name">Money receipt</field>
-			<field name="res_model">leih.money.receipt</field>
+			<field name="res_model">legh.money.receipt</field>
 			<field name="view_type">form</field>
 			<field name="view_mode">tree,form,graph</field>
 			<field name="context" eval="{'search_default_my_courses': 1}"/>
@@ -59,8 +59,8 @@
 
         <!--Proforma Invoice record list tree-->
         <record model="ir.ui.view" id="money_receipt_tree_view" >
-            <field name="name">leih.money_receipt</field>
-            <field name="model">leih.money.receipt</field>
+            <field name="name">legh.money_receipt</field>
+            <field name="model">legh.money.receipt</field>
             <field name="arch" type="xml">
                 <tree string="Admission List" default_order='id desc'>
 
@@ -76,7 +76,7 @@
             </field>
         </record>
 
-        <menuitem id="mr_menu" name="Money Receipt" parent="leih_billing_menu" action="money_receipt_new_action" groups="leih.group_billing_menu_money_receipt"/>
+        <menuitem id="mr_menu" name="Money Receipt" parent="legh_billing_menu" action="money_receipt_new_action" groups="legh.group_billing_menu_money_receipt"/>
 
     </data>
 </openerp>

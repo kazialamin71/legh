@@ -13,7 +13,7 @@ class discount(osv.osv):
 
         'name': fields.char("Discount Number"),
         'date': fields.datetime("Date", readonly=True, default=lambda self: fields.datetime.now()),
-        'admission_id':fields.many2one("leih.admission","Admission ID"),
+        'admission_id':fields.many2one("legh.admission","Admission ID"),
         'bill_no': fields.many2one('bill.register','Bill No'),
         'patient_name': fields.char("Patient Name",required=True),
         'mobile': fields.char("Mobile Number", required=True),
@@ -130,7 +130,7 @@ class discount(osv.osv):
                             pdb.set_trace()
 
             elif admission_id != False:
-                query = "select grand_total,paid,due from leih_admission where id=%s"
+                query = "select grand_total,paid,due from legh_admission where id=%s"
                 cr.execute(query, ([admission_id]))
                 all_data = cr.dictfetchall()
                 grand_total = 0
@@ -147,7 +147,7 @@ class discount(osv.osv):
                 elif due_amount >= total_discount:
                     grand_total = grand_total - total_discount
                     due_amount = due_amount - total_discount
-                cr.execute('update leih_admission set other_discount=%s,grand_total=%s,due=%s where id=%s',
+                cr.execute('update legh_admission set other_discount=%s,grand_total=%s,due=%s where id=%s',
                            (total_discount, grand_total, due_amount, admission_id))
                 cr.commit()
 
@@ -259,7 +259,7 @@ class discount(osv.osv):
         return tests
     def onchange_admission(self,cr,uid,ids,admission_id,context=None):
         tests = {'values': {}}
-        dep_object = self.pool.get('leih.admission').browse(cr, uid,admission_id, context=None)
+        dep_object = self.pool.get('legh.admission').browse(cr, uid,admission_id, context=None)
         patient_name=dep_object.patient_name.name
         mobile=dep_object.patient_name.mobile
         amount=dep_object.grand_total

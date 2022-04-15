@@ -18,7 +18,7 @@ class sample(osv.osv):
             #                          _('Already it is sample collected.'))
             cr.execute('update diagnosis_sticker set state=%s where id=%s', (statue, id))
             cr.commit()
-        return self.pool['report'].get_action(cr, uid, ids, 'leih.report_sample_report', context=context)
+        return self.pool['report'].get_action(cr, uid, ids, 'legh.report_sample_report', context=context)
         # return True
 
     def print_lab_report(self,cr,uid,ids,context=None):
@@ -31,7 +31,7 @@ class sample(osv.osv):
             #                          _('Already it is Completed.'))
             cr.execute('update diagnosis_sticker set state=%s where id=%s', (status, id))
             cr.commit()
-        return self.pool['report'].get_action(cr, uid, ids, 'leih.report_detail', context=context)
+        return self.pool['report'].get_action(cr, uid, ids, 'legh.report_detail', context=context)
     def haematology_report(self,cr,uid,ids,context=None):
         status = 'done'
         for id in ids:
@@ -41,7 +41,7 @@ class sample(osv.osv):
             #                          _('Already it is Completed.'))
             cr.execute('update diagnosis_sticker set state=%s where id=%s', (status, id))
             cr.commit()
-        return self.pool['report'].get_action(cr, uid, ids, 'leih.report_haematology', context=context)
+        return self.pool['report'].get_action(cr, uid, ids, 'legh.report_haematology', context=context)
 
     #call the report for serology
 
@@ -54,7 +54,7 @@ class sample(osv.osv):
             #                          _('Already it is Completed.'))
             cr.execute('update diagnosis_sticker set state=%s where id=%s', (status, id))
             cr.commit()
-        return self.pool['report'].get_action(cr, uid, ids, 'leih.report_serology', context=context)
+        return self.pool['report'].get_action(cr, uid, ids, 'legh.report_serology', context=context)
 
     def microbiology_report(self,cr,uid,ids,context=None):
         status = 'done'
@@ -65,7 +65,7 @@ class sample(osv.osv):
             #                          _('Already it is Completed.'))
             cr.execute('update diagnosis_sticker set state=%s where id=%s', (status, id))
             cr.commit()
-        return self.pool['report'].get_action(cr, uid, ids, 'leih.report_microbiology', context=context)
+        return self.pool['report'].get_action(cr, uid, ids, 'legh.report_microbiology', context=context)
 
     def biochemistry_report(self,cr,uid,ids,context=None):
         status = 'done'
@@ -76,7 +76,7 @@ class sample(osv.osv):
             #                          _('Already it is Completed.'))
             cr.execute('update diagnosis_sticker set state=%s where id=%s', (status, id))
             cr.commit()
-        return self.pool['report'].get_action(cr, uid, ids, 'leih.report_biochemistry', context=context)
+        return self.pool['report'].get_action(cr, uid, ids, 'legh.report_biochemistry', context=context)
 
     def urine_report(self,cr,uid,ids,context=None):
         status = 'done'
@@ -87,7 +87,7 @@ class sample(osv.osv):
             #                          _('Already it is Completed.'))
             cr.execute('update diagnosis_sticker set state=%s where id=%s', (status, id))
             cr.commit()
-        return self.pool['report'].get_action(cr, uid, ids, 'leih.report_urine', context=context)
+        return self.pool['report'].get_action(cr, uid, ids, 'legh.report_urine', context=context)
 
     def stool_report(self,cr,uid,ids,context=None):
         status = 'done'
@@ -98,7 +98,7 @@ class sample(osv.osv):
             #                          _('Already it is Completed.'))
             cr.execute('update diagnosis_sticker set state=%s where id=%s', (status, id))
             cr.commit()
-        return self.pool['report'].get_action(cr, uid, ids, 'leih.report_stool', context=context)
+        return self.pool['report'].get_action(cr, uid, ids, 'legh.report_stool', context=context)
 
 
     def done_radiology(self,cr,uid,ids,context=None):
@@ -143,7 +143,7 @@ class sample(osv.osv):
         'name': fields.char('No #'),
         'full_name': fields.char('Name'),
         'bill_register_id':fields.many2one('bill.register','Bill register'),
-        'admission_id':fields.many2one('leih.admission','Admission ID'),
+        'admission_id':fields.many2one('legh.admission','Admission ID'),
         'department_id':fields.char('Department'),
         'doctor_id':fields.many2one('doctors.profile','Checked By'),
         'test_id':fields.many2one('examination.entry','Test Name'),

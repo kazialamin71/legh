@@ -7,8 +7,8 @@
             id="action_report_doctor_layout"
             model="doctors.profile"
             report_type="qweb-pdf"
-            name="leih.report_doctor_layout"
-            file="leih.report_doctor_layout"
+            name="legh.report_doctor_layout"
+            file="legh.report_doctor_layout"
 
         />
        </data>

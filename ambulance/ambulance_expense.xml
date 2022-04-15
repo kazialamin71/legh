@@ -51,7 +51,7 @@
             </field>
         </record>
 
-        <menuitem name="Ambulance Expense" id="ambulance_expense_menu_mainform" parent="leih_group_menu" action="ambulance_expense_action"/>
+        <menuitem name="Ambulance Expense" id="ambulance_expense_menu_mainform" parent="legh_group_menu" action="ambulance_expense_action"/>
 
     </data>
 </openerp>

@@ -68,9 +68,7 @@
         </record>
 
 
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-<!--        <menuitem name="Laundry - Linen" id="leih_laundry_menu" parent="leih_menu"/>-->
-        <menuitem name="Send to Laundry" id="clean_menu_mainform" parent="leih_laundry_menu" action="cleaning_action" groups="leih.group_laundry_linen_menu_send_to"/>
+        <menuitem name="Send to Laundry" id="clean_menu_mainform" parent="legh_laundry_menu" action="cleaning_action" groups="legh.group_laundry_linen_menu_send_to"/>
 
 
     </data>

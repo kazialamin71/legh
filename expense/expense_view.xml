@@ -3,8 +3,8 @@
     <data>
 
         <record id="expense_view" model="ir.ui.view">
-            <field name="name">leih.expense</field>
-            <field name="model">leih.expense</field>
+            <field name="name">legh.expense</field>
+            <field name="model">legh.expense</field>
             <field name="arch" type="xml">
             <form string="Linen Entry Form">
 
@@ -36,8 +36,8 @@
 
 
         <record id="expense_action" model="ir.actions.act_window">
-            <field name="name">leih.expense</field>
-            <field name="res_model">leih.expense</field>
+            <field name="name">legh.expense</field>
+            <field name="res_model">legh.expense</field>
             <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
@@ -46,8 +46,8 @@
 
         <!-- expense type tree -->
         <record model="ir.ui.view" id="expense_tree" >
-            <field name="name">leih.expense.tree</field>
-            <field name="model">leih.expense</field>
+            <field name="name">legh.expense.tree</field>
+            <field name="model">legh.expense</field>
             <field name="arch" type="xml">
             <tree string="Alu List">
                         <field name="expense_type"/>
@@ -62,10 +62,8 @@
             </field>
         </record>
 
-
-<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
-          <menuitem name="Expense" id="leih_expense_menu" parent="leih_menu"/>
-        <menuitem name="Expense" id="expense_menu_mainform" parent="leih_expense_menu" action="expense_action" groups="leih.group_expense_menu_expense"/>
+          <menuitem name="Expense" id="legh_expense_menu" parent="legh_menu"/>
+        <menuitem name="Expense" id="expense_menu_mainform" parent="legh_expense_menu" action="expense_action" groups="legh.group_expense_menu_expense"/>
 
 
     </data>

@@ -52,9 +52,8 @@
             </field>
         </record>
 
-        <menuitem name="LEIH" id="leih_menu" sequence="1"/>
-        <menuitem name="Configuration" id="leih_config_menu" parent="leih_menu" sequence="20"/>
-<!--        <menuitem name="Room" id="room_menu_mainform" parent="leih_config_menu" action="room_action" groups="leih.group_configuration_menu_room"/>-->
+        <menuitem name="LEGH" id="legh_menu" sequence="1"/>
+        <menuitem name="Configuration" id="legh_config_menu" parent="legh_menu" sequence="20"/>
 
 
     </data>

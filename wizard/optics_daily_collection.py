@@ -24,4 +24,4 @@ class optics_daily_collection(osv.osv_memory):
         if res.get('id',False):
             datas['ids']=[res['id']]
 
-        return self.pool['report'].get_action(cr, uid, [], 'leih.report_optics_collection', data=datas, context=context)
+        return self.pool['report'].get_action(cr, uid, [], 'legh.report_optics_collection', data=datas, context=context)

@@ -9,8 +9,8 @@ class add_bill(osv.osv):
 
     def button_add_action(self,cr,uid,ids,context=None):
 
-        admission_line=self.pool.get('leih.admission.line')
-        admission_id=context.get("leih_admission_id")
+        admission_line=self.pool.get('legh.admission.line')
+        admission_id=context.get("legh_admission_id")
         add_test_object=self.browse(cr,uid,ids,context=None)
         test_name=add_test_object.name.id
         test_price=add_test_object.price
@@ -18,13 +18,13 @@ class add_bill(osv.osv):
         test_amount=add_test_object.total_amount
 
 
-        vals_dict = {'discount': test_discount, 'price': test_price, 'leih_admission_id': admission_id, 'name': test_name, 'total_amount': test_amount}
+        vals_dict = {'discount': test_discount, 'price': test_price, 'legh_admission_id': admission_id, 'name': test_name, 'total_amount': test_amount}
         # import pdb
         # pdb.set_trace()
         admission_id_confirm=admission_line.create(cr,uid,vals=vals_dict,context=None)
         #querying all details of paid,due,total
 
-        query = "select total,grand_total,paid,after_discount,other_discount,due from leih_admission where id=%s"
+        query = "select total,grand_total,paid,after_discount,other_discount,due from legh_admission where id=%s"
         cr.execute(query, ([admission_id]))
         all_data = cr.dictfetchall()
 
@@ -42,7 +42,7 @@ class add_bill(osv.osv):
         total=total+test_amount
         grand_total = total-(after_discount+other_discount)
         due_amount =grand_total-paid_amount
-        cr.execute('update leih_admission set total=%s,grand_total=%s,due=%s where id=%s',
+        cr.execute('update legh_admission set total=%s,grand_total=%s,due=%s where id=%s',
                    (total, grand_total, due_amount, admission_id))
         cr.commit()
         # import pdb

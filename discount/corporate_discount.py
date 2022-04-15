@@ -144,7 +144,7 @@ class bill_register_inherit(osv.osv):
     def btn_corporate_discount(self, cr, uid, ids, context=None):
         if not ids: return []
 
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih','corporate_discount_form_view')
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh','corporate_discount_form_view')
         #
         inv = self.browse(cr, uid, ids[0], context=context)
         # import pdb

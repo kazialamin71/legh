@@ -34,7 +34,7 @@ class appointment_booking(osv.osv):
         return True
 
     def done_appointment(self, cr, uid, ids, context=None):
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih',
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh',
                                                                              'appointment_paid_view')
         #
         inv = self.browse(cr, uid, ids[0], context=context)

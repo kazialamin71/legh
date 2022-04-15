@@ -71,7 +71,7 @@
             </field>
         </record>
 
-        <menuitem name="Lens" id="lens_menu_mainform" parent="leih_billing_menu" action="lens_action"/>
+        <menuitem name="Lens" id="lens_menu_mainform" parent="legh_billing_menu" action="lens_action"/>
 
 
     </data>

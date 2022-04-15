@@ -21,7 +21,7 @@ class detail_collcetion_details(report_sxw.rml_parse):
                           "group by opd_ticket_line.name, opd_ticket_line.department,opd_ticket_line.price order by opd_ticket_line.price desc"
 
         bill_q = "select sum(bill_register_line.total_amount),count(bill_register_line.total_amount) as tl," \
-                 " (select examination_entry.name from examination_entry where examination_entry.id=bill_register_line.name) as name,bill_register_line.department,(select sum(leih_money_receipt.bill_total_amount) as total from leih_money_receipt,bill_register where bill_register.id=leih_money_receipt.bill_id) " \
+                 " (select examination_entry.name from examination_entry where examination_entry.id=bill_register_line.name) as name,bill_register_line.department,(select sum(legh_money_receipt.bill_total_amount) as total from legh_money_receipt,bill_register where bill_register.id=legh_money_receipt.bill_id) " \
                  "from bill_register_line,bill_register where bill_register_line.bill_register_id=bill_register.id and bill_register.state='confirmed' and " \
                  "(bill_register.create_date <= '%s') and (bill_register.create_date >= '%s') " \
                  "group by bill_register_line.name, bill_register_line.department order by bill_register_line.department"
@@ -31,33 +31,33 @@ class detail_collcetion_details(report_sxw.rml_parse):
                  " and (bill.create_date >= '%s') and " \
                  "bill.state='confirmed' group by testname"
 
-        admission_query = "select sum(leih_admission_line.total_amount) as tm,count(leih_admission_line.total_amount) as tv, " \
-                          "(select examination_entry.name from examination_entry where examination_entry.id=leih_admission_line.name) as name,leih_admission_line.department " \
-                          "from leih_admission_line,leih_admission where leih_admission_line.leih_admission_id=leih_admission.id " \
-                          "and (leih_admission.create_date <='%s') and (leih_admission.create_date >='%s') " \
-                          "group by leih_admission_line.name, leih_admission_line.department"
+        admission_query = "select sum(legh_admission_line.total_amount) as tm,count(legh_admission_line.total_amount) as tv, " \
+                          "(select examination_entry.name from examination_entry where examination_entry.id=legh_admission_line.name) as name,legh_admission_line.department " \
+                          "from legh_admission_line,legh_admission where legh_admission_line.legh_admission_id=legh_admission.id " \
+                          "and (legh_admission.create_date <='%s') and (legh_admission.create_date >='%s') " \
+                          "group by legh_admission_line.name, legh_admission_line.department"
 
         diagnostic_query="select bl.department,e.name,count(bl.name),bl.price,sum(bl.price) from bill_register as b,bill_register_line as bl,examination_entry as e " \
                          "where bl.bill_register_id=b.id and bl.name=e.id and diagonostic_bill=True and (b.create_date <= '%s') and" \
                          " (b.create_date >= '%s') group by bl.department,e.name,bl.price order by bl.department"
 
         diagnostic_income="select sum(bill_total_amount) as Total,sum(b.other_discount) as Discount,sum(b.doctors_discounts), sum(lmr.amount) as paid, sum(lmr.due_amount) as due from bill_register as b," \
-                          "leih_money_receipt as lmr where b.id=lmr.bill_id and (lmr.create_date <= '%s') and (lmr.create_date >= '%s') and lmr.state!='cancel' " \
+                          "legh_money_receipt as lmr where b.id=lmr.bill_id and (lmr.create_date <= '%s') and (lmr.create_date >= '%s') and lmr.state!='cancel' " \
                           " and b.diagonostic_bill=True"
 
         others_investigation="select bl.department,e.name,count(bl.name),bl.price,sum(bl.price) from bill_register as b,bill_register_line as bl,examination_entry as e " \
                              "where bl.bill_register_id=b.id and bl.name=e.id and (diagonostic_bill=FALSE OR diagonostic_bill IS NULL) and (b.create_date <= '%s') and " \
                              "(b.create_date >= '%s') group by bl.department,e.name,bl.price order by bl.department"
         others_income="select sum(bill_total_amount) as Total,sum(b.other_discount) as Discount,sum(b.doctors_discounts), sum(lmr.amount) as paid, sum(lmr.due_amount) as due from bill_register as b," \
-                      "leih_money_receipt as lmr where b.id=lmr.bill_id and (lmr.create_date <= '%s') and " \
+                      "legh_money_receipt as lmr where b.id=lmr.bill_id and (lmr.create_date <= '%s') and " \
                       "(lmr.create_date >= '%s') and (b.diagonostic_bill=FALSE or b.diagonostic_bill IS NULL) and lmr.state!='cancel'"
 
-        aadmission_query="select al.department,e.name,count(al.name),al.price,sum(al.price) from leih_admission as a,leih_admission_line as al,examination_entry as e " \
-                         "where al.leih_admission_id=a.id and al.name=e.id and (a.create_date <= '%s') and (a.create_date >= '%s') " \
+        aadmission_query="select al.department,e.name,count(al.name),al.price,sum(al.price) from legh_admission as a,legh_admission_line as al,examination_entry as e " \
+                         "where al.legh_admission_id=a.id and al.name=e.id and (a.create_date <= '%s') and (a.create_date >= '%s') " \
                          "and a.state='activated' group by al.department,e.name,al.price order by al.department"
 
-        admission_income="select sum(lmr.bill_total_amount) as Total,sum(a.other_discount) as Discount,sum(a.doctors_discounts), sum(lmr.amount) as paid, sum(lmr.due_amount) as due from leih_admission as a," \
-                         "leih_money_receipt as lmr where a.id=lmr.admission_id and (lmr.create_date <= '%s') and (lmr.create_date >= '%s') and lmr.state!='cancel'"
+        admission_income="select sum(lmr.bill_total_amount) as Total,sum(a.other_discount) as Discount,sum(a.doctors_discounts), sum(lmr.amount) as paid, sum(lmr.due_amount) as due from legh_admission as a," \
+                         "legh_money_receipt as lmr where a.id=lmr.admission_id and (lmr.create_date <= '%s') and (lmr.create_date >= '%s') and lmr.state!='cancel'"
 
 
 
@@ -243,7 +243,7 @@ class detail_collcetion_details(report_sxw.rml_parse):
 
 
 class report_detail_component(osv.AbstractModel):
-    _name = 'report.leih.report_detail_component'
+    _name = 'report.legh.report_detail_component'
     _inherit = 'report.abstract_report'
-    _template = 'leih.report_detail_component'
+    _template = 'legh.report_detail_component'
     _wrapped_report_class = detail_collcetion_details

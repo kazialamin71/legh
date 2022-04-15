@@ -75,7 +75,7 @@
             </field>
         </record>
 
-<menuitem name="Corporate Discount" id="corporate_discount_menu" parent="leih_billing_menu" action="corporate_discount_action" groups="leih.group_billing_menu_corporate_discount"/>
+<menuitem name="Corporate Discount" id="corporate_discount_menu" parent="legh_billing_menu" action="corporate_discount_action" groups="legh.group_billing_menu_corporate_discount"/>
 
 
 
