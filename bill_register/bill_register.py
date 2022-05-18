@@ -308,7 +308,7 @@ class bill_register(osv.osv):
                 if stored_obj.payment_type.name=='Cash':
                     has_been_paid = stored_obj.paid
                     ar_amount = stored_obj.due
-                    account_id=6
+                    account_id=stored_obj.payment_type.account.id
                 elif stored_obj.payment_type.name == 'Visa Card':
                     has_been_paid = stored_obj.to_be_paid
                     ar_amount = stored_obj.due
@@ -323,7 +323,7 @@ class bill_register(osv.osv):
                         'currency_id': False,
                         'credit': 0,
                         'date_maturity': False,
-                        'account_id': 195, ### Accounts Receivable ID
+                        'account_id': 771, ### Accounts Receivable ID
                         'debit': ar_amount,
                         'amount_currency': 0,
                         'partner_id': False,
@@ -728,7 +728,7 @@ class bill_register(osv.osv):
                             'currency_id': False,
                             'credit': 0,
                             'date_maturity': False,
-                            'account_id': 195, ### Accounts Receivable ID
+                            'account_id': 771, ### Accounts Receivable ID
                             'debit': ar_amount,
                             'amount_currency': 0,
                             'partner_id': False,

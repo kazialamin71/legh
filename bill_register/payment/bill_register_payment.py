@@ -76,7 +76,7 @@ class bill_register_payment(osv.osv):
                 'currency_id': False,
                 'credit': pay_amount,
                 'date_maturity': False,
-                'account_id': 195,  ### Accounts Receivable ID
+                'account_id': 771,  ### Accounts Receivable ID
                 'debit': 0,
                 'amount_currency': 0,
                 'partner_id': False,
@@ -112,7 +112,7 @@ class bill_register_payment(osv.osv):
                 'currency_id': False,
                 'credit': pay_amount,
                 'date_maturity': False,
-                'account_id': 195,  ### Accounts Receivable ID
+                'account_id': 771,  ### Accounts Receivable ID
                 'debit': 0,
                 'amount_currency': 0,
                 'partner_id': False,

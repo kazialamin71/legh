@@ -316,7 +316,7 @@ class legh_admission(osv.osv):
                     'currency_id': False,
                     'credit': 0,
                     'date_maturity': False,
-                    'account_id': 195,  ### Accounts Receivable ID
+                    'account_id': 771,  ### Accounts Receivable ID
                     'debit': ar_amount,
                     'amount_currency': 0,
                     'partner_id': False,
@@ -690,7 +690,7 @@ class legh_admission(osv.osv):
                             'currency_id': False,
                             'credit': 0,
                             'date_maturity': False,
-                            'account_id': 195, ### Accounts Receivable ID
+                            'account_id': 771, ### Accounts Receivable ID
                             'debit': ar_amount,
                             'amount_currency': 0,
                             'partner_id': False,
