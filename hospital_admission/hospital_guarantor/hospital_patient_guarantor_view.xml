@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="guarantor_view" model="ir.ui.view">
+            <field name="name">diagnosis.views</field>
+            <field name="model">patient.guarantor</field>
+            <field name="arch" type="xml">
+            <form string="Room">
+                <sheet>
+
+                    <group>
+
+                        <field name="name"/>
+                        <field name="contact"/>
+
+                    </group>
+
+                </sheet>
+            </form>
+
+            </field>
+
+        </record>
+
+
+
+
+        <record id="guarantor_action" model="ir.actions.act_window">
+            <field name="name">Guarantor</field>
+            <field name="res_model">patient.guarantor</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="Gautantor_tree" >
+            <field name="name">Guarantor</field>
+            <field name="model">patient.guarantor</field>
+            <field name="arch" type="xml">
+            <tree string="Alu List">
+                        <field name="name"/>
+                        <field name="contact"/>
+
+
+            </tree>
+            </field>
+        </record>
+
+
+
+        <menuitem name="Department" id="dep_menu_mainform" parent="legh_config_menu" action="guarantor_action"/>
+
+
+    </data>
+</openerp>

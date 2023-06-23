@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+                id="action_general_report_admission"
+                model="hospital.admission"
+                string="Print Admission"
+                report_type="qweb-pdf"
+                name="legh.general_report_admission"
+                file="hospital.admission_report"
+                menu="True"
+
+        />
+
+
+
+       </data>
+</openerp>

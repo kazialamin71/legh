@@ -75,7 +75,7 @@
             </field>
         </record>
 
-        <menuitem name="Patients" id="patients_menu_mainform" parent="legh_profile_menu" action="patients_action" groups="legh.group_profile_menu_patients"/>
+        <menuitem name="Patients" id="patients_menu_mainform" parent="leih_profile_menu" action="patients_action" groups="legh.group_profile_menu_patients"/>
 
 
     </data>

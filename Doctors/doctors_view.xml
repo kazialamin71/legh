@@ -14,6 +14,7 @@
                         <field name="name"/>
                         <field name="department"/>
                         <field name="designation"/>
+                        <field name="degree"/>
                         <field name="commission_rate"/>
                         <field name="type"/>
                         <field name="status"/>
@@ -91,8 +92,9 @@
         </record>
 
 
-        <menuitem name="Profile" id="legh_profile_menu" parent="legh_menu" sequence="5"/>
-        <menuitem name="Doctors" id="doctors_menu_mainform" parent="legh_profile_menu" action="doctors_action" groups="legh.group_profile_menu_doctors"/>
+<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
+        <menuitem name="Profile" id="leih_profile_menu" parent="legh_menu" sequence="5"/>
+        <menuitem name="Doctors" id="doctors_menu_mainform" parent="leih_profile_menu" action="doctors_action" groups="legh.group_profile_menu_doctors"/>
 
 
     </data>

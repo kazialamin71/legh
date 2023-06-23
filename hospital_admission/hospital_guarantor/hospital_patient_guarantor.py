@@ -3,18 +3,16 @@ from openerp.tools.translate import _
 from datetime import date, time
 
 class patient_guarantor(osv.osv):
-    _name = "patient.guarantor"
+    _name = "hospital.patient.guarantor"
 
 
 
 
     _columns = {
-
         'name': fields.char("Guarantor Name"),
-        'address':fields.char('Address'),
-        'relationship':fields.char('Relationship'),
+        'address': fields.char('Address'),
+        'relationship': fields.char('Relationship'),
         'contact': fields.char("Contact"),
-        'admission_id':fields.many2one('legh.admission','parent'),
-
-
+        'email': fields.char("Email"),
+        'admission_id': fields.many2one('hospital.admission', 'parent'),
     }

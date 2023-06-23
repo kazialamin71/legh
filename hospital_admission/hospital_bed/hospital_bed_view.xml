@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="hospital_bed_view" model="ir.ui.view">
+            <field name="name">Hospital Bed Form</field>
+            <field name="model">hospital.bed</field>
+            <field name="arch" type="xml">
+            <form string="Bed">
+                <sheet>
+                    <group>
+                        <field name="ward_name"/>
+                        <field name="name"/>
+<!--                        <field name="bed_qty"/>-->
+                        <field name="perday_charge"/>
+<!--                        <field name="total_amount"/>-->
+                    </group>
+
+                </sheet>
+            </form>
+
+            </field>
+
+        </record>
+
+        <record id="hospital_bed_action" model="ir.actions.act_window">
+            <field name="name">Hospital Bed Info</field>
+            <field name="res_model">hospital.bed</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="hospital_bed_tree" >
+            <field name="name">Hospital Bed info</field>
+            <field name="model">hospital.bed</field>
+            <field name="arch" type="xml">
+            <tree string="Bed List">
+                <field name="ward_name"/>
+                <field name="name"/>
+<!--                <field name="bed_qty"/>-->
+                <field name="perday_charge"/>
+<!--                <field name="total_amount"/>-->
+            </tree>
+            </field>
+        </record>
+
+
+
+        <menuitem name="Hospital Bed" id="hospital_bed_menu_mainform" parent="legh_config_menu" action="hospital_bed_action"/>
+
+
+    </data>
+</openerp>

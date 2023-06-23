@@ -25,5 +25,6 @@ import optics
 import wizard
 import inventory
 import advance_cash
+import hospital_admission
 # import accounting_report
 

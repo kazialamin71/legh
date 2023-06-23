@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+ <record id="leih_bill_register_inherit" model="ir.ui.view">
+        <field name="name">Bill Register Inherit</field>
+        <field name="model">bill.register</field>
+        <field name="inherit_id" ref="legh.investigation_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='patient_name']" position="after">
+                <field name="general_admission_id" placeholder="Applicable for General Hospital"/>
+            </xpath>
+        </field>
+        </record>
+    </data>
+</openerp>

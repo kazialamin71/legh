@@ -24,6 +24,7 @@ class examine_package_line(osv.osv):
 
         'name': fields.many2one("examination.entry","Test Name", required=True, ondelete='cascade'),
         'examine_package_id': fields.many2one('examine.package', "Information"),
+        'department': fields.char("Department"),
         # 'currency_id': fields.related('pricelist_id', 'currency_id', type="many2one", relation="res.currency",
         #                               string="Currency", readonly=True, required=True),
         # 'price_subtotal': fields.function(_amount_line, string='Subtotal', digits_compute=dp.get_precision('Account')),
@@ -32,6 +33,15 @@ class examine_package_line(osv.osv):
         'total_amount': fields.integer("Total Amount")
 
     }
+
+    def onchange_test(self,cr,uid,ids,name,context=None):
+        tests = {'values': {}}
+        dep_object = self.pool.get('examination.entry').browse(cr, uid, name, context=None)
+        abc = {'department':dep_object.department.name,'price': dep_object.rate,'total_amount':dep_object.rate}
+        tests['value'] = abc
+        # import pdb
+        # pdb.set_trace()
+        return tests
 
 
 

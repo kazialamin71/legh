@@ -21,7 +21,8 @@
                             <field name="examine_package_line_id" mode="tree">
                                 <tree string="Select Referance Value" editable="top">
 
-                                    <field name="name"/>
+                                    <field name="name" on_change="onchange_test(name, context)"/>
+                                    <field name="department"/>
                                     <field name="price"/>
                                     <field name="discount"/>
                                     <field name="total_amount"/>

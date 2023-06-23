@@ -8,8 +8,9 @@ class doctors_profile(osv.osv):
     _columns = {
 
         'name': fields.char("Doctor Name",required=True),
-        'department':fields.char('Department',required=True),
-        'designation':fields.char('Designation',required=True),
+        'department':fields.char('Department'),
+        'designation':fields.char('Designation'),
+        'degree':fields.char('Degree'),
         'type': fields.selection([('inhouse', 'In house'), ('consoled', 'Consoled'),('prttime','Part Time'),('outsid','Out Side')], string='Type', default='inhouse'),
         'status': fields.selection([('active', 'Active'), ('inactive', 'Inactive')], string='Status', default='active'),
         'others': fields.char("Others"),

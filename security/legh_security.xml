@@ -153,6 +153,103 @@
                     <field name="users" eval="[(4, ref('base.user_root'))]"/>
                 </record>
 
+        <!-- menu for general hospital -->
+        <!-- this section is for general hospital -->
+
+        <record model="ir.module.category" id="module_category_general_admission">
+                <field name="name">LEIH-  General Admission</field>
+                <field name="category_id" ref="module_category_legh"/>
+                <field name="sequence">4</field>
+            </record>
+
+                <!-- Admission Menu Access -->
+                <record id="group_general_admission_menu_pending" model="res.groups">
+                    <field name="name">Menu1- Pending Admission</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_menu_activated" model="res.groups">
+                    <field name="name">Menu2- Activated Admission</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_menu_released" model="res.groups">
+                    <field name="name">Menu3- Released Admission</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_menu_cancelled" model="res.groups">
+                    <field name="name">Menu4- Cancelled Admission</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_menu_add_new" model="res.groups">
+                    <field name="name">Menu5- Add New</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_menu_admission_payment" model="res.groups">
+                    <field name="name">Menu6- Admission Payment</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_menu_bill_payment" model="res.groups">
+                    <field name="name">Menu7- Bill Payment</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_menu_payment_configuration" model="res.groups">
+                    <field name="name">Menu8- Admission Payment Configuration</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                <!-- Billing Button Access -->
+                <record id="group_general_admission_button_confirm_print" model="res.groups">
+                    <field name="name">Button1- Confirm and Print (Admission)</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_button_add_test" model="res.groups">
+                    <field name="name">Button2- Add Test (Admission)</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_button_add_discount" model="res.groups">
+                    <field name="name">Button3- Add Discount (Admission)</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_button_settlement" model="res.groups">
+                    <field name="name">Button4- Final Settlement (Admission)</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_button_payment" model="res.groups">
+                    <field name="name">Button5- Payment (Admission)</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_button_cancel" model="res.groups">
+                    <field name="name">Button6- Cancel (Admission)</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
+                <record id="group_general_admission_configuration_button_payment" model="res.groups">
+                    <field name="name">Button7- Confirm (Admission Payment Configuration)</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+                <record id="group_general_admission_configuration_button_cancel" model="res.groups">
+                    <field name="name">Button8- Cancel (Admission Payment Configuration)</field>
+                    <field name="category_id" ref="module_category_general_admission"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+        <!-- end -->
+
+        <!-- end -->
+
 
 
 <!--        security for edit-->

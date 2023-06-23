@@ -1,0 +1,9 @@
+import hospital_leih_admission
+import hospital_guarantor
+import hospital_release
+import hospital_payment
+import hospital_payment_config
+import hospital_bed
+import hospital_medicine
+import bill_register
+# import bill_investigation
