@@ -69,7 +69,7 @@ class hospital_admission_payment(osv.osv):
                 'currency_id': False,
                 'credit': pay_amount,
                 'date_maturity': False,
-                'account_id': 195,  ### Accounts Receivable ID
+                'account_id': 771,  ### Accounts Receivable ID
                 'debit': 0,
                 'amount_currency': 0,
                 'partner_id': False,
@@ -102,7 +102,7 @@ class hospital_admission_payment(osv.osv):
                 'currency_id': False,
                 'credit': pay_amount,
                 'date_maturity': False,
-                'account_id': 195,  ### Accounts Receivable ID
+                'account_id': 771,  ### Accounts Receivable ID
                 'debit': 0,
                 'amount_currency': 0,
                 'partner_id': False,
@@ -195,7 +195,7 @@ class hospital_admission_payment(osv.osv):
         # import pdb;pdb.set_trace()
         if mr_id is not None:
             mr_name='MR#' +str(mr_id)
-            cr.execute('update leih_money_receipt set name=%s where id=%s',(mr_name,mr_id))
+            cr.execute('update legh_money_receipt set name=%s where id=%s',(mr_name,mr_id))
             cr.execute('update hospital_admission_payment set money_receipt_id=%s where id=%s', (mr_id, stored))
             cr.commit()
         return stored

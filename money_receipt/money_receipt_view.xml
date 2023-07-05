@@ -16,6 +16,7 @@
                                 <field name="date"/>
                                 <field name="bill_id"/>
                                 <field name="admission_id"/>
+                                <field name="general_admission_id"/>
                                 <field name="optics_sale_id"/>
                                 <field name="amount"/>
                                 <field name="type"/>

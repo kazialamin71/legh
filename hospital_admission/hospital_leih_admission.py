@@ -415,7 +415,7 @@ class leih_hospital_admission(osv.osv):
         if inv.state == 'pending' or inv.state=='cancelled':
             raise osv.except_osv(_('Warning'), _('Please Confirm and Print the Bill'))
 
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'leih', 'admission_general_payment_form_view')
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh', 'admission_general_payment_form_view')
         #
 
         # total=inv.total
