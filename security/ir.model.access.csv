@@ -82,6 +82,24 @@ access_bill_register_admission_line_activated,bill.register.admission.line,model
 
 
 
+access_legh_general_admission_pending,hospital.admission,model_hospital_admission,group_general_admission_menu_pending,1,1,1,0
+access_legh_general_admission_line_pending,hospital.admission.line,model_hospital_admission_line,group_general_admission_menu_pending,1,1,1,1
+access_patient_general_guarantor_pending,hospital.patient.guarantor,model_hospital_patient_guarantor,group_general_admission_menu_pending,1,1,1,1
+access_general_admission_payment_line_pending,hospital.admission.payment.line,model_admission_payment_line,group_general_admission_menu_pending,1,1,1,1
+access_general_admission_payment,hospital.admission.payment,model_hospital_admission_payment,group_general_admission_menu_pending,1,1,1,1
+access_doctor_profile,doctor.profile.admission.line,model_doctor_profile_admission_line,group_general_admission_menu_pending,1,1,1,1
+access_hospital_bed,hospital.bed.line,model_hospital_bed_line,group_general_admission_menu_pending,1,1,1,1
+access_hospital_bill,hospital.bill.line,model_hospital_bill_line,group_general_admission_menu_pending,1,1,1,1
+access_hospital_medicine,hospital.medicine.line,model_hospital_medicine_line,group_general_admission_menu_pending,1,1,1,1
+access_bill_journal,bill.journal.relation,model_bill_journal_relation,group_general_admission_menu_pending,1,1,1,1
+access_general_admission_payment_s,general.admission.payment.line,model_general_admission_payment_line,group_general_admission_menu_pending,1,1,1,1
+access_general_admission_payment_l,general.admission.payment.line,model_general_admission_payment_line,group_general_admission_menu_pending,1,1,1,1
+access_money_receipt,legh.money.receipt,model_legh_money_receipt,group_general_admission_menu_pending,1,0,1,0
+
+
+
+
+
 
 
 
