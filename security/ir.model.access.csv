@@ -166,6 +166,8 @@ access_common_admin_line,diagnosis.sticker.line,model_diagnosis_sticker_line,gro
 
 access_profile_doctors,doctors.profile,model_doctors_profile,group_profile_menu_doctors,1,1,1,0
 
+access_brokers_info,brokers.info,model_brokers_info,group_profile_menu_brokers,1,1,1,0
+
 access_profile_patients,patient.info,model_patient_info,group_profile_menu_patients,1,1,1,0
 
 access_blood_bank_donor,blood.donar,model_blood_donar,group_blood_bank_menu_donor,1,1,1,0
@@ -207,6 +209,7 @@ access_examine_package,examine.package,model_examine_package,group_laundry_linen
 access_examine_package_line,examine.package.line,model_examine_package_line,group_laundry_linen_menu_send_to,1,1,1,1
 
 access_opd_ticket_entry,opd.ticket.entry,model_opd_ticket_entry,group_expense_menu_cancel,1,1,1,0
+
 
 
 

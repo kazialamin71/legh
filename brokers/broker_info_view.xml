@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="brokers_view" model="ir.ui.view">
+            <field name="name">brokers.info.views</field>
+            <field name="model">brokers.info</field>
+            <field name="arch" type="xml">
+            <form string="Brokers Info">
+                <sheet>
+                    <group string="Broker Profile">
+                        <group>
+                            <field name="broker_id"/>
+                            <field name="broker_name"/>
+                            <field name="commission_rate"/>
+                            <field name="status"/>
+                        </group>
+                        <group></group>
+                    </group>
+                    <notebook>
+                        <page string="Bill Register">
+                            <field name="bill_info">
+                                <group>
+                                    <field name="total"/>
+                                </group>
+                            </field>
+                        </page>
+                        <page string="Admission Info">
+<!--                            <field name="admission_info">-->
+<!--                                <field name="name"/>-->
+<!--                                <field name="patient_name"/>-->
+<!--                                <field name="mobile"/>-->
+<!--                            </field>-->
+                        </page>
+                        <page string="Commission">
+<!--                             <field name="commission">-->
+<!--                                 <field name="name"/>-->
+<!--                                 <field name="commission_configuration_id"/>-->
+<!--                                 <field name="total_amount"/>-->
+<!--                             </field>-->
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+            </field>
+        </record>
+
+        <record id="broker_action" model="ir.actions.act_window">
+            <field name="name">Broker Info</field>
+            <field name="res_model">brokers.info</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+        <!-- expense type tree -->
+        <record model="ir.ui.view" id="brokers_tree" >
+            <field name="name">brokers.info.views</field>
+            <field name="model">brokers.info</field>
+            <field name="arch" type="xml">
+                <tree string="Broker List">
+                    <field name="broker_id"/>
+                    <field name="broker_name"/>
+                    <field name="commission_rate"/>
+                    <field name="status"/>
+                    <field name="last_commission_calculation_date"/>
+                </tree>
+            </field>
+        </record>
+
+
+<!--        <menuitem name="Doctors" id="leih_doctors_menu" parent="leih_menu"/>-->
+<!--        <menuitem name="Profile" id="leih_profile_menu" parent="leih_menu" sequence="5"/>-->
+<!--        <menuitem name="Broker" id="broker_menu_mainform" parent="leih_profile_menu" action="broker_action" groups="leih.group_profile_menu_broker"/>-->
+        <menuitem name="Brokers" id="broker_menu_mainform" parent="leih_profile_menu" action="broker_action"/>
+
+
+    </data>
+</openerp>

@@ -2,6 +2,7 @@ import Department
 import Diagnosis
 import Doctors
 import Patients
+import brokers
 import diagnosis_room
 import Group
 import examine_entry

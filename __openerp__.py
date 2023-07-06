@@ -18,6 +18,7 @@ membership products (schemes).
         'Department/department_view.xml',
         'Doctors/doctors_view.xml',
         'Patients/patients_view.xml',
+        'brokers/broker_info_view.xml',
         'Diagnosis/diagonosis_view.xml',
         'security/ir.model.access.csv',
         'wizard/cc_collection_view.xml',
