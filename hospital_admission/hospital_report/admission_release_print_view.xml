@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <template id="legh_report_admission_release">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+<!--                    <t t-set="address" t-value="Your Hospital Address" />-->
+<!--                    <div class="header">-->
+<!--                        <div class="row">-->
+<!--                            <div class="col-md-6 text-left">-->
+<!--                                <img src="/static/assets/images/leih_logo.png" alt="Hospital Logo"/>-->
+<!--                            </div>-->
+<!--                            <div class="col-md-6 text-right">-->
+<!--                                <h1 style="text-align:center;">Lions Eye &amp; General Hospital</h1>-->
+<!--                                <p style="text-align:center;"><b>Lions Tower</b> 3/c, Begum Rokeya Sarani, Agargaon, Dhaka-1207</p>-->
+<!--                                <p style="text-align:center;">Hotline: +8801403555565, 0248121272, E-mail: blf@blfbd.org, www.blfbd.org</p>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+                    <div class="header">
+                        <div class="row" align="center">
+                            <h1 style="text-align: center;"><b>Lions Eye &amp; General Hospital</b></h1>
+                            <p style="text-align: center;"><b>Lions Tower</b> 3/c, Begum Rokeya Sarani, Agargaon, Dhaka-1207</p>
+                            <p style="text-align: center;">Hotline: +8801403555565, 0248121272, E-mail: blf@blfbd.org, www.blfbd.org</p>
+                        </div>
+                    </div>
+                        <div class="page">
+                                <h3 style="color: #333333;text-align:center; border-bottom: 2px solid #E3E3E3;">
+                                    <b>Discharge Certificate</b>
+                                </h3>
+                                <div class="oe_structure">
+                                    <div class="row">
+                                        <div class="col-6 float-left">
+                                            <strong>Date:</strong>
+                                            <span t-field="o.date"/>
+                                            <strong>To:</strong>
+                                            <span t-field="o.release_note_date"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div style="float:left;">
+                                                <h4>
+                                                    <b>Admission ID: <span t-field="o.name"/></b>
+                                                </h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div style="float:right;">
+                                                <h3>
+                                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>
+                                                </h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="oe_structure"/>
+<!--                                        <div class="row">-->
+<!--                                            <div class="col-md-12" style="float:left;">-->
+<!--                                                <h5>-->
+<!--                                                    <b>Admission ID: </b><span t-field="o.name"/>-->
+<!--                                                </h5>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    <br/>-->
+<!--                                    <br/>-->
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <b>Patient ID:</b>
+                                            <span t-field="o.patient_name.patient_id"/>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <b>Name: </b> <span t-field="o.patient_name.name"/>
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <b>Age:</b>
+                                            <span t-field="o.age"/><span>y</span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <strong>Address:</strong>
+                                            <span t-field="o.address"/>
+                                        </div>
+                                            <div class="col-xs-3">
+                                            <strong>Sex:</strong>
+                                            <span t-field="o.sex"/>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <strong>Mobile:</strong>
+                                            <span t-field="o.mobile"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-6">
+                                            <strong>Referred By Doctor:</strong>
+                                            <span t-field="o.ref_doctors"/>
+                                        </div>
+                                        <div class="col-xs-6">
+                                            <strong>Referral:</strong>
+                                            <span t-field="o.reffered_to_hospital"/>
+                                        </div>
+                                    </div>
+
+        <!--                             <t t-set="i" t-value="1" />-->
+        <!--                                <t t-foreach="o.guarantor_line_id" t-as="z">-->
+        <!--                                    <div class="col-xs-4">-->
+        <!--                                        <strong>Guarantor Name:</strong>-->
+        <!--                                        <span t-field="z.name"/>-->
+        <!--                                    </div>-->
+        <!--                                    <div class="col-xs-4">-->
+        <!--                                        <strong>Contact:</strong>-->
+        <!--                                        <span t-field="z.contact"/>-->
+        <!--                                    </div>-->
+        <!--                                </t>-->
+                                <hr/>
+
+                                <div class="row">
+                                    <div class="col-md-12 text-left">
+                                        <h4><strong>Diagnosis:</strong></h4>
+                                    </div>
+                                </div>
+                                <div class="row" style="margin-top:750px;">
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 text-left">
+                                        <strong style="border-bottom: 3px solid black;">Consultant</strong>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <strong style="border-bottom: 3px solid black;">Medical Officer</strong>
+                                    </div>
+                                </div>
+
+
+
+                        </div>
+
+<!--                        <div class="footer">-->
+<!--                                <div class="col-md-12">-->
+<!--                                    <hr/>-->
+<!--                                    <p style="text-align: center; font-style: italic;">-->
+<!--                                        <span>-->
+<!--                                            Address: Lions Bhaban, Begum Rokeya Sarani, Agargaon, Dhaka.-->
+<!--                                            Email: blf@blfbd.org || Phone: +02 48121272, +02 48118864-->
+<!--                                        </span>-->
+<!--&lt;!&ndash;                                        <span t-esc="address"/>&ndash;&gt;-->
+<!--                                    </p>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                    </t>
+                </t>
+        </template>
+    </data>
+</openerp>

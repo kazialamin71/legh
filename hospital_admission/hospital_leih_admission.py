@@ -5,71 +5,69 @@ from openerp import SUPERUSER_ID, api
 from datetime import date, time
 from openerp.tools.amount_to_text_en import amount_to_text
 from datetime import date, time, timedelta, datetime
+
+
 # PACKAGE_FIELDS=('name','price')
 
 class leih_hospital_admission(osv.osv):
     _name = "hospital.admission"
     _order = 'id desc'
 
-
-
-
     def _totalpayable(self, cr, uid, ids, field_name, arg, context=None):
         Percentance_calculation = {}
         sum = 0
-        for items in self.pool.get("hospital.admission").browse(cr,uid,ids,context=None):
-            total_list=[]
+        for items in self.pool.get("hospital.admission").browse(cr, uid, ids, context=None):
+            total_list = []
             for amount in items.leih_admission_line_id:
                 total_list.append(amount.total_amount)
-
             for item in total_list:
-                sum=item+sum
-
-
+                sum = item + sum
                 for record in self.browse(cr, uid, ids, context=context):
                     Percentance_calculation[record.id] = sum
                     # import pdb
                     # pdb.set_trace()
         return Percentance_calculation
-    def _default_payment_type(self):
-         return self.env['payment.type'].search([('name', '=', 'Cash')], limit=1).id
 
+    def _default_payment_type(self):
+        return self.env['payment.type'].search([('name', '=', 'Cash')], limit=1).id
 
     _columns = {
 
         # 'patient_id': fields.char("Patient ID"),
-        'name':fields.char("Name"),
-        'mobile': fields.char(string="Mobile",store=False),
-        'patient_id': fields.char(related='patient_name.patient_id',string="Patient Id"),
+        'name': fields.char("Name"),
+        'mobile': fields.char(string="Mobile", store=False),
+        'patient_id': fields.char(related='patient_name.patient_id', string="Patient Id"),
         'patient_name': fields.many2one('patient.info', "Patient Name", required=True),
-        'address': fields.char("Address",store=False),
-        'age': fields.char("Age",store=False),
-        'sex':fields.char("Sex",store=False),
-        'ref_doctors': fields.many2one('doctors.profile','Reffered by (Doctor)'),
+        'address': fields.char("Address", store=False),
+        'age': fields.char("Age", store=False),
+        'sex': fields.char("Sex", store=False),
+        'ref_doctors': fields.many2one('doctors.profile', 'Reffered by (Doctor)'),
         'operation_date': fields.date("Operation Date"),
-        'release_note': fields.text("Release Note"),
         'package_name': fields.many2one("examine.package", string="Package"),
 
         'leih_admission_line_id': fields.one2many('hospital.admission.line', 'leih_admission_id', 'Investigations'),
 
-        'guarantor_line_id':fields.one2many("hospital.patient.guarantor","admission_id","Guarantor Name"),
+        'guarantor_line_id': fields.one2many("hospital.patient.guarantor", "admission_id", "Guarantor Name"),
 
-        'bill_register_admission_line_id': fields.one2many("bill.register.general.admission.line","general_admission_line_id","Bill Register"),
+        'bill_register_admission_line_id': fields.one2many("bill.register.general.admission.line",
+                                                           "general_admission_line_id", "Bill Register"),
 
-        'admission_payment_line_id': fields.one2many("general.admission.payment.line","admission_payment_line_id","Admission Payment"),
+        'admission_payment_line_id': fields.one2many("general.admission.payment.line", "admission_payment_line_id",
+                                                     "Admission Payment"),
 
-        'admission_journal_relation_id': fields.one2many("bill.journal.relation", "general_admission_journal_relation_id", "Journal"),
+        'admission_journal_relation_id': fields.one2many("bill.journal.relation",
+                                                         "general_admission_journal_relation_id", "Journal"),
 
-        'hospital_doctor_line_id': fields.one2many("doctor.profile.admission.line", "hospital_doctor_line_item", "Doctor"),
+        'hospital_doctor_line_id': fields.one2many("doctor.profile.admission.line", "hospital_doctor_line_item",
+                                                   "Doctor"),
 
-        'hospital_medicine_line_id': fields.one2many("hospital.medicine.line", "hospital_medicine_line_item", "Investigations"),
+        'hospital_medicine_line_id': fields.one2many("hospital.medicine.line", "hospital_medicine_line_item",
+                                                     "Investigations"),
 
         'hospital_bed_line_id': fields.one2many("hospital.bed.line", "hospital_bed_item_id", "Bed"),
         'hospital_bill_line_id': fields.one2many("hospital.bill.line", "hospital_admission_id", "Bill"),
 
-
-
-        'emergency':fields.boolean("Emergency Department"),
+        'emergency': fields.boolean("Emergency Department"),
         'total_without_discount': fields.float(string="Total without discount"),
         'total': fields.float(string="Total"),
         'doctors_discounts': fields.float("Discount(%)"),
@@ -77,9 +75,9 @@ class leih_hospital_admission(osv.osv):
         'other_discount': fields.float("Other Discount"),
         'discount_remarks': fields.char("Discount Remarks"),
         'grand_total': fields.float("Grand Total"),
-        'investigation_total':fields.float('Investigation Total'),
-        'investigation_paid':fields.float('Investigation Paid'),
-        'advance':fields.float("Advance"),
+        'investigation_total': fields.float('Investigation Total'),
+        'investigation_paid': fields.float('Investigation Paid'),
+        'advance': fields.float("Advance"),
         'paid': fields.float("Paid"),
         'due': fields.float("Due"),
         'type': fields.selection([('cash', 'Cash'), ('bank', 'Bank')], 'Payment Type'),
@@ -88,47 +86,52 @@ class leih_hospital_admission(osv.osv):
         'date': fields.datetime("Date", readonly=True, default=lambda self: fields.datetime.now()),
         'user_id': fields.many2one('res.users', 'Assigned to', select=True, track_visibility='onchange'),
         'state': fields.selection(
-            [('pending', 'Pending'),('activated', 'Admitted'), ('released', 'Released'), ('cancelled', 'Cancelled')],
-            'Status',default='pending', readonly=True,
+            [('pending', 'Pending'), ('activated', 'Admitted'), ('released', 'Released'), ('cancelled', 'Cancelled')],
+            'Status', default='pending', readonly=True,
         ),
-        'emergency_covert_time':fields.datetime("Admission Convert time"),
-        'old_journal':fields.boolean("Old Journal"),
+        'emergency_covert_time': fields.datetime("Admission Convert time"),
+        'old_journal': fields.boolean("Old Journal"),
         # payment type attributes
         'payment_type': fields.many2one("payment.type", "Payment Type", default=_default_payment_type),
         'service_charge': fields.float("Service Charge"),
         'to_be_paid': fields.float("To be Paid"),
         'account_number': fields.char("Account Number"),
-        #added for general
-        'father_name':fields.char("Father's Name"),
-        'mother_name':fields.char("Mother's Name"),
-        'religion':fields.selection([('islam', 'Islam'), ('hindu', 'Hinduism'),('buddhism','Buddhism'),('christianity','Christianity')], 'Religion'),
+        # added for general
+        'father_name': fields.char("Father's Name"),
+        'mother_name': fields.char("Mother's Name"),
+        'spouse_name': fields.char("Spouse's Name"),
+        'religion': fields.selection(
+            [('islam', 'Islam'), ('hindu', 'Hinduism'), ('buddhism', 'Buddhism'), ('christianity', 'Christianity')],
+            'Religion'),
         'blood_group': fields.char('Blood Group'),
         # 'reffered_to_hospital': fields.char('Refferred to this hospital by'),
         'reffered_to_hospital': fields.many2one('brokers.info', 'Referred by (Broker)'),
-        'occupation':fields.char('Occupation'),
-        'business_address':fields.char('Business Address'),
-        'admitting_doctor':fields.many2one('doctors.profile','Admitting Doctor'),
-        #hospital use only
-        'bed':fields.char('Bed'),
-        'received_by':fields.char('Received/Registered By'),
-        'clinic_diagnosis':fields.char('Clinical Diagnosis')
-
+        'occupation': fields.char('Occupation'),
+        'business_address': fields.char('Business Address'),
+        'admitting_doctor': fields.many2one('doctors.profile', 'Admitting Doctor'),
+        # hospital use only
+        'bed': fields.char('Bed'),
+        'received_by': fields.char('Received/Registered By'),
+        'clinic_diagnosis': fields.char('Clinical Diagnosis'),
+        'release_note_date': fields.datetime("Release Date"),
+        'release_note': fields.text("Release Note"),
     }
 
     _defaults = {
         'user_id': lambda obj, cr, uid, context: uid,
     }
+
     @api.onchange("payment_type")
     def onchnage_payment_type(self):
-        if self.payment_type.active==True:
-            interest=self.payment_type.service_charge
-            if interest>0:
-                service_charge=(self.paid*interest)/100
-                self.service_charge=service_charge
-                self.to_be_paid=self.paid+service_charge
+        if self.payment_type.active == True:
+            interest = self.payment_type.service_charge
+            if interest > 0:
+                service_charge = (self.paid * interest) / 100
+                self.service_charge = service_charge
+                self.to_be_paid = self.paid + service_charge
             else:
-                self.to_be_paid=self.paid
-                self.service_charge=0
+                self.to_be_paid = self.paid
+                self.service_charge = 0
         return "X"
 
     @api.multi
@@ -139,44 +142,42 @@ class leih_hospital_admission(osv.osv):
         sub_str = "Taka"
         final_text = new_text[:new_text.index(sub_str) + len(sub_str)]
 
-
         # final_text = new_text.replace("Cent", "Paisa")
         return final_text
 
-
     @api.multi
-    def advance_paid(self,name):
+    def advance_paid(self, name):
         mr = self.env['legh.money.receipt'].search([('general_admission_id', '=', name)])
         advance = 0
         paid = 0
-        if len(mr)>2:
-            for i in range(len(mr)-1):
-                advance=advance+mr[i].amount
-            paid=mr[len(mr)-1].amount
-        # mr_ids=self.pool.get('leih.money.receipt').search([('bill_id', '=', name)], context=context)
+        if len(mr) > 2:
+            for i in range(len(mr) - 1):
+                advance = advance + mr[i].amount
+            paid = mr[len(mr) - 1].amount
+            # mr_ids=self.pool.get('leih.money.receipt').search([('bill_id', '=', name)], context=context)
 
-            lists={
-                'advance':advance,
-                'paid':paid
+            lists = {
+                'advance': advance,
+                'paid': paid
             }
-        elif len(mr)==2:
+        elif len(mr) == 2:
             advance = advance + mr[0].amount
             paid = paid + mr[1].amount
-            lists={
-                'advance':advance,
-                'paid':paid
+            lists = {
+                'advance': advance,
+                'paid': paid
             }
-        elif len(mr)==1:
+        elif len(mr) == 1:
             advance = advance + mr[0].amount
-            lists={
-                'advance':advance,
-                'paid':0
+            lists = {
+                'advance': advance,
+                'paid': 0
             }
-        elif len(mr)==0:
+        elif len(mr) == 0:
             advance = advance
-            lists={
-                'advance':advance,
-                'paid':0
+            lists = {
+                'advance': advance,
+                'paid': 0
             }
 
         # final_text = new_text.replace("Cent", "Paisa")
@@ -215,7 +216,6 @@ class leih_hospital_admission(osv.osv):
     #
     #     return bill_ids
 
-
     def calculate_bill(self, cr, uid, ids, context=None):
         bill_dict = []
         bill_ids = self.pool.get("bill.register").search(cr, uid, [('general_admission_id', '=', ids[0]),
@@ -231,7 +231,7 @@ class leih_hospital_admission(osv.osv):
                 values = {}
                 for item in obj.bill_register_line_id:
                     existing_item = hospital_admission_line_obj.search(cr, uid, [('item_name', '=', item.name.id), (
-                    'bill_created_date', '=', item.create_date), ('hospital_admission_id', '=', ids[0])],
+                        'bill_created_date', '=', item.create_date), ('hospital_admission_id', '=', ids[0])],
                                                                        context=context)
                     if not existing_item:
                         values = {
@@ -256,7 +256,7 @@ class leih_hospital_admission(osv.osv):
 
         return bill_ids
 
-    def onchange_total(self,cr,uid,ids,name,context=None):
+    def onchange_total(self, cr, uid, ids, name, context=None):
         tests = {'values': {}}
         dep_object = self.pool.get('legh.tests').browse(cr, uid, name, context=None)
         abc = {'total': dep_object.rate}
@@ -271,11 +271,11 @@ class leih_hospital_admission(osv.osv):
     #
     #     return self.pool['report'].get_action(cr, uid, ids, 'sale.report_saleorder', context=context)
 
-    def onchange_patient(self,cr,uid,ids,name,context=None):
-        tests={}
+    def onchange_patient(self, cr, uid, ids, name, context=None):
+        tests = {}
         dep_object = self.pool.get('patient.info').browse(cr, uid, name, context=None)
-        abc={'mobile':dep_object.mobile,'address':dep_object.address,'age':dep_object.age,'sex':dep_object.sex}
-        tests['value']=abc
+        abc = {'mobile': dep_object.mobile, 'address': dep_object.address, 'age': dep_object.age, 'sex': dep_object.sex}
+        tests['value'] = abc
         return tests
 
     # def _package_fields(self, cr, uid, context=None):
@@ -289,27 +289,26 @@ class leih_hospital_admission(osv.osv):
     #     tests['value']=abc
     #     return tests
 
-        #
-        # import pdb
-        # pdb.set_trace()
+    #
+    # import pdb
+    # pdb.set_trace()
 
-    def onchange_package(self,cr,uid,ids,package_name,vals,context=None):
-        values={}
+    def onchange_package(self, cr, uid, ids, package_name, vals, context=None):
+        values = {}
         if not package_name:
             return {}
         total_amount = 0.0
-        abc={'leih_admission_line_id':[]}
-        package_object=self.pool.get('examine.package').browse(cr,uid,package_name,context=None)
-        abc['other_discount'] = package_object.total_without_discount -package_object.total
+        abc = {'leih_admission_line_id': []}
+        package_object = self.pool.get('examine.package').browse(cr, uid, package_name, context=None)
+        abc['other_discount'] = package_object.total_without_discount - package_object.total
 
         for item in package_object.examine_package_line_id:
-            items=item.name.id
+            items = item.name.id
             total_amount = total_amount + item.total_amount
 
-
-
-            abc['leih_admission_line_id'].append([0, False, {'name':item.name.id,'total_amount':item.total_amount,'price':item.price,'flat_discount':item.discount}])
-        values['value']=abc
+            abc['leih_admission_line_id'].append([0, False, {'name': item.name.id, 'total_amount': item.total_amount,
+                                                             'price': item.price, 'flat_discount': item.discount}])
+        values['value'] = abc
         return values
 
     # This Function is used for the Released Admission
@@ -341,12 +340,13 @@ class leih_hospital_admission(osv.osv):
             raise osv.except_osv(_('Warning!'),
                                  _('Something went wrong with this bill.'))
 
-
-
     def admission_cancel(self, cr, uid, ids, context=None):
 
-        #unlink journal items
-        cr.execute("select  id as jounral_id from account_move where ref = (select name from hospital_admission where id=%s limit 1)",(ids))
+        # unlink journal items
+        cr.execute(
+            "select  id as jounral_id from account_move where ref = (select name from hospital_admission where id=%s "
+            "limit 1)",
+            (ids))
         joural_ids = cr.fetchall()
         context = context
 
@@ -365,12 +365,10 @@ class leih_hospital_admission(osv.osv):
         # cr.execute("update diagnosis_sticker set state='cancel' where bill_register_id=%s", (ids))
         # cr.commit()
 
-        #for updates on cash collection
+        # for updates on cash collection
         cr.execute("update leih_money_receipt set state='cancel' where general_admission_id=%s", (ids))
         cr.commit()
         return True
-
-
 
     def add_new_test(self, cr, uid, ids, context=None):
         if not ids: return []
@@ -381,7 +379,7 @@ class leih_hospital_admission(osv.osv):
         # import pdb
         # pdb.set_trace()
         return {
-            'name':_("Pay Invoice"),
+            'name': _("Pay Invoice"),
             'view_mode': 'form',
             'view_id': view_id,
             'view_type': 'form',
@@ -405,24 +403,22 @@ class leih_hospital_admission(osv.osv):
         }
         raise osv.except_osv(_('Error!'), _('There is no default company for the current user!'))
 
-
-
-
     def btn_pay(self, cr, uid, ids, context=None):
         if not ids: return []
 
         inv = self.browse(cr, uid, ids[0], context=context)
-        if inv.state == 'pending' or inv.state=='cancelled':
+        if inv.state == 'pending' or inv.state == 'cancelled':
             raise osv.except_osv(_('Warning'), _('Please Confirm and Print the Bill'))
 
-        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh', 'admission_general_payment_form_view')
+        dummy, view_id = self.pool.get('ir.model.data').get_object_reference(cr, uid, 'legh',
+                                                                             'admission_general_payment_form_view')
         #
 
         # total=inv.total
         # import pdb
         # pdb.set_trace()
         return {
-            'name':_("Pay Invoice"),
+            'name': _("Pay Invoice"),
             'view_mode': 'form',
             'view_id': view_id,
             'view_type': 'form',
@@ -438,9 +434,8 @@ class leih_hospital_admission(osv.osv):
         }
         raise osv.except_osv(_('Error!'), _('There is no default company for the current user!'))
 
-
-#-------------------------------------------------------------------------------------------------------------------------
-    def add_discount(self,cr,uid,ids,context=None):
+    # -------------------------------------------------------------------------------------------------------------------------
+    def add_discount(self, cr, uid, ids, context=None):
         # import pdb
         # pdb.set_trace()
         if not ids: return []
@@ -461,7 +456,7 @@ class leih_hospital_admission(osv.osv):
             'target': 'new',
             'domain': '[]',
             'context': {
-                'pi_id':ids[0]
+                'pi_id': ids[0]
                 # 'default_price': 500,
                 # # 'default_name':context.get('name', False),
                 # 'default_total_amount': 200,
@@ -477,10 +472,9 @@ class leih_hospital_admission(osv.osv):
         }
         raise osv.except_osv(_('Error!'), _('There is no default company for the current user!'))
 
-
     def create(self, cr, uid, vals, context=None):
         if vals.get("due"):
-            if vals.get("due")<0:
+            if vals.get("due") < 0:
                 raise osv.except_osv(_('Warning!'),
                                      _("Check paid and grand total!"))
 
@@ -490,8 +484,7 @@ class leih_hospital_admission(osv.osv):
         # pdb.set_trace()
         stored = super(leih_hospital_admission, self).create(cr, uid, vals, context)  # return ID int object
 
-        if vals.get("emergency")==False:
-
+        if vals.get("emergency") == False:
 
             if stored is not None:
                 name_text = 'HA-0' + str(stored)
@@ -503,10 +496,9 @@ class leih_hospital_admission(osv.osv):
                 cr.execute('update hospital_admission set name=%s where id=%s', (name_text, stored))
                 cr.commit()
 
-
         return stored
 
-    def write(self, cr, uid, ids,vals,context=None):
+    def write(self, cr, uid, ids, vals, context=None):
 
         # if vals.get("due"):
         #     if vals.get("due")<0:
@@ -642,31 +634,29 @@ class leih_hospital_admission(osv.osv):
         #             ### Ends the journal Entry Here
         #     else:
         updated = super(leih_hospital_admission, self).write(cr, uid, ids, vals, context=context)
-                # raise osv.except_osv(_('Warning!'),
-                #                      _("You cannot Edit the bill"))
+        # raise osv.except_osv(_('Warning!'),
+        #                      _("You cannot Edit the bill"))
         return updated
 
-
-
-    @api.onchange('leih_admission_line_id','hospital_bed_line_id','hospital_bill_line_id','hospital_doctor_line_id')
+    @api.onchange('leih_admission_line_id', 'hospital_bed_line_id', 'hospital_bill_line_id', 'hospital_doctor_line_id')
     def onchange_admission_line(self):
-        sumalltest=0
+        sumalltest = 0
         total_without_discount = 0
         for item in self.leih_admission_line_id:
-            sumalltest=sumalltest+item.total_amount
-            total_without_discount = total_without_discount +(item.price*item.product_qty)
+            sumalltest = sumalltest + item.total_amount
+            total_without_discount = total_without_discount + (item.price * item.product_qty)
         for item in self.hospital_bed_line_id:
             sumalltest = sumalltest + item.total_amount
             total_without_discount = total_without_discount + item.total_amount
         for item in self.hospital_bill_line_id:
-            sumalltest=sumalltest+item.total_amount
-            total_without_discount=total_without_discount+item.price
+            sumalltest = sumalltest + item.total_amount
+            total_without_discount = total_without_discount + item.price
         for item in self.hospital_doctor_line_id:
-            sumalltest=sumalltest+item.total_amount
+            sumalltest = sumalltest + item.total_amount
             total_without_discount = total_without_discount + item.total_amount
 
-        self.total=sumalltest
-        after_dis = (sumalltest* (self.doctors_discounts/100))
+        self.total = sumalltest
+        after_dis = (sumalltest * (self.doctors_discounts / 100))
         self.after_discount = 0
 
         self.grand_total = sumalltest
@@ -675,12 +665,11 @@ class leih_hospital_admission(osv.osv):
 
         return "X"
 
-
-    @api.onchange('paid','investigation_paid')
+    @api.onchange('paid', 'investigation_paid')
     def onchange_paid(self):
-        self.due = self.grand_total - (self.paid+self.investigation_paid)
+        self.due = self.grand_total - (self.paid + self.investigation_paid)
         if self.payment_type:
-            if self.payment_type.name=='Visa Card':
+            if self.payment_type.name == 'Visa Card':
                 interest = self.payment_type.service_charge
                 service_charge = (self.paid * interest) / 100
                 self.service_charge = service_charge
@@ -691,11 +680,10 @@ class leih_hospital_admission(osv.osv):
     def onchange_doc_discount(self):
         discount = self.doctors_discounts
         for item in self.leih_admission_line_id:
-            item.discount_percent=round((item.price*item.product_qty*discount)/100)
-            item.discount=discount
+            item.discount_percent = round((item.price * item.product_qty * discount) / 100)
+            item.discount = discount
             item.total_discount = item.flat_discount + item.discount_percent
-            item.total_amount = (item.price - item.total_discount)*item.product_qty
-
+            item.total_amount = (item.price - item.total_discount) * item.product_qty
 
         #
         # aft_discount=(self.total*(self.doctors_discounts/100))
@@ -710,7 +698,7 @@ class leih_hospital_admission(osv.osv):
         other_discount = self.other_discount
         total = self.total_without_discount
         gd = total - other_discount
-        self.total=self.grand_total=gd
+        self.total = self.grand_total = gd
         self.due = self.grand_total - self.paid
         return 'Nothing'
 
@@ -732,42 +720,33 @@ class leih_hospital_admission(osv.osv):
     #         item.total_discount += line_total - total
     #     return 'Nothing'
 
-
-        # self.grand_total = self.total - self.after_discount - self.other_discount
-        # self.due=self.total - self.after_discount - self.other_discount- self.paid
-        # return 'True'
-
-
-
-
-
-
+    # self.grand_total = self.total - self.after_discount - self.other_discount
+    # self.due=self.total - self.after_discount - self.other_discount- self.paid
+    # return 'True'
 
 
 class test_information(osv.osv):
     _name = 'hospital.admission.line'
 
-
-
     def _amount_all(self, cr, uid, ids, field_name, arg, context=None):
         cur_obj = self.pool.get('hospital.admission')
         res = {}
         for record in self.browse(cr, uid, ids, context=context):
-            rate=record.price
-            discount=record.discount
-            interst_amount=int(discount)*int(rate)/100
-            total_amount=int(rate)-interst_amount
-            res[record.id]=total_amount
+            rate = record.price
+            discount = record.discount
+            interst_amount = int(discount) * int(rate) / 100
+            total_amount = int(rate) - interst_amount
+            res[record.id] = total_amount
             # import pdb
             # pdb.set_trace()
         return res
 
     _columns = {
 
-        'name': fields.many2one("examination.entry","Item Name",ondelete='cascade'),
+        'name': fields.many2one("examination.entry", "Item Name", ondelete='cascade'),
         'leih_admission_id': fields.many2one('hospital.admission', "Information"),
         'department': fields.char("Department"),
-        'product_qty':fields.float("Quantity"),
+        'product_qty': fields.float("Quantity"),
         # 'currency_id': fields.related('pricelist_id', 'currency_id', type="many2one", relation="res.currency",
         #                               string="Currency", readonly=True, required=True),
         # 'price_subtotal': fields.function(_amount_line, string='Subtotal', digits_compute=dp.get_precision('Account')),
@@ -780,19 +759,20 @@ class test_information(osv.osv):
 
     }
 
-    def onchange_test(self,cr,uid,ids,name,context=None):
+    def onchange_test(self, cr, uid, ids, name, context=None):
         tests = {'values': {}}
         dep_object = self.pool.get('examination.entry').browse(cr, uid, name, context=None)
-        abc = {'department':dep_object.department.name,'product_qty':1,'price': dep_object.rate,'total_amount':dep_object.rate}
+        abc = {'department': dep_object.department.name, 'product_qty': 1, 'price': dep_object.rate,
+               'total_amount': dep_object.rate}
         tests['value'] = abc
         # import pdb
         # pdb.set_trace()
         return tests
 
-    def onchange_discount(self,cr,uid,ids,name,discount,context=None):
+    def onchange_discount(self, cr, uid, ids, name, discount, context=None):
         tests = {'values': {}}
         dep_object = self.pool.get('examination.entry').browse(cr, uid, name, context=None)
-        abc = {'total_amount':round(dep_object.rate-(dep_object.rate* discount/100))}
+        abc = {'total_amount': round(dep_object.rate - (dep_object.rate * discount / 100))}
         tests['value'] = abc
         # import pdb
         # pdb.set_trace()
@@ -800,37 +780,39 @@ class test_information(osv.osv):
 
     @api.onchange('product_qty')
     def onchange_qty(self):
-        self.total_amount=self.price*self.product_qty
+        self.total_amount = self.price * self.product_qty
+
+
 class admission_bill_register(osv.osv):
     _name = 'bill.register.general.admission.line'
 
     _columns = {
         'general_admission_line_id': fields.many2one('hospital.admission', 'admission'),
-        'bill_id':fields.many2one("bill.register","Bill ID"),
-        'total':fields.float('Total')
+        'bill_id': fields.many2one("bill.register", "Bill ID"),
+        'total': fields.float('Total')
     }
 
-    def onchange_bill_id(self,cr,uid,ids,bill_id,context=None):
-        lists={'values':{}}
+    def onchange_bill_id(self, cr, uid, ids, bill_id, context=None):
+        lists = {'values': {}}
         dep_object = self.pool.get('bill.register').browse(cr, uid, bill_id, context=None)
-        bill_info={'total':dep_object.total}
-        lists['value']=bill_info
+        bill_info = {'total': dep_object.total}
+        lists['value'] = bill_info
         return lists
+
 
 class admission_payment_line(osv.osv):
     _name = 'general.admission.payment.line'
 
     _columns = {
         'admission_payment_line_id': fields.many2one('hospital.admission', 'admission payment'),
-        'date':fields.datetime("Date"),
-        'amount':fields.float('amount'),
-        'type':fields.char('Type'),
-        'card_no':fields.char('Card Number'),
-        'bank_name':fields.char('Bank Name'),
+        'date': fields.datetime("Date"),
+        'amount': fields.float('amount'),
+        'type': fields.char('Type'),
+        'card_no': fields.char('Card Number'),
+        'bank_name': fields.char('Bank Name'),
         'money_receipt_id': fields.many2one('legh.money.receipt', 'Money Receipt ID'),
 
     }
-
 
 
 class hospital_bed_line(osv.osv):
@@ -850,22 +832,23 @@ class hospital_bed_line(osv.osv):
     @api.onchange('bed_no')
     def onchange_bed(self):
         bed_obj = self.env['hospital.bed'].search([('id', '=', self.bed_no.id)])
-        self.ward_name=bed_obj.ward_name
+        self.ward_name = bed_obj.ward_name
         self.bed_qty = 1
         self.perday_charge = bed_obj.perday_charge
-        self.total_amount =  bed_obj.perday_charge
+        self.total_amount = bed_obj.perday_charge
 
     @api.onchange('bed_qty')
     def calculate_total(self):
-        self.total_amount=self.perday_charge*self.bed_qty
+        self.total_amount = self.perday_charge * self.bed_qty
+
 
 class doctors_profile_line(osv.osv):
     _name = "doctor.profile.admission.line"
 
     _columns = {
-        'name':fields.char("Name"),
-        'doctor_profile_id': fields.many2one('doctors.profile',"Doctor Name"),
-        'hospital_doctor_line_item': fields.many2one('hospital.admission',"Doctor Info"),
+        'name': fields.char("Name"),
+        'doctor_profile_id': fields.many2one('doctors.profile', "Doctor Name"),
+        'hospital_doctor_line_item': fields.many2one('hospital.admission', "Doctor Info"),
         'doctor_visit_qty': fields.float("Visit Times"),
         'visit_fee': fields.float("Visit Fee"),
         'total_amount': fields.float("Total Amount")
@@ -875,40 +858,42 @@ class doctors_profile_line(osv.osv):
     @api.onchange('doctor_profile_id')
     def onchange_doctor(self):
         doc_obj = self.env['doctors.profile'].search([('id', '=', self.doctor_profile_id.id)])
-        self.doctor_visit_qty=1
-        self.visit_fee=doc_obj.ipd_visit
-        self.total_amount=doc_obj.ipd_visit
+        self.doctor_visit_qty = 1
+        self.visit_fee = doc_obj.ipd_visit
+        self.total_amount = doc_obj.ipd_visit
 
     @api.onchange('visit_fee')
     def calculate_total_amount(self):
-        self.total_amount=self.visit_fee
+        self.total_amount = self.visit_fee
 
     @api.onchange('doctor_visit_qty')
     def calculate_total(self):
-        self.total_amount=self.visit_fee*self.doctor_visit_qty
+        self.total_amount = self.visit_fee * self.doctor_visit_qty
+
 
 class hospital_medicine_line(osv.osv):
     _name = "hospital.medicine.line"
 
     _columns = {
 
-        'product_name': fields.many2one('hospital.medicine',"Medicine Name"),
-        'hospital_medicine_line_item': fields.many2one('hospital.admission',"Medicine Info"),
+        'product_name': fields.many2one('hospital.medicine', "Medicine Name"),
+        'hospital_medicine_line_item': fields.many2one('hospital.admission', "Medicine Info"),
         'product_qty': fields.char('Product Quantity'),
         'unit_price': fields.char('Unit Price'),
         'total_price': fields.char("Total Price"),
 
     }
 
+
 class hospital_bill_line(osv.osv):
     _name = "hospital.bill.line"
 
     _columns = {
-        'name':fields.char("Name"),
-        'hospital_admission_id':fields.many2one('hospital.admission','Hospital Admission'),
-        'item_name': fields.many2one("examination.entry","Item Name",ondelete='cascade'),
+        'name': fields.char("Name"),
+        'hospital_admission_id': fields.many2one('hospital.admission', 'Hospital Admission'),
+        'item_name': fields.many2one("examination.entry", "Item Name", ondelete='cascade'),
         'product_qty': fields.float('Product Quantity'),
-        'bill_created_date':fields.datetime('Bill Created Date'),
+        'bill_created_date': fields.datetime('Bill Created Date'),
         'delivery_date': fields.date("Delivery Date"),
         'department': fields.char("Department"),
         'date': fields.datetime("Date", readonly=True, default=lambda self: fields.datetime.now()),
@@ -930,20 +915,18 @@ class hospital_bill_line(osv.osv):
         # import pdb
         # pdb.set_trace()
         abc = {'department': dep_object.department.name, 'price': dep_object.rate, 'total_amount': dep_object.rate,
-               'bill_register_id.paid': dep_object.rate, 'delivery_date': delivery_date,'product_qty':1}
+               'bill_register_id.paid': dep_object.rate, 'delivery_date': delivery_date, 'product_qty': 1}
         tests['value'] = abc
         # import pdb
         # pdb.set_trace()
         return tests
 
-
-    def onchange_discount(self,cr,uid,ids,price,discount,context=None):
+    def onchange_discount(self, cr, uid, ids, price, discount, context=None):
         tests = {'values': {}}
 
-        dis_amount = round(price-(price* discount/100))
+        dis_amount = round(price - (price * discount / 100))
 
-        abc = {'total_amount':dis_amount, 'total_discount':dis_amount}
+        abc = {'total_amount': dis_amount, 'total_discount': dis_amount}
         tests['value'] = abc
 
         return tests
-

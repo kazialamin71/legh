@@ -11,7 +11,7 @@ It installs the profile for associations to manage events, registrations, member
 membership products (schemes).
     """,
     'author': 'BLF Team',
-    'depends': ['sale'],
+    'depends': ['sale','point_of_sale'],
     'data': [
         'security/legh_security.xml',
         'diagnosis_room/diagnosis_room_view.xml',
@@ -142,6 +142,7 @@ membership products (schemes).
         'hospital_admission/hospital_release/hospital_admission_release_view.xml',
         'hospital_admission/hospital_payment/hospital_admission_payment_view.xml',
         'hospital_admission/hospital_payment_config/hospital_admission_payment_configuration_view.xml',
+        'hospital_admission/hospital_report/admission_release_print_view.xml',
 
         'hospital_admission/hospital_report/hospital_admission_report_menu.xml',
         'hospital_admission/hospital_report/hospital_admission_report.xml',
@@ -155,6 +156,9 @@ membership products (schemes).
         # 'ward/inherit_purchase.xml',
         # 'ward/report_purchasestock.xml',
         'payment_type/payment_type_view.xml',
+
+        'pharmacy_sale_inherit/hospital_medicine_view.xml',
+        'pharmacy_sale_inherit/pos_report_receipt_inherit.xml',
     ],
     'demo': [],
     'installable': True,

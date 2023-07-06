@@ -24,6 +24,17 @@
 
         />
 
+                <report
+                id="action_report_admission_release"
+                model="hospital.admission"
+                string="Admission Discharge Slip"
+                name="legh.legh_report_admission_release"
+                file="legh.legh_admission_release_report"
+                report_type="qweb-pdf"
+                menu="True"
+        />
+
+
 
 
        </data>

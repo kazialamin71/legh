@@ -39,6 +39,7 @@
                         <group>
                             <field name="father_name"/>
                             <field name="mother_name"/>
+                            <field name="spouse_name"/>
                             <field name="religion"/>
                             <field name="blood_group"/>
                             <field name="reffered_to_hospital"/>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="custom_report_receipt" inherit_id="point_of_sale.report_receipt">
+            <xpath expr="//div[@t-field='o.partner_id']" position="after">
+                <t t-if="o.patient_name">
+                    Patient Name: <span t-field="o.patient_name"/><br/>
+                </t>
+                <t t-if="not o.patient_name">
+
+                </t>
+                <t t-if="o.general_admission_id">
+                    Admission ID: <span t-field="o.general_admission_id"/><br/>
+                </t>
+                Sales Person:
+            </xpath>
+            <xpath expr="//div[@t-field='o.partner_id']" position="replace">
+                <div class="col-xs-12 partner-info">
+                    <h4 t-if="o.partner_id.name" class="h4">
+                        <span t-field="o.partner_id.name"/>
+                    </h4>
+                    <div t-field="o.partner_id"
+                        t-field-options='{"widget": "contact", "fields": ["address", "name", "phone", "fax"], "no_marker": true}'/>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</openerp>

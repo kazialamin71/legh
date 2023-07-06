@@ -5,182 +5,212 @@
             <t t-call="report.html_container">
 <!--                <t t-call="report.external_layout">-->
                     <t t-foreach="docs" t-as="o">
-                        <div class="page" style="font-size: 16px !important;">
-                            <div class="row" align="center">
-                                <h1 style="text-align: center;"><b>Lions Eye &amp; General Hospital</b></h1>
-                                <p style="text-align: center;"><b>Lions Tower</b> 3/c, Begum Rokeya Sarani, Agargaon, Dhaka-1207</p>
-                                <p style="text-align: center;">Hotline: +8801403555565, 0248121272, E-mail: blf@blfbd.org, www.blfbd.org</p>
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+<!--                                    <img src="/static/assets/images/leih_logo.png" alt="Hospital Logo"/>-->
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <h1 style="text-align:center;">Lions Eye &amp; General Hospital</h1>
+                                    <p style="text-align:center;"><b>Lions Tower</b> 3/c, Begum Rokeya Sarani, Agargaon, Dhaka-1207</p>
+                                    <p style="text-align:center;">Hotline: +8801403555565, 0248121272, E-mail: blf@blfbd.org, www.blfbd.org</p>
+                                </div>
                             </div>
-                            <br/>
+                        </div>
+                        <div class="page" style="font-size: 16px !important;">
+<!--                            <div class="row" align="center">-->
+<!--                                <h1 style="text-align: center;"><b>Lions Eye &amp; General Hospital</b></h1>-->
+<!--                                <p style="text-align: center;"><b>Lions Tower</b> 3/c, Begum Rokeya Sarani, Agargaon, Dhaka-1207</p>-->
+<!--                                <p style="text-align: center;">Hotline: +8801403555565, 0248121272, E-mail: blf@blfbd.org, www.blfbd.org</p>-->
+<!--                            </div>-->
+<!--                            <br/>-->
 
                             <h2 style="text-align: center;"><b>PATIENT ADMISSION FORM</b></h2>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td><h4><b>Admission ID:<span t-field="o.name"></span></b></h4></td>
+                                                    <td><h4><b>Date: <span t-field="o.create_date"/></b></h4></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <table class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <td style="padding-left:200px;">
+                                                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width: 300px; height: 50px;"/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
 
-                            <div class="row">
-                                <div class="col-xs-3"></div>
-                                <div class="col-xs-3"></div>
-                                <div class="col-xs-1"></div>
-                                <div class="col-xs-5">
-<!--                                    Date: <span t-field="o.date" t-field-options='{"format": "dd/MM/yyyy"}'/>-->
-                                    Date: <span t-field="o.create_date"/>
+                            <div class="container" style="border: 2px solid #ECEAEA;">
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <b>Patient ID:</b>
+                                        <span t-field="o.patient_name.patient_id"/>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <b>Name: </b> <span t-field="o.patient_name.name"/>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <b>Age:</b>
+                                        <span t-field="o.age"/><span>y</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <strong>Address:</strong>
+                                        <span t-field="o.address"/>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <strong>Sex:</strong>
+                                        <span t-field="o.sex"/>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <strong>Mobile:</strong>
+                                        <span t-field="o.mobile"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <strong>Father's Name:</strong>
+                                        <span t-field="o.father_name"/>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <strong>Mother's Name:</strong>
+                                        <span t-field="o.mother_name"/>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <strong>Spouse Name:</strong>
+                                        <span t-field="o.spouse_name"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <strong>Blood Group:</strong>
+                                        <span t-field="o.blood_group"/>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <strong>Religion:</strong>
+                                        <span t-field="o.religion"/>
+                                    </div>
+                                    <div class="col-xs-4">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <strong>Consultant:</strong>
+                                        <span t-field="o.ref_doctors"/>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <strong>Referral:</strong>
+                                        <span t-field="o.reffered_to_hospital"/>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="oe_structure"/>
-                            <div class="row">
-                                <div style="col-md-6 align:left">
-                                    <h2>
-                                        <b>Admission ID: </b><span t-field="o.name"/>
-                                    </h2>
-                                </div>
-
-
-                                <div class="col-md-6 pull-right">
-                                    <h3>
-                                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>
-                                    </h3>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-5">
-                                    <b>Patient ID:</b>
-                                    <span t-field="o.patient_name.patient_id"/>
-                                </div>
-                                <div class="col-xs-5">
-                                    <b>Name: </b> <span t-field="o.patient_name.name"/>
-<!--                                    <p t-field="o.patient_name"/>-->
-                                </div>
-                                <div class="col-xs-2">
-                                    <b>Age:</b>
-                                    <span t-field="o.age"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-5">
-                                    <strong>Address:</strong>
-                                    <span t-field="o.address"/>
-                                </div>
-                                    <div class="col-xs-3">
-                                    <strong>Sex:</strong>
-                                    <span t-field="o.sex"/>
-                                </div>
-                                <div class="col-xs-4">
-                                    <strong>Mobile:</strong>
-                                    <span t-field="o.mobile"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <strong>Consultant:</strong>
-                                    <span t-field="o.ref_doctors"/>
-                                </div>
-                                <div class="col-xs-6">
-                                <strong>Referral:</strong>
-                                <span t-field="o.reffered_to_hospital"/>
-                            </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <strong>Father's Name:</strong>
-                                    <span t-field="o.father_name"/>
-                                </div>
-                                <div class="col-xs-6">
-                                    <strong>Mother's Name:</strong>
-                                    <span t-field="o.mother_name"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <strong>Blood Group:</strong>
-                                    <span t-field="o.blood_group"/>
-                                </div>
-                                <div class="col-xs-4">
-                                    <strong>Religion:</strong>
-                                    <span t-field="o.religion"/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <h4><b>Person to be notified other than spouse in case of emergency</b></h4>
-
-                                 <t t-set="i" t-value="1" />
-                                    <t t-foreach="o.guarantor_line_id" t-as="z">
-                                        <div class="col-xs-4">
-                                            <strong>Guarantor Name:</strong>
-                                            <span t-field="z.name"/>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <strong>Address:</strong>
-                                            <span t-field="z.address"/>
-                                        </div>
-
-                                        <div class="col-xs-4">
-                                            <strong>Relationsheep:</strong>
-                                            <span t-field="z.relationship"/>
-                                        </div>
-                                        <div class="col-xs-4">
-                                            <strong>Contact:</strong>
-                                            <span t-field="z.contact"/>
-                                        </div>
-                                    </t>
-                                </div>
-                            <hr/>
-                            <h3 style="text-align: center;"><b>HOSPITAL USE ONLY</b></h3>
                             <br/>
-                            <hr/>
-                        <div class="row">
-                            <div class="col-xs-6">
-                                    <strong>Received/Registered By:</strong>
-                                    <span t-field="o.received_by"/>
-                                </div>
-                            <div class="col-xs-6">
-                                    <strong>Bed: </strong>
-                                    <span t-field="o.bed"/>
-                                </div>
-                            <div class="col-xs-6">
-                                    <strong>Signature: </strong>
-                                </div>
-                            <div class="col-xs-6">
-                                    <strong>Date &amp; Time: </strong>
-                                </div>
-                            <div class="col-xs-6">
-                                    <strong>Clinical Diagnosis: </strong>
-                                </div>
-                        </div>
-                            <div class="row">
-                            <div class="col-xs-6">
-                                    <strong>Date of Discharge: </strong>
+                                <div class="row">
+                                    <h4><b>Person to be notified other than spouse in case of emergency</b></h4>
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 40%;"><strong>Guarantor Name</strong></th>
+                                                <th style="width: 30%;"><strong>Contact:</strong></th>
+                                                <th style="width: 30%;"><strong>Address</strong></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <t t-set="i" t-value="1" />
+                                            <t t-foreach="o.guarantor_line_id" t-as="z">
+                                                <tr>
+                                                    <td><span t-field="z.name"/></td>
+                                                    <td><span t-field="z.contact"/></td>
+                                                    <td><span t-field="z.address"/></td>
+                                                </tr>
+                                            </t>
+                                        </tbody>
+                                    </table>
                                 </div>
 
+
+<!--                                <div class="row">-->
+<!--                                    <h4><b>Person to be notified other than spouse in case of emergency</b></h4>-->
+<!--                                     <t t-set="i" t-value="1" />-->
+<!--                                        <t t-foreach="o.guarantor_line_id" t-as="z">-->
+<!--                                            <div class="col-xs-3">-->
+<!--                                                <strong>Guarantor Name:</strong>-->
+<!--                                                <span t-field="z.name"/>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-xs-3">-->
+<!--                                                <strong>Address:</strong>-->
+<!--                                                <span t-field="z.address"/>-->
+<!--                                            </div>-->
+
+<!--                                            <div class="col-xs-3">-->
+<!--                                                <strong>Relationsheep:</strong>-->
+<!--                                                <span t-field="z.relationship"/>-->
+<!--                                            </div>-->
+<!--                                            <div class="col-xs-3">-->
+<!--                                                <strong>Contact:</strong>-->
+<!--                                                <span t-field="z.contact"/>-->
+<!--                                            </div>-->
+<!--                                        </t>-->
+<!--                                    </div>-->
+                                <hr/>
+                                <h2 style="text-align: center;"><b>HOSPITAL USE ONLY</b></h2>
+                                <br/>
+
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td style="width: 40%;"><strong>Received/Registered By:</strong></td>
+                                    <td style="width: 60%;"><span t-field="o.received_by"></span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;"><strong>Bed:</strong></td>
+                                    <td style="width: 60%;"><span t-field="o.bed"></span></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;"><strong>Signature:</strong></td>
+                                    <td style="width: 60%;" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;"><strong>Date &amp; Time:</strong></td>
+                                    <td style="width: 60%;" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;"><strong>Clinical Diagnosis:</strong></td>
+                                    <td style="width: 60%;" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;"><strong>Date of Discharge:</strong></td>
+                                    <td style="width: 60%;" colspan="4"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;"><strong>Checked by Doctor:</strong></td>
+                                    <td style="width: 60%;" colspan="2"></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;"><strong>Transferred to</strong></td>
+                                    <td style="width: 60%;" colspan="2"></td>
+                                </tr>
+                            </table>
+                            <br/><br/>
+                            <div class="row" style="margin-top:100px;">
                                 <div class="col-xs-6">
-                                    <strong>at: </strong>
-                                </div>
-
-                        </div>
-                            <div class="row">
-                            <div class="col-xs-12">
-                                    <strong>Checked by Doctor </strong>
-                                </div>
-
-                                <div class="col-xs-12">
-                                    <strong>Transferred to </strong>
-                                </div>
-
-                        </div>
-                            <br/>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <p><b>Admitted By:</b><span t-esc="o.user_id.name"/></p>
+                                    <p><b>Admitted By: </b><span t-esc="o.user_id.name"/></p>
                                 </div>
                                 <div class="col-xs-6">
-                                    Signature
+                                    <p><strong>Signature</strong></p>
                                 </div>
-
-                                </div>
-
-
-
-
-
+                            </div>
                         </div>
 
 
