@@ -48,11 +48,5 @@
             </tree>
             </field>
         </record>
-
-
-
-        <menuitem name="Department" id="dep_menu_mainform" parent="legh_config_menu" action="guarantor_action"/>
-
-
     </data>
 </openerp>
