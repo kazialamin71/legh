@@ -5,38 +5,41 @@
             <t t-call="report.html_container">
 <!--                <t t-call="report.external_layout">-->
                 <t t-foreach="docs" t-as="o">
-                    <div class="page" style="font-size: 16px !important;">
+                    <div class="header">
                         <div class="row" align="center">
                             <h1 style="text-align: center;"><b>Lions Eye &amp; General Hospital</b></h1>
                             <p style="text-align: center;"><b>Lions Tower</b> 3/c, Begum Rokeya Sarani, Agargaon, Dhaka-1207</p>
                             <p style="text-align: center;">Hotline: +8801403555565, 0248121272, E-mail: blf@blfbd.org, www.blfbd.org</p>
                         </div>
-                        <br/>
+                    </div>
+                    <div class="page" style="font-size: 16px !important;">
                         <div class="row">
-                            <div class="col-xs-3"></div>
-                            <div class="col-xs-3"></div>
-                            <div class="col-xs-1"></div>
-                            <div class="col-xs-5">
-<!--                                    Date: <span t-field="o.date" t-field-options='{"format": "dd/MM/yyyy"}'/>-->
+                            <div class="col-xs-7 align:left">
                                 Date: <span t-field="o.create_date"/>
-                            </div>
-                        </div>
-
-                        <div class="oe_structure"/>
-                        <div class="row">
-                            <div style="col-md-6 align:left">
                                 <h2>
                                     <b>Admission ID: </b><span t-field="o.name"/>
                                 </h2>
                             </div>
-
-
                             <div class="col-md-6 pull-right">
                                 <h3>
                                     <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>
                                 </h3>
                             </div>
+<!--                            <div class="col-xs-5">-->
+<!--&lt;!&ndash;                                    Date: <span t-field="o.date" t-field-options='{"format": "dd/MM/yyyy"}'/>&ndash;&gt;-->
+<!--                                Date: <span t-field="o.create_date"/>-->
+<!--                            </div>-->
                         </div>
+                        <br/>
+                        <div class="oe_structure"/>
+<!--                        <div class="row">-->
+<!--                            <div style="col-md-6 align:left"></div>-->
+<!--                            <div class="col-md-6 pull-right">-->
+<!--                                <h3>-->
+<!--                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>-->
+<!--                                </h3>-->
+<!--                            </div>-->
+<!--                        </div>-->
 
                         <div class="row">
                             <div class="col-xs-5">
@@ -57,21 +60,22 @@
                                 <strong>Address:</strong>
                                 <span t-field="o.address"/>
                             </div>
-                                <div class="col-xs-3">
-                                <strong>Sex:</strong>
-                                <span t-field="o.sex"/>
-                            </div>
-                            <div class="col-xs-4">
+                            <div class="col-xs-5">
                                 <strong>Mobile:</strong>
                                 <span t-field="o.mobile"/>
                             </div>
+                            <div class="col-xs-2">
+                                <strong>Sex:</strong>
+                                <span t-field="o.sex"/>
+                            </div>
+
                         </div>
                         <div class="row">
-                            <div class="col-xs-6">
+                            <div class="col-xs-5">
                                 <strong>Referred By Doctor:</strong>
                                 <span t-field="o.ref_doctors"/>
                             </div>
-                            <div class="col-xs-6">
+                            <div class="col-xs-5">
                                 <strong>Referral:</strong>
                                 <span t-field="o.reffered_to_hospital"/>
                             </div>

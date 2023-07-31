@@ -16,11 +16,11 @@
                         <tr>
                             <th>Name</th>
                             <th>Diagnostic Amount</th>
-                            <th>General Amount</th>
+                            <th>General Admission Amount</th>
                             <th>Other Amount</th>
-                            <th>Admission Amount</th>
-                            <th>OPD Amount</th>
-                            <th>Optics Amount</th>
+<!--                            <th>Admission Amount</th>-->
+<!--                            <th>OPD Amount</th>-->
+<!--                            <th>Optics Amount</th>-->
                             <th>Total Amount</th>
 
                         </tr>
@@ -32,9 +32,9 @@
                                 <td><span t-esc="move_a['bill_collection']"/></td>
                                 <td><span t-esc="move_a['general_collection']"/></td>
                                 <td><span t-esc="move_a['bill_other_collection']"/></td>
-                                <td><span t-esc="move_a['admission_collection']"/></td>
-                                <td><span t-esc="move_a['opd_collection']"/></td>
-                                <td><span t-esc="move_a['optics_collection']"/></td>
+<!--                                <td><span t-esc="move_a['admission_collection']"/></td>-->
+<!--                                <td><span t-esc="move_a['opd_collection']"/></td>-->
+<!--                                <td><span t-esc="move_a['optics_collection']"/></td>-->
                                 <td><span t-esc="move_a['total_collection']"/></td>
                              <t t-set="test_variable" t-value="test_variable+move_a['total_collection']"/>
 
