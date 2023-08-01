@@ -626,9 +626,9 @@ class bill_register(osv.osv):
         elif len(intersection_result) > 0 and len(intersection_result) != len(get_all_depts):
             mixed_up = True
 
-        if mixed_up == True:
-            raise osv.except_osv(_('Attention'),
-                                 _('This investigation has diagnosis and others department mix up'))
+        # if mixed_up == True:
+        #     raise osv.except_osv(_('Attention'),
+        #                          _('This investigation has diagnosis and others department mix up'))
 
         ### Ends Here Diagonostic Items
         #
