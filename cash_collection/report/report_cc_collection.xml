@@ -4,12 +4,24 @@
         <template id="report_cc_collection">
             <t t-call="report.html_container">
                <t t-call="report.internal_layout">
-                    <div class="page">
-                        <div class="row">
-                            <div class="col-md-6 pull-center">
-                                <span t-esc="get_user_context(data['form']['date_start'],data['form']['date_end'])"/>
-                            </div>
-                        </div>
+<!--                   <div class="header">-->
+<!--                       <div class="row" align="center">-->
+<!--                           <h1 style="text-align: center;"><b>Lions Eye &amp; General Hospital</b></h1>-->
+<!--                           <p style="text-align: center;"><b>Lions Tower</b> 3/c, Begum Rokeya Sarani, Agargaon, Dhaka-1207</p>-->
+<!--                           <p style="text-align: center;">Hotline: +8801403555565, 0248121272, E-mail: blf@blfbd.org, www.blfbd.org</p>-->
+<!--                       </div>-->
+<!--                   </div>-->
+                   <div class="page">
+                       <div class="row" align="center">
+                           <h1 style="text-align: center;"><b>Lions Eye &amp; General Hospital</b></h1>
+                           <p style="text-align: center;"><b>Lions Tower</b> 3/c, Begum Rokeya Sarani, Agargaon, Dhaka-1207</p>
+                           <p style="text-align: center;">Hotline: +8801403555565, 0248121272, E-mail: blf@blfbd.org, www.blfbd.org</p>
+                       </div>
+                       <div class="row">
+                           <div class="col-md-6 pull-center">
+                               <span t-esc="get_user_context(data['form']['date_start'],data['form']['date_end'])"/>
+                           </div>
+                       </div>
 
                 <table class="table table-condensed">
                     <thead>
