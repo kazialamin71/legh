@@ -106,7 +106,7 @@
 
                                             </td>
                                             <td>
-                                                <span t-field="z.delivery_date"/>
+                                                <span t-field="z.delivery_date" t-field-options='{"format": "dd/MM/yyyy"}'/>
 
                                             </td>
 
