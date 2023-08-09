@@ -11,11 +11,13 @@
 
                     <group>
 
+                        <field name="doctor_id"/>
                         <field name="name"/>
                         <field name="department"/>
                         <field name="designation"/>
                         <field name="degree"/>
                         <field name="commission_rate"/>
+                        <field name="ipd_visit"/>
                         <field name="type"/>
                         <field name="status"/>
                         <field name="others"/>
