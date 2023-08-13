@@ -159,6 +159,8 @@ membership products (schemes).
 
         'pharmacy_sale_inherit/hospital_medicine_view.xml',
         'pharmacy_sale_inherit/pos_report_receipt_inherit.xml',
+        'money_receipt/report/money_receipt_menu.xml',
+        'money_receipt/report/report_money_receipt.xml',
     ],
     'demo': [],
     'installable': True,

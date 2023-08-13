@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+            string="Print Money Receipt"
+            id="action_report_money_receipt"
+            model="legh.money.receipt"
+            report_type="qweb-pdf"
+            name="legh.report_money_receipt"
+            file="legh.report_money_receipt"
+
+        />
+       </data>
+</openerp>

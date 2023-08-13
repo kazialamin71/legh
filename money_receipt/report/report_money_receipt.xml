@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_money_receipt">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="o">
+                        <div class="page" style="font-size: 16px !important;">
+                            <div class="row" align="center">
+                                <h1 style="text-align: center;"><b>Lions Eye &amp; General Hospital</b></h1>
+                                <p style="text-align: center;"><b>Lions Tower</b> 3/c, Begum Rokeya Sarani, Agargaon, Dhaka-1207</p>
+                                <p style="text-align: center;">Hotline: +8801403555565, 0248121272, E-mail: blf@blfbd.org, www.blfbd.org</p>
+                            </div>
+                            <br/>
+
+                            <h2 style="text-align: center;"><b>Money Receipt</b></h2>
+
+                            <div class="row">
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-1"></div>
+                                <div class="col-xs-5">
+                                    Date: <span t-field="o.date" t-field-options='{"format": "dd/MM/yyyy"}'/>
+                                </div>
+                            </div>
+
+                            <div class="oe_structure"/>
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <div>
+                                        <h3>Admission ID: <span t-field="o.general_admission_id"/></h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <b>Date:</b>
+                                    <span t-field="o.date"/>
+                                </div>
+                                <div class="col-xs-5">
+                                    <b>MR ID:</b>
+                                    <span t-field="o.name"/>
+                                </div>
+                                <div class="col-xs-5">
+                                    <b>Paid Amount:</b>
+                                    <span t-field="o.amount"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-5">
+                                    <b>Patient ID:</b>
+                                    <span t-field="o.general_admission_id.patient_id"/>
+                                </div>
+                                <div class="col-xs-5">
+                                    <b>Name: </b> <span t-field="o.general_admission_id.patient_name"/>
+<!--                                    <p t-field="o.patient_name"/>-->
+                                </div>
+                                <div class="col-xs-2">
+                                    <b>Age:</b>
+                                    <span t-field="o.general_admission_id.age"/>
+                                </div>
+                            </div>
+
+
+                            <br/>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <p><b>Received By:</b><span t-esc="o.user_id.name"/></p>
+                                </div>
+                                <div class="col-xs-6">
+                                    Signature
+                                </div>
+
+                                </div>
+
+
+
+
+
+                        </div>
+
+
+
+                    </t>
+            </t>
+        </template>
+    </data>
+</openerp>
