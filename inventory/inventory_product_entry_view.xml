@@ -22,6 +22,9 @@
                         <field name="date"/>
                         <field name="reference_no"/>
                         <field name="invoice_no"/>
+                        <field name="invoice_date"/>
+                        <field name="chalan_date"/>
+                        <field name="chalan_no"/>
                         <field name="partner_id" domain="[('customer','=',True)]"/>
                         <field name="department"/>
                         <field name="warehouse_id"/>

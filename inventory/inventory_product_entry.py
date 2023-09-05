@@ -10,7 +10,10 @@ class inventory_product_entry(osv.osv):
     _columns = {
 
         'name': fields.char("Entry No", readonly=True),
-        'invoice_no':fields.char("Invoice No"),
+        'invoice_no':fields.char("Invoice/Bill No", required=True),
+        'invoice_date':fields.date("Invoice/Bill Date", required=True),
+        'chalan_date':fields.date("Chalan Date", required=True),
+        'chalan_no':fields.char("Chalan No", required=True),
         'reference_no':fields.char("Reference No"),
         'total':fields.float("Total Amount"),
         'partner_id':fields.many2one('res.partner','Employee Name',required=True),
@@ -20,7 +23,7 @@ class inventory_product_entry(osv.osv):
         'department':fields.many2one("hr.department","Department"),
         'warehouse_id': fields.many2one('stock.warehouse', 'Warehouse Location',required=True),
         'inventory_product_entry_line_ids':fields.one2many('inventory.product.entry.line','inventory_product_entry_id',string="Inventory Requision Items",required=True),
-        'date':fields.date('Date'),
+        'date':fields.date('Entry Date'),
         'state': fields.selection(
             [('pending', 'Pending'), ('confirmed', 'Receive Product'),('verify', 'Verified'), ('cancelled', 'Cancelled')],
             'Status', default='pending', readonly=True)
