@@ -109,8 +109,10 @@ class leih_hospital_admission(osv.osv):
         'occupation': fields.char('Occupation'),
         'business_address': fields.char('Business Address'),
         'admitting_doctor': fields.many2one('doctors.profile', 'Admitting Doctor'),
-        # hospital use only
-        'bed': fields.char('Bed'),
+        # hospital use only ----------------------------------------------------------------
+        'bed': fields.char('Bed/Cabin'),
+        # 'bed_no': fields.char(' No'),
+        # 'cabin_no': fields.char('Cabin`'),
         'received_by': fields.char('Received/Registered By'),
         'clinic_diagnosis': fields.char('Clinical Diagnosis'),
         'release_note_date': fields.datetime("Release Date"),
