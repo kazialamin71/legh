@@ -105,7 +105,7 @@ class leih_hospital_admission(osv.osv):
             'Religion'),
         'blood_group': fields.char('Blood Group'),
         # 'reffered_to_hospital': fields.char('Refferred to this hospital by'),
-        'reffered_to_hospital': fields.many2one('brokers.info', 'Referred by (Broker)'),
+        'reffered_to_hospital': fields.many2one('brokers.info', 'Referral'),
         'occupation': fields.char('Occupation'),
         'business_address': fields.char('Business Address'),
         'admitting_doctor': fields.many2one('doctors.profile', 'Admitting Doctor'),
@@ -117,6 +117,7 @@ class leih_hospital_admission(osv.osv):
         'clinic_diagnosis': fields.char('Clinical Diagnosis'),
         'release_note_date': fields.datetime("Release Date"),
         'release_note': fields.text("Release Note"),
+        'release_approved_by': fields.many2one('doctors.profile',"Release Approved By:"),
     }
 
     _defaults = {

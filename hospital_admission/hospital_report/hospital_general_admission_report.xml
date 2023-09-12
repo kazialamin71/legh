@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="col-xs-4">
                                     </div>
-                                </div>
+                                </div> Referral
                                 <div class="row">
                                     <div class="col-xs-6">
                                         <strong>Consultant:</strong>
@@ -112,6 +112,16 @@
                                     <div class="col-xs-6">
                                         <strong>Referral:</strong>
                                         <span t-field="o.reffered_to_hospital"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <strong>Admitted By:</strong>
+                                        <span t-field="o.admitting_doctor"/>
+                                    </div>
+                                    <div class="col-xs-6">
+<!--                                        <strong>Release Date:</strong>-->
+<!--                                        <span t-field="o.release_note_date"/>-->
                                     </div>
                                 </div>
                             </div>

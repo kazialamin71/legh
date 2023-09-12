@@ -35,6 +35,8 @@
                             <field name="package_name" on_change="onchange_package(package_name,context)"/>
                             <field name="emergency"/>
                             <field name="release_note"/>
+                            <field name="release_note_date"/>
+                            <field name="release_approved_by"/>
                         </group>
                         <group>
                             <field name="father_name"/>
@@ -206,7 +208,7 @@
                 <field name="name"/>
                 <field name="patient_name"/>
                         <field name="bed"/>
-                        <field name="mobile"/>
+                        <field name="date"/>
                         <field name="grand_total"/>
                         <field name="paid"/>
                         <field name="due"/>
