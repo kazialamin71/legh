@@ -91,7 +91,7 @@ class bill_register(osv.osv):
         'card_no': fields.char('Card No.'),
         'bank_name': fields.char('Bank Name'),
         'due': fields.float("Due"),
-        'date': fields.datetime("Date", readonly=True, default=lambda self: fields.datetime.now()),
+        'date': fields.datetime("Date", readonly=True, default=lambda self: fields.datetime.now('')),
         'user_id': fields.many2one('res.users', 'Assigned to', select=True, track_visibility='onchange'),
         'state': fields.selection(
             [('pending', 'Pending'), ('confirmed', 'Confirmed'), ('cancelled', 'Cancelled')],

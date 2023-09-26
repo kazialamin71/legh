@@ -45,7 +45,7 @@
         </record>
 
 
-        <menuitem name="Released Admission" id="admission_released_menu_mainform" parent="legh_admission_menu" action="admission_released_action" groups="legh.group_admission_menu_released"/>
+<!--        <menuitem name="Released Admission" id="admission_released_menu_mainform" parent="legh_admission_menu" action="admission_released_action" groups="legh.group_admission_menu_released"/>-->
 
 
     </data>

@@ -75,7 +75,7 @@
         </record>
 
 
-        <menuitem name="Advance Cash" id="advance_cash_menu_mainform" parent="legh_billing_menu" action="advance_cash_action" sequence="24"/>
+        <menuitem name="Advance Cash" id="advance_cash_menu_mainform" parent="legh_billing_menu" action="advance_cash_action" sequence="24" groups="legh.group_hospital_advance_cash_menu"/>
 
     </data>
 </openerp>

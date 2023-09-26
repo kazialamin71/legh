@@ -145,7 +145,7 @@
             </field>
         </record>
 
-        <menuitem name="Optics Sale" id="optics_sale_menu_mainform" parent="legh_billing_menu" action="optics_sale_action" groups="legh.group_billing_menu_optics_sale"/>
+<!--        <menuitem name="Optics Sale" id="optics_sale_menu_mainform" parent="legh_billing_menu" action="optics_sale_action" groups="legh.group_billing_menu_optics_sale"/>-->
 
         <template id="assets_backends" name="bill_team assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">

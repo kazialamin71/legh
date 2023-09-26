@@ -57,6 +57,12 @@
                 <field name="category_id" ref="module_category_legh"/>
                 <field name="sequence">2</field>
             </record>
+<!--            this is for the Advance Cash Menu Ite-->
+<!--            <record id="group_hospital_advance_cash_menu" model="res.groups">-->
+<!--                    <field name="name">Hospital- Advance Cash</field>-->
+<!--                    <field name="category_id" ref="module_category_billing"/>-->
+<!--                    <field name="users" eval="[(4, ref('base.user_root'))]"/>-->
+<!--                </record>-->
 
                 <!-- Billing Menu Access -->
                 <record id="group_billing_menu_bill_register" model="res.groups">
@@ -111,7 +117,11 @@
                     <field name="name">Menu8- Bill Register Line</field>
                     <field name="category_id" ref="module_category_billing"/>
                     <field name="users" eval="[(4, ref('base.user_root'))]"/>
-                </record>
+            </record><record id="group_hospital_advance_cash_menu" model="res.groups">
+                <field name="name">Menu 9- Advance Cash</field>
+                <field name="category_id" ref="module_category_billing"/>
+                <field name="users" eval="[(4, ref('base.user_root'))]"/>
+            </record>
 
                 <!-- Billing Button Access -->
                 <record id="group_bill_register_button_add_discount" model="res.groups">

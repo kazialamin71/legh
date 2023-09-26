@@ -96,7 +96,7 @@
         </record>
 
         <menuitem name="OPD" id="legh_opd_menu" parent="legh_menu" sequence="2"/>
-        <menuitem name="OPD Ticket" id="opd_menu_mainform" parent="legh_opd_menu" action="opd_action" groups="legh.group_opd_menu_opd_ticket"/>
+<!--        <menuitem name="OPD Ticket" id="opd_menu_mainform" parent="legh_opd_menu" action="opd_action" groups="legh.group_opd_menu_opd_ticket"/>-->
 
 
     </data>

@@ -5,6 +5,7 @@ access_hospital_ward,ward.managment,model_ward_managment,group_hospital_menu_war
 access_hospital_pending_cash_coll,cash.collection,model_cash_collection,group_hospital_menu_pending_cash_coll,1,1,1,0
 access_hospital_pending_cash_coll_line,cash.collection.line,model_cash_collection_line,group_hospital_menu_pending_cash_coll,1,1,1,1
 
+access_advance_cash,advance.cash,model_advance_cash,group_hospital_advance_cash_menu,1,1,1,1
 access_hospital_confirm_cash_coll,cash.collection,model_cash_collection,group_hospital_menu_confirm_cash_coll,1,1,1,0
 access_hospital_confirm_cash_coll_line,cash.collection.line,model_cash_collection_line,group_hospital_menu_confirm_cash_coll,1,1,1,1
 

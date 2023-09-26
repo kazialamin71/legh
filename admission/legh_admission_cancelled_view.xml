@@ -47,7 +47,7 @@
 
 
 
-        <menuitem name="Cancelled Admission" id="admission_cancelled_menu_mainform" parent="legh_admission_menu" action="admission_cancelled_action" groups="legh.group_admission_menu_cancelled"/>
+<!--        <menuitem name="Cancelled Admission" id="admission_cancelled_menu_mainform" parent="legh_admission_menu" action="admission_cancelled_action" groups="legh.group_admission_menu_cancelled"/>-->
 
 
     </data>
