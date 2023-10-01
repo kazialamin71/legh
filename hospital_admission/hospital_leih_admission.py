@@ -324,6 +324,7 @@ class leih_hospital_admission(osv.osv):
                     raise osv.except_osv("Error", "Please give the description about the release note field")
                 if record.state == 'activated':
                     self.write(cr, uid, [record.id], {'state': 'released'}, context=context)
+                    self.write(cr,uid, [record.id], {'release_note_date':datetime.now()})
             else:
                 raise osv.except_osv("Error", "Please confirm the admission before releasing it.")
         return True
