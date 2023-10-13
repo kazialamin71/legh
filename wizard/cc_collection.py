@@ -18,7 +18,7 @@ class cc_collection(osv.osv_memory):
         if context is None:
             context = {}
         datas = {'ids': context.get('active_ids', [])}
-        res = self.read(cr, uid, ids, ['date_start', 'date_end',], context=context)
+        res = self.read(cr, uid, ids, ['date_start', 'date_end'], context=context)
         res = res and res[0] or {}
 
         datas['form'] = res
