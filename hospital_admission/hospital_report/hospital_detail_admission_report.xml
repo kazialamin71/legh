@@ -112,10 +112,6 @@
                                 <t t-set="i" t-value="1" />
                                 <t t-foreach="o.leih_admission_line_id" t-as="z">
                                     <tr>
-<!--                                            <td>-->
-<!--                                                <span t-esc="i"/>-->
-<!--                                                <t t-set="i" t-value="i+1"/>-->
-<!--                                            </td>-->
                                         <td>
                                             <span t-field="z.name"/>
 
@@ -159,6 +155,16 @@
                                     <td><span t-field="z.total_amount"/></td>
                                 </tr>
                                     </t>
+
+
+<!--                                for medicine bill show-->
+                                <t t-if="o.adjust_medicine_total > 0">
+                                        <td>Medicine Charge</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span t-esc="o.adjust_medicine_total"/></td>
+                                      </t>
+
 
                                 <t t-foreach="o.hospital_bed_line_id" t-as="z">
                                         <tr>

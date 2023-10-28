@@ -161,6 +161,15 @@
                                         <td><span t-esc="total_amount"/></td>
                                     </tr>
                                       </t>
+
+                                    <t t-if="o.adjust_medicine_total > 0">
+                                        <td>Medicine Charge</td>
+                                        <td></td>
+                                        <td></td>
+                                        <td><span t-esc="o.adjust_medicine_total"/></td>
+                                      </t>
+
+
                                     <t t-if="o.hospital_bed_line_id">
                                     <tr>
                                         <t t-set="total_amount" t-value="0" />

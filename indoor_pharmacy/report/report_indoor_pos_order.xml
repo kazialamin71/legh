@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_indoor_pos">
+            <t t-call="report.html_container">
+<!--                <t t-call="report.external_layout">-->
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page" style="font-size: 16px !important;">
+                            <div class="row">
+                                    Date: <span t-field="o.date_order"/>
+                            </div>
+
+                            <div class="oe_structure"/>
+
+                            <div style="align:center">
+                                <h5>
+                                    Medicine Bill No: <span t-field="o.name"/>
+                                </h5>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <b>Admission ID:</b> <span t-field="o.general_admission_id"/>
+                                </div>
+
+                                <div class="col-xs-12">
+                                    <b>Patient Name:</b> <span t-field="o.patient_name.name"/>
+
+                                </div>
+                                <div class="col-xs-12">
+                                    <b>Age:</b> <span t-field="o.patient_name.age"/>
+                                </div>
+
+                                 </div>
+
+                            <hr/>
+
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>S.N.</th>
+                                        <th>Item Name</th>
+                                        <th>Unit Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="i" t-value="1" />
+                                    <t t-foreach="o.lines" t-as="z">
+                                        <tr>
+                                            <td>
+                                                <span t-esc="i"/>
+                                                <t t-set="i" t-value="i+1"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="z.product_id"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="z.price_unit"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="z.qty"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="z.total_amount"/>
+                                            </td>
+
+                                        </tr>
+
+                                    </t>
+
+                                </tbody>
+
+                            </table>
+                            <div class="row">
+
+                            <div class="col-xs-7 pull-left">
+                            <div align="center" style="mergin-right:25px;">
+                                    <strong>Total:</strong>
+                                    <span t-field="o.amount_total"/>
+                                </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </t>
+                </t>
+<!--            </t>-->
+        </template>
+    </data>
+</openerp>

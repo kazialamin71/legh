@@ -211,6 +211,11 @@ access_examine_package_line,examine.package.line,model_examine_package_line,grou
 
 access_opd_ticket_entry,opd.ticket.entry,model_opd_ticket_entry,group_expense_menu_cancel,1,1,1,0
 
+access_indoor_pos,indoor.pos.order,model_indoor_pos_order,group_pos_indoor_pharmacy,1,1,1,0
+access_indoor_pos_line,indoor.pos.order.line,model_indoor_pos_order_line,group_pos_indoor_pharmacy,1,1,1,1
+
+access_return_indoor_pos,return.indoor.pos.order,model_return_indoor_pos_order,group_pos_indoor_pharmacy,1,1,1,0
+access_return_indoor_pos_line,return.indoor.pos.order.line,model_return_indoor_pos_order_line,group_pos_indoor_pharmacy,1,1,1,1
 
 
 

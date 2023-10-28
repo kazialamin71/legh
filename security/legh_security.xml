@@ -781,6 +781,12 @@
                     <field name="users" eval="[(4, ref('base.user_root'))]"/>
                 </record>
 
+                <record id="group_pos_indoor_pharmacy" model="res.groups">
+                    <field name="name">Menu7- Pos Indoor Pharmacy</field>
+                    <field name="category_id" ref="module_category_configuration"/>
+                    <field name="users" eval="[(4, ref('base.user_root'))]"/>
+                </record>
+
 
 
     </data>

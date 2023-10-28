@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <report
+                id="action_report_indoor_pos_order"
+                model="indoor.pos.order"
+                string="Print Order"
+                report_type="qweb-pdf"
+                name="legh.report_indoor_pos"
+                file="legh.report_indoor_pos"
+                menu="True"
+        />
+       </data>
+</openerp>

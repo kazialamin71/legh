@@ -61,6 +61,10 @@ class leih_hospital_admission(osv.osv):
         'hospital_doctor_line_id': fields.one2many("doctor.profile.admission.line", "hospital_doctor_line_item",
                                                    "Doctor"),
 
+        'prescription_id': fields.one2many("indoor.pos.order", "prescription_item", "Prescription"),
+
+        'return_prescription_id': fields.one2many("return.indoor.pos.order", "return_prescription_item","Return Prescription"),
+
         'hospital_medicine_line_id': fields.one2many("hospital.medicine.line", "hospital_medicine_line_item",
                                                      "Investigations"),
 
@@ -70,6 +74,11 @@ class leih_hospital_admission(osv.osv):
         'emergency': fields.boolean("Emergency Department"),
         'total_without_discount': fields.float(string="Total without discount"),
         'total': fields.float(string="Total"),
+
+        'medicine_total': fields.float(string="Medicine Total"),
+        'return_medicine_total': fields.float(string="Return Medicine Total"),
+        'adjust_medicine_total': fields.float(string="Adjust Medicine Total"),
+
         'doctors_discounts': fields.float("Discount(%)"),
         'after_discount': fields.float("Discount Amount"),
         'other_discount': fields.float("Other Discount"),
@@ -117,7 +126,7 @@ class leih_hospital_admission(osv.osv):
         'clinic_diagnosis': fields.char('Clinical Diagnosis'),
         'release_note_date': fields.datetime("Release Date", readonly=True),
         'release_note': fields.text("Release Note"),
-        'release_approved_by': fields.many2one('doctors.profile',"Release Approved By:"),
+        'release_approved_by': fields.many2one('doctors.profile', "Release Approved By:"),
     }
 
     _defaults = {
@@ -221,11 +230,28 @@ class leih_hospital_admission(osv.osv):
 
     def calculate_bill(self, cr, uid, ids, context=None):
         bill_dict = []
+        total_medicine_bill = 0
+        total_medicine_return_bill=0
         bill_ids = self.pool.get("bill.register").search(cr, uid, [('general_admission_id', '=', ids[0]),
                                                                    ('state', '=', 'confirmed')], context=None)
         bill_obj = self.pool.get('bill.register').browse(cr, uid, bill_ids, context=None)
         hospital_admission_line_obj = self.pool.get('hospital.bill.line')
         hospital_admission_obj = self.browse(cr, uid, ids[0], context=context)
+        if hospital_admission_obj.prescription_id:
+            for item in hospital_admission_obj.prescription_id:
+                total_medicine_bill+=item.amount_total
+        if hospital_admission_obj.return_prescription_id:
+            for item in hospital_admission_obj.return_prescription_id:
+                total_medicine_return_bill+=item.amount_total
+        hospital_admission_obj.medicine_total=total_medicine_bill
+        hospital_admission_obj.return_medicine_total=total_medicine_return_bill
+        hospital_admission_obj.adjust_medicine_total=total_medicine_bill - total_medicine_return_bill
+
+
+
+        #hospital_admission_obj.onchange_medicine()
+        hospital_admission_obj.grand_total = hospital_admission_obj.total + total_medicine_bill - total_medicine_return_bill
+
         investigation_paid = 0
         investigation_total = 0
         for obj in bill_obj:
@@ -258,6 +284,15 @@ class leih_hospital_admission(osv.osv):
         hospital_admission_obj.onchange_paid()
 
         return bill_ids
+
+    @api.onchange('medicine_total','return_medicine_total')
+    def onchange_medicine(self):
+        # self.total+=self.medicine_total
+        # self.total-=self.return_medicine_total
+
+        self.grand_total=self.total + self.medicine_total - self.return_medicine_total
+        # self.total_without_discount+=self.medicine_total
+        # self.total_without_discount-=self.return_medicine_total
 
     def onchange_total(self, cr, uid, ids, name, context=None):
         tests = {'values': {}}
@@ -324,7 +359,7 @@ class leih_hospital_admission(osv.osv):
                     raise osv.except_osv("Error", "Please give the description about the release note field")
                 if record.state == 'activated':
                     self.write(cr, uid, [record.id], {'state': 'released'}, context=context)
-                    self.write(cr,uid, [record.id], {'release_note_date':datetime.now()})
+                    self.write(cr, uid, [record.id], {'release_note_date': datetime.now()})
             else:
                 raise osv.except_osv("Error", "Please confirm the admission before releasing it.")
         return True
@@ -642,9 +677,12 @@ class leih_hospital_admission(osv.osv):
         #                      _("You cannot Edit the bill"))
         return updated
 
-    @api.onchange('leih_admission_line_id', 'hospital_bed_line_id', 'hospital_bill_line_id', 'hospital_doctor_line_id')
+    @api.onchange('leih_admission_line_id', 'hospital_bed_line_id', 'hospital_bill_line_id', 'hospital_doctor_line_id','prescription_id')
     def onchange_admission_line(self):
         sumalltest = 0
+        medicine_total = 0
+        return_medicine_total = 0
+
         total_without_discount = 0
         for item in self.leih_admission_line_id:
             sumalltest = sumalltest + item.total_amount
@@ -658,12 +696,18 @@ class leih_hospital_admission(osv.osv):
         for item in self.hospital_doctor_line_id:
             sumalltest = sumalltest + item.total_amount
             total_without_discount = total_without_discount + item.total_amount
+        for item in self.prescription_id:
+            medicine_total = medicine_total + item.amount_total
+
+        for item in self.return_prescription_id:
+            return_medicine_total = return_medicine_total + item.amount_total
+        #     # total_without_discount = total_without_discount + item.amount_total
 
         self.total = sumalltest
         after_dis = (sumalltest * (self.doctors_discounts / 100))
         self.after_discount = 0
 
-        self.grand_total = sumalltest
+        self.grand_total = sumalltest + medicine_total - return_medicine_total
         self.due = sumalltest - self.paid
         self.total_without_discount = total_without_discount
 
