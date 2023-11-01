@@ -24,10 +24,11 @@
                             <field name="lines" mode="tree">
                                 <tree string="Select Medicine" editable="bottom">
 
-                                    <field name="product_id" on_change="onchange_product(product_id, context)" options="{'no_quick_create': True, 'no_create_edit' : True}"/>
+                                    <field name="product_id" on_change="onchange_product(product_id, context)" options="{'no_quick_create': True, 'no_create_edit' : True}" domain="[('categ_id','in',(33,32))]"/>
                                     <field name="price_unit"/>
                                     <field name="qty"/>
                                     <field name="discount" on_change="onchange_discount(price_unit,discount,context)"/>
+                                    <field name="available_qty"/>
                                     <field name="total_amount"/>
 
                                 </tree>

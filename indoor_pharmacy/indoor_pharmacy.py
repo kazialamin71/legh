@@ -159,10 +159,15 @@ class indoor_pos_order_line(osv.osv):
         'qty': fields.float('Quantity'),
         'total_amount': fields.float("Total"),
         'discount': fields.float('Discount (%)'),
+        'available_qty': fields.float("available Qty", compute='_compute_qty'),
         'order_id': fields.many2one('indoor.pos.order', 'Order Ref', ondelete='cascade'),
         'create_date': fields.datetime('Creation Date', readonly=True),
     }
 
+    @api.depends('product_id')
+    def _compute_qty(self):
+        for item in self:
+            item.available_qty=item.product_id.qty_available
     def onchange_product(self, cr, uid, ids, name, context=None):
         products = {'values': {}}
         # code for delivery date
