@@ -237,6 +237,7 @@ class leih_hospital_admission(osv.osv):
         bill_obj = self.pool.get('bill.register').browse(cr, uid, bill_ids, context=None)
         hospital_admission_line_obj = self.pool.get('hospital.bill.line')
         hospital_admission_obj = self.browse(cr, uid, ids[0], context=context)
+        previous_adjust_medicine_total=hospital_admission_obj.adjust_medicine_total
         if hospital_admission_obj.prescription_id:
             for item in hospital_admission_obj.prescription_id:
                 total_medicine_bill+=item.amount_total
@@ -246,11 +247,9 @@ class leih_hospital_admission(osv.osv):
         hospital_admission_obj.medicine_total=total_medicine_bill
         hospital_admission_obj.return_medicine_total=total_medicine_return_bill
         hospital_admission_obj.adjust_medicine_total=total_medicine_bill - total_medicine_return_bill
-
-
-
-        #hospital_admission_obj.onchange_medicine()
-        hospital_admission_obj.grand_total = hospital_admission_obj.total + total_medicine_bill - total_medicine_return_bill
+        if previous_adjust_medicine_total!=hospital_admission_obj.adjust_medicine_total:
+            hospital_admission_obj.onchange_medicine()
+        # hospital_admission_obj.grand_total = hospital_admission_obj.total + total_medicine_bill - total_medicine_return_bill
 
         investigation_paid = 0
         investigation_total = 0
@@ -290,7 +289,9 @@ class leih_hospital_admission(osv.osv):
         # self.total+=self.medicine_total
         # self.total-=self.return_medicine_total
 
-        self.grand_total=self.total + self.medicine_total - self.return_medicine_total
+        self.grand_total=self.grand_total + self.medicine_total - self.return_medicine_total
+        self.total=self.total + self.medicine_total - self.return_medicine_total
+        self.total_without_discount=self.total_without_discount + self.medicine_total - self.return_medicine_total
         # self.total_without_discount+=self.medicine_total
         # self.total_without_discount-=self.return_medicine_total
 
@@ -677,7 +678,7 @@ class leih_hospital_admission(osv.osv):
         #                      _("You cannot Edit the bill"))
         return updated
 
-    @api.onchange('leih_admission_line_id', 'hospital_bed_line_id', 'hospital_bill_line_id', 'hospital_doctor_line_id','prescription_id')
+    @api.onchange('leih_admission_line_id', 'hospital_bed_line_id', 'hospital_bill_line_id', 'hospital_doctor_line_id')
     def onchange_admission_line(self):
         sumalltest = 0
         medicine_total = 0
@@ -696,18 +697,12 @@ class leih_hospital_admission(osv.osv):
         for item in self.hospital_doctor_line_id:
             sumalltest = sumalltest + item.total_amount
             total_without_discount = total_without_discount + item.total_amount
-        for item in self.prescription_id:
-            medicine_total = medicine_total + item.amount_total
-
-        for item in self.return_prescription_id:
-            return_medicine_total = return_medicine_total + item.amount_total
-        #     # total_without_discount = total_without_discount + item.amount_total
 
         self.total = sumalltest
         after_dis = (sumalltest * (self.doctors_discounts / 100))
         self.after_discount = 0
 
-        self.grand_total = sumalltest + medicine_total - return_medicine_total
+        self.grand_total = sumalltest
         self.due = sumalltest - self.paid
         self.total_without_discount = total_without_discount
 

@@ -211,7 +211,7 @@
                                 <div class="col-xs-7 pull-left">
                             <div align="center" style="mergin-right:15px;">
                                     <strong>Sub Total:</strong>
-                                    <span t-field="o.total"/>
+                                    <span t-field="o.total_without_discount"/>
                                 </div>
                             <div align="center" style="mergin-right:15px;">
                                     <strong>Others Discount:</strong>
