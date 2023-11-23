@@ -153,8 +153,8 @@ membership products (schemes).
         'hospital_admission/hospital_bed/hospital_bed_view.xml',
         'hospital_admission/hospital_medicine/hospital_medicine_view.xml',
         'hospital_admission/bill_register_view.xml',
-        # 'ward/inherit_purchase.xml',
-        # 'ward/report_purchasestock.xml',
+        'ward/inherit_purchase.xml',
+        'ward/report_purchasestock.xml',
         'payment_type/payment_type_view.xml',
 
         'pharmacy_sale_inherit/hospital_medicine_view.xml',
