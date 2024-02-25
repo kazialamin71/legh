@@ -251,6 +251,7 @@ class leih_hospital_admission(osv.osv):
             hospital_admission_obj.onchange_medicine()
         # hospital_admission_obj.grand_total = hospital_admission_obj.total + total_medicine_bill - total_medicine_return_bill
 
+
         investigation_paid = 0
         investigation_total = 0
         for obj in bill_obj:
@@ -350,17 +351,122 @@ class leih_hospital_admission(osv.osv):
         values['value'] = abc
         return values
 
+    def journal_line_formation(self,debit=0, credit=0,account_id=None,remarks=""):
+        result_dict ={
+            'analytic_account_id': False,
+            'tax_code_id': False,
+            'tax_amount': 0,
+            'name': remarks,
+            'currency_id': False,
+            'credit': credit,
+            'date_maturity': False,
+            'account_id': account_id,  ### Accounts Receivable ID
+            'debit': debit,
+            'amount_currency': 0,
+            'partner_id': False,
+
+        }
+
+        return result_dict
+
+
+    def create_custom_journal(self,cr,uid,ref='',line_ids=[],date=None,context=None):
+        j_id=1
+        # if context.get('period_id', False):
+        #     return context.get('period_id')
+        periods = self.pool.get('account.period').find(cr, uid, dt=date)
+        # import pdb
+        # pdb.set_trace()
+        period_id = periods and periods[0] or False
+        jv_entry = self.pool.get('account.move')
+
+
+        j_vals = {'name': '/',
+                  'journal_id': 2,  ## Sales Journal
+                  'date': fields.date.today(),
+                  'period_id': period_id,
+                  'ref': ref,
+                  'line_id': line_ids
+
+                  }
+        j_id = jv_entry.create(cr, 1, j_vals, context=context)
+
+        return j_id
+
+
     # This Function is used for the Released Admission
     def btn_final_settlement(self, cr, uid, ids, context=None):
+
         for record in self.browse(cr, uid, ids, context=context):
+            # import pdb
+            # pdb.set_trace()
             if record.state == 'activated' or record.state == 'released':
                 if record.due > 0:
                     raise osv.except_osv("Error", "Please Pay the Due Bill")
                 if not record.release_note:
                     raise osv.except_osv("Error", "Please give the description about the release note field")
-                if record.state == 'activated':
-                    self.write(cr, uid, [record.id], {'state': 'released'}, context=context)
-                    self.write(cr, uid, [record.id], {'release_note_date': datetime.now()})
+                if record.state == 'released':
+                    # self.write(cr, uid, [record.id], {'state': 'released'}, context=context)
+                    # self.write(cr, uid, [record.id], {'release_note_date': datetime.now()})
+                    ##### Insert Journal here for ALl
+
+
+
+                    journal_items = []
+                    admission_name = record.name
+                    total_AR_income = 0
+
+                    for itm in record.leih_admission_line_id:
+                        credit_amount =itm.total_amount
+                        if credit_amount>0:
+                            total_AR_income +=itm.total_amount
+                            try:
+                                income_account_id = itm.name.accounts_id.id
+                            except:
+                                income_account_id = 8629 ## If we don't find any account it will automatically assign to this income account
+
+                            journal_items.append((0, 0, self.journal_line_formation(debit=0,credit=credit_amount,
+                                                                                    account_id=income_account_id,
+                                                                                    remarks=admission_name)))
+
+                    if record.adjust_medicine_total >0:
+                        journal_items.append((0, 0, self.journal_line_formation(debit=0, credit=record.adjust_medicine_total,
+                                                                                account_id=1780,
+                                                                                remarks=admission_name)))
+                        total_AR_income +=record.adjust_medicine_total
+
+
+                    if record.other_discount >0:
+                        journal_items.append((0, 0, self.journal_line_formation(debit=record.other_discount, credit=0,
+                                                                                account_id=9175,
+                                                                                remarks=record.discount_remarks)))
+                        total_AR_income -=record.other_discount
+
+                    if total_AR_income >0:
+                        journal_items.append((0, 0, self.journal_line_formation(debit=total_AR_income, credit=0,
+                                                                                account_id=771,
+                                                                                remarks=admission_name)))
+
+
+
+                    if len(journal_items)>1:
+                        if record.x_income_journal != True:
+                            admission_date = record.date
+                            j_id = self.create_custom_journal(cr=cr,uid=uid,ref=admission_name,date=admission_date,line_ids=journal_items)
+
+                            self.write(cr, uid, [record.id], {'state': 'released','x_income_journal':True}, context=context)
+                        else:
+                            raise osv.except_osv("Contact IT", "Please Contact With Kazi/Mufti")
+
+
+
+
+
+
+                    #### Ends Here
+
+
+
             else:
                 raise osv.except_osv("Error", "Please confirm the admission before releasing it.")
         return True
@@ -687,13 +793,13 @@ class leih_hospital_admission(osv.osv):
         total_without_discount = 0
         for item in self.leih_admission_line_id:
             sumalltest = sumalltest + item.total_amount
-            total_without_discount = total_without_discount + (item.price * item.product_qty)
+            total_without_discount = total_without_discount + item.total_amount
         for item in self.hospital_bed_line_id:
             sumalltest = sumalltest + item.total_amount
             total_without_discount = total_without_discount + item.total_amount
         for item in self.hospital_bill_line_id:
             sumalltest = sumalltest + item.total_amount
-            total_without_discount = total_without_discount + item.price
+            total_without_discount = total_without_discount + item.total_amount
         for item in self.hospital_doctor_line_id:
             sumalltest = sumalltest + item.total_amount
             total_without_discount = total_without_discount + item.total_amount
@@ -702,8 +808,8 @@ class leih_hospital_admission(osv.osv):
         after_dis = (sumalltest * (self.doctors_discounts / 100))
         self.after_discount = 0
 
-        self.grand_total = sumalltest
-        self.due = sumalltest - self.paid
+        self.grand_total = sumalltest + self.adjust_medicine_total
+        self.due = sumalltest - self.paid - self.investigation_paid
         self.total_without_discount = total_without_discount
 
         return "X"
@@ -740,9 +846,9 @@ class leih_hospital_admission(osv.osv):
     def onchange_other_discount(self):
         other_discount = self.other_discount
         total = self.total_without_discount
-        gd = total - other_discount
+        gd = total - other_discount + self.adjust_medicine_total
         self.total = self.grand_total = gd
-        self.due = self.grand_total - self.paid
+        self.due = self.grand_total - self.paid - self.investigation_paid
         return 'Nothing'
 
     # @api.onchange('other_discount')

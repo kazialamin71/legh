@@ -77,7 +77,6 @@
             <field name="model">inventory.requisition</field>
             <field name="arch" type="xml">
             <tree string="Issue List">
-
                 <field name="name"/>
                 <field name="date"/>
                 <field name="reference_no"/>
