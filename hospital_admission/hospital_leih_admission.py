@@ -405,7 +405,7 @@ class leih_hospital_admission(osv.osv):
                     raise osv.except_osv("Error", "Please Pay the Due Bill")
                 if not record.release_note:
                     raise osv.except_osv("Error", "Please give the description about the release note field")
-                if record.state == 'released':
+                if record.state == 'released' or record.state == 'activated':
                     # self.write(cr, uid, [record.id], {'state': 'released'}, context=context)
                     # self.write(cr, uid, [record.id], {'release_note_date': datetime.now()})
                     ##### Insert Journal here for ALl
@@ -415,6 +415,22 @@ class leih_hospital_admission(osv.osv):
                     journal_items = []
                     admission_name = record.name
                     total_AR_income = 0
+                    consult_amnt=0
+
+                    for itm in record.hospital_doctor_line_id:
+                        consult_amnt += itm.total_amount
+                        if consult_amnt >0:
+                            total_AR_income += itm.total_amount
+
+                        try:
+                            income_account_id = itm.name.accounts_id.id
+                        except:
+                            income_account_id = 9188  ## Doctor Consultation Fees
+
+                        journal_items.append((0, 0, self.journal_line_formation(debit=0, credit=consult_amnt,
+                                                                                account_id=income_account_id,
+                                                                                remarks=admission_name)))
+
 
                     for itm in record.leih_admission_line_id:
                         credit_amount =itm.total_amount
@@ -437,9 +453,13 @@ class leih_hospital_admission(osv.osv):
 
 
                     if record.other_discount >0:
+                        if record.discount_remarks is False:
+                            dis_name = "Discount"
+                        else:
+                            dis_name = str(record.discount_remarks) + " - "
                         journal_items.append((0, 0, self.journal_line_formation(debit=record.other_discount, credit=0,
-                                                                                account_id=9175,
-                                                                                remarks=record.discount_remarks)))
+                                                                                account_id=9071, #9175
+                                                                                remarks=dis_name)))
                         total_AR_income -=record.other_discount
 
                     if total_AR_income >0:
