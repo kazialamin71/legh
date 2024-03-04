@@ -228,15 +228,33 @@ class leih_hospital_admission(osv.osv):
     #
     #     return bill_ids
 
+
+
+    def calling_all_indor_pos_with_status(self,  cr, uid, ids, context=None):
+
+        ##general_addmission_id
+        bill_ids = self.pool.get("indoor.pos.order").search(cr, uid, [('general_admission_id', '=', self.id),
+                                                                   ('state', '!=', 'cancel')], context=None)
+
+        p_line_ids = [itm.id for itm in self.prescription_id]
+        # p_line_ids.append(self_obj.id)
+        self.prescription_id = p_line_ids
+        return True
     def calculate_bill(self, cr, uid, ids, context=None):
         bill_dict = []
         total_medicine_bill = 0
         total_medicine_return_bill=0
+
+        pres_ids = self.pool.get("indoor.pos.order").search(cr, uid, [('general_admission_id', '=', ids[0]),('state', '!=', 'cancel')], context=None)
         bill_ids = self.pool.get("bill.register").search(cr, uid, [('general_admission_id', '=', ids[0]),
                                                                    ('state', '=', 'confirmed')], context=None)
         bill_obj = self.pool.get('bill.register').browse(cr, uid, bill_ids, context=None)
         hospital_admission_line_obj = self.pool.get('hospital.bill.line')
         hospital_admission_obj = self.browse(cr, uid, ids[0], context=context)
+
+        if len(pres_ids)>0:
+            hospital_admission_obj.prescription_id = pres_ids
+
         previous_adjust_medicine_total=hospital_admission_obj.adjust_medicine_total
         if hospital_admission_obj.prescription_id:
             for item in hospital_admission_obj.prescription_id:
@@ -400,11 +418,18 @@ class leih_hospital_admission(osv.osv):
         for record in self.browse(cr, uid, ids, context=context):
             # import pdb
             # pdb.set_trace()
+            ## check all Prescribtions are confirmed or Not
+
+            for pre_item in record.prescription_id:
+                if pre_item.state == 'draft':
+                    raise osv.except_osv("Prescription", "Please Close all Prescription by Pharmacy.\n Contact With Them")
+
+
             if record.state == 'activated' or record.state == 'released':
                 if record.due > 0:
-                    raise osv.except_osv("Error", "Please Pay the Due Bill")
+                    raise osv.except_osv("Bill DUE", "Please Pay the Due Bill")
                 if not record.release_note:
-                    raise osv.except_osv("Error", "Please give the description about the release note field")
+                    raise osv.except_osv("Release Note", "Please give the description about the release note field")
                 if record.state == 'released' or record.state == 'activated':
                     # self.write(cr, uid, [record.id], {'state': 'released'}, context=context)
                     # self.write(cr, uid, [record.id], {'release_note_date': datetime.now()})
