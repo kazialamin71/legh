@@ -75,14 +75,14 @@ class inventory_product_entry(osv.osv):
             line_ids.append([0, False, {
                 'name': cc_obj.name,
                 'partner_id': cc_obj.partner_id.id,
-                'account_id': 120, ## Advance Cash
+                'account_id': 9097, ## Advance Cash
                 'debit': 0,
                 'credit': cc_obj.total,
             }])
 
 
             j_vals = {'name': '/',
-                      'journal_id': 6,  ## Advance Cash Journal
+                      'journal_id': 11,  ## Advance Cash Journal
                       'date': fields.date.today(),
                       'period_id': period_id,
                       'ref': cc_obj.name,
