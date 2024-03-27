@@ -21,7 +21,7 @@ class collcetion_details(report_sxw.rml_parse):
         participant_ids = []
 
         result = []
-        if self.uid == 1 or self.uid == 7:
+        if self.uid == 1 or self.uid == 7 or self.uid==25:
 
             bill_q = "select sum(amount) as totla_collection, create_uid from legh_money_receipt where bill_id is not Null " \
                      "and state='confirm' and diagonostic_bill=TRUE and (create_date <= '%s') and (create_date >= '%s') group by create_uid"
