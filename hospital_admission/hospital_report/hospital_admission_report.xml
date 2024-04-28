@@ -210,8 +210,9 @@
                                 </div>
                                 <div class="col-xs-7 pull-left">
                             <div align="center" style="mergin-right:15px;">
+                                <t t-set="total" t-value="o.total_without_discount + o.adjust_medicine_total"/>
                                     <strong>Sub Total:</strong>
-                                    <span t-field="o.total_without_discount"/>
+                                    <span t-esc="total"/>
                                 </div>
                             <div align="center" style="mergin-right:15px;">
                                     <strong>Others Discount:</strong>
