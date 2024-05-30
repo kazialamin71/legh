@@ -266,7 +266,8 @@ class leih_hospital_admission(osv.osv):
         hospital_admission_obj.return_medicine_total=total_medicine_return_bill
         hospital_admission_obj.adjust_medicine_total=total_medicine_bill - total_medicine_return_bill
         if previous_adjust_medicine_total!=hospital_admission_obj.adjust_medicine_total:
-            hospital_admission_obj.onchange_medicine()
+            adjust_total=hospital_admission_obj.adjust_medicine_total-previous_adjust_medicine_total
+            hospital_admission_obj.onchange_medicine(adjust_total)
         # hospital_admission_obj.grand_total = hospital_admission_obj.total + total_medicine_bill - total_medicine_return_bill
 
 
@@ -304,13 +305,14 @@ class leih_hospital_admission(osv.osv):
         return bill_ids
 
     @api.onchange('medicine_total','return_medicine_total')
-    def onchange_medicine(self):
+    def onchange_medicine(self,adjusted_amount=None):
         # self.total+=self.medicine_total
         # self.total-=self.return_medicine_total
+        if adjusted_amount:
 
-        self.grand_total=self.grand_total + self.medicine_total - self.return_medicine_total
-        self.total=self.total + self.medicine_total - self.return_medicine_total
-        self.total_without_discount=self.total_without_discount + self.medicine_total - self.return_medicine_total
+            self.grand_total=self.grand_total + adjusted_amount
+        # self.total=self.total + adjusted_amount
+        # self.total_without_discount=self.total_without_discount + adjusted_amount
         # self.total_without_discount+=self.medicine_total
         # self.total_without_discount-=self.return_medicine_total
 
@@ -972,7 +974,7 @@ class test_information(osv.osv):
         # pdb.set_trace()
         return tests
 
-    @api.onchange('product_qty')
+    @api.onchange('product_qty','price')
     def onchange_qty(self):
         self.total_amount = self.price * self.product_qty
 

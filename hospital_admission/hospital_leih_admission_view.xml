@@ -178,11 +178,11 @@
                             <field name="return_medicine_total"/>
                             <field name="adjust_medicine_total"/>
                             <field name="investigation_total"/>
-                            <field name="investigation_paid"/>
                         </group>
                         <group>
                             <field name="grand_total"/>
                             <field name="paid"/>
+                            <field name="investigation_paid"/>
                             <field name="due"/>
                         </group>
                     </group>

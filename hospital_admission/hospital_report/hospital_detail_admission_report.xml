@@ -148,9 +148,13 @@
                                 </t>
                                  <t t-foreach="o.hospital_bill_line_id" t-as="z">
                                  <tr>
+                                                <t t-if="z.product_qty==0">
+                                     <t t-set="qty" t-value="1"/>
+                                     </t>
+
 
                                        <td>  <span t-field="z.item_name"/> </td>
-                                    <td><span t-field="z.product_qty"/></td>
+                                    <td><span t-field="qty"/></td>
                                     <td> <span t-field="z.price"/></td>
                                     <td><span t-field="z.total_amount"/></td>
                                 </tr>
