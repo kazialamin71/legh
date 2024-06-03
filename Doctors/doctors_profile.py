@@ -12,6 +12,7 @@ class doctors_profile(osv.osv):
         'department':fields.char('Department'),
         'designation':fields.char('Designation'),
         'degree':fields.char('Degree'),
+        'institute':fields.char("Institute"),
         'type': fields.selection([('inhouse', 'In house'), ('consoled', 'Consoled'),('prttime','Part Time'),('outsid','Out Side')], string='Type', default='inhouse'),
         'status': fields.selection([('active', 'Active'), ('inactive', 'Inactive')], string='Status', default='active'),
         'others': fields.char("Others"),

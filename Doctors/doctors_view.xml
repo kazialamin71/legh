@@ -16,6 +16,7 @@
                         <field name="department"/>
                         <field name="designation"/>
                         <field name="degree"/>
+                        <field name="institute"/>
                         <field name="commission_rate"/>
                         <field name="ipd_visit"/>
                         <field name="type"/>
@@ -83,6 +84,7 @@
                         <field name="name"/>
                         <field name="department"/>
                         <field name="designation"/>
+                        <field name="institute"/>
                         <field name="commission_rate"/>
                         <field name="type"/>
                         <field name="status"/>

@@ -309,7 +309,6 @@ class leih_hospital_admission(osv.osv):
         # self.total+=self.medicine_total
         # self.total-=self.return_medicine_total
         if adjusted_amount:
-
             self.grand_total=self.grand_total + adjusted_amount
         # self.total=self.total + adjusted_amount
         # self.total_without_discount=self.total_without_discount + adjusted_amount
