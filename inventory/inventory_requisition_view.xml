@@ -30,7 +30,7 @@
                             <field name="inventory_requisition_line_ids" mode="tree">
                                 <tree string="Select Product" editable="bottom">
 
-                                    <field name="product_name" on_change="onchange_product(product_name, context)" domain="[('categ_id','not in',(3,4,5,6,7,8,9,10,11,12))]"/>
+                                    <field name="product_name" on_change="onchange_product(product_name, context)" domain="[('categ_id','not in',(3,4,6,7,8,9,10,11,12))]"/>
                                     <field name="quantity"/>
                                     <field name="available_qty"/>
 

@@ -38,7 +38,7 @@
                                 <tree string="Select Product" editable="bottom">
 
 <!--                                    <field name="product_name" on_change="onchange_product(product_name, context)" domain="[('categ_id', '!=', 3),('categ_id', '!=', 4)]"/>-->
-                                    <field name="product_name" on_change="onchange_product(product_name, context)" domain="[('categ_id','not in',(3,4,5,6,7,8,9,10,11,12))]"/>
+                                    <field name="product_name" on_change="onchange_product(product_name, context)" domain="[('categ_id','not in',(3,4,6,7,8,9,10,11,12))]"/>
                                     <field name="account_id"/>
                                     <field name="quantity" on_change="onchange_quantity(quantity,unit_price, context)"/>
                                      <field name="unit_price" on_change="onchange_unitprice(unit_price,quantity,context)"/>
