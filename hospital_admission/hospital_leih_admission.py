@@ -484,7 +484,7 @@ class leih_hospital_admission(osv.osv):
                         else:
                             dis_name = str(record.discount_remarks) + " - "
                         journal_items.append((0, 0, self.journal_line_formation(debit=record.other_discount, credit=0,
-                                                                                account_id=9071, #9175
+                                                                                account_id=9175, #9175
                                                                                 remarks=dis_name)))
                         total_AR_income -=record.other_discount
 
