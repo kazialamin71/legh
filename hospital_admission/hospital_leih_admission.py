@@ -124,7 +124,7 @@ class leih_hospital_admission(osv.osv):
         # 'cabin_no': fields.char('Cabin`'),
         'received_by': fields.char('Received/Registered By'),
         'clinic_diagnosis': fields.char('Clinical Diagnosis'),
-        'release_note_date': fields.datetime("Release Date", readonly=True),
+        'release_note_date': fields.datetime("Release Date"),
         'release_note': fields.text("Release Note"),
         'release_approved_by': fields.many2one('doctors.profile', "Release Approved By:"),
     }
