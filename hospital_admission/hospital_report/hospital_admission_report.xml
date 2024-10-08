@@ -9,7 +9,7 @@
                             <div class="row" align="center">
                                 <h1 style="text-align: center;"><b>Lions Eye &amp; General Hospital</b></h1>
                                 <p style="text-align: center;"><b>Lions Tower</b> 3/c, Begum Rokeya Sarani, Agargaon, Dhaka-1207</p>
-                                <p style="text-align: center;">Hotline: +8801403555565, 0248121272, E-mail: blf@blfbd.org, www.blfbd.org</p>
+                                <p style="text-align: center;">Helpline: 09617-444888, 0241025734, E-mail: blf@blfbd.org, www.blfbd.org</p>
                             </div>
                         </div>
                         <div class="page" style="font-size: 16px !important;">
@@ -192,16 +192,14 @@
                             <div class="row">
                                 <div class="col-xs-5">
                                     <p style="align:center"><strong>Payment Details</strong></p>
-                                    <t t-foreach="request.env['legh.money.receipt'].search([('admission_id', '=', o.name)])" t-as="obj">
-                                                             <div>
-
-                                                                 <span t-if="obj.p_type=='advance'">Advance: <t t-esc="obj.amount" /></span>
+                                    <t t-foreach="request.env['legh.money.receipt'].search([('general_admission_id', '=', o.name)])" t-as="obj">
+                                                                                                                          <div>
                                                                  <div class="row">
                                                                      <div class="col-xs-5">
-                                                                         <span t-if="obj.p_type=='due_payment'"><t t-esc="obj.date"/></span>
+                                                                         <span><t t-esc="obj.date[8:10] + '-' + obj.date[5:7] + '-' + obj.date[0:4]"/></span>
                                                                      </div>
                                                                      <div class="col-xs-7">
-                                                                 <span t-if="obj.p_type=='due_payment'"> : <t t-esc="obj.amount"/></span>
+                                                                 <span> : <t t-esc="obj.amount"/></span>
                                                                          </div>
                                                                      </div>
                                 </div>
