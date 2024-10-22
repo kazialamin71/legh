@@ -107,6 +107,7 @@ class indoor_pos_order(osv.osv):
 
             if items.qty > items.product_id.qty_available:
                 found_less_qty = True
+                item_name=items.product_id.name
                 break
             move_line.append([0, False, {
                 'product_id': items.product_id.id,
@@ -121,7 +122,7 @@ class indoor_pos_order(osv.osv):
 
         if found_less_qty == True:
             raise osv.except_osv(_('Warning!'),
-                                 _('Stock is not available'))
+                                 _('Stock is not available  -'+item_name))
 
         grn_vals['move_lines'] = move_line
 

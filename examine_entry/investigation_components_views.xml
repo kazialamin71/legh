@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+
+        <record id="investigation_components_view" model="ir.ui.view">
+            <field name="name">investigation.components.view</field>
+            <field name="model">investigation.components</field>
+            <field name="arch" type="xml">
+            <form string="Components Entry">
+                <sheet>
+
+                    <group>
+
+                        <field name="name"/>
+                        <field name="ref_value"/>
+                        <field name="is_heading"/>
+                        <field name="is_bold"/>
+                        <field name="uom"/>
+                    </group>
+                </sheet>
+            </form>
+            </field>
+        </record>
+
+
+
+
+        <record id="investigation_components_action" model="ir.actions.act_window">
+            <field name="name">Investigation Components</field>
+            <field name="res_model">investigation.components</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+        </record>
+
+
+
+
+        <menuitem name="Investigation Components" id="menu_investigation_components" parent="legh_config_menu" action="investigation_components_action" groups="legh.group_configuration_menu_item_entry"/>
+
+
+    </data>
+</openerp>
