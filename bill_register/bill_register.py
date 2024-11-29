@@ -196,6 +196,25 @@ class bill_register(osv.osv):
     #                 raise ValidationError(_('Item should be one per line.'))
     #             exist_item_list.append(line.name.id)
 
+    # def _create_lab(self, cr, uid, ids, context=None):
+    #     stored_obj = self.browse(cr, uid, [ids[0]], context=context)
+    #     already_merged=[]
+    #     child_list = []
+    #
+    #     get_all_departments=[]
+    #     for items in stored_obj.bill_register_line_id:
+    #         if items.name.department.id not in get_all_departments:
+    #             get_all_departments.append(items.name.department.id)
+    #     for items in stored_obj.bill_register_line_id:
+    #
+    #
+    #     import pdb;pdb.set_trace()
+    #
+    #
+    #
+    #     return
+
+
     def bill_confirm(self, cr, uid, ids, context=None):
 
         stored_obj = self.browse(cr, uid, [ids[0]], context=context)

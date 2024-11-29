@@ -27,6 +27,7 @@ membership products (schemes).
 
         'Group/diagnosisgroup_view.xml',
         'examine_entry/examinationentry_view.xml',
+        'examine_entry/investigation_components_views.xml',
         'bill_register/bill_register_view.xml',
         'sample/sticker_view.xml',
         'examine_entry/sample_type_view.xml',

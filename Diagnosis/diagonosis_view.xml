@@ -14,16 +14,13 @@
                 </header>
 
                 <sheet>
-
                     <group>
                         <field name="patient_id"/>
                         <field name="present_date"/>
                         <field name="payment"/>
                         <field name="gender"/>
-
                         <field name="first_name"/>
                         <field name="last_name"/>
-
                         <field name="father__name"/>
                         <field name="mother_name"/>
                         <field name="age"/>
@@ -49,18 +46,13 @@
                                 <group name="onea" groups="base.group_user">
                                     <field name="phone"/>
                                     <field name="nid"/>
-
                                 </group>
                                 <group name="twoa">
                                     <field name="email"/>
-
-
                                 </group>
-
                             </group>
                         </page>
                     </notebook>
-
                 </sheet>
             </form>
             </field>
@@ -87,9 +79,6 @@
                 <field name="phone"/>
                 <field name="nid"/>
                 <field name="gender"/>
-
-
-
             </tree>
             </field>
         </record>

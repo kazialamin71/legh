@@ -16,6 +16,7 @@
                         <field name="is_heading"/>
                         <field name="is_bold"/>
                         <field name="uom"/>
+                        <field name="examination_id"/>
                     </group>
                 </sheet>
             </form>

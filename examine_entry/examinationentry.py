@@ -19,17 +19,20 @@ class examination_entry(osv.osv):
         # 'group':fields.many2one('diagnosis.group',"Group"),
         'department':fields.many2one("diagnosis.department",'Department'),
         'rate':fields.integer("Rate"),
+        'tube_color':fields.selection([('red','Red'),('lavendar','Lavender'),('blue','Blue')]),
         'required_time':fields.integer("Required time(Days)"),
         'sample_req': fields.boolean("Sample Required"),
         'individual': fields.boolean("Individual"),
         'manual': fields.boolean("Manual"),
+        ##for components
+        'components_ids':fields.one2many("investigation.components","examination_id","Components"),
         'merge': fields.boolean("Merge"),
         'dependency': fields.boolean("Dependency"),
         'lab_not_required': fields.boolean("No Lab Required"),
         'indoor': fields.boolean("Indoor Item"),
         'sample_type':fields.many2one('sample.type','Sample Type'),
         'accounts_id':fields.many2one('account.account',"Account ID"),
-        'examination_entry_line':fields.one2many('examination.entry.line','examinationentry_id','Parameters'),
+        # 'examination_entry_line':fields.one2many('examination.entry.line','examinationentry_id','Parameters'),
         'merge_ids':fields.many2many('examination.merge.line','merge_item_rel','item_id','merge_id',string="Merge"),
 
     }

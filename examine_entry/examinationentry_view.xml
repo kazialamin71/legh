@@ -15,6 +15,7 @@
 <!--                        <field name="group" on_change="onchange_group(group, context)"/>-->
                         <field name="department"/>
                         <field name="rate"/>
+                        <field name="tube_color"/>
                         <field name="required_time"/>
                         <field name="sample_req"/>
                         <field name="individual"/>
@@ -31,18 +32,7 @@
                 <group string="Hehehe" colspan="4" attrs="{'invisible':[('manual', '=', True)]}">
                     <notebook>
                         <page string="Referance Value">
-                            <field name="examination_entry_line" mode="tree">
-                                <tree string="Select Referance Value" editable="top">
-
-                                    <field name="name"/>
-                                    <field name="reference_value"/>
-                                    <field name="bold"/>
-                                    <field name="group_by"/>
-                                    <field name="others"/>
-
-
-                                </tree>
-                            </field>
+                            <field name="components_ids"/>
                         </page>
 
 
