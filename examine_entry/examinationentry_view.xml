@@ -29,10 +29,22 @@
 
 
                     </group>
-                <group string="Hehehe" colspan="4" attrs="{'invisible':[('manual', '=', True)]}">
+                <group string="Componenets" colspan="4" attrs="{'invisible':[('manual', '=', True)]}">
                     <notebook>
-                        <page string="Referance Value">
-                            <field name="components_ids"/>
+                        <page string="Components Value">
+                            <field name="examination_entry_line" mode="tree">
+                                    <tree string="Components Value" editable="bottom">
+
+                                    <field name="sequence"/>
+                                    <field name="name"/>
+                                    <field name="ref_value"/>
+                                    <field name="is_heading"/>
+                                    <field name="is_bold"/>
+                                    <field name="uom"/>
+
+                                </tree>
+                            </field>
+
                         </page>
 
 

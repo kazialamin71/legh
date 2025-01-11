@@ -5,6 +5,7 @@ from openerp import SUPERUSER_ID, api
 from openerp.tools.translate import _
 from datetime import date, time, timedelta, datetime
 from openerp.tools.amount_to_text_en import amount_to_text
+from collections import defaultdict
 
 
 class bill_register(osv.osv):
@@ -215,6 +216,28 @@ class bill_register(osv.osv):
     #     return
 
 
+    def merge_tests(self,bill_register):
+        merged_tests = {}
+        for test in bill_register.bill_register_line_id:
+            key = (test.name.department.id, test.name.tube_color)
+
+            if merged_tests.has_key(key):  # Python 2 compatible dictionary check
+                merged_tests[key].append(test)
+            else:
+                merged_tests[key] = [test]
+        all_test = {}
+        single = []
+
+        for key, tests in merged_tests.iteritems():  # Python 2 compatible iteration
+            if len(tests) > 1:
+                all_test["merge"]=tests
+            else:
+                all_test["single"]=tests
+
+        return all_test
+
+
+
     def bill_confirm(self, cr, uid, ids, context=None):
 
         stored_obj = self.browse(cr, uid, [ids[0]], context=context)
@@ -238,82 +261,54 @@ class bill_register(osv.osv):
 
             stored = int(ids[0])
 
-            ### check and merged with Lab report
-
-            get_all_tested_ids = []
+            # Grouping bill register lines by department and tube color
+            grouped_tests = defaultdict(list)
 
             for items in stored_obj.bill_register_line_id:
-                get_all_tested_ids.append(items.name.id)
+                key = (items.name.department.id, items.name.tube_color)
+                grouped_tests[key].append(items)
 
-            ### Ends here merged Section
-
-            already_merged = []
-            custom_name = ''
-            for items in stored_obj.bill_register_line_id:
+            # Prepare sticker lines based on the grouped tests
+            for key, tests in grouped_tests.items():
                 custom_name = ''
                 state = 'sample'
-                ### Create LAB/SAMPLE From Here
-                if items.name.sample_req == False or items.name.sample_req == None:
-                    state = 'lab'
+                child_list = []
 
-                if items.name.manual != True or items.name.lab_not_required != True:
+                value = {
+                    'bill_register_id': int(stored),
+                    'test_id': int(tests[0].name.id),  # Use the first test item for test_id
+                    'department_id': key[0],  # Directly from the grouping key
+                    'state': state
+                }
 
-                    custom_name = custom_name + ' ' + str(items.name.name)
-                    if items.name.id not in already_merged:
+                for items in tests:
+                    if not items.name.manual or not items.name.lab_not_required:
+                        custom_name += ' ' + str(items.name.name)
 
-                        child_list = []
-                        value = {
-                            'bill_register_id': int(stored),
-                            'test_id': int(items.name.id),
-                            'department_id': items.name.department.name,
-                            'state': state
-                        }
-
+                        # Populate examination lines
                         for test_item in items.name.examination_entry_line:
-                            tmp_dict = {}
-                            tmp_dict['test_name'] = test_item.name
-                            tmp_dict['ref_value'] = test_item.reference_value
-                            tmp_dict['bold'] = test_item.bold
-                            tmp_dict['group_by'] = test_item.group_by
+                            tmp_dict = {
+                                'test_name': test_item.name,
+                                'ref_value': test_item.ref_value,
+                                'bold': test_item.is_bold
+                            }
                             child_list.append([0, False, tmp_dict])
 
-                        if items.name.merge == True:
+                # Create single sticker per group
+                value['sticker_line_id'] = child_list
+                value['full_name'] = custom_name
 
-                            for entry in items.name.merge_ids:
-                                test_id = entry.examinationentry_id.id
+                sample_obj = self.pool.get('diagnosis.sticker')
+                sample_id = sample_obj.create(cr, uid, value, context=context)
 
-                                if test_id in get_all_tested_ids:
-                                    custom_name = custom_name + ', ' + str(entry.examinationentry_id.name)
-                                    already_merged.append(test_id)
-                                    for m_test_line in entry.examinationentry_id.examination_entry_line:
-                                        tmp_dict = {}
-                                        tmp_dict['test_name'] = m_test_line.name
-                                        tmp_dict['ref_value'] = m_test_line.reference_value
-                                        tmp_dict['bold'] = m_test_line.bold
-                                        tmp_dict['group_by'] = m_test_line.group_by
-                                        child_list.append([0, False, tmp_dict])
+                # Ends Here LAB/SAMPLE From Here
 
-                        value['sticker_line_id'] = child_list
+                if sample_id is not None:
+                    sample_text = 'Lab-0' + str(sample_id)
+                    cr.execute('update diagnosis_sticker set name=%s where id=%s', (sample_text, sample_id))
+                    cr.commit()
 
-                        value['full_name'] = custom_name
-
-                        sample_obj = self.pool.get('diagnosis.sticker')
-                        sample_id = sample_obj.create(cr, uid, value, context=context)
-
-                    ### Ends Here LAB/SAMPLE From Here
-
-                    if sample_id is not None:
-                        sample_text = 'Lab-0' + str(sample_id)
-                        cr.execute('update diagnosis_sticker set name=%s where id=%s', (sample_text, sample_id))
-                        cr.commit()
-
-            # import pdb
-            # pdb.set_trace()
-
-            has_been_paid = 0
-
-            ### Journal ENtry will be here
-
+            # Journal Entry will be here
             if stored_obj:
                 line_ids = []
 

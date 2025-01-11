@@ -66,7 +66,8 @@
             </field>
         </record>
 
-<record model="ir.ui.view" id="sticker_graph_view">
+
+        <record model="ir.ui.view" id="sticker_graph_view">
                 <field name="name">LAB Graph</field>
                 <field name="model">diagnosis.sticker</field>
                 <field name="arch" type="xml">
@@ -93,19 +94,13 @@
             <field name="name">legh</field>
             <field name="model">diagnosis.sticker</field>
             <field name="arch" type="xml">
-
-            <tree string="Alu List">
-                        <field name="name"/>
+                <tree string="Alu List">
+                    <field name="name"/>
                     <field name="full_name"/>
-                        <field name="bill_register_id"/>
-                        <field name="department_id"/>
-                        <field name="state">[('state','=','lab')]</field>
-
-
-
-
-
-            </tree>
+                    <field name="bill_register_id"/>
+                    <field name="department_id"/>
+                    <field name="state">[('state','=','lab')]</field>
+                </tree>
             </field>
         </record>
 

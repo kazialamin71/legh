@@ -19,20 +19,19 @@ class examination_entry(osv.osv):
         # 'group':fields.many2one('diagnosis.group',"Group"),
         'department':fields.many2one("diagnosis.department",'Department'),
         'rate':fields.integer("Rate"),
-        'tube_color':fields.selection([('red','Red'),('lavendar','Lavender'),('blue','Blue')]),
+        'tube_color':fields.selection([('red','Red'),('lavendar','Lavender'),('blue','Blue')],string="Tube Color"),
         'required_time':fields.integer("Required time(Days)"),
         'sample_req': fields.boolean("Sample Required"),
         'individual': fields.boolean("Individual"),
         'manual': fields.boolean("Manual"),
         ##for components
-        'components_ids':fields.one2many("investigation.components","examination_id","Components"),
         'merge': fields.boolean("Merge"),
         'dependency': fields.boolean("Dependency"),
         'lab_not_required': fields.boolean("No Lab Required"),
         'indoor': fields.boolean("Indoor Item"),
         'sample_type':fields.many2one('sample.type','Sample Type'),
         'accounts_id':fields.many2one('account.account',"Account ID"),
-        # 'examination_entry_line':fields.one2many('examination.entry.line','examinationentry_id','Parameters'),
+        'examination_entry_line':fields.one2many('examination.entry.line','examination_id','Parameters'),
         'merge_ids':fields.many2many('examination.merge.line','merge_item_rel','item_id','merge_id',string="Merge"),
 
     }
@@ -87,13 +86,27 @@ class examination_entry(osv.osv):
 class testentryparamaerte(osv.osv):
     _name = 'examination.entry.line'
     _columns = {
+        'name': fields.char("Name"),
+        'sequence':fields.integer("Sequence"),
+        'ref_value': fields.char(string="Ref. Value", store=False),
+        'is_heading': fields.boolean(string="Is Heading"),
+        'is_bold': fields.boolean(string="Is Bold"),
+        'uom': fields.selection([
+            ('ml', 'Milliliters (mL)'),
+            ('l', 'Liters (L)'),
+            ('g', 'Grams (g)'),
+            ('g_dl', 'Grams per Deciliter (g/dL)'),
+            ('g_l', 'Grams per Liter (g/L)'),
+            ('iu_l', 'International Units per Liter (IU/L)'),
+            ('iu_ml', 'International Units per Milliliter (IU/mL)'),
+            ('mcg', 'Micrograms (mcg)'),
+            ('mcg_dl', 'Micrograms per Deciliter (mcg/dL)')
+        ], string='Unit of Measurement'),
 
-        'name': fields.char("Name",ondelete='cascade'),
-        'examinationentry_id': fields.many2one('examination.entry', "Test Entry"),
-        'reference_value': fields.char("Reference Value"),
-        'bold':fields.boolean('Bold'),
-        'group_by':fields.boolean("Group By"),
-        'others': fields.char("Others")
+        'examination_id': fields.many2one("examination.entry", "Examination Id"),
+        'new_field1':fields.char(string="New Field 1"),
+        'new_field2':fields.char(string="New Field 2"),
+        'new_field3':fields.char(string="New Field 3"),
     }
 
 

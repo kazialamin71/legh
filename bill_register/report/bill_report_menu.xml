@@ -13,6 +13,17 @@
 
         />
 
+                <report
+                id="action_print_sticker"
+                model="bill.register"
+                string="Print Sticker"
+                report_type="qweb-pdf"
+                name="legh.report_print_sticker"
+                file="legh.report_print_sticker"
+                menu="True"
+
+        />
+
 
 
        </data>

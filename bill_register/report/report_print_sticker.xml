@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_print_sticker">
+            <t t-call="report.html_container">
+                <t t-call="report.external_layout">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
+                            <div class="row">
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3"></div>
+                                <div class="col-xs-3">
+                                    Date:
+                                    <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                                </div>
+                            </div>
+
+                            <div class="oe_structure"/>
+
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+
+                                    <span>Test Name #
+                                        <span t-field="o.name"/>
+                                    </span>
+                                    <span>Department #
+                                        <span t-field="o.department"/>
+                                    </span>
+                                    <br/>
+                                    <span>Rate #
+                                        <span t-field="o.rate"/>
+                                    </span>
+                                    <br/>
+                                    <span>Required Time #
+                                        <span t-field="o.required_time"/>
+                                    </span>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+
+                                    <span>Sample Required #
+                                        <span t-field="o.sample_req"/>
+                                    </span>
+                                    <br/>
+                                    <span>Individual #
+                                        <span t-field="o.individual"/>
+                                    </span>
+                                    <br/>
+                                    <span>Manual #
+                                        <span t-field="o.manual"/>
+                                    </span>
+                                    <br/>
+                                    <span>Merge #
+                                        <span t-field="o.merge"/>
+                                    </span>
+                                    <br/>
+                                    <span>Dependency #
+                                        <span t-field="o.dependency"/>
+                                    </span>
+                                    <br/>
+                                </div>
+
+                                <div class="col-xs-4">
+                                    <br/>
+                                    <br/>
+                                    <br/>
+                                    <br/>
+
+                                    <span>Sample Type #
+                                        <span t-field="o.sample_type.name"/>
+                                    </span>
+                                    <br/>
+
+                                </div>
+                            </div>
+
+                            <hr/>
+                            <br/>
+                            <br/>
+
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Name</th>
+                                        <th>Reference Value</th>
+                                        <th>Others</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody class="invoice_tbody">
+                                    <t t-set="i" t-value="1" />
+                                    <t t-foreach="o.examination_entry_line" t-as="z">
+                                        <tr>
+                                            <td>
+                                                <span t-esc="i"/>
+                                                <t t-set="i" t-value="i+1"/>
+                                            </td>
+                                            <td>
+                                                <span t-field="z.name"/>
+
+                                            </td>
+
+                                            <td>
+                                                <span t-field="z.reference_value"/>
+
+                                            </td>
+
+                                            <td>
+                                                <span t-field="z.others"/>
+
+                                            </td>
+
+                                        </tr>
+
+                                    </t>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

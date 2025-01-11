@@ -144,7 +144,7 @@ class sample(osv.osv):
         'full_name': fields.char('Name'),
         'bill_register_id':fields.many2one('bill.register','Bill register'),
         'admission_id':fields.many2one('legh.admission','Admission ID'),
-        'department_id':fields.char('Department'),
+        'department_id':fields.many2one('diagnosis.department','Department'),
         'doctor_id':fields.many2one('doctors.profile','Checked By'),
         'test_id':fields.many2one('examination.entry','Test Name'),
         'sticker_line_id':fields.one2many('diagnosis.sticker.line','sticker_id','Record Sample'),
