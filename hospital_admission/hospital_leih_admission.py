@@ -452,6 +452,7 @@ class leih_hospital_admission(osv.osv):
                             income_account_id = itm.name.accounts_id.id
                         except:
                             income_account_id = 9188  ## Doctor Consultation Fees
+                    if consult_amnt:
 
                         journal_items.append((0, 0, self.journal_line_formation(debit=0, credit=consult_amnt,
                                                                                 account_id=income_account_id,
@@ -470,6 +471,7 @@ class leih_hospital_admission(osv.osv):
                             journal_items.append((0, 0, self.journal_line_formation(debit=0,credit=credit_amount,
                                                                                     account_id=income_account_id,
                                                                                     remarks=admission_name)))
+
 
                     if record.adjust_medicine_total >0:
                         journal_items.append((0, 0, self.journal_line_formation(debit=0, credit=record.adjust_medicine_total,
@@ -503,12 +505,6 @@ class leih_hospital_admission(osv.osv):
                             self.write(cr, uid, [record.id], {'state': 'released','x_income_journal':True}, context=context)
                         else:
                             raise osv.except_osv("Contact IT", "Please Contact With Kazi/Mufti")
-
-
-
-
-
-
                     #### Ends Here
 
 
