@@ -14,7 +14,7 @@ class examination_entry(osv.osv):
             return {'value': {'boolean': False}}
 
     _columns = {
-
+        'code': fields.char("Item Code"),
         'name': fields.char("Item Name",required=True),
         # 'group':fields.many2one('diagnosis.group',"Group"),
         'department':fields.many2one("diagnosis.department",'Department'),
@@ -54,35 +54,11 @@ class examination_entry(osv.osv):
             sample_type=vals.get('sample_type')
         if vals.get('examination_entry_line'):
             idss= vals['examination_entry_line']
-
-        # import pdb
-        # pdb.set_trace()
-        # if sample==True:
-        #     if sample_type:
-        #         return super(examination_entry, self).create(cr, uid, vals, context=context)
-        #     else:
-        #         raise osv.except_osv(_('Warning!'), _('Sample type must defined.'))
-        #
-        #
-        #
-        # # if vals['manual']==True and idss or sample:
-        # #     raise osv.except_osv(_('Warning!'), _('test name shouldnt exist.'))
-        # # elif vals['manual']==False and not idss:
-        # #     for names in examination_entry_line
-        # else:
         return super(examination_entry, self).create(cr, uid, vals, context=context)
 
 
         # import pdb
         # pdb.set_trace()
-
-
-
-
-
-
-
-
 class testentryparamaerte(osv.osv):
     _name = 'examination.entry.line'
     _columns = {
@@ -91,18 +67,7 @@ class testentryparamaerte(osv.osv):
         'ref_value': fields.char(string="Ref. Value", store=False),
         'is_heading': fields.boolean(string="Is Heading"),
         'is_bold': fields.boolean(string="Is Bold"),
-        'uom': fields.selection([
-            ('ml', 'Milliliters (mL)'),
-            ('l', 'Liters (L)'),
-            ('g', 'Grams (g)'),
-            ('g_dl', 'Grams per Deciliter (g/dL)'),
-            ('g_l', 'Grams per Liter (g/L)'),
-            ('iu_l', 'International Units per Liter (IU/L)'),
-            ('iu_ml', 'International Units per Milliliter (IU/mL)'),
-            ('mcg', 'Micrograms (mcg)'),
-            ('mcg_dl', 'Micrograms per Deciliter (mcg/dL)')
-        ], string='Unit of Measurement'),
-
+        'uom': fields.char(string='Unit of Measurement'),
         'examination_id': fields.many2one("examination.entry", "Examination Id"),
         'new_field1':fields.char(string="New Field 1"),
         'new_field2':fields.char(string="New Field 2"),

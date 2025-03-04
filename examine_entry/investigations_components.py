@@ -17,17 +17,7 @@ class InvestigationComponents(osv.osv):
         'ref_value': fields.char(string="Ref. Value", store=False),
         'is_heading':fields.boolean(string="Is Heading"),
         'is_bold': fields.boolean(string="Is Bold"),
-        'uom' : fields.selection([
-        ('ml', 'Milliliters (mL)'),
-        ('l', 'Liters (L)'),
-        ('g', 'Grams (g)'),
-        ('g_dl', 'Grams per Deciliter (g/dL)'),
-        ('g_l', 'Grams per Liter (g/L)'),
-        ('iu_l', 'International Units per Liter (IU/L)'),
-        ('iu_ml', 'International Units per Milliliter (IU/mL)'),
-        ('mcg', 'Micrograms (mcg)'),
-        ('mcg_dl', 'Micrograms per Deciliter (mcg/dL)')
-    ], string='Unit of Measurement', required=True),
+        'uom' : fields.char(string='Unit of Measurement'),
         'examination_id':fields.many2one("examination.entry","Examination Id")
 
 
