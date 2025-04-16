@@ -54,36 +54,17 @@ class patient_info(osv.osv):
 
         return result
 
-    @api.multi
-    @api.constrains('mobile')
-    def _check_mobile(self):
-
-        for rec in self:
-
-            if rec.mobile and len(rec.mobile) != 11:
-
-                raise ValidationError(_("Mobile Number Should be 11 digit"))
-
-        return True
-
-
-
-
-
-        # for item in test_history:
-        #     abcd.append(item.name)
-
-        # bill_obj=self.pool.get('bill.register').browse(self,uid,ids,context)
-        # for item in bill_obj:
-        #     if item.testid:
-        #         tes_id.append(item.testid)
-        # tes_obj=self.pool.get('abc.model').browse(self,uid,tes_id,context)
-        # biil_history={}
-        # for record in bill_obj.bill_register_line_id:
-        #     price=record.price
-        #     biil_history[record.id]=price
-        # return biil_history
-
+    # @api.multi
+    # @api.constrains('mobile')
+    # def _check_mobile(self):
+    #
+    #     for rec in self:
+    #
+    #         if rec.mobile and len(rec.mobile) != 11:
+    #
+    #             raise ValidationError(_("Mobile Number Should be 11 digit"))
+    #
+    #     return True
 
 
     _columns = {
@@ -99,48 +80,30 @@ class patient_info(osv.osv):
         'state': fields.selection(
             [('created', 'Created'), ('notcreated', 'Notcreated')],
             'Status', default='notcreated', readonly=True),
-        # 'is_patient':fields.function(_ispatient,string="Is Patient",type='boolean')
+        'eye_patient_id':fields.integer('Eye Patient ID')
     }
     _sql_constraints = [
         ('code_mobile_uniq', 'Check(1=1)', 'The mobile number already exist !')
     ]
 
     def create(self, cr, uid, vals, context=None):
-        # mobile_number = None
-        # mobile_number = vals.get('mobile')
-        # if len(mobile_number) <11:
-        #     raise osv.except_osv(_('Error!'), _('Mobile number should minimum 11 digit'))
-        # if len(mobile_number)>11:
-        #     x=mobile_number.split()
-        #     number=x[0]
-        #     if((number[0]=='0' or number[1]=='0' or number[2]=='0' or number[3]=='0') and len(number)>11):
-        #         number=number[:-1]
-        #     back = len(number) - 11
-        #     if len(number)>11:
-        #         listnumber=[]
-        #         for item in range(len(number)-1,back-1,-1):
-        #             singlenumber=number[item]
-        #             listnumber.append(singlenumber)
-        #         reverse_number=''.join(listnumber)
-        #         final_number=reverse_number[::-1]
-        #         vals['mobile'] = final_number
-        #     else:
-        #         vals['mobile']=number
-
-            # import pdb
-            # pdb.set_trace()
-
-
-
-
 
         stored_id=super(patient_info, self).create(cr, uid, vals, context=context)
         if stored_id is not None:
-            name_text = 'P-0' + str(stored_id)
-            cr.execute('update patient_info set patient_id=%s where id=%s', (name_text, stored_id))
-            cr.execute('update patient_info set state=%s where id=%s', ('created', stored_id))
-            cr.commit()
+            if vals.get('eye_patient_id'):
+                eye_patient_id = vals.get('eye_patient_id')
+                name_text = 'P-0' + str(eye_patient_id)
+                # import pdb;pdb.set_trace()
+                cr.execute('update patient_info set patient_id=%s where id=%s', (name_text, stored_id))
+                cr.execute('update patient_info set state=%s where id=%s', ('created', stored_id))
+                cr.commit()
+            else:
+                name_text = 'P-0' + str(stored_id)
+                cr.execute('update patient_info set patient_id=%s where id=%s', (name_text, stored_id))
+                cr.execute('update patient_info set state=%s where id=%s', ('created', stored_id))
+                cr.commit()
 
+        # import pdb;pdb.set_trace()
         return stored_id
 
     def write(self, cr, uid, ids, vals, context=None):

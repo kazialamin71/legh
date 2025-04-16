@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+           <template id="external_layout_pathology">
+    <t t-call="report.external_layout">
+        <t t-set="header" t-value="'legh.external_layout_header_inherit_pathology'"/>
+        <t t-set="footer" t-value="'legh.external_layout_footer_inherit_pathology'"/>
+        <t t-raw="0"/>
+    </t>
+</template>
+
+        <template id="external_layout_header_inherit_pathology" inherit_id="report.external_layout_header">
+            <xpath expr="//div[@class='header']" position="replace">
+                <div class="header">
+                    <div style="align:center">
+
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+                <template id="external_layout_footer_inherit_pathology" inherit_id="report.external_layout_footer">
+            <xpath expr="//div[@class='footer']" position="replace">
+                <div class="footer">
+                    <table style="width: 100%;">
+                                <tr>
+                                    <td>
+                                        <h5>Prepared By: _ _ _ _ _ _ _ _ </h5>
+                                        <strong><t t-esc="user.name"/></strong>
+                                        <h5>Medical Technologist</h5>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <h5>_ _ _ _ _ _ _ _ _ _ _ _ </h5>
+                                        <h5>Dr. Shamim Ara Keya</h5>
+                                        <h5>MBBS.M Phil(Pathology)</h5>
+                                        <h5>Consultant Pathology</h5>
+                                    </td>
+                                </tr>
+                            </table>
+
+                </div>
+            </xpath>
+        </template>
+    </data>
+</openerp>

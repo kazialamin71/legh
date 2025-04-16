@@ -33,6 +33,7 @@ class examination_entry(osv.osv):
         'accounts_id':fields.many2one('account.account',"Account ID"),
         'examination_entry_line':fields.one2many('examination.entry.line','examination_id','Parameters'),
         'merge_ids':fields.many2many('examination.merge.line','merge_item_rel','item_id','merge_id',string="Merge"),
+        'template_id' :fields.many2one('ir.actions.report.xml', string='Template')
 
     }
     def onchange_group(self,cr,uid,ids,group,context=None):

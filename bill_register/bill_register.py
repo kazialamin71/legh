@@ -7,6 +7,9 @@ from datetime import date, time, timedelta, datetime
 from openerp.tools.amount_to_text_en import amount_to_text
 from collections import defaultdict
 
+from openerp.osv import fields, orm
+import xmlrpclib
+
 
 class bill_register(osv.osv):
     _name = "bill.register"
@@ -66,6 +69,7 @@ class bill_register(osv.osv):
         # 'patient_id': fields.char("Patient ID"),
         'name': fields.char("Name"),
         'mobile': fields.char(string="Mobile", store=False),
+        'eye_patient_id': fields.char(string="Eye Patient ID"),
         'patient_id': fields.char(related='patient_name.patient_id', string="Patient Id", readonly=True),
         'patient_name': fields.many2one('patient.info', "Patient Name", required=True),
         'address': fields.char("Address", store=False),
@@ -110,6 +114,60 @@ class bill_register(osv.osv):
         'diagonostic_bill': False,
         'user_id': lambda obj, cr, uid, context: uid,
     }
+
+    def check_patient_exist(self,eye_patient_id):
+        patient_obj=self.env['patient.info'].search([('patient_id', '=', eye_patient_id)])
+        return patient_obj
+
+
+    @api.onchange("eye_patient_id")
+    def onchange_eye_patient_id(self):
+        result = {'value': {}}
+
+        if self.eye_patient_id:
+            patient_object=self.check_patient_exist(self.eye_patient_id)
+            if patient_object:
+                self.patient_name=patient_object.id
+            else:
+
+                try:
+                    # Eye Hospital Odoo instance details
+                    url = 'http://192.168.2.15:8069'
+                    db = 'LEIH'
+                    username = 'admin'  # Use real username
+                    password = 'leih_blf*admin2022'  # Use real password
+
+                    common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(url))
+                    uid_remote = common.authenticate(db, username, password, {})
+                    if uid_remote:
+                        models = xmlrpclib.ServerProxy('{}/xmlrpc/2/object'.format(url))
+                        domain = [('patient_id', '=', self.eye_patient_id)]
+                        fields_to_read = ['name', 'age', 'sex', 'mobile', 'address']
+
+                        records = models.execute_kw(db, uid_remote, password,
+                                                    'patient.info', 'search_read',
+                                                    [domain], {'fields': fields_to_read})
+                        if records:
+                            patient = records[0]
+                            result['value'] = {
+                                'name': patient.get('name', ''),
+                                'age': patient.get('age', ''),
+                                'sex': patient.get('sex', ''),
+                                'mobile': patient.get('mobile', ''),
+                                'address': patient.get('address', ""),
+                                'eye_patient_id': patient.get('id', ""),
+                            }
+                            if result:
+                                vals = result.get('value', {})
+                                if vals and vals.get('name'):
+                                    pid = self.env['patient.info'].create(vals)
+                                    self.patient_name = pid
+
+                except Exception as e:
+                    # Optionally log or handle error
+                    pass
+
+        return result
 
     # broker name filter based on doctor name
     # @api.onchange('ref_doctors')

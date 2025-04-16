@@ -26,12 +26,12 @@ class sample(osv.osv):
 
         for id in ids:
             report_obj = self.browse(cr, uid, id, context=context)
-            # if report_obj.state == 'done':
-            #     raise osv.except_osv(_('Warning!'),
-            #                          _('Already it is Completed.'))
             cr.execute('update diagnosis_sticker set state=%s where id=%s', (status, id))
             cr.commit()
-        return self.pool['report'].get_action(cr, uid, ids, 'legh.report_detail', context=context)
+
+        report_name=report_obj.test_id.template_id.report_name or 'legh.report_detail'
+
+        return self.pool['report'].get_action(cr, uid, ids, report_name, context=context)
     def haematology_report(self,cr,uid,ids,context=None):
         status = 'done'
         for id in ids:
@@ -152,6 +152,9 @@ class sample(osv.osv):
             [('cancel', 'Cancelled'), ('sample', 'Sample'), ('lab', 'Lab'),('done', 'Done'),('delivered','Delivered'),('indoor','Indoor')],
             'Status', required=True, readonly=True, copy=False,
             ),
+        'antibiogram':fields.boolean("Antibiogram"),
+        'note':fields.text('Note')
+
     }
 
 

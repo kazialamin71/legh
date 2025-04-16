@@ -5,12 +5,11 @@
         <report
                 id="action_report_detail"
                 model="diagnosis.sticker"
-                string="Print Report"
+                string="Print Pathology Common Report"
                 report_type="qweb-pdf"
                 name="legh.report_detail"
                 file="legh.report_detail"
                 menu="False"
-
         />
 
 
@@ -22,7 +21,6 @@
                 name="legh.report_haematology"
                 file="legh.report_haematology"
                 menu="False"
-
         />
 
         <report
@@ -33,7 +31,6 @@
                 name="legh.report_biochemistry"
                 file="legh.report_biochemistry"
                 menu="False"
-
         />
 
         <report
@@ -44,7 +41,6 @@
                 name="legh.report_microbiology"
                 file="legh.report_microbiology"
                 menu="False"
-
         />
 
         <report
