@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_cytopathology">
+            <t t-call="report.html_container">
+                <t t-call="legh.external_layout_pathology">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-md-4 pull-left">
+                                <h2>
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>
+                                </h2>
+                            </div>
+                            <div class="col-md-8 pull-center">
+                                <h3>
+                                    DEPARTMENT OF <span t-field="o.department_id.name" style="text-transform: uppercase;"/>
+                                </h3>
+                            </div>
+                        </div>
+
+
+                        <h3 style="text-align: center;"><span t-field="o.department_id.name"/></h3>
+
+
+
+
+     <t t-set="shown" t-value="[]" />
+
+<!-- Define ordered test names and show only once -->
+<t t-foreach="['Specimen', 'No of Slide', 'Preparation Type', 'Specimen Type', 'Fixation/Preservation', 'Specimen Adequacy', 'Description', 'Transformation Zone', 'Epithelial Cells', 'Metaplastic Squamous Cells', 'Other', 'Non neoplastic findings', 'Organisms', 'Epithelial cell abnormalities', 'Diagnosis']" t-as="test_name">
+    <t t-foreach="o.sticker_line_id" t-as="z">
+        <t t-if="z.test_name == test_name and test_name not in shown">
+            <p>
+                <strong><t t-esc="test_name"/>:</strong>
+                <t t-if="test_name==Specimen">
+                    Pap's Smear
+                        </t>
+                <t t-if="test_name==Specimen Type">
+               Conventional Pap's Smear
+                        </t>
+                <t t-else="">
+                <span t-esc="z.result"/>
+                </t>
+            </p>
+            <t t-set="shown" t-value="shown + [test_name]" />
+            <t t-break="1" />
+        </t>
+    </t>
+
+    <!-- Optional: Insert static fallback for test_name -->
+</t>
+                        <t t-if="o.advice"><p><strong>Advice:</strong> <span t-field="o.advice"/></p></t>
+                    </div>
+                </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

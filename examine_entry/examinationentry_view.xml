@@ -42,6 +42,7 @@
                                     <field name="is_heading"/>
                                     <field name="is_bold"/>
                                     <field name="uom"/>
+                                    <field name="group"/>
 
                                 </tree>
                             </field>

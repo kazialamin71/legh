@@ -2,17 +2,16 @@
 <openerp>
     <data>
 
-        <record id="minutes_meeting_search_view" model="ir.ui.view">
+        <record id="lab_search_view" model="ir.ui.view">
             <field name="name">lab search view</field>
             <field name="model">diagnosis.sticker</field>
             <field eval="10" name="priority"/>
             <field name="arch" type="xml">
-                <search string="MoM">
+                <search string="Lab">
                     <filter icon="terp-mail-message-new" string="Action Items" name="my_requests_filter" domain="[('state','!=','lab')]"/>
+                    <field name="bill_register_id"/>
                     <field name="state"/>
                     <field name="name"/>
-                        <filter name="fil_by_disability" string="lab fileter" domain="[('state','=','lab')]"
-						help="Show all Physically Disabled Students" />
                 </search>
             </field>
         </record>

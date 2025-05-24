@@ -3,118 +3,155 @@
     <data>
         <template id="report_stool">
             <t t-call="report.html_container">
-                <t t-call="report.external_layout">
+                <t t-call="legh.external_layout_pathology">
                     <t t-foreach="docs" t-as="o">
                         <div class="page">
                             <div class="row">
-                                <div class="col-xs-3"></div>
-                                <div class="col-xs-3"></div>
-                                <div class="col-xs-3"></div>
-                                <div class="col-xs-3">
-                                    Date: <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')"/>
+                                <div class="col-md-4 pull-left">
+                                    <h2>
+                                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>
+                                    </h2>
+                                </div>
+                                <div class="col-md-8 pull-center">
+                                    <h3>
+                                        DEPARTMENT OF <span t-field="o.department_id.name"/>
+                                    </h3>
                                 </div>
                             </div>
 
-                            <div class="oe_structure"/>
 
-                            <div style="align:center">
-                                <h2>
-                                    <span>Report No # <span t-field="o.name"/></span>
-                                </h2>
-                            </div>
+                            <h3 style="text-align: center;"><span t-field="o.department_id.name"/></h3>
 
-                            <div class="row">
-                            <div class="col-md-6 pull-right">
-                                <h1>
-                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>
-                                </h1>
-                            </div>
-                                </div>
-
-                            <div class="row">
-                                <div class="col-xs-4">
-                                    <strong>Bill No #</strong>
-                                    <p t-field="o.bill_register_id"/>
-                                </div>
-                                <div class="col-xs-4">
-                                    <strong>Patient Name #</strong>
-                                    <p t-field="o.bill_register_id.patient_name.name"/>
-                                </div>
-                                <div class="col-xs-4">
-                                    <strong>Age #</strong>
-                                    <p t-field="o.bill_register_id.age"/>
-                                </div>
-                                <div class="col-xs-4">
-                                    <strong>Gender #</strong>
-                                    <p t-field="o.bill_register_id.sex"/>
-                                </div>
-                                <div class="col-xs-4">
-                                    <strong>Address #</strong>
-                                    <p t-field="o.bill_register_id.address"/>
-                                </div>
-                                <div class="col-xs-4">
-                                    <strong>Refferred By #</strong>
-                                    <p t-field="o.bill_register_id.ref_doctors.name"/>
-                                </div>
-                                 <div class="col-xs-4">
-                                    <strong>Checked By #</strong>
-                                    <p t-field="o.doctor_id.name"/>
-                                </div>
+                                        <t t-if="o.note">
+                        <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
+                            <tr>
+                                <td style="border: 1px solid #000; padding: 10px; text-align: left;">
+                                    <span t-field="o.note" />
+                                </td>
+                            </tr>
+                        </table>
+                    </t>
 
 
-                            </div>
-                            <h2 style="text-align:center">Stool Report</h2>
-                            <hr/>
-                            <br/><br/>
+  <table class="table table-bordered" style="width:100%; font-size:12px;">
+    <thead>
+        <tr><th colspan="2" style="text-align:center;">Stool RME Report</th></tr>
+    </thead>
+    <tbody>
+        <!-- Physical Examination -->
+        <tr><th colspan="2">PHYSICAL EXAMINATION</th></tr>
+        <tr t-foreach="[ 'Colour', 'Odour', 'Consistancy', 'Blood', 'Mucus','Warm']" t-as="test">
+            <td><t t-esc="test"/></td>
+            <td>
+                <t t-foreach="o.sticker_line_id" t-as="z">
+                    <t t-if="z.test_name == test">
+                        <t t-esc="z.result if z.result else 'Nil'"/>
+                    </t>
+                </t>
+            </td>
+        </tr>
 
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>S.N.</th>
-                                        <th>Name</th>
-                                        <th>Result</th>
-                                        <th>Reference Value</th>
-                                        <th>Remarks</th>
+        <!-- Chemical Examination -->
+        <tr><th colspan="2">CHEMICAL EXAMINATION</th></tr>
+        <tr t-foreach="['Reaction', 'Reducing Substance']" t-as="test">
+            <td><t t-esc="test"/></td>
+            <td>
+                <t t-foreach="o.sticker_line_id" t-as="z">
+                    <t t-if="z.test_name == test">
+                        <t t-esc="z.result if z.result else 'Nil'"/>
+                    </t>
+                </t>
+            </td>
+        </tr>
 
-                                    </tr>
-                                </thead>
-                                <tbody class="sample_report_tbody">
-                                    <t t-set="i" t-value="1" />
-                                    <t t-foreach="o.sticker_line_id" t-as="z">
-                                        <tr>
-                                            <td>
-                                                <span t-esc="i"/>
-                                                <t t-set="i" t-value="i+1"/>
-                                            </td>
-                                            <td>
-                                                <span t-field="z.test_name"/>
+        <!-- Microscopic Examination (3 Columns) -->
+        <tr>
+            <th>MICROSCOPIC EXAMINATION</th>
+            <th>VEG.</th>
+            <th>CYST</th>
+        </tr>
 
-                                            </td>
-                                            <td>
-                                                <span t-field="z.result"/>
+        <tr t-foreach="['Protozoa', 'Giardia', 'E. Histolytica']" t-as="test">
+            <td><t t-esc="test"/></td>
+            <td>
+                <t t-foreach="o.sticker_line_id" t-as="z">
+                    <t t-if="z.test_name == test">
+                        <t t-esc="z.result if z.result else 'Nil'"/>
+                    </t>
+                </t>
+            </td>
+            <td>
+                <!-- Optional remark field -->
+                <t t-foreach="o.sticker_line_id" t-as="z">
+                    <t t-if="z.test_name == test + ' Remark'">
+                        <t t-esc="z.result if z.result else ''"/>
+                    </t>
+                </t>
+            </td>
+        </tr>
 
-                                            </td>
+        <!-- Parasite -->
+        <tr><th colspan="2">PARASITE</th></tr>
+        <tr t-foreach="['Giardia', 'E.Histolytica', 'Cyst']" t-as="test">
+            <td><t t-esc="test"/></td>
+            <td>
+                <t t-foreach="o.sticker_line_id" t-as="z">
+                    <t t-if="z.test_name == test">
+                        <t t-esc="z.result if z.result else 'Not Found'"/>
+                    </t>
+                </t>
+            </td>
+        </tr>
 
-                                            <td>
-                                                <span t-field="z.ref_value"/>
+        <!-- Helminths (3 columns) -->
+        <tr><th colspan="3">HELMINTHS</th></tr>
+        <tr>
+            <th>Type</th>
+            <th>Presence</th>
+            <th>Remarks</th>
+        </tr>
+        <tr t-foreach="['Ascaris', 'Hookworm', 'Trichuris']" t-as="test">
+            <td><t t-esc="test"/></td>
+            <td>
+                <t t-foreach="o.sticker_line_id" t-as="z">
+                    <t t-if="z.test_name == test">
+                        <t t-esc="z.result if z.result else 'Not Found'"/>
+                    </t>
+                </t>
+            </td>
+            <td>
+                <t t-foreach="o.sticker_line_id" t-as="z">
+                    <t t-if="z.test_name == test + ' Remark'">
+                        <t t-esc="z.result if z.result else ''"/>
+                    </t>
+                </t>
+            </td>
+        </tr>
 
-                                            </td>
+        <!-- Other findings -->
+        <tr><th colspan="2">OTHERS</th></tr>
+        <tr t-foreach="['Vegetable Cell', 'Yeast', 'Fat Globules']" t-as="test">
+            <td><t t-esc="test"/></td>
+            <td>
+                <t t-foreach="o.sticker_line_id" t-as="z">
+                    <t t-if="z.test_name == test">
+                        <t t-esc="z.result if z.result else 'Nil'"/>
+                    </t>
+                </t>
+            </td>
+        </tr>
+    </tbody>
+</table>
 
- <td>
-                                                <span t-field="z.remarks"/>
-
-                                            </td>
 
 
+           <br/>
 
-                                        </tr>
+                            <h5> Technologist: <span t-field="o.write_uid.name" /></h5>
 
-                                    </t>
+                            <br/>
 
-                                </tbody>
-
-                            </table>
-
+                            <h5 style="text-align: center;"> -- End of Report -- </h5>
 
                         </div>
                     </t>

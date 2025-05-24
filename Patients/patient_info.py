@@ -92,7 +92,7 @@ class patient_info(osv.osv):
         if stored_id is not None:
             if vals.get('eye_patient_id'):
                 eye_patient_id = vals.get('eye_patient_id')
-                name_text = 'P-0' + str(eye_patient_id)
+                name_text = 'P-0' + str(eye_patient_id) +' e'
                 # import pdb;pdb.set_trace()
                 cr.execute('update patient_info set patient_id=%s where id=%s', (name_text, stored_id))
                 cr.execute('update patient_info set state=%s where id=%s', ('created', stored_id))

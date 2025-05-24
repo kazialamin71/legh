@@ -43,13 +43,23 @@
                 menu="False"
         />
 
-        <report
-                id="action_serology_report"
+                <report
+                id="action_cytopathology_report"
                 model="diagnosis.sticker"
-                string="Serology"
+                string="Cytopathology"
                 report_type="qweb-pdf"
-                name="legh.report_serology"
-                file="legh.report_serology"
+                name="legh.report_cytopathology"
+                file="legh.report_cytopathology"
+                menu="False"
+        />
+
+        <report
+                id="action_report_mantoux"
+                model="diagnosis.sticker"
+                string="Mantoux Test"
+                report_type="qweb-pdf"
+                name="legh.report_mantoux"
+                file="legh.report_mantoux"
                 menu="False"
 
         />

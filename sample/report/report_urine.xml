@@ -3,7 +3,7 @@
     <data>
         <template id="report_urine">
             <t t-call="report.html_container">
-                <t t-call="report.external_layout">
+                <t t-call="legh.external_layout_pathology">
                     <t t-foreach="docs" t-as="o">
                         <div class="page">
                             <div class="row">
@@ -19,61 +19,6 @@
                                 </div>
                             </div>
 
-                            <table style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>Patient Name</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.patient_name.name" /></td>
-
-                                    <td style="width: 15%; padding: 5px;"><strong>Bill No</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"> <span t-field="o.bill_register_id.name" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>PID</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.patient_id" /></td>
-
-                                    <td style="width: 15%; padding: 5px;"><strong>Lab No</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"> <span t-field="o.name" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>Age</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.age" /></td>
-
-                                    <td style="width: 15%; padding: 5px;"><strong>Date</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"> <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>Sex</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.sex" /></td>
-
-                                    <td style="width: 15%; padding: 5px;"><strong>Name of Test</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"> <span t-field="o.full_name" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>Contact</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.mobile" /></td>
-
-                                    <td style="width: 15%; padding: 5px;"><strong>Sample Type</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"> <span t-field="o.test_id.sample_type.name" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>Referred By</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.ref_doctors.name" /></td>
-                                    <td style="width: 15%; padding: 5px;"> </td>
-                                    <td style="width: 5%; padding: 5px;"> </td>
-                                    <td style="width: 30%; padding: 5px;"> </td>
-                                </tr>
-                            </table>
 
                             <h3 style="text-align: center;"><span t-field="o.department_id.name"/></h3>
 

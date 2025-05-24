@@ -65,12 +65,12 @@ class testentryparamaerte(osv.osv):
     _columns = {
         'name': fields.char("Name"),
         'sequence':fields.integer("Sequence"),
-        'ref_value': fields.char(string="Ref. Value", store=False),
+        'ref_value': fields.text(string="Ref. Value"),
         'is_heading': fields.boolean(string="Is Heading"),
         'is_bold': fields.boolean(string="Is Bold"),
         'uom': fields.char(string='Unit of Measurement'),
         'examination_id': fields.many2one("examination.entry", "Examination Id"),
-        'new_field1':fields.char(string="New Field 1"),
+        'group':fields.char(string="Group"),
         'new_field2':fields.char(string="New Field 2"),
         'new_field3':fields.char(string="New Field 3"),
     }

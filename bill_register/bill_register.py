@@ -322,6 +322,7 @@ class bill_register(osv.osv):
             # Grouping bill register lines by department and tube color
             grouped_tests = defaultdict(list)
 
+
             for items in stored_obj.bill_register_line_id:
                 key = (items.name.department.id, items.name.tube_color)
                 grouped_tests[key].append(items)
@@ -341,14 +342,16 @@ class bill_register(osv.osv):
 
                 for items in tests:
                     if not items.name.manual or not items.name.lab_not_required:
-                        custom_name += ' ' + str(items.name.name)
+                        custom_name = ", ".join(items.name.name for items in tests if not items.name.manual and not items.name.lab_not_required)
 
                         # Populate examination lines
                         for test_item in items.name.examination_entry_line:
                             tmp_dict = {
                                 'test_name': test_item.name,
                                 'ref_value': test_item.ref_value,
-                                'bold': test_item.is_bold
+                                'uom': test_item.uom,
+                                'bold': test_item.is_bold,
+                                'group':test_item.group
                             }
                             child_list.append([0, False, tmp_dict])
 

@@ -6,133 +6,65 @@
             <t t-call="report.html_container">
                 <t t-call="legh.external_layout_pathology">
                     <t t-foreach="docs" t-as="o">
+
                         <div class="page">
-                            <div class="row">
-                                <div class="col-md-4 pull-left">
-                                    <h2>
-                                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>
-                                    </h2>
-                                </div>
-                                <div class="col-md-8 pull-center">
-                                    <h3>
-                                        DEPARTMENT OF <span t-field="o.department_id.name"/>
-                                    </h3>
-                                </div>
+                          <div class="row">
+                            <div class="col-md-4 pull-left">
+                                <h2>
+                                    <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 600, 100)" style="width:300px;height:50px"/>
+                                </h2>
                             </div>
-
-                            <table style="width: 100%; border-collapse: collapse; border: 1px solid #000;">
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>Patient Name</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.patient_name.name" /></td>
-
-                                    <td style="width: 15%; padding: 5px;"><strong>Bill No</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"> <span t-field="o.bill_register_id.name" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>PID</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.patient_id" /></td>
-
-                                    <td style="width: 15%; padding: 5px;"><strong>Lab No</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"> <span t-field="o.name" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>Age</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.age" /></td>
-
-                                    <td style="width: 15%; padding: 5px;"><strong>Date</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"> <span t-esc="time.strftime('%Y-%m-%d %H:%M:%S')" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>Sex</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.sex" /></td>
-
-                                    <td style="width: 15%; padding: 5px;"><strong>Name of Test</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"> <span t-field="o.full_name" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>Contact</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.mobile" /></td>
-
-                                    <td style="width: 15%; padding: 5px;"><strong>Sample Type</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"> <span t-field="o.test_id.sample_type.name" /></td>
-                                </tr>
-                                <tr>
-                                    <td style="width: 15%; padding: 5px;"><strong>Referred By</strong></td>
-                                    <td style="width: 5%; padding: 5px;">:</td>
-                                    <td style="width: 30%; padding: 5px;"><span t-field="o.bill_register_id.ref_doctors.name" /></td>
-                                    <td style="width: 15%; padding: 5px;"> </td>
-                                    <td style="width: 5%; padding: 5px;"> </td>
-                                    <td style="width: 30%; padding: 5px;"> </td>
-                                </tr>
-                            </table>
+                            <div class="col-md-8 pull-center">
+                                <h3>
+                                    DEPARTMENT OF <span t-field="o.department_id.name" style="text-transform: uppercase;"/>
+                                </h3>
+                            </div>
+                        </div>
 
                             <h3 style="text-align: center;"><span t-field="o.department_id.name"/></h3>
 
-                                        <t t-if="o.note">
-                        <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
-                            <tr>
-                                <td style="border: 1px solid #000; padding: 10px; text-align: left;">
-                                    <span t-field="o.note" />
-                                </td>
-                            </tr>
-                        </table>
-                    </t>
+                        <table style="width: 100%; border: 1px solid #000; border-collapse: collapse; margin-top:10px;">
+    <tr>
+        <td style="border: 1px solid #000; padding: 10px; text-align: left;">
+            <t t-if="o.has_growth">
+                Culture showed <t t-esc="o.growth_type"/> growth of <t t-esc="o.bacteria"/> after incubating aerobically at 37° for <t t-esc="o.hour"/> hrs.
+            </t>
+            <t t-if="not o.has_growth">
+            <t t-if="'stool' in (o.test_id.name or '').lower()">
+                Culture showed growth of no Salmonella, Shigella bacteria after incubating aerobically at 37° for <t t-esc="o.hour"/> hrs.
+            </t>
+            <t t-if="'stool' not in (o.test_id.name or '').lower()">
+                Culture has no growth of any pathogenic bacteria after incubating aerobically at 37° for <t t-esc="o.hour"/> hrs.
+            </t>
+            </t>
+        </td>
+    </tr>
+</table>
+
 <t t-if="o.antibiogram">
                             <h4 style="text-align: center;">ANTIBIOGRAM OF ISOLATED ORGANISM</h4>
-<table class="table table-bordered" style="width:100%; border-collapse: collapse; text-align: center; font-size: 14px;">
-  <thead>
-    <tr>
-      <th>ANTIBIOTIC</th>
-      <th>PATTERN</th>
-      <th>ANTIBIOTIC</th>
-      <th>PATTERN</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Ceftriaxone</td>
-      <td>
-        <t t-foreach="o.sticker_line_id" t-as="line">
-          <t t-if="line.test_name == 'Ceftriaxone'"><t t-esc="line.result or ''"/></t>
+<t t-set="items" t-value="[line for line in o.sticker_line_id if line.result]"/>
+<table class="table table-bordered" style="width:80%; margin: 0 auto; border-collapse: collapse; font-size: 12px;">
+    <thead>
+        <tr>
+            <th>ANTIBIOTIC</th>
+            <th>PATTERN</th>
+            <th>ANTIBIOTIC</th>
+            <th>PATTERN</th>
+        </tr>
+    </thead>
+    <tbody>
+        <t t-foreach="range(0, len(items), 2)" t-as="i">
+            <tr>
+                <td><t t-esc="items[i].test_name"/></td>
+                <td><t t-esc="items[i].result"/></td>
+                <td><t t-if="i+1 &lt; len(items)"><t t-esc="items[i+1].test_name"/></t></td>
+                <td><t t-if="i+1 &lt; len(items)"><t t-esc="items[i+1].result"/></t></td>
+            </tr>
         </t>
-      </td>
-      <td>Pefloxacin</td>
-      <td>
-        <t t-foreach="o.sticker_line_id" t-as="line">
-          <t t-if="line.test_name == 'Pefloxacin'"><t t-esc="line.result or ''"/></t>
-        </t>
-      </td>
-    </tr>
-
-    <tr>
-      <td>Penicillin</td>
-      <td>
-        <t t-foreach="o.sticker_line_id" t-as="line">
-          <t t-if="line.test_name == 'Penicillin'"><t t-esc="line.result or ''"/></t>
-        </t>
-      </td>
-      <td>Amoxycillin</td>
-      <td>
-        <t t-foreach="o.sticker_line_id" t-as="line">
-          <t t-if="line.test_name == 'Amoxycillin'"><t t-esc="line.result or ''"/></t>
-        </t>
-      </td>
-    </tr>
-
-    <!-- Repeat for other antibiotics... -->
-
-  </tbody>
+    </tbody>
 </table>
+
 
 <p style="text-align: center; font-size: 13px; margin-top: 10px;">
   <strong>S = Sensitive, R = Resistant, I = Intermediate</strong>
@@ -141,26 +73,6 @@
                             </t>
 
                             <br/>
-<!--                            <xpath expr="//div[@class='footer']" position="replace">-->
-
-<!--                             <div class="footer" style="position: relative; text-align: center; width: 100%; padding-top: 10px;height: 30%">-->
-<!--                            <table style="width: 100%;">-->
-<!--                                <tr>-->
-<!--                                    <td>-->
-<!--                                        <h5>Prepared By: _ _ _ _ _ _ _ _ </h5>-->
-<!--                                        <strong><span t-field="o.write_uid.name" /></strong>-->
-<!--                                        <h5>Medical Technologist</h5>-->
-<!--                                    </td>-->
-<!--                                    <td style="text-align: right;">-->
-<!--                                        <h5>_ _ _ _ _ _ _ _ _ _ _ _ </h5>-->
-<!--                                        <h5>Dr. Shamim Ara Keya</h5>-->
-<!--                                        <h5>MBBS.M Phil(Pathology)</h5>-->
-<!--                                        <h5>Consultant Pathology</h5>-->
-<!--                                    </td>-->
-<!--                                </tr>-->
-<!--                            </table>-->
-<!--                        </div>-->
-<!--                             </xpath>-->
 
 
                         </div>

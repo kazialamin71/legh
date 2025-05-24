@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
 from datetime import date, time
@@ -135,10 +136,6 @@ class sample(osv.osv):
             cr.commit()
         return True
 
-
-
-
-
     _columns = {
         'name': fields.char('No #'),
         'full_name': fields.char('Name'),
@@ -153,7 +150,14 @@ class sample(osv.osv):
             'Status', required=True, readonly=True, copy=False,
             ),
         'antibiogram':fields.boolean("Antibiogram"),
-        'note':fields.text('Note')
+        'has_growth':fields.boolean("Growth"),
+        'growth_type': fields.selection([('profuse','Profuse'),('moderate','Moderate'),('scanty','Scanty')],string='Growth Type'),
+        'bacteria':fields.char("Bacteria Name"),
+        'hour':fields.char("Incubatig Hour"),
+        'note':fields.selection(
+            [('Culture Showed Profuse growth of Proteus species after incubating aerobically at 37&deg; for 72 hrs.', 'Showed Profused Growth of proteis species 37°- 72 hrs'), ('Custure has no growht of any pathogenic bacteria after incubating aerobically at 37&deg; for 72 hrs', 'No growth 37C- 72 hrs'), ('Culture showed growth of no Salmonella, Shigella bacteria after incubating aerobically at 37&deg; for 48 hrs.', 'growth of no salmonella, shigella- 37C-48 hrs')],'Status'),
+        'comments':fields.char('Comments'),
+        'advice':fields.char('Advice')
 
     }
 
@@ -165,10 +169,12 @@ class test_sample(osv.osv):
         'test_name': fields.char("Name"),
         'sticker_id':fields.many2one('diagnosis.sticker','ID'),
         'result': fields.char('Result'),
-        'ref_value': fields.char('Reference Value'),
+        'uom': fields.char('Unit'),
+        'ref_value': fields.text('Reference Value'),
         'bold':fields.boolean('Bold'),
         'group_by':fields.boolean('Group By'),
-        'remarks': fields.char('Remarks')
+        'remarks': fields.char('Remarks'),
+        'group':fields.char('Group')
 
     }
 
