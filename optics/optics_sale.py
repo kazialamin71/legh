@@ -99,8 +99,6 @@ class optics_sale(osv.osv):
 
     def onchange_quantity(self, cr, uid, ids, quantity,frame_id, context=None):
         tests = {'values': {}}
-        import pdb
-        pdb.set_trace()
 
         unit_price = frame_id.list_price
         total_price = unit_price * quantity

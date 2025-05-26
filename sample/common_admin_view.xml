@@ -138,7 +138,7 @@
             <field name="act_window_id" ref="sample_view_inherit_pathological_action"/>
         </record>
 
-        <menuitem name="Pathological" id="pathological_menu" parent="legh_labs_menu" action="sample_view_inherit_pathological_action" sequence="3" groups="legh.group_report_reception_menu_common_admin"/>
+        <menuitem name="Pathological" id="pathological_menu" parent="legh_labs_menu" action="sample_view_inherit_pathological_action" sequence="3" groups="legh.group_report_reception_menu_common_admin,legh.group_pathologist"/>"/>
 
 
 

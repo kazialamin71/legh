@@ -391,18 +391,15 @@ class leih_hospital_admission(osv.osv):
 
     def create_custom_journal(self,cr,uid,ref='',line_ids=[],date=None,context=None):
         j_id=1
-        # if context.get('period_id', False):
-        #     return context.get('period_id')
         periods = self.pool.get('account.period').find(cr, uid, dt=date)
-        # import pdb
-        # pdb.set_trace()
+
         period_id = periods and periods[0] or False
         jv_entry = self.pool.get('account.move')
 
 
         j_vals = {'name': '/',
                   'journal_id': 2,  ## Sales Journal
-                  'date': fields.date.today(),
+                  'date': date,
                   'period_id': period_id,
                   'ref': ref,
                   'line_id': line_ids
