@@ -34,7 +34,7 @@
 
 
         <menuitem icon="STOCK_PRINT" action="action_report_optics_collection"
-                id="menu_daily_optics_collection" parent="legh_group_menu" sequence="12" />
+                id="menu_daily_optics_collection" parent="legh_group_menu" sequence="12" groups="group_billing_menu_optics_sale"/>
 
 
     </data>

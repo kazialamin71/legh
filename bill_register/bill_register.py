@@ -116,8 +116,13 @@ class bill_register(osv.osv):
     }
 
     def check_patient_exist(self,eye_patient_id):
-        patient_obj=self.env['patient.info'].search([('patient_id', '=', eye_patient_id)])
+        patient_obj=self.env['patient.info'].search([('patient_id', 'ilike', eye_patient_id)], limit=1)
         return patient_obj
+
+    def normalize_patient_id(self,pid):
+        if pid and not str(pid).upper().startswith('P-'):
+            return 'P-{}'.format(str(pid))
+        return pid
 
 
     @api.onchange("eye_patient_id")
@@ -125,7 +130,8 @@ class bill_register(osv.osv):
         result = {'value': {}}
 
         if self.eye_patient_id:
-            patient_object=self.check_patient_exist(self.eye_patient_id)
+            full_eye_patient_id=self.normalize_patient_id(self.eye_patient_id)
+            patient_object=self.check_patient_exist(full_eye_patient_id)
             if patient_object:
                 self.patient_name=patient_object.id
             else:
@@ -141,7 +147,7 @@ class bill_register(osv.osv):
                     uid_remote = common.authenticate(db, username, password, {})
                     if uid_remote:
                         models = xmlrpclib.ServerProxy('{}/xmlrpc/2/object'.format(url))
-                        domain = [('patient_id', '=', self.eye_patient_id)]
+                        domain = [('patient_id', '=', full_eye_patient_id)]
                         fields_to_read = ['name', 'age', 'sex', 'mobile', 'address']
 
                         records = models.execute_kw(db, uid_remote, password,
