@@ -165,9 +165,6 @@ access_report_line,diagnosis.sticker.line,model_diagnosis_sticker_line,group_rep
 access_common_admin,diagnosis.sticker,model_diagnosis_sticker,group_report_reception_menu_common_admin,1,1,1,0
 access_common_admin_line,diagnosis.sticker.line,model_diagnosis_sticker_line,group_report_reception_menu_common_admin,1,1,1,1
 
-access_pathology_report,diagnosis.sticker,model_diagnosis_sticker,group_pathologist,1,1,1,0
-access_pathology_report_line,diagnosis.sticker.line,model_diagnosis_sticker_line,group_pathologist,1,1,1,1
-
 access_profile_doctors,doctors.profile,model_doctors_profile,group_profile_menu_doctors,1,1,1,0
 
 access_brokers_info,brokers.info,model_brokers_info,group_profile_menu_brokers,1,1,1,0
@@ -206,11 +203,21 @@ access_diagnosis_department,diagnosis_department,model_diagnosis_department,grou
 access_diagnosis_group,diagnosis.group,model_diagnosis_group,group_expense_menu_cancel,1,1,1,0
 
 access_examination_entry,examination.entry,model_examination_entry,group_billing_menu_bill_register,1,1,1,0
+
+
+access_pathology_report,diagnosis.sticker,model_diagnosis_sticker,group_pathologist,1,1,1,0
+access_pathology_report_line,diagnosis.sticker.line,model_diagnosis_sticker_line,group_pathologist,1,1,1,0
 access_examination_entry_pathologist,examination.entry,model_examination_entry,group_pathologist,1,1,1,0
-access_bill_register_pathologist,bill.register,model_bill_register,group_pathologist,1,1,1,0
-access_patient_info_pathologist,patient.info,model_patient_info,group_pathologist,1,1,1,0
-access_doctors_profile_pathologist,doctors.profile,model_doctors_profile,group_pathologist,1,1,1,0
+access_bill_register_pathologist,bill.register,model_bill_register,group_pathologist,1,0,0,0
+access_bill_register_line_pathologist,bill.register.line,model_bill_register_line,group_pathologist,1,0,0,0
+access_bill_journal_relation_pathologist,bill.journal.relation,model_bill_journal_relation,group_pathologist,1,0,0,0
+access_bill_register_payment_line_pathologist,bill.register.payment.line,model_bill_register_payment_line,group_pathologist,1,0,0,0
+access_patient_info_pathologist,patient.info,model_patient_info,group_pathologist,1,0,1,0
+access_doctors_profile_pathologist,doctors.profile,model_doctors_profile,group_pathologist,1,0,1,0
 access_sample_type_pathologist,sample.type,model_sample_type,group_pathologist,1,1,1,0
+
+
+
 access_examination_entry_line,examination.entry.line,model_examination_entry_line,group_billing_menu_bill_register,1,1,1,1
 access_examination_merge_line,examination.merge.line,model_examination_merge_line,group_billing_menu_bill_register,1,1,1,1
 

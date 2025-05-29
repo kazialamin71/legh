@@ -6,6 +6,9 @@
                 <t t-call="legh.external_layout_pathology">
                 <t t-foreach="docs" t-as="o">
                     <div class="page">
+
+                        <h3 style="text-align: center; margin-top: 50px;"><span t-field="o.department_id.name"/></h3>
+
                         <table style="width: 100%;">
                             <thead style="background-color: #f2f2f2;">
                                 <tr style="padding: 10px;">

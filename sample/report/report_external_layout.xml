@@ -61,7 +61,14 @@
 
         <tr>
             <th style="padding: 4px; text-align: left;">Referred By</th>
-            <td colspan="3"><t t-esc="docs.bill_register_id.ref_doctors.name"/></td>
+           <td colspan="3">
+  <t t-esc="docs.bill_register_id.ref_doctors.name"/>
+   <t t-if="docs.bill_register_id.ref_doctors.degree">
+    <span style="font-size: 90%; margin-left: 5px;">
+      <t t-esc="docs.bill_register_id.ref_doctors.degree"/>
+    </span>
+  </t>
+</td>
         </tr>
     </tbody>
 </table>
