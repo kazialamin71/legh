@@ -211,6 +211,7 @@ access_examination_entry_pathologist,examination.entry,model_examination_entry,g
 access_bill_register_pathologist,bill.register,model_bill_register,group_pathologist,1,0,0,0
 access_bill_register_line_pathologist,bill.register.line,model_bill_register_line,group_pathologist,1,0,0,0
 access_bill_journal_relation_pathologist,bill.journal.relation,model_bill_journal_relation,group_pathologist,1,0,0,0
+access_diagnosis_department_pathologist,diagnosis.department,model_diagnosis_department,group_pathologist,1,0,0,0
 access_bill_register_payment_line_pathologist,bill.register.payment.line,model_bill_register_payment_line,group_pathologist,1,0,0,0
 access_patient_info_pathologist,patient.info,model_patient_info,group_pathologist,1,0,1,0
 access_doctors_profile_pathologist,doctors.profile,model_doctors_profile,group_pathologist,1,0,1,0
