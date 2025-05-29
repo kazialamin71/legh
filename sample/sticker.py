@@ -2,6 +2,7 @@
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
 from datetime import date, time
+from datetime import datetime, timedelta
 
 class sample(osv.osv):
     _name = "diagnosis.sticker"
@@ -101,17 +102,26 @@ class sample(osv.osv):
             cr.commit()
         return self.pool['report'].get_action(cr, uid, ids, 'legh.report_stool', context=context)
 
+    def capitalize_first_letter(self,text):
+        """
+        Capitalizes only the first letter of the given string.
+        """
+        if not text:
+            return ''
+        return text[0].upper() + text[1:]
 
-    def done_radiology(self,cr,uid,ids,context=None):
-        status = 'done'
-        for id in ids:
-            report_obj = self.browse(cr, uid, id, context=context)
-            # if report_obj.state == 'done':
-            #     raise osv.except_osv(_('Warning!'),
-            #                          _('Already it is Completed.'))
-            cr.execute('update diagnosis_sticker set state=%s where id=%s', (status, id))
-            cr.commit()
-        return True
+    def add_six_hours(self,dt):
+        if isinstance(dt, str):
+            try:
+                dt = datetime.strptime(dt, '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                raise ValueError("String must be in format 'YYYY-MM-DD HH:MM:SS'")
+        elif not isinstance(dt, datetime):
+            raise ValueError("Input must be a datetime string or datetime object")
+
+        dt_no_seconds = dt.replace(second=0, microsecond=0)
+        result = dt_no_seconds + timedelta(hours=6)
+        return result
 
     def delivered(self,cr,uid,ids,context=None):
         status = 'delivered'

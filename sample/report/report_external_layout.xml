@@ -24,43 +24,45 @@
 
     <tbody>
         <tr>
-            <th style="padding: 4px; text-align: left; width: 20%;">Patient Name</th>
+            <th style="padding: 4px; text-align: left; width: 20%;">Patient Name:</th>
             <td style="padding: 4px; width: 30%;"><t t-esc="docs.bill_register_id.patient_name.name"/></td>
-            <th style="padding: 4px; text-align: left; width: 20%;">Sample No</th>
+            <th style="padding: 4px; text-align: left; width: 20%;">Sample No:</th>
             <td style="padding: 4px; width: 30%;"><t t-esc="docs.name"/></td>
         </tr>
 
 
         <tr>
-            <th style="padding: 4px; text-align: left;">Age/Gender</th>
-            <td><t t-esc="docs.bill_register_id.age"/> / <t t-esc="docs.bill_register_id.sex"/></td>
-            <th style="padding: 4px; text-align: left;">Invoice/Order No</th>
+            <th style="padding: 4px; text-align: left;">Age:</th>
+            <td><t t-esc="docs.bill_register_id.age"/></td>
+            <th style="padding: 4px; text-align: left;">Invoice/Order No:</th>
             <td><t t-esc="docs.bill_register_id.name"/></td>
         </tr>
 
+
         <tr>
-            <th style="padding: 4px; text-align: left;">Contact No</th>
-            <td><t t-esc="docs.bill_register_id.mobile"/></td>
-            <th style="padding: 4px; text-align: left;">Report Status</th>
-            <td><t t-esc="docs.state"/></td>
+            <th style="padding: 4px; text-align: left;">Gender: </th>
+            <td><t t-esc="docs.capitalize_first_letter(docs.bill_register_id.sex)"/></td>
+            <th style="padding: 4px; text-align: left;">Invoice Date:</th>
+            <td><t t-esc="docs.add_six_hours(docs.bill_register_id.create_date)"/></td>
         </tr>
 
         <tr>
-            <th style="padding: 4px; text-align: left;">Invoice Date</th>
-            <td><t t-esc="docs.bill_register_id.date"/></td>
-            <th style="padding: 4px; text-align: left;">Investigations</th>
+            <th style="padding: 4px; text-align: left;">Contact No:</th>
+            <td><t t-esc="docs.bill_register_id.mobile"/></td>
+            <th style="padding: 4px; text-align: left;">Investigations:</th>
             <td><t t-esc="docs.full_name"/></td>
         </tr>
 
         <tr>
-            <th style="padding: 4px; text-align: left;">Diagnostic Bill No</th>
-            <td><t t-esc="docs.bill_register_id.name"/></td>
-            <th style="padding: 4px; text-align: left;">Sample Type</th>
+            <th style="padding: 4px; text-align: left;">Print Date:</th>
+             <t t-set="now" t-value="datetime.datetime.now()"/>
+            <td><t t-esc="docs.add_six_hours(now)"/></td>
+            <th style="padding: 4px; text-align: left;">Sample Type:</th>
             <td><t t-esc="docs.test_id.sample_type.name"/></td>
         </tr>
 
         <tr>
-            <th style="padding: 4px; text-align: left;">Referred By</th>
+            <th style="padding: 4px; text-align: left;">Referred By:</th>
            <td colspan="3">
   <t t-esc="docs.bill_register_id.ref_doctors.name"/>
    <t t-if="docs.bill_register_id.ref_doctors.degree">
