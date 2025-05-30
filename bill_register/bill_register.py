@@ -346,8 +346,11 @@ class bill_register(osv.osv):
                     'state': state
                 }
 
+                create_report=False
+
                 for items in tests:
                     if not items.name.manual or not items.name.lab_not_required:
+                        create_report=True
                         custom_name = ", ".join(items.name.name for items in tests if not items.name.manual and not items.name.lab_not_required)
 
                         # Populate examination lines
@@ -362,18 +365,18 @@ class bill_register(osv.osv):
                             child_list.append([0, False, tmp_dict])
 
                 # Create single sticker per group
-                value['sticker_line_id'] = child_list
-                value['full_name'] = custom_name
+                if create_report:
+                    value['sticker_line_id'] = child_list
+                    value['full_name'] = custom_name
+                    sample_obj = self.pool.get('diagnosis.sticker')
+                    sample_id = sample_obj.create(cr, uid, value, context=context)
 
-                sample_obj = self.pool.get('diagnosis.sticker')
-                sample_id = sample_obj.create(cr, uid, value, context=context)
+                    # Ends Here LAB/SAMPLE From Here
 
-                # Ends Here LAB/SAMPLE From Here
-
-                if sample_id is not None:
-                    sample_text = 'Lab-0' + str(sample_id)
-                    cr.execute('update diagnosis_sticker set name=%s where id=%s', (sample_text, sample_id))
-                    cr.commit()
+                    if sample_id is not None:
+                        sample_text = 'Lab-0' + str(sample_id)
+                        cr.execute('update diagnosis_sticker set name=%s where id=%s', (sample_text, sample_id))
+                        cr.commit()
 
             # Journal Entry will be here
             if stored_obj:

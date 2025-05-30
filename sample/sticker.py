@@ -12,7 +12,6 @@ class sample(osv.osv):
     def print_sticker(self,cr,uid,ids,context=None):
         statue='lab'
 
-
         for id in ids:
             report_obj = self.browse(cr, uid, id, context=context)
             # if report_obj.state == 'lab' or report_obj.state == 'done':
