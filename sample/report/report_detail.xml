@@ -28,7 +28,7 @@
             <tr><td colspan="5" style="height: 10px;"></td></tr>
         </t>
 
-        <tr style="background-color: #f2f2f2; padding: 4px;">
+        <tr style="border-bottom: 1px solid #ddd; padding: 4px;">
             <td style="text-align: left; padding: 4px 2px;">
                 <t t-if="z.bold==True">
                     <strong><span t-field="z.test_name"/></strong>
