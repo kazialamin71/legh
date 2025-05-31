@@ -437,6 +437,7 @@ class leih_hospital_admission(osv.osv):
 
                     journal_items = []
                     admission_name = record.name
+                    admission_id = record.id
                     total_AR_income = 0
                     consult_amnt=0
 
@@ -498,8 +499,16 @@ class leih_hospital_admission(osv.osv):
                         if record.x_income_journal != True:
                             admission_date = record.date
                             j_id = self.create_custom_journal(cr=cr,uid=uid,ref=admission_name,date=admission_date,line_ids=journal_items)
-
                             self.write(cr, uid, [record.id], {'state': 'released','x_income_journal':True}, context=context)
+                            cr.execute('SELECT id, grand_total FROM bill_register WHERE general_admission_id = %s;', (admission_id,))
+                            all_data = cr.dictfetchall()
+                            if all_data:
+                                for record in all_data:
+                                    cr.execute(
+                                        'UPDATE bill_register SET paid = %s, due=0 WHERE id = %s;',
+                                        (record['grand_total'], record['id'])
+                                    )
+                                    cr.commit()
                         else:
                             raise osv.except_osv("Contact IT", "Please Contact With Kazi/Mufti")
                     #### Ends Here
