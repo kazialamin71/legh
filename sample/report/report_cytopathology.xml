@@ -19,7 +19,7 @@
 <t t-foreach="['Specimen', 'No of Slide', 'Preparation Type', 'Specimen Type', 'Fixation/Preservation', 'Specimen Adequacy', 'Description', 'Transformation Zone', 'Epithelial Cells', 'Metaplastic Squamous Cells', 'Other', 'Non neoplastic findings', 'Organisms', 'Epithelial cell abnormalities', 'Diagnosis']" t-as="test_name">
     <t t-foreach="o.sticker_line_id" t-as="z">
         <t t-if="z.test_name == test_name and test_name not in shown">
-            <p>
+            <p style="font-size: 15px;">
                 <strong><t t-esc="test_name"/>:</strong>
                 <t t-if="test_name=='Specimen'">
                     Pap's Smear

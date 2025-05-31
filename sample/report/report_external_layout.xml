@@ -30,7 +30,6 @@
             <td style="padding: 4px; width: 30%;"><t t-esc="docs.name"/></td>
         </tr>
 
-
         <tr>
             <th style="padding: 4px; text-align: left;">Age:</th>
             <td><t t-esc="docs.bill_register_id.age"/></td>

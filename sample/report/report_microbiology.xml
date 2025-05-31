@@ -13,7 +13,7 @@
 
                        <table style="width: 90%; border: 1px solid #000; border-collapse: collapse; margin: 10px auto;">
     <tr>
-        <td style="border: 1px solid #000; padding: 10px; text-align: justify; font-weight: bold;">
+        <td style="border: 1px solid #000; padding: 10px; text-align: justify; font-weight: bold; font-size: 14px;">
             <t t-if="o.has_growth">
                 Culture showed <t t-esc="o.growth_type"/> growth of <t t-esc="o.bacteria"/> after incubating aerobically at 37° for <t t-esc="o.hour"/> hrs.
             </t>
@@ -32,7 +32,7 @@
 <t t-if="o.antibiogram">
                             <h4 style="text-align: center;">ANTIBIOGRAM OF ISOLATED ORGANISM</h4>
 <t t-set="items" t-value="[line for line in o.sticker_line_id if line.result]"/>
-<table class="table table-bordered" style="width:80%; margin: 0 auto; border-collapse: collapse; font-size: 12px;">
+<table class="table table-bordered" style="width:80%; margin: 0 auto; border-collapse: collapse; font-size: 15px;">
     <thead>
         <tr>
             <th>ANTIBIOTIC</th>
@@ -44,10 +44,10 @@
     <tbody>
         <t t-foreach="range(0, len(items), 2)" t-as="i">
             <tr>
-                <td><t t-esc="items[i].test_name"/></td>
-                <td><t t-esc="items[i].result"/></td>
-                <td><t t-if="i+1 &lt; len(items)"><t t-esc="items[i+1].test_name"/></t></td>
-                <td><t t-if="i+1 &lt; len(items)"><t t-esc="items[i+1].result"/></t></td>
+                <td style="font-size: 15px;"><t t-esc="items[i].test_name"/></td>
+                <td style="font-size: 15px;"><t t-esc="items[i].result"/></td>
+                <td style="font-size: 15px;"><t t-if="i+1 &lt; len(items)"><t t-esc="items[i+1].test_name"/></t></td>
+                <td style="font-size: 15px;"><t t-if="i+1 &lt; len(items)"><t t-esc="items[i+1].result"/></t></td>
             </tr>
         </t>
     </tbody>

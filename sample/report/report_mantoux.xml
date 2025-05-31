@@ -20,7 +20,7 @@
     <tbody>
         <t t-foreach="o.sticker_line_id" t-as="z">
             <tr style="border-bottom: 1px solid #ccc;">
-                <td style="text-align: left; padding: 8px;">
+                <td style="text-align: left; padding: 8px; font-size: 15px;">
                     <t t-if="z.bold==True">
                         <strong><span t-field="z.test_name"/></strong>
                     </t>
@@ -28,7 +28,7 @@
                         <span t-field="z.test_name"/>
                     </t>
                 </td>
-                <td style="text-align: left; padding: 8px;">
+                <td style="text-align: left; padding: 8px; font-size: 15px;">
                     <span t-field="z.result"/>
                 </td>
             </tr>

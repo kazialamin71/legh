@@ -29,7 +29,7 @@
         </t>
 
         <tr style="border-bottom: 1px solid #ddd; padding: 4px;">
-            <td style="text-align: left; padding: 4px 2px;">
+            <td style="text-align: left; padding: 4px 2px; font-size: 15px;">
                 <t t-if="z.bold==True">
                     <strong><span t-field="z.test_name"/></strong>
                         <t t-set="last_group" t-value="z.group"/>
@@ -38,7 +38,7 @@
                     <span t-field="z.test_name"/>
                 </t>
             </td>
-            <td style="text-align: center; padding: 4px 2px;">
+            <td style="text-align: center; padding: 4px 2px; font-size: 15px; font-weight: bold;">
                 <span t-field="z.result"/>
             </td>
             <td style="text-align: center; padding: 4px 2px;">
