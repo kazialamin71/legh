@@ -6,17 +6,9 @@
                 <t t-call="legh.external_layout_pathology">
                 <t t-foreach="docs" t-as="o">
                     <div class="page">
-                        <div class="row">
-
-                            <div class="col-md-12 pull-center">
-                                <h3>
-                                    DEPARTMENT OF <span t-field="o.department_id.name" style="text-transform: uppercase;"/>
-                                </h3>
-                            </div>
-                        </div>
+                       <h3 style="text-align: center; margin-top: 25px; padding-top: 10px;"><span t-field="o.department_id.name"/></h3>
 
 
-                        <h3 style="text-align: center;"><span t-field="o.department_id.name"/></h3>
 
 
 
