@@ -827,6 +827,9 @@ class leih_hospital_admission(osv.osv):
         #             return updated
         #             ### Ends the journal Entry Here
         #     else:
+        if vals.get("reffered_to_hospital") and uid!=1:
+            raise osv.except_osv(_('Error!'),
+                                 _('Referral cannot be changed.'))
         updated = super(leih_hospital_admission, self).write(cr, uid, ids, vals, context=context)
         # raise osv.except_osv(_('Warning!'),
         #                      _("You cannot Edit the bill"))

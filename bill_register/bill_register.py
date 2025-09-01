@@ -733,6 +733,9 @@ class bill_register(osv.osv):
             if vals.get("due") < 0:
                 raise osv.except_osv(_('Warning!'),
                                      _("Check paid and grand total!"))
+        if vals.get("referral") and uid!=1:
+            raise osv.except_osv(_('Error!'),
+                                 _('Referral cannot be changed.'))
 
         updated = False
         if vals.get('bill_register_line_id') or uid == 1:
