@@ -8,7 +8,7 @@ class brokers_info(osv.osv):
 
     _columns = {
 
-        'broker_id': fields.char(string="Broker ID", readonly=True),
+        'broker_id': fields.char(string="Broker ID"),
         'broker_name': fields.char("Broker Name", required=True),
         'status': fields.selection([('active', 'Active'), ('inactive', 'Inactive')], string='Status', default='active'),
         'commission_rate': fields.float("Commission Rate (%) "),
@@ -24,7 +24,7 @@ class brokers_info(osv.osv):
         if context is None: context = {}
         record = super(brokers_info, self).create(cr, uid, vals, context)
         if record is not None:
-            name_text = 'BR-1001' + str(record)
+            name_text = 'GHR' + str(record)
             cr.execute('update brokers_info set broker_id=%s where id=%s', (name_text, record))
             cr.commit()
         return record

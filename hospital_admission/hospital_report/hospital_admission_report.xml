@@ -68,8 +68,8 @@
                                     <span t-field="o.ref_doctors"/>
                                 </div>
                                 <div class="col-xs-4">
-                                    <strong>Referral:</strong>
-                                    <span t-field="o.reffered_to_hospital"/>
+                                    <strong>GHR:</strong>
+                                    <span t-field="o.reffered_to_hospital.broker_id"/>
                                 </div>
                                 <div class="col-xs-4">
                                     <strong>Release Date:</strong>
