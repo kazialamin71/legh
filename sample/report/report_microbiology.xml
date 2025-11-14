@@ -15,14 +15,14 @@
     <tr>
         <td style="border: 1px solid #000; padding: 10px; text-align: justify; font-weight: bold; font-size: 14px;">
             <t t-if="o.has_growth">
-                Culture showed <t t-esc="o.growth_type"/> growth of <t t-esc="o.bacteria"/> after incubating aerobically at 37° for <t t-esc="o.hour"/> hrs.
+                Culture showed <t t-esc="o.growth_type"/> growth of <t t-esc="o.bacteria"/> after incubating aerobically at 37°C for <t t-esc="o.hour"/> hrs.
             </t>
             <t t-if="not o.has_growth">
             <t t-if="'stool' in (o.test_id.name or '').lower()">
-                Culture showed growth of no Salmonella, Shigella bacteria after incubating aerobically at 37° for <t t-esc="o.hour"/> hrs.
+                Culture showed growth of no Salmonella, Shigella bacteria after incubating aerobically at 37°C for <t t-esc="o.hour"/> hrs.
             </t>
             <t t-if="'stool' not in (o.test_id.name or '').lower()">
-                Culture has no growth of any pathogenic bacteria after incubating aerobically at 37° for <t t-esc="o.hour"/> hrs.
+                Culture has no growth of any pathogenic bacteria after incubating aerobically at 37°C for <t t-esc="o.hour"/> hrs.
             </t>
             </t>
         </td>

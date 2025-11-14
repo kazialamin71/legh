@@ -13,31 +13,48 @@
 
 
 
-     <t t-set="shown" t-value="[]" />
-
-<!-- Define ordered test names and show only once -->
-<t t-foreach="['Specimen', 'No of Slide', 'Preparation Type', 'Specimen Type', 'Fixation/Preservation', 'Specimen Adequacy', 'Description', 'Transformation Zone', 'Epithelial Cells', 'Metaplastic Squamous Cells', 'Other', 'Non neoplastic findings', 'Organisms', 'Epithelial cell abnormalities', 'Diagnosis']" t-as="test_name">
     <t t-foreach="o.sticker_line_id" t-as="z">
-        <t t-if="z.test_name == test_name and test_name not in shown">
             <p style="font-size: 15px;">
-                <strong><t t-esc="test_name"/>:</strong>
-                <t t-if="test_name=='Specimen'">
+                <strong><t t-esc="z.test_name"/>:</strong>
+                <t t-if="z.test_name=='Specimen' and not z.result">
                     Pap's Smear
                         </t>
-                <t t-if="test_name=='Specimen Type'">
+                <t t-if="z.test_name=='Specimen Type' and not z.result">
                Conventional Pap's Smear
                         </t>
+
+                                <t t-if="z.test_name=='Fixation/Preservation' and not z.result">
+               Satisfactory
+                        </t>
+
+                                        <t t-if="z.test_name=='Specimen Adequacy' and not z.result">
+               Adequate for evaluation
+                        </t>
+
+                                        <t t-if="z.test_name=='Non neoplastic findings'">
+               Reactive cellular change associated with <t t-esc="z.result"/> imflammation
+                        </t>
+
+                        <t t-if="z.test_name=='Organisms' and not z.result">
+               No abnormality detected
+                        </t>
+
+                <t t-if="z.test_name=='Epithelial cell abnormalities' and not z.result">
+               None 
+                        </t>
+
+                                <t t-if="z.test_name=='Diagnosis' and not z.result">
+               Pap's smear (cytology): Negative for intraepithelial lesion or malignance(NILM)
+                        </t>
+
+
                 <t t-else="">
                 <span t-esc="z.result"/>
                 </t>
             </p>
-            <t t-set="shown" t-value="shown + [test_name]" />
             <t t-break="1" />
-        </t>
     </t>
 
-    <!-- Optional: Insert static fallback for test_name -->
-</t>
                         <t t-if="o.advice"><p><strong>Advice:</strong> <span t-field="o.advice"/></p></t>
                     </div>
                 </t>

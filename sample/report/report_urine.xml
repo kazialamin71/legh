@@ -20,7 +20,7 @@
                     </t>
 
 
-  <table class="table table-bordered" style="width:100%; font-size:12px;">
+  <table class="table table-bordered" style="width:100%; font-size:14px;">
     <thead>
       <tr><th colspan="4" style="text-align:center;">Urine Routine</th></tr>
     </thead>
@@ -35,15 +35,15 @@
             <t t-esc="z.result"/>
         </t>
         <t t-if="not z.result">
-            <t t-esc="'Nil'"/>
+            <t t-esc="'Sufficient'"/>
         </t>
     </t>
 </t>
         </td>
-        <td>Colour</td>
+        <td>W.B.C</td>
           <td>
           <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'R.B.C'">
+    <t t-if="z.test_name == 'W.B.C'">
         <t t-if="z.result">
             <t t-esc="z.result"/>
         </t>
@@ -55,8 +55,6 @@
         </td>
       </tr>
 
-
-
         <tr>
         <td>Colour</td>
         <td>
@@ -66,15 +64,15 @@
             <t t-esc="z.result"/>
         </t>
         <t t-if="not z.result">
-            <t t-esc="'Nil'"/>
+            <t t-esc="'Straw'"/>
         </t>
     </t>
 </t>
         </td>
-        <td>W.B.C</td>
+        <td>Epithelia</td>
           <td>
           <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'W.B.C'">
+    <t t-if="z.test_name == 'Epithelia'">
         <t t-if="z.result">
             <t t-esc="z.result"/>
         </t>
@@ -96,15 +94,15 @@
             <t t-esc="z.result"/>
         </t>
         <t t-if="not z.result">
-            <t t-esc="'Nil'"/>
+            <t t-esc="'Clear'"/>
         </t>
     </t>
 </t>
         </td>
-        <td>Epithelia</td>
+        <td>Granular</td>
           <td>
           <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'Epithelia'">
+    <t t-if="z.test_name == 'Granular'">
         <t t-if="z.result">
             <t t-esc="z.result"/>
         </t>
@@ -114,9 +112,8 @@
     </t>
 </t>
         </td>
+        
       </tr>
-
-
 
 <!--for Sediment-->
 
@@ -134,10 +131,10 @@
     </t>
 </t>
         </td>
-        <td>Granular</td>
+        <td>Triple Phos</td>
           <td>
           <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'Granular'">
+    <t t-if="z.test_name == ' Triple Phos'">
         <t t-if="z.result">
             <t t-esc="z.result"/>
         </t>
@@ -177,7 +174,7 @@
             <t t-esc="z.result"/>
         </t>
         <t t-if="not z.result">
-            <t t-esc="'Nil'"/>
+            <t t-esc="'Acidic'"/>
         </t>
     </t>
 </t>
@@ -281,7 +278,7 @@
         <td>Bile Salt</td>
           <td>
           <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'Ca.Carbonate'">
+    <t t-if="z.test_name == 'Bile Salt'">
         <t t-if="z.result">
             <t t-esc="z.result"/>
         </t>
@@ -321,7 +318,7 @@
             <t t-esc="z.result"/>
         </t>
         <t t-if="not z.result">
-            <t t-esc="'Nil'"/>
+            <t t-esc="''"/>
         </t>
     </t>
 </t>
@@ -350,7 +347,7 @@
             <t t-esc="z.result"/>
         </t>
         <t t-if="not z.result">
-            <t t-esc="'Nil'"/>
+            <t t-esc="''"/>
         </t>
     </t>
 </t>
@@ -372,8 +369,18 @@
 
 <!--        last bock-->
 <tr>
-        <td></td>
-        <td>
+<td>R.B.C</td>
+          <td>
+          <t t-foreach="o.sticker_line_id" t-as="z">
+    <t t-if="z.test_name == 'R.B.C'">
+        <t t-if="z.result">
+            <t t-esc="z.result"/>
+        </t>
+        <t t-if="not z.result">
+            <t t-esc="'Nil'"/>
+        </t>
+    </t>
+</t>
         </td>
         <td>B.J. Protein</td>
           <td>

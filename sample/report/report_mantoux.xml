@@ -2,46 +2,69 @@
 <openerp>
     <data>
         <template id="report_mantoux">
-
             <t t-call="report.html_container">
                 <t t-call="legh.external_layout_pathology">
-                <t t-foreach="docs" t-as="o">
-                    <div class="page">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page">
 
-<h3 style="text-align: center; margin-top: 25px; padding-top: 10px;"><span t-field="o.department_id.name"/></h3>
+                            <!-- Department Header -->
+                            <h3 style="text-align: center; margin-top: 25px; padding-top: 10px; 
+                                       font-size: 20px; color: #1a1a1a; text-transform: uppercase;">
+                                <span t-field="o.department_id.name"/>
+                            </h3>
 
-                        <table style="width: 80%; margin: 0 auto; border-collapse: collapse;">
-    <thead style="background-color: #f2f2f2;">
-        <tr>
-            <th style="border: 1px solid #000; text-align: center; padding: 8px;">Test Name</th>
-            <th style="border: 1px solid #000; text-align: center; padding: 8px;">Result</th>
-        </tr>
-    </thead>
-    <tbody>
-        <t t-foreach="o.sticker_line_id" t-as="z">
-            <tr style="border-bottom: 1px solid #ccc;">
-                <td style="text-align: left; padding: 8px; font-size: 15px;">
-                    <t t-if="z.bold==True">
-                        <strong><span t-field="z.test_name"/></strong>
+                            <!-- Report Table -->
+                            <table style="width: 85%; margin: 25px auto; border-collapse: collapse; 
+                                          font-family: 'Helvetica', sans-serif; font-size: 15px; 
+                                          box-shadow: 0 0 6px rgba(0,0,0,0.15); border-radius: 8px; overflow: hidden;">
+                                <thead>
+                                    <tr style="background-color: #e8f0fe; border-bottom: 2px solid #1a73e8;">
+                                        <th style="border-right: 1px solid #ccc; text-align: left; padding: 10px 12px; 
+                                                   font-weight: bold; color: #1a1a1a;">Test Name</th>
+                                        <th style="text-align: left; padding: 10px 12px; font-weight: bold; color: #1a1a1a;">Result</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="o.sticker_line_id" t-as="z">
+                                        <tr style="border-bottom: 1px solid #ddd;">
+                                            <td style="padding: 8px 12px;">
+                                                <t t-if="z.bold==True">
+                                                    <strong><span t-field="z.test_name"/></strong>
+                                                </t>
+                                                <t t-if="not z.bold">
+                                                    <span t-field="z.test_name"/>
+                                                </t>
+                                            </td>
+                                            <td style="padding: 8px 12px;">
+                                                <t t-if="z.test_name=='Dose of Injection' and not z.result">
+                                                    PPD 0.1 ml = 10 TU
+                                                </t>
+                                                <t t-else="">
+                                                    <span t-field="z.result"/>
+                                                </t>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+
+                            <!-- Comments Section -->
+                            <div style="width: 85%; margin: 20px auto; font-size: 15px; 
+                                        line-height: 1.6; color: #333; font-family: 'Helvetica', sans-serif;">
+                                <t t-if="o.comments_sc_date">
+                                    <p>
+                                        <strong>Comments:</strong>
+                                        Schedule date of observation <span t-field="o.comments_sc_date"/> but the patient reported on <span t-field="o.comments_rp_date"/>.
+                                    </p>
+                                </t>
+
+                                <t t-if="o.advice">
+                                    <p><strong>Advice:</strong> <span t-field="o.advice"/></p>
+                                </t>
+                            </div>
+
+                        </div>
                     </t>
-                    <t t-if="not z.bold">
-                        <span t-field="z.test_name"/>
-                    </t>
-                </td>
-                <td style="text-align: left; padding: 8px; font-size: 15px;">
-                    <span t-field="z.result"/>
-                </td>
-            </tr>
-        </t>
-    </tbody>
-</table>
-
-                        <br/>
-                        <t t-if="o.comments"><strong>Comments:</strong> <span t-field="o.comments"/></t>
-                        <t t-if="o.advice"><strong>Advice:</strong> <span t-field="o.advice"/></t>
-
-                    </div>
-                </t>
                 </t>
             </t>
         </template>

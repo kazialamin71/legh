@@ -308,74 +308,90 @@ class bill_register(osv.osv):
         journal_object = self.pool.get("bill.journal.relation")
 
         diagonostic_bill = stored_obj.diagonostic_bill
-        ## Bill Status Will Change
 
+        # ---- Bill Status Check ----
         if stored_obj.state == 'confirmed':
             raise osv.except_osv(_('Warning!'),
                                  _('Already this Bill is Confirmed.'))
 
-        # this section is used to minimum payment for bill 35%
-        grand_total = stored_obj.grand_total
-        paid_amount = stored_obj.paid
-        if grand_total != 0:
-            percent_amount = (paid_amount * 100) / grand_total
-        if grand_total == 0:
-            percent_amount = 0
+        # ---- Minimum Payment Check (35%) ----
+        grand_total = stored_obj.grand_total or 0.0
+        paid_amount = stored_obj.paid or 0.0
+
+        percent_amount = (paid_amount * 100 / grand_total) if grand_total != 0 else 0
+
+        # You can enable 35% limit later if required
         if percent_amount >= 0 or grand_total == 0:
 
             stored = int(ids[0])
-
-            # Grouping bill register lines by department and tube color
             grouped_tests = defaultdict(list)
 
-
+            # ---- Group Tests ----
             for items in stored_obj.bill_register_line_id:
-                key = (items.name.department.id, items.name.tube_color)
+                # Separate individual tests
+                if getattr(items.name, 'individual', False):
+                    key = ('individual_%s' % items.id)
+                else:
+                    dep_id = items.name.department.id if items.name.department else 0
+                    tube_color = items.name.tube_color or 'none'
+                    key = (dep_id, tube_color)
                 grouped_tests[key].append(items)
 
-            # Prepare sticker lines based on the grouped tests
+            # ---- Process Each Group ----
             for key, tests in grouped_tests.items():
                 custom_name = ''
                 state = 'sample'
                 child_list = []
+                create_report = False
 
+                # detect if this is individual test
+                is_individual = isinstance(key, basestring) and key.startswith('individual_')
+
+                # Safe department ID
+                dep_id = tests[0].name.department.id if tests[0].name.department else False
+
+                # Basic data for sticker
                 value = {
-                    'bill_register_id': int(stored),
-                    'test_id': int(tests[0].name.id),  # Use the first test item for test_id
-                    'department_id': key[0],  # Directly from the grouping key
-                    'state': state
+                    'bill_register_id': stored,
+                    'test_id': int(tests[0].name.id),
+                    'department_id': dep_id,
+                    'state': state,
                 }
 
-                create_report=False
-
                 for items in tests:
+                    # Skip manual/lab_not_required
                     if not items.name.manual or not items.name.lab_not_required:
-                        create_report=True
-                        custom_name = ", ".join(items.name.name for items in tests if not items.name.manual and not items.name.lab_not_required)
+                        create_report = True
+                        custom_name = ", ".join(
+                            test.name.name for test in tests
+                            if not test.name.manual and not test.name.lab_not_required
+                        )
 
-                        # Populate examination lines
+                        # Build child lines
                         for test_item in items.name.examination_entry_line:
                             tmp_dict = {
                                 'test_name': test_item.name,
                                 'ref_value': test_item.ref_value,
                                 'uom': test_item.uom,
                                 'bold': test_item.is_bold,
-                                'group':test_item.group
+                                'group': test_item.group,
                             }
                             child_list.append([0, False, tmp_dict])
 
-                # Create single sticker per group
+                # ---- Create Sticker ----
                 if create_report:
                     value['sticker_line_id'] = child_list
                     value['full_name'] = custom_name
+
                     sample_obj = self.pool.get('diagnosis.sticker')
                     sample_id = sample_obj.create(cr, uid, value, context=context)
 
-                    # Ends Here LAB/SAMPLE From Here
-
-                    if sample_id is not None:
+                    if sample_id:
                         sample_text = 'Lab-0' + str(sample_id)
-                        cr.execute('update diagnosis_sticker set name=%s where id=%s', (sample_text, sample_id))
+                        cr.execute(
+                            'UPDATE diagnosis_sticker SET name=%s WHERE id=%s',
+                            (sample_text, sample_id)
+                        )
                         cr.commit()
 
             # Journal Entry will be here

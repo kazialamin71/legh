@@ -1,105 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-           <template id="external_layout_pathology">
-    <t t-call="report.external_layout">
-        <t t-set="header" t-value="'legh.external_layout_header_inherit_pathology'"/>
-        <t t-set="footer" t-value="'legh.external_layout_footer_inherit_pathology'"/>
-        <t t-raw="0"/>
-    </t>
-</template>
 
-        <template id="external_layout_header_inherit_pathology" inherit_id="report.external_layout_header">
-            <xpath expr="//div[@class='header']" position="replace">
-                <div class="header">
-                    <div class="row">
-                                <div class="col-md-4 pull-right">
-                                    <h2>
-                                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', docs.name, 600, 100)" style="width:300px;height:50px"/>
-                                    </h2>
-                                </div>
-                    </div>
- <table class="cellpadding"
-       style="border: 1px solid black; border-collapse: collapse; width: 100%; table-layout: fixed;">
-
-    <tbody>
-        <tr>
-            <th style="padding: 4px; text-align: left; width: 20%;">Patient Name:</th>
-            <td style="padding: 4px; width: 30%;"><t t-esc="docs.bill_register_id.patient_name.name"/></td>
-            <th style="padding: 4px; text-align: left; width: 20%;">Sample No:</th>
-            <td style="padding: 4px; width: 30%;"><t t-esc="docs.name"/></td>
-        </tr>
-
-        <tr>
-            <th style="padding: 4px; text-align: left;">Age:</th>
-            <td><t t-esc="docs.bill_register_id.age"/></td>
-            <th style="padding: 4px; text-align: left;">Invoice/Order No:</th>
-            <td><t t-esc="docs.bill_register_id.name"/></td>
-        </tr>
-
-
-        <tr>
-            <th style="padding: 4px; text-align: left;">Gender: </th>
-            <td><t t-esc="docs.capitalize_first_letter(docs.bill_register_id.sex)"/></td>
-            <th style="padding: 4px; text-align: left;">Invoice Date:</th>
-            <td><t t-esc="docs.add_six_hours(docs.bill_register_id.create_date)"/></td>
-        </tr>
-
-        <tr>
-            <th style="padding: 4px; text-align: left;">Contact No:</th>
-            <td><t t-esc="docs.bill_register_id.mobile"/></td>
-            <th style="padding: 4px; text-align: left;">Investigations:</th>
-            <td><t t-esc="docs.full_name"/></td>
-        </tr>
-
-        <tr>
-            <th style="padding: 4px; text-align: left;">Print Date:</th>
-             <t t-set="now" t-value="datetime.datetime.now()"/>
-            <td><t t-esc="docs.add_six_hours(now)"/></td>
-            <th style="padding: 4px; text-align: left;">Sample Type:</th>
-            <td><t t-esc="docs.test_id.sample_type.name"/></td>
-        </tr>
-
-        <tr>
-            <th style="padding: 4px; text-align: left;">Referred By:</th>
-           <td colspan="3">
-  <t t-esc="docs.bill_register_id.ref_doctors.name"/>
-   <t t-if="docs.bill_register_id.ref_doctors.degree">
-    <span style="font-size: 90%; margin-left: 5px;">
-      <t t-esc="docs.bill_register_id.ref_doctors.degree"/>
-    </span>
-  </t>
-</td>
-        </tr>
-    </tbody>
-</table>
-
+        <!--========================
+            Independent Pathology Layout
+        ==========================-->
+        <template id="external_layout_pathology">
+            <t t-call="report.html_container">
+                <div class="header" style="font-size:14px;">
+                    <t t-call="legh.pathology_header"/>
                 </div>
 
-            </xpath>
-        </template>
-
-                <template id="external_layout_footer_inherit_pathology" inherit_id="report.external_layout_footer">
-            <xpath expr="//div[@class='footer']" position="replace">
-                <div class="footer">
-                    <table style="width: 100%;">
-                                <tr>
-                                    <td>
-                                        <h5>Prepared By: _ _ _ _ _ _ _ _ </h5>
-                                        <strong><t t-esc="user.name"/></strong>
-                                        <h5>Medical Technologist</h5>
-                                    </td>
-                                    <td style="text-align: right;">
-                                        <h5>_ _ _ _ _ _ _ _ _ _ _ _ </h5>
-                                        <h5>Dr. Shamim Ara Keya</h5>
-                                        <h5>MBBS, M Phil(Pathology)</h5>
-                                        <h5>Consultant Pathology</h5>
-                                    </td>
-                                </tr>
-                            </table>
-
+                <div class="body" style="font-size:14px;">
+                    <t t-raw="0"/>
                 </div>
-            </xpath>
+
+                <div class="footer" style="font-size:14px;">
+                    <t t-call="legh.pathology_footer"/>
+                </div>
+            </t>
         </template>
+
+
+        <!--========================
+                Pathology HEADER
+        ==========================-->
+        <template id="pathology_header">
+
+            <div class="row" style="font-size:14px;">
+                <div class="col-md-4 pull-right">
+                    <h2>
+                        <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', docs.name, 600, 100)"
+                             style="width:300px;height:50px"/>
+                    </h2>
+                </div>
+            </div>
+
+            <table class="cellpadding"
+                   style="border: 1px solid black; border-collapse: collapse; width: 100%; table-layout: fixed;">
+
+                <tbody>
+
+                    <tr>
+                        <th style="padding: 4px; width: 20%;">Patient Name:</th>
+                        <td style="padding: 4px; width: 30%;">
+                            <t t-esc="docs.bill_register_id.patient_name.name"/>
+                        </td>
+
+                        <th style="padding: 4px; width: 20%;">Sample No:</th>
+                        <td style="padding: 4px; width: 30%;">
+                            <t t-esc="docs.name"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th style="padding: 4px;">Age:</th>
+                        <td><t t-esc="docs.bill_register_id.age"/></td>
+
+                        <th style="padding: 4px;">Invoice/Order No:</th>
+                        <td><t t-esc="docs.bill_register_id.name"/></td>
+                    </tr>
+
+                    <tr>
+                        <th style="padding: 4px;">Gender:</th>
+                        <td><t t-esc="docs.capitalize_first_letter(docs.bill_register_id.sex)"/></td>
+
+                        <th style="padding: 4px;">Invoice Date:</th>
+                        <td><t t-esc="docs.add_six_hours(docs.bill_register_id.create_date)"/></td>
+                    </tr>
+
+                    <tr>
+                        <th style="padding: 4px;">Contact No:</th>
+                        <td><t t-esc="docs.bill_register_id.mobile"/></td>
+
+                        <th style="padding: 4px;">Investigations:</th>
+                        <td><t t-esc="docs.full_name"/></td>
+                    </tr>
+
+                    <tr>
+                        <th style="padding: 4px;">Print Date:</th>
+                        <t t-set="now" t-value="datetime.datetime.now()"/>
+                        <td><t t-esc="docs.add_six_hours(now)"/></td>
+
+                        <th style="padding: 4px;">Sample Type:</th>
+                        <td><t t-esc="docs.test_id.sample_type.name"/></td>
+                    </tr>
+
+                    <tr>
+                        <th style="padding: 4px;">Referred By:</th>
+                        <td colspan="3">
+                            <t t-esc="docs.bill_register_id.ref_doctors.name"/>
+                            <t t-if="docs.bill_register_id.ref_doctors.degree">
+                                <span style="font-size: 90%; margin-left: 5px;">
+                                    <t t-esc="docs.bill_register_id.ref_doctors.degree"/>
+                                </span>
+                            </t>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </template>
+
+
+
+        <!--========================
+                Pathology FOOTER
+        ==========================-->
+        <template id="pathology_footer">
+
+            <table style="width: 100%; margin-top: 20px;">
+                <tr>
+                    <td>
+                        <h5>Prepared By: ____________________</h5>
+                        <strong><t t-esc="user.name"/></strong>
+                        <h5>Medical Technologist</h5>
+                    </td>
+
+                    <td style="text-align: right;">
+                        <h5>_____________________________</h5>
+                        <h5>Dr. Shamim Ara Keya</h5>
+                        <h5>MBBS, M Phil(Pathology)</h5>
+                        <h5>Consultant Pathology</h5>
+                    </td>
+                </tr>
+            </table>
+
+        </template>
+
     </data>
 </openerp>

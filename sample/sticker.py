@@ -166,7 +166,9 @@ class sample(osv.osv):
         'note':fields.selection(
             [('Culture Showed Profuse growth of Proteus species after incubating aerobically at 37&deg; for 72 hrs.', 'Showed Profused Growth of proteis species 37°- 72 hrs'), ('Custure has no growht of any pathogenic bacteria after incubating aerobically at 37&deg; for 72 hrs', 'No growth 37C- 72 hrs'), ('Culture showed growth of no Salmonella, Shigella bacteria after incubating aerobically at 37&deg; for 48 hrs.', 'growth of no salmonella, shigella- 37C-48 hrs')],'Status'),
         'comments':fields.char('Comments'),
-        'advice':fields.char('Advice')
+        'advice':fields.char('Advice'),
+        'comments_sc_date': fields.date('MT Schedule Date'),
+        'comments_rp_date': fields.date('MT Reported Date')
 
     }
 
