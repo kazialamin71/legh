@@ -49,7 +49,9 @@
 
 
                 <t t-else="">
+                <t t-if="z.test_name!='Non neoplastic findings'">
                 <span t-esc="z.result"/>
+                </t>
                 </t>
             </p>
             <t t-break="1" />

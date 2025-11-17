@@ -134,7 +134,7 @@
         <td>Triple Phos</td>
           <td>
           <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == ' Triple Phos'">
+    <t t-if="z.test_name == 'Triple Phos'">
         <t t-if="z.result">
             <t t-esc="z.result"/>
         </t>
@@ -326,7 +326,7 @@
         <td>Ketones</td>
           <td>
           <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'Ca.Carbonate'">
+    <t t-if="z.test_name == 'Ketones'">
         <t t-if="z.result">
             <t t-esc="z.result"/>
         </t>
