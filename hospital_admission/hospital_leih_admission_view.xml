@@ -10,7 +10,7 @@
                 <header>
                     <button string="Confirm and Print" type="object" name="hospital_change_status" groups="base.group_user"/>
                     <button string="Final Settlement" type="object" name="btn_final_settlement" groups="base.group_user"/>
-                    <button string="Waiting for Release" type="object" name="btn_waiting_release" groups="base.group_user"/>
+                    <button string="Waiting for Release" type="object" name="btn_waiting_release" confirm="Are you sure you" groups="base.group_user"/>
                     <button string="Payment" type="object" name="btn_pay" groups="base.group_user"/>
                     <button string="Calculate" type="object" name="calculate_bill" groups="base.group_user"/>
                     <button string="Bill Investigation" type="object" name="btn_bill" groups="base.group_user"/>

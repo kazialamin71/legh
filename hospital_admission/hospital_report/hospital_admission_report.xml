@@ -262,6 +262,11 @@
                             <span t-esc="o.amount_to_text(o.grand_total, 'BDT')"/>
 
                         <p>Created By:  <span t-esc="o.user_id.name"/></p>
+                        <t t-set="current_time" t-value="(datetime.datetime.now() + datetime.timedelta(hours=6))"/>
+                        <p>Printed On: <span t-esc="current_time.strftime('%Y-%m-%d %H:%M:%S')"/></p>
+
+
+
 
 
 
