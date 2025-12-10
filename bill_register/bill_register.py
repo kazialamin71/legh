@@ -140,8 +140,8 @@ class bill_register(osv.osv):
                     # Eye Hospital Odoo instance details
                     url = 'http://192.168.2.15:8069'
                     db = 'LEIH'
-                    username = 'admin'  # Use real username
-                    password = 'leih_blf*admin2022'  # Use real password
+                    username = 'api'  # Use real username
+                    password = 'api@mk'  # Use real password
 
                     common = xmlrpclib.ServerProxy('{}/xmlrpc/2/common'.format(url))
                     uid_remote = common.authenticate(db, username, password, {})

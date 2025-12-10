@@ -21,16 +21,10 @@
                         </h1>
                         <group string="Basic Information">
                             <group>
-                                <field name="id" invisible="1"/>
+                                <field name="name"/>
                                 <field name="doctor_id"/>
                                 <field name="start_date"/>
                                 <field name="end_date"/>
-                                <field name="overall_commission_rate"/>
-                                <field name="overall_default_discount"/>
-                                <field name="max_default_discount"/>
-                                <field name="deduct_from_discount"/>
-                                <field name="department_ids"/>
-
 
                             </group>
 
@@ -39,25 +33,27 @@
                         <!--Tab information-->
                         <notebook>
 
-                            <page string="Configuration Lines">
-                                <field name="commission_configuration_line_ids" mode="tree">
+                            <page string="Configuration Department">
+                                <field name="department_line_ids" mode="tree">
                                     <tree string="Configuration Lines" editable="top">
                                         <field name="department_id"/>
-                                        <field name="test_id"/>
-                                        <field name="applicable"/>
-                                        <field name="fixed_amount"/>
-                                        <field name="variance_amount"/>
-                                        <field name="test_price"/>
-                                        <field name="est_commission_amount"/>
-                                        <field name="max_commission_amount"/>
+                                        <field name="commission_type"/>
+                                        <field name="commission_value"/>
 
 
                                     </tree>
                                 </field>
                             </page>
 
-
-
+                             <page string="Configuration Items">
+                                <field name="test_line_ids" mode="tree">
+                                    <tree string="Configuration Lines" editable="top">
+                                        <field name="test_id"/>
+                                        <field name="commission_type"/>
+                                        <field name="commission_value"/>
+                                    </tree>
+                                </field>
+                            </page>
                         </notebook>
                     </sheet>
                 </form>
@@ -105,12 +101,6 @@
         <menuitem name="Commission Configuration list" id="main_commissionconfigurationlist_menu"
             groups="base.group_sale_salesman"
             parent="base.menu_base_partner" sequence="5" />
-
-
-
-
-
-
 
 
     </data>

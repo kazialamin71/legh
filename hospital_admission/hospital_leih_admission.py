@@ -95,7 +95,7 @@ class leih_hospital_admission(osv.osv):
         'date': fields.datetime("Date", readonly=True, default=lambda self: fields.datetime.now()),
         'user_id': fields.many2one('res.users', 'Assigned to', select=True, track_visibility='onchange'),
         'state': fields.selection(
-            [('pending', 'Pending'), ('activated', 'Admitted'), ('released', 'Released'), ('cancelled', 'Cancelled')],
+            [('pending', 'Pending'), ('activated', 'Admitted'), ('released', 'Released'), ('cancelled', 'Cancelled'),('release_wait','Waiting for release')],
             'Status', default='pending', readonly=True,
         ),
         'emergency_covert_time': fields.datetime("Admission Convert time"),
@@ -561,6 +561,13 @@ class leih_hospital_admission(osv.osv):
 
         # for updates on cash collection
         cr.execute("update leih_money_receipt set state='cancel' where general_admission_id=%s", (ids))
+        cr.commit()
+        return True
+
+
+    def btn_waiting_release(self, cr, uid, ids, context=None):
+
+        cr.execute("update hospital_admission set state='release_wait' where id=%s", (ids))
         cr.commit()
         return True
 

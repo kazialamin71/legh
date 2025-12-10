@@ -24,7 +24,6 @@ membership products (schemes).
         'wizard/cc_collection_view.xml',
         'wizard/detail_component_view.xml',
         'wizard/optics_daily_collection_view.xml',
-
         'Group/diagnosisgroup_view.xml',
         'examine_entry/examinationentry_view.xml',
         'examine_entry/investigation_components_views.xml',
@@ -136,6 +135,7 @@ membership products (schemes).
         'hospital_admission/hospital_leih_admission_activated_view.xml',
         'hospital_admission/hospital_leih_admission_released_view.xml',
         'hospital_admission/hospital_leih_admission_cancelled_view.xml',
+        'hospital_admission/hospital_leih_admission_waiting_released_view.xml',
         'hospital_admission/hospital_leih_emergency_view.xml',
         'hospital_admission/hospital_leih_emergency_activated_view.xml',
         'hospital_admission/hospital_leih_emergency_released_view.xml',
@@ -144,6 +144,7 @@ membership products (schemes).
         'hospital_admission/hospital_payment/hospital_admission_payment_view.xml',
         'hospital_admission/hospital_payment_config/hospital_admission_payment_configuration_view.xml',
         'hospital_admission/hospital_report/admission_release_print_view.xml',
+         'hospital_admission/legh_admission_admin_view.xml',
 
         'hospital_admission/hospital_report/hospital_admission_report_menu.xml',
         'hospital_admission/hospital_report/hospital_admission_report.xml',
