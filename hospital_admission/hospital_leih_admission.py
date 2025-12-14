@@ -423,12 +423,12 @@ class leih_hospital_admission(osv.osv):
                     raise osv.except_osv("Prescription", "Please Close all Prescription by Pharmacy.\n Contact With Them")
 
 
-            if record.state == 'activated' or record.state == 'released':
+            if record.state == 'activated' or record.state == 'released' or record.state=='release_wait':
                 if record.due > 0:
                     raise osv.except_osv("Bill DUE", "Please Pay the Due Bill")
                 if not record.release_note:
                     raise osv.except_osv("Release Note", "Please give the description about the release note field")
-                if record.state == 'released' or record.state == 'activated':
+                if record.state == 'released' or record.state == 'activated' or record.state=='release_wait':
                     # self.write(cr, uid, [record.id], {'state': 'released'}, context=context)
                     # self.write(cr, uid, [record.id], {'release_note_date': datetime.now()})
                     ##### Insert Journal here for ALl

@@ -15,7 +15,7 @@
                         <div class="page" style="font-size: 16px !important;">
                             <div class="row">
                                 <div class="col-xs-7 align:left">
-                                    Date: <span t-field="o.create_date"/>
+                                    Admission Date: <span t-field="o.create_date"/>
                                     <t t-if="o.emergency==True">
                                         <h2>
                                         <b>Emergency ID: </b><span t-field="o.name"/>
