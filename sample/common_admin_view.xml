@@ -91,6 +91,8 @@
                         <group>
                             <field name="comments_sc_date" attrs="{'invisible': [('test_id', '!=', 4889)]}"/>
                             <field name="comments_rp_date" attrs="{'invisible': [('test_id', '!=', 4889)]}"/>
+                            <field name="induration_present" attrs="{'invisible': [('test_id', '!=', 4889)]}"/>
+                            <field name="no_induration_present" attrs="{'invisible': [('test_id', '!=', 4889)]}"/>
 
                             <field name="comments"/>
                             <field name="advice"/>

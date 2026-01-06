@@ -168,7 +168,9 @@ class sample(osv.osv):
         'comments':fields.char('Comments'),
         'advice':fields.char('Advice'),
         'comments_sc_date': fields.date('MT Schedule Date'),
-        'comments_rp_date': fields.date('MT Reported Date')
+        'comments_rp_date': fields.date('MT Reported Date'),
+        'induration_present':fields.boolean("Induration Present"),
+        'no_induration_present':fields.boolean("No Induration Present"),
 
     }
 
