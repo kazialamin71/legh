@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from openerp.tools.translate import _
 from openerp import api, exceptions, models
 from openerp.osv import osv, fields
@@ -11,6 +12,7 @@ from datetime import date, time, timedelta, datetime
 
 class leih_hospital_admission(osv.osv):
     _name = "hospital.admission"
+    _inherit = ['mail.thread']
     _order = 'id desc'
 
     def _totalpayable(self, cr, uid, ids, field_name, arg, context=None):
@@ -27,6 +29,20 @@ class leih_hospital_admission(osv.osv):
                     # import pdb
                     # pdb.set_trace()
         return Percentance_calculation
+
+    def _fmt_oldapi(self, cr, uid, val, context=None):
+        """Format old/new values for logging."""
+        if val is False or val is None:
+            return ''
+        # many2one browse record
+        if hasattr(val, 'id') and hasattr(val, 'name'):
+            # display_name not always present in old api browse records
+            try:
+                return val.display_name
+            except:
+                return val.name
+        return unicode(val) if not isinstance(val, unicode) else val
+
 
     def _default_payment_type(self):
         return self.env['payment.type'].search([('name', '=', 'Cash')], limit=1).id
@@ -700,147 +716,63 @@ class leih_hospital_admission(osv.osv):
         return stored
 
     def write(self, cr, uid, ids, vals, context=None):
+        if context is None:
+            context = {}
 
-        # if vals.get("due"):
-        #     if vals.get("due")<0:
-        #         raise osv.except_osv(_('Warning!'),
-        #                              _("Check paid and grand total!"))
-        #
-        # if vals.get('leih_admission_line_id') or uid == 1:
-        #     cr.execute("select id as journal_ids from account_move where ref = (select name from hospital_admission where id=%s limit 1)",(ids))
-        #     journal_ids = cr.fetchall()
-        #     context=context
-        #
-        #
-        #     itm = [itm[0] for itm in journal_ids]
-        #
-        #     if len(itm)>0:
-        #
-        #         uid=1
-        #         moves =self.pool.get('account.move').browse(cr, uid, itm, context=context)
-        #         xx=moves.button_cancel() ## Cancelling
-        #         bill_journal_id=[]
-        #         # cr.execute("delete from bill_journal_relation where id in (select id from bill_journal_relation where journal_id in %s)",(tuple(itm)))
-        #         user_q="select id from bill_journal_relation where journal_id in %s"
-        #         cr.execute(user_q, (tuple(itm),))
-        #         journal_id = cr.fetchall()
-        #         for item in journal_id:
-        #             bill_journal_id.append(item[0])
-        #
-        #         if len(bill_journal_id)>0:
-        #             query="delete from bill_journal_relation where id in %s"
-        #             cr.execute(query,(tuple(bill_journal_id),))
-        #
-        #         moves.unlink()
-        #         updated=super(leih_hospital_admission, self).write(cr, uid, ids, vals, context=context)
-        #         #journal entry will be here
-        #
-        #
-        #             ### Journal ENtry will be here
-        #
-        #         stored_obj = self.browse(cr, uid, [ids[0]], context=context)
-        #         journal_object = self.pool.get("bill.journal.relation")
-        #         has_been_paid = stored_obj.paid
-        #         if stored_obj:
-        #             line_ids = []
-        #
-        #             if context is None: context = {}
-        #             if context.get('period_id', False):
-        #                 return context.get('period_id')
-        #             periods = self.pool.get('account.period').find(cr, uid, context=context)
-        #             period_id = periods and periods[0] or False
-        #             ar_amount = stored_obj.due
-        #
-        #             if ar_amount > 0:
-        #                 line_ids.append((0, 0, {
-        #                     'analytic_account_id': False,
-        #                     'tax_code_id': False,
-        #                     'tax_amount': 0,
-        #                     'name': stored_obj.name,
-        #                     'currency_id': False,
-        #                     'credit': 0,
-        #                     'date_maturity': False,
-        #                     'account_id': 195, ### Accounts Receivable ID
-        #                     'debit': ar_amount,
-        #                     'amount_currency': 0,
-        #                     'partner_id': False,
-        #                 }))
-        #
-        #             if has_been_paid > 0:
-        #                 line_ids.append((0, 0, {
-        #                     'analytic_account_id': False,
-        #                     'tax_code_id': False,
-        #                     'tax_amount': 0,
-        #                     'name': stored_obj.name,
-        #                     'currency_id': False,
-        #                     'credit': 0,
-        #                     'date_maturity': False,
-        #                     'account_id': 6,  ### Cash ID
-        #                     'debit': has_been_paid,
-        #                     'amount_currency': 0,
-        #                     'partner_id': False,
-        #                 }))
-        #
-        #             for cc_obj in stored_obj.leih_admission_line_id:
-        #                 ledger_id=611
-        #                 try:
-        #                     ledger_id = cc_obj.name.accounts_id.id
-        #                 except:
-        #                     ledger_id= 611 ## Diagnostic Income Head , If we don't assign any Ledger
-        #
-        #
-        #
-        #                 if context is None:
-        #                     context = {}
-        #
-        #                 line_ids.append((0, 0, {
-        #                     'analytic_account_id': False,
-        #                     'tax_code_id': False,
-        #                     'tax_amount': 0,
-        #                     'name': cc_obj.name.name,
-        #                     'currency_id': False,
-        #                     'account_id': cc_obj.name.accounts_id.id,
-        #                     'credit': cc_obj.total_amount,
-        #                     'date_maturity': False,
-        #                     'debit': 0,
-        #                     'amount_currency': 0,
-        #                     'partner_id': False,
-        #                 }))
-        #
-        #
-        #
-        #
-        #             jv_entry = self.pool.get('account.move')
-        #
-        #             j_vals = {'name': '/',
-        #                       'journal_id': 2,  ## Sales Journal
-        #                       'date': stored_obj.date,
-        #                       'period_id': period_id,
-        #                       'ref': stored_obj.name,
-        #                       'line_id': line_ids
-        #
-        #                       }
-        #
-        #             saved_jv_id = jv_entry.create(cr, uid, j_vals, context=context)
-        #             if saved_jv_id > 0:
-        #                 journal_id = saved_jv_id
-        #                 try:
-        #                     jv_entry.button_validate(cr,uid, [saved_jv_id], context)
-        #                     journal_dict={'journal_id':journal_id,'general_admission_journal_relation_id':stored_obj.id}
-        #                     journal_object.create(cr,uid,vals=journal_dict,context=context)
-        #                 except:
-        #                     import pdb
-        #                     pdb.set_trace()
-        #             return updated
-        #             ### Ends the journal Entry Here
-        #     else:
+        track_fields = {
+            'paid': _('Paid'),
+            'grand_total': _('Grand Total'),
+            'due': _('Due'),
+            'other_discount': _('Other Discount'),
+            'doctors_discounts': _('Doctor Discount(%)'),
+            'state': _('Status'),
+            'payment_type': _('Payment Type'),
+        }
+
+        # restriction you already have
         if vals.get("reffered_to_hospital") and uid not in (1, 7):
-            raise osv.except_osv(_('Error!'),
-                                 _('Referral cannot be changed.'))
-        updated = super(leih_hospital_admission, self).write(cr, uid, ids, vals, context=context)
-        # raise osv.except_osv(_('Warning!'),
-        #                      _("You cannot Edit the bill"))
-        return updated
+            raise osv.except_osv(_('Error!'), _('Referral cannot be changed.'))
+
+        # BEFORE snapshot (old api)
+        before = {}
+        for rec in self.browse(cr, uid, ids, context=context):
+            before[rec.id] = {}
+            for f in track_fields.keys():
+                try:
+                    before[rec.id][f] = getattr(rec, f)
+                except:
+                    before[rec.id][f] = False
+
+        # do real write
+        res = super(leih_hospital_admission, self).write(cr, uid, ids, vals, context=context)
+
+        # AFTER + post message
+        for rec in self.browse(cr, uid, ids, context=context):
+            lines = []
+            for f, label in track_fields.items():
+                if f not in vals:
+                    continue
+
+                old = before.get(rec.id, {}).get(f)
+                new = getattr(rec, f)
+
+                # compare many2one by id, normal values directly
+                old_cmp = old.id if hasattr(old, 'id') else old
+                new_cmp = new.id if hasattr(new, 'id') else new
+
+                if old_cmp != new_cmp:
+                    lines.append(u"* %s: %s -> %s" % (
+                        label,
+                        self._fmt_oldapi(cr, uid, old, context=context),
+                        self._fmt_oldapi(cr, uid, new, context=context),
+                    ))
+
+            if lines:
+                # message_post is available because of _inherit = ['mail.thread']
+                rec.message_post(body=u"<br/>".join(lines), subtype='mail.mt_note')
+
+        return res
+
 
     @api.onchange('leih_admission_line_id', 'hospital_bed_line_id', 'hospital_bill_line_id', 'hospital_doctor_line_id')
     def onchange_admission_line(self):
@@ -965,6 +897,59 @@ class test_information(osv.osv):
         'total_amount': fields.float("Total Amount")
 
     }
+
+    def write(self, cr, uid, ids, vals, context=None):
+        if context is None:
+            context = {}
+
+        track_fields = {
+            'name': _('Item'),
+            'product_qty': _('Qty'),
+            'price': _('Price'),
+            'discount': _('Discount'),
+            'total_amount': _('Total Amount'),
+            'paid':_('Paid'),
+        }
+
+        before = {}
+        for line in self.browse(cr, uid, ids, context=context):
+            before[line.id] = {'admission_id': line.leih_admission_id and line.leih_admission_id.id or False}
+            for f in track_fields.keys():
+                before[line.id][f] = getattr(line, f)
+
+        res = super(test_information, self).write(cr, uid, ids, vals, context=context)
+
+        admission_obj = self.pool.get('hospital.admission')
+        for line in self.browse(cr, uid, ids, context=context):
+            admission_id = before.get(line.id, {}).get('admission_id')
+            if not admission_id:
+                continue
+
+            admission = admission_obj.browse(cr, uid, admission_id, context=context)
+
+            lines = []
+            for f, label in track_fields.items():
+                if f not in vals:
+                    continue
+                old = before[line.id].get(f)
+                new = getattr(line, f)
+                old_cmp = old.id if hasattr(old, 'id') else old
+                new_cmp = new.id if hasattr(new, 'id') else new
+                if old_cmp != new_cmp:
+                    lines.append(u"* %s: %s -> %s" % (
+                        label,
+                        admission_obj._fmt_oldapi(cr, uid, old, context=context),
+                        admission_obj._fmt_oldapi(cr, uid, new, context=context),
+                    ))
+
+            if lines:
+                admission.message_post(
+                    body=u"<b>Admission Line Updated</b> (Line #%s)<br/>%s" % (line.id, u"<br/>".join(lines)),
+                    subtype='mail.mt_note'
+                )
+
+        return res
+
 
     def onchange_test(self, cr, uid, ids, name, context=None):
         tests = {'values': {}}

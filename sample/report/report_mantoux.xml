@@ -8,15 +8,12 @@
                         <div class="page">
 
                             <!-- Department Header -->
+                            <h3 style="text-align: center; margin-top: 25px; padding-top: 10px;                                        font-size: 20px; color: #1a1a1a; text-transform: uppercase;">
+                                <span t-field="o.department_id.name"/>
+                            </h3>
 
                             <!-- ✅ MAIN REPORT BLOCK -->
-                            <div style="width: 80%; margin-left: 60px; margin-top: 25px;
-                                        font-size: 15px; font-family: Helvetica;">
-
-                                <!-- Report Title -->
-                                <h4 style="text-align: center; margin-bottom: 20px; font-size: 18px;">
-                                    CLINICAL PATHOLOGY
-                                </h4>
+                            <div style="width: 80%; margin-left: 60px; margin-top: 25px;                                         font-size: 15px; font-family: Helvetica;">
 
                                 <!-- ✅ Report Table -->
                                 <table style="width: 100%; border-collapse: collapse;">
@@ -33,7 +30,12 @@
 
                                                 <!-- Site -->
                                                 <t t-if="z.test_name=='Site' and not z.result">
-                                                    Left Fore Arm
+                                                     Left Fore Arm
+
+                                                </t>
+
+                                                <t t-if="z.test_name=='Site' and z.result">
+                                                         <span t-esc="z.result"/>
                                                 </t>
 
                                                 <!-- Date of Injection -->
@@ -87,9 +89,7 @@
                                                 </t>
 
                                                 <!-- ✅ Default: show z.result for others -->
-                                                <t t-if="z.result and z.test_name not in ['Site','Dose of Injection','On Observation','Interpretation','Diameter']">
-                                                    <span t-esc="z.result"/>
-                                                </t>
+
 
                                             </td>
                                         </tr>
@@ -98,8 +98,7 @@
                             </div>
 
                             <!-- Comments Section -->
-                            <div style="width: 85%; margin: 20px auto; font-size: 15px;
-                                        line-height: 1.6; color: #333; font-family: Helvetica;">
+                            <div style="width: 85%; margin: 20px auto; font-size: 15px;                                         line-height: 1.6; color: #333; font-family: Helvetica;">
                                 <t t-if="o.comments_sc_date">
                                     <p>
                                         <strong>Comments:</strong>

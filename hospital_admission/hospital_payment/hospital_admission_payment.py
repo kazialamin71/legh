@@ -29,9 +29,8 @@ class hospital_admission_payment(osv.osv):
         service_dict={'date': pay_date,'amount':pay_amount,'type': pay_type,'card_no':pay_card ,'admission_payment_line_id': admission_id,'money_receipt_id':money_receipt_id}
         service_id = eve_mee_obj.create(cr, uid, vals=service_dict, context=context)
 
-        cr.execute("update hospital_admission set due=%s,paid=%s where id=%s", (updated_amount, updated_paid, admission_id))
-        cr.commit()
-
+        self.pool.get('hospital.admission').write(cr, uid, [admission_id],{'due': updated_amount, 'paid': updated_paid},context=context)
+    
         ###journal_entry
         journal_object = self.pool.get("bill.journal.relation")
         line_ids = []
