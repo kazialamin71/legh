@@ -898,57 +898,58 @@ class test_information(osv.osv):
 
     }
 
-    def write(self, cr, uid, ids, vals, context=None):
-        if context is None:
-            context = {}
+    # def write(self, cr, uid, ids, vals, context=None):
+    #     if context is None:
+    #         context = {}
 
-        track_fields = {
-            'name': _('Item'),
-            'product_qty': _('Qty'),
-            'price': _('Price'),
-            'discount': _('Discount'),
-            'total_amount': _('Total Amount'),
-            'paid':_('Paid'),
-        }
+    #     track_fields = {
+    #         'name': _('Item'),
+    #         'product_qty': _('Qty'),
+    #         'price': _('Price'),
+    #         'discount': _('Discount'),
+    #         'total_amount': _('Total Amount'),
+    #         'paid':_('Paid'),
+    #     }
 
-        before = {}
-        for line in self.browse(cr, uid, ids, context=context):
-            before[line.id] = {'admission_id': line.leih_admission_id and line.leih_admission_id.id or False}
-            for f in track_fields.keys():
-                before[line.id][f] = getattr(line, f)
+    #     before = {}
+    #     for line in self.browse(cr, uid, ids, context=context):
+    #         import pdb;pdb.set_trace()
+    #         before[line.id] = {'admission_id': line.leih_admission_id and line.leih_admission_id.id or False}
+    #         for f in track_fields.keys():
+    #             before[line.id][f] = getattr(line, f)
 
-        res = super(test_information, self).write(cr, uid, ids, vals, context=context)
+    #     res = super(test_information, self).write(cr, uid, ids, vals, context=context)
 
-        admission_obj = self.pool.get('hospital.admission')
-        for line in self.browse(cr, uid, ids, context=context):
-            admission_id = before.get(line.id, {}).get('admission_id')
-            if not admission_id:
-                continue
+    #     admission_obj = self.pool.get('hospital.admission')
+    #     for line in self.browse(cr, uid, ids, context=context):
+    #         admission_id = before.get(line.id, {}).get('admission_id')
+    #         if not admission_id:
+    #             continue
 
-            admission = admission_obj.browse(cr, uid, admission_id, context=context)
+    #         admission = admission_obj.browse(cr, uid, admission_id, context=context)
 
-            lines = []
-            for f, label in track_fields.items():
-                if f not in vals:
-                    continue
-                old = before[line.id].get(f)
-                new = getattr(line, f)
-                old_cmp = old.id if hasattr(old, 'id') else old
-                new_cmp = new.id if hasattr(new, 'id') else new
-                if old_cmp != new_cmp:
-                    lines.append(u"* %s: %s -> %s" % (
-                        label,
-                        admission_obj._fmt_oldapi(cr, uid, old, context=context),
-                        admission_obj._fmt_oldapi(cr, uid, new, context=context),
-                    ))
+    #         lines = []
+    #         for f, label in track_fields.items():
+    #             if f not in vals:
+    #                 continue
+    #             old = before[line.id].get(f)
+    #             new = getattr(line, f)
+    #             old_cmp = old.id if hasattr(old, 'id') else old
+    #             new_cmp = new.id if hasattr(new, 'id') else new
+    #             if old_cmp != new_cmp:
+    #                 lines.append(u"* %s: %s -> %s" % (
+    #                     label,
+    #                     admission_obj._fmt_oldapi(cr, uid, old, context=context),
+    #                     admission_obj._fmt_oldapi(cr, uid, new, context=context),
+    #                 ))
 
-            if lines:
-                admission.message_post(
-                    body=u"<b>Admission Line Updated</b> (Line #%s)<br/>%s" % (line.id, u"<br/>".join(lines)),
-                    subtype='mail.mt_note'
-                )
+    #         if lines:
+    #             admission.message_post(
+    #                 body=u"<b>Admission Line Updated</b> (Line #%s)<br/>%s" % (line.id, u"<br/>".join(lines)),
+    #                 subtype='mail.mt_note'
+    #             )
 
-        return res
+    #     return res
 
 
     def onchange_test(self, cr, uid, ids, name, context=None):
