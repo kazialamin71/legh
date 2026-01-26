@@ -39,12 +39,26 @@
                 </t>
             </td>
             <td style="text-align: center; padding: 4px 2px; font-size: 15px; font-weight: bold;">
-                <span t-field="z.result"/>
+                <t t-if="z.result">
+            <span t-field="z.result"/>
+                </t>
+            <t t-else="">
+            <t t-if="(not z.result) and (z.test_name == 'VDRL')">Non-Reactive</t>
+            <t t-if="(not z.result) and (z.test_name == 'HBsAg (Screening Test)')">Negative</t>
+            <t t-if="(not z.result) and (z.test_name == 'TPHA')">Negative</t>
+            <t t-if="(not z.result) and (z.test_name == 'HIV(Screening Test)')">Negative</t>
+            <t t-if="(not z.result) and (z.test_name == 'HCV(Screening Test)')">Negative</t>
+            <t t-if="(not z.result) and (z.test_name == 'H.pylori')">Negative</t>
+            <t t-if="(not z.result) and (z.test_name == 'Dengue Ag NS1(ICT)')">Negative</t>
+            <t t-if="(not z.result) and (z.test_name == 'Dengue Antibody IgG')">Negative</t>
+            <t t-if="(not z.result) and (z.test_name == 'Dengue Antibody IgM')">Negative</t>
+            <t t-if="(not z.result) and (z.test_name == 'Malaria Parasite(MP)')">Negative</t>
+                </t>
             </td>
-            <td style="text-align: center; padding: 4px 2px;">
+            <td style="text-align: left; padding: 4px 2px;">
                 <span t-field="z.uom"/>
             </td>
-            <td style="text-align: center; padding: 4px 2px;">
+            <td style="text-align: left; padding: 4px 2px;">
                 <span t-field="z.ref_value"/>
             </td>
             <td style="text-align: center; padding: 4px 2px;">

@@ -54,39 +54,33 @@
                                                 </t>
 
                                                 <!-- ✅ If Induration Present -->
-                                                <t t-if="o.induration_present">
+                                        
 
                                                     <!-- On Observation -->
                                                     <t t-if="z.test_name=='On Observation' and not z.result">
                                                         Induration Present
                                                     </t>
+                                                <t t-if="z.test_name=='On Observation' and z.result">
+                                                         <span t-esc="z.result"/>
+                                                </t>
+
+                                              
 
                                                     <!-- Diameter -->
                                                     <t t-if="z.test_name=='Diameter'">
                                                         <span t-esc="z.result"/>
-                                                    </t>
+                                                    </t>             
 
-                                                    <!-- Interpretation -->
-                                                    <t t-if="z.test_name=='Interpretation' and not z.result">
-                                                        Positive
-                                                    </t>
 
-                                                </t>
-
-                                                <!-- ✅ If No Induration Present -->
-                                                <t t-if="not o.induration_present">
-
-                                                    <!-- On Observation -->
-                                                    <t t-if="z.test_name=='On Observation' and not z.result">
-                                                        No Induration Present
-                                                    </t>
-
-                                                    <!-- Interpretation -->
-                                                    <t t-if="z.test_name=='Interpretation' and not z.result">
-                                                        Negative
-                                                    </t>
+<t t-if="z.test_name=='Interpretation' and not z.result">
+                                                     Negative
 
                                                 </t>
+
+                                                <t t-if="z.test_name=='Interpretation' and z.result">
+                                                         <span t-esc="z.result"/>
+                                                </t>
+
 
                                                 <!-- ✅ Default: show z.result for others -->
 
