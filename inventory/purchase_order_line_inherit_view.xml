@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="view_purchase_order_form_inherit_available_qty" model="ir.ui.view">
+      <field name="name">purchase.order.form.inherit.available.qty</field>
+      <field name="model">purchase.order</field>
+      <field name="inherit_id" ref="purchase.purchase_order_form"/>
+      <field name="arch" type="xml">
+
+        <xpath expr="//page[@string='Products']//field[@name='order_line']" position="attributes">
+          <attribute name="context">{'picking_type_id': picking_type_id}</attribute>
+        </xpath>
+
+        <xpath expr="//page[@string='Products']//field[@name='order_line']/tree/field[@name='product_qty']" position="after">
+          <field name="available_qty" readonly="1"/>
+        </xpath>
+
+      </field>
+    </record>
+  </data>
+</openerp>

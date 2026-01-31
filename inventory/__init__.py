@@ -1,2 +1,4 @@
 import inventory_requisition
 import inventory_product_entry
+import purchase_order_line_inherit
+import stock_invoice_onshipping_inherit
