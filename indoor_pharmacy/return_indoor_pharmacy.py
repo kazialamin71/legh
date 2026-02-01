@@ -82,8 +82,8 @@ class return_indoor_pos_order(osv.osv):
         picking_type_id = None
 
         for items in stock_picking_type_data:
-            sorce_id = items.default_location_dest_id.id
-            dest_id = items.default_location_src_id.id
+            sorce_id = 9
+            dest_id = items.default_location_dest_id.id
             picking_type_id = items.id
 
         grn_vals = {
