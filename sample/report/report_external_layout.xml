@@ -113,16 +113,15 @@
             <table style="width: 100%; margin-top: 20px;">
                 <tr>
                     <td>
-                        <h5>Prepared By: ____________________</h5>
+                        <h5>Prepared By: </h5>
                         <strong><t t-esc="user.name"/></strong>
                         <h5>Medical Technologist</h5>
                     </td>
 
-                    <td style="text-align: right;">
-                        <h5>_____________________________</h5>
-                        <h5>Dr. Shamim Ara Keya</h5>
-                        <h5>MBBS, M Phil(Pathology)</h5>
-                        <h5>Consultant Pathology</h5>
+                    <td style="text-align: right;">             
+                        <h5><strong>Dr. Shamim Ara Keya</strong></h5>
+                        <h5>MBBS, MPhil(Pathology)</h5>
+                        <h5>Asst. Professor &amp; Head of Dept.</h5>
                     </td>
                 </tr>
             </table>
