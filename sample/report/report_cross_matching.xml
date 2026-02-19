@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_crossmatchng">
+            <t t-call="report.html_container">
+                <t t-call="legh.external_layout_pathology">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="page" style="font-size:15px; padding-top:80px;">
+
+              <!-- Donor Info -->
+              <div>
+
+                                <table style="width:100%; border-collapse:collapse;">
+                                    <tr>
+                                        <td style="width:25%; padding:4px 0;"><strong>Donor Name</strong></td>
+                                        <td style="width:5%;">:</td>
+                                        <td style="width:70%;"><span t-esc="o.donor_name or ''"/></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="padding:4px 0;"><strong>Age</strong></td>
+                                        <td>:</td>
+                                        <td><span t-esc="o.donor_age or ''"/></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td style="padding:4px 0;"><strong>Gender</strong></td>
+                                        <td>:</td>
+                                        <td>
+                                            <t t-if="o.donor_gender == 'male'">Male</t>
+                                            <t t-if="o.donor_gender == 'female'">Female</t>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                           
+
+                            <!-- Department Title -->
+                            <h3 style="text-align:center; margin-top:25px; font-size:16px;">
+                                <span t-field="o.department_id.name"/>
+                            </h3>
+
+
+                            <!-- Main Test Information -->
+                            <table style="width:100%; margin-top:15px; border-collapse:collapse;">
+                                <t t-foreach="o.sticker_line_id" t-as="z">
+                                    <t t-if="z.test_name not in ['HBsAg','HCV','HIV(1+2)','MP','Syphilis']">
+                                        <tr>
+                                            <td style="width:55%; padding:6px 0;">
+                                                <span t-esc="z.test_name"/>:
+                                            </td>
+                                            <td style="width:45%; padding:6px 0;">
+                                                <strong>
+                                                    <t t-if="z.result">
+                                                        <span t-esc="z.result"/>
+                                                    </t>
+                                                    <t t-else=""></t>
+                                                </strong>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </table>
+
+
+                            <!-- Donor Screening Tests -->
+                            <div style="margin-top:22px;">
+    <div style="font-weight:bold; margin-bottom:8px; text-decoration:underline;">
+        Donor Screening Tests:
+    </div>
+
+    <table style="width:100%; border-collapse:collapse;">
+        <t t-set="sr" t-value="0"/>
+
+        <t t-foreach="o.sticker_line_id" t-as="z">
+            <t t-if="z.test_name in ['HBsAg','HCV','HIV(1+2)','MP','Syphilis']">
+                <t t-set="sr" t-value="sr + 1"/>
+
+                <tr>
+                    <td style="width:5%; padding:6px 0;">
+                        <span t-esc="sr"/>.
+                    </td>
+
+                    <td style="width:55%; padding:6px 0;">
+                        <span t-esc="z.test_name"/>
+                    </td>
+
+                    <td style="width:40%; padding:6px 0;">
+                        <strong>
+                            <span t-esc="(z.result and z.result.strip()) or 'Negative'"/>
+                        </strong>
+                    </td>
+                </tr>
+
+            </t>
+        </t>
+    </table>
+</div>
+
+
+                            <!-- Note -->
+                            <div style="margin-top:15px; font-size:13px;">
+                                <strong>Note :</strong>
+                                HBsAg, HCV, Syphilis, HIV (1+2) and Malarial Parasite Screening
+                                carried out by Immunochromatographic assay method.
+                            </div>
+
+
+                            <!-- Advice -->
+                            <t t-if="o.advice">
+                                <p style="margin-top:10px;">
+                                    <strong>Advice:</strong>
+                                    <span t-field="o.advice"/>
+                                </p>
+                            </t>
+
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

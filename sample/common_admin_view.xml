@@ -71,6 +71,9 @@
                             <field name="hour"/>
                             <field name="note"/>
                             <field name="antibiogram"/>
+                            <field name="donor_name" attrs="{'invisible': [('test_id', '!=', 3834)]}"/>
+                            <field name="donor_age" attrs="{'invisible': [('test_id', '!=', 3834)]}"/>
+                            <field name="donor_gender" attrs="{'invisible': [('test_id', '!=', 3834)]}"/>
 
                         </group>
                         <notebook>

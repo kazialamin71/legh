@@ -171,6 +171,9 @@ class sample(osv.osv):
         'comments_rp_date': fields.date('MT Reported Date'),
         'induration_present':fields.boolean("Induration Present"),
         'no_induration_present':fields.boolean("No Induration Present"),
+        'donor_name':fields.char("Donor Name"),
+        'donor_age':fields.char("Age"),
+        'donor_gender':fields.selection([('male','Male'),('female','Female')]),
 
     }
 

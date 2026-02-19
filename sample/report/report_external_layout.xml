@@ -108,25 +108,37 @@
         <!--========================
                 Pathology FOOTER
         ==========================-->
-        <template id="pathology_footer">
+<template id="pathology_footer">
 
-            <table style="width: 100%; margin-top: 20px;">
-                <tr>
-                    <td>
-                        <h5>Prepared By: </h5>
-                        <strong><t t-esc="user.name"/></strong>
-                        <h5>Medical Technologist</h5>
-                    </td>
+    <table style="width: 100%; margin-top: 30px;">
+        <tr>
 
-                    <td style="text-align: right;">             
-                        <h5><strong>Dr. Shamim Ara Keya</strong></h5>
-                        <h5>MBBS, MPhil(Pathology)</h5>
-                        <h5>Asst. Professor &amp; Head of Dept.</h5>
-                    </td>
-                </tr>
-            </table>
+            <!-- Left Side (col-3) -->
+            <td style="width: 30%; text-align: left; vertical-align: top;">
+                <h5 style="margin: 0;">Prepared By:</h5>
+                <strong>
+                    <t t-esc="user.name"/>
+                </strong>
+                <h5 style="margin: 0;">Medical Technologist</h5>
+            </td>
 
-        </template>
+            <!-- Middle Blank Space (col-5) -->
+            <td style="width: 40%;">
+                <!-- Empty Space -->
+            </td>
+
+            <!-- Right Side (col-4) -->
+            <td style="width: 30%; text-align: left; vertical-align: top;">
+                <h5 style="margin: 0;"><strong>Dr. Shamim Ara Keya</strong></h5>
+                <h5 style="margin: 0;">MBBS, MPhil (Pathology)</h5>
+                <h5 style="margin: 0;">Asst. Professor &amp; Head of Dept.</h5>
+            </td>
+
+        </tr>
+    </table>
+
+</template>
+
 
     </data>
 </openerp>

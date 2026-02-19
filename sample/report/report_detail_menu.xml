@@ -53,6 +53,16 @@
                 menu="False"
         />
 
+                <report
+                id="action_crossmatching_report"
+                model="diagnosis.sticker"
+                string="Cross Matching"
+                report_type="qweb-pdf"
+                name="legh.report_crossmatchng"
+                file="legh.report_crossmatchng"
+                menu="False"
+        />
+
         <report
                 id="action_report_mantoux"
                 model="diagnosis.sticker"
