@@ -53,6 +53,16 @@
                 menu="False"
         />
 
+                        <report
+                id="action_troponin_report"
+                model="diagnosis.sticker"
+                string="Troponin"
+                report_type="qweb-pdf"
+                name="legh.report_troponin"
+                file="legh.report_troponin"
+                menu="False"
+        />
+
                 <report
                 id="action_crossmatching_report"
                 model="diagnosis.sticker"

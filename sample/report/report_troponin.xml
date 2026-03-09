@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_troponin">
+            <t t-call="report.html_container">
+                <t t-call="legh.external_layout_pathology">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page" style="font-size:12px; padding-top:20px;">
+                       <h3 style="text-align: center; margin-top: 25px; padding-top: 10px;"><span t-field="o.department_id.name"/></h3>
+
+    <t t-foreach="o.sticker_line_id" t-as="z">
+            <table style="width:100%; border-collapse:collapse; margin-top:20px; font-size:15px; border:1px solid black;">
+    <thead>
+        <tr>
+            <th style="text-align:center; padding:6px; border:1px solid black;">TEST</th>
+            <th style="text-align:center; padding:6px; border:1px solid black;">RESULT</th>
+            <th style="text-align:center; padding:6px; border:1px solid black;">REFERENCE RANGE</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding:20px 10px; text-align:center; border:1px solid black;">
+                <strong>High Sensitive Troponin I</strong>
+            </td>
+            <td style="padding:20px 10px; text-align:center; border:1px solid black;">
+                <strong>
+                    <t t-if="z.test_name=='Troponin I'">
+                        <span t-esc="z.result"/> ng/L
+                    </t>
+                </strong>
+            </td>
+            <td style="padding:10px; line-height:2; border:1px solid black;">
+                <div><strong>&lt; 19 ng/L</strong> &#160;&#160;: Normal</div>
+                <div><strong>&gt;= 100 ng/L</strong> &#160;: AMI</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+    </t>
+    <div style="margin-top: 25px; font-size: 18px;">
+                                <strong><u>INTERPRETATION:-</u></strong>
+                            </div>
+
+                            <!-- Interpretation Table -->
+                            <table style="width:100%; border-collapse:collapse; margin-top:10px; font-size:15px; border:1px solid black;">
+    <thead>
+        <tr>
+            <th style="text-align:center; padding:6px; width:24%; border:1px solid black;">RESULT</th>
+            <th style="text-align:center; padding:6px; border:1px solid black;">REMARKS</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="padding:10px; border:1px solid black;">
+                <strong>&lt; 19 ng/L</strong>
+            </td>
+            <td style="padding:10px; border:1px solid black;">
+                <strong>
+                    The Upper reference limit (99<sup>th</sup> percentile) for High Sensitive Troponin I (TNHS) in a healthy population.
+                </strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding:10px; border:1px solid black;">
+                <strong>&gt;=19 ng/L to &lt;99 ng/L</strong>
+            </td>
+            <td style="padding:10px; border:1px solid black;">
+                <strong>Gray Zone</strong>
+            </td>
+        </tr>
+        <tr>
+            <td style="padding:10px; border:1px solid black;">
+                <strong>&gt;= 100 ng/L</strong>
+            </td>
+            <td style="padding:10px; border:1px solid black;">
+                <strong>Suggestive of Myocardial Infarction (MI)</strong>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+                            <!-- Dynamic interpretation line -->
+                            <div style="margin-top: 15px; font-size: 15px;">
+                                <strong>Interpretation Result:</strong>
+                                <t t-if="troponin_result">
+                                    <t t-if="troponin_value &lt; 19">
+                                        <span>Normal</span>
+                                    </t>
+                                    <t t-elif="troponin_value &gt;= 19 and troponin_value &lt; 100">
+                                        <span>Gray Zone</span>
+                                    </t>
+                                    <t t-else="">
+                                        <span>Suggestive of Myocardial Infarction (MI)</span>
+                                    </t>
+                                </t>
+                                <t t-else="">
+                                    <span>--</span>
+                                </t>
+                            </div>
+
+                            <!-- Remarks Paragraphs -->
+                            <div style="margin-top: 20px; font-size: 15px; text-align: justify; line-height: 1.6;">
+                                <p>
+                                    The High Sensitive Troponin I assay is intended to be used as an
+                                    <strong>aid in the diagnosis of Myocardial Infarction (MI)</strong>
+                                    and for the
+                                    <strong>risk stratification of patients with Acute Coronary Syndrome (ACS).</strong>
+                                </p>
+
+                                <p>
+                                    In view of rise and falling pattern of cTnI, second measurement is recommended for
+                                    <strong>patients with high sensitive Troponin I levels &gt;=19 ng/L to &lt;99 ng/L</strong>
+                                    with the second blood samples drawn after 3 hours of the initial assessment.
+                                    <strong>
+                                        If the rise in the hsTnI values after 3 hours of initial assessment is &gt;=10 ng/L
+                                        can be ruled in for suspicion of MI.
+                                    </strong>
+                                    <strong>
+                                        If there is no significant change in the hsTnI values after 3 hours of initial assessment,
+                                        work up for differential diagnosis.
+                                    </strong>
+                                    Although cTnI is specific for cardiac injury, it is not specific for cardiac damage due to ischemic
+                                    heart disease as it can also be elevated in conditions other than MI such as pulmonary embolism,
+                                    heart failure, myocarditis, renal failure, severe infections, anxiety disorders and trauma.
+                                </p>
+
+                                <p>
+                                    The final diagnosis must be made in conjunction with the ECG and full clinical context of the patient.
+                                </p>
+
+                                <p style="margin-top: 35px;">
+                                    <strong>
+                                        Method: VIDAS Fully Automated Immunoassay System using ELFA
+                                        (Enzyme Linked Fluorescence Assay) technology
+                                    </strong>
+                                </p>
+                            </div>
+
+                        <t t-if="o.advice"><p><strong>Advice:</strong> <span t-field="o.advice"/></p></t>
+                    </div>
+                </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</openerp>

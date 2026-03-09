@@ -45,6 +45,7 @@ membership products (schemes).
         'sample/report/report_mantoux.xml',
         'sample/report/report_stool.xml',
         'sample/report/report_cytopathology.xml',
+        'sample/report/report_troponin.xml',
         'sample/report/report_cross_matching.xml',
         'sample/common_admin_view.xml',
         'bill_register/add_bill_view.xml',
