@@ -57,11 +57,11 @@
                                         
 
                                                     <!-- On Observation -->
-                                                    <t t-if="z.test_name=='On Observation' and not z.result">
+                                                    <t t-if="z.test_name=='On Observation' and o.induration_present">
                                                         Induration Present
                                                     </t>
-                                                <t t-if="z.test_name=='On Observation' and z.result">
-                                                         <span t-esc="z.result"/>
+                                                <t t-if="z.test_name=='On Observation' and o.no_induration_present">
+                                                         No Induration Present
                                                 </t>
 
                                               
