@@ -13,7 +13,7 @@
                         <table style="width: 100%; border: 1px solid #000; border-collapse: collapse;">
                             <tr>
                                 <td style="border: 1px solid #000; padding: 10px; text-align: left;">
-                                    <span t-field="o.note" />
+                                    <span t-field="o.note"/>
                                 </td>
                             </tr>
                         </table>
@@ -253,154 +253,172 @@
         </td>
       </tr>
 
-<!--        block of Ex. Phosphate-->
+<!-- Ex. Phosphate + Candida -->
 <tr>
-        <td >Ex. Phosphate</td>
-        <td>
-          <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'Ex. Phosphate'">
-        <t t-if="z.result">
-            <t t-esc="z.result"/>
+    <td>Ex. Phosphate</td>
+    <td>
+        <t t-foreach="o.sticker_line_id" t-as="z">
+            <t t-if="z.test_name == 'Ex. Phosphate'">
+                <t t-if="z.result">
+                    <t t-esc="z.result"/>
+                </t>
+                <t t-if="not z.result">
+                    <t t-esc="'Nil'"/>
+                </t>
+            </t>
         </t>
-        <t t-if="not z.result">
-            <t t-esc="'Nil'"/>
+    </td>
+    <td>Candida</td>
+    <td>
+        <t t-foreach="o.sticker_line_id" t-as="z">
+            <t t-if="z.test_name == 'Candida'">
+                <t t-if="z.result">
+                    <t t-esc="z.result"/>
+                </t>
+                <t t-if="not z.result">
+                    <t t-esc="'Not Done'"/>
+                </t>
+            </t>
         </t>
-    </t>
-</t>
-        </td>
+    </td>
+</tr>
+
+<!-- MICROSCOPIC EXAMINATION + ON Request -->
+<tr>
+    <th colspan="2">MICROSCOPIC EXAMINATION</th>
     <th colspan="2">ON Request</th>
-      </tr>
+</tr>
 
-<!--block of MICROSCOPIC EXAMINATION-->
-        <tr>
-        <th colspan="2">MICROSCOPIC EXAMINATION</th>
-
-        <td>Bile Salt</td>
-          <td>
-          <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'Bile Salt'">
-        <t t-if="z.result">
-            <t t-esc="z.result"/>
-        </t>
-        <t t-if="not z.result">
-            <t t-esc="'Not Done'"/>
-        </t>
-    </t>
-</t>
-        </td>
-      </tr>
-
-        <tr>
-        <th colspan="2">CELLS/HPF</th>
-
-        <td>Bile Pigment</td>
-          <td>
-          <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'Bile Pigment'">
-        <t t-if="z.result">
-            <t t-esc="z.result"/>
-        </t>
-        <t t-if="not z.result">
-            <t t-esc="'Not Done'"/>
-        </t>
-    </t>
-</t>
-        </td>
-      </tr>
-
-<!--        Push Cells Block-->
+<!-- CELLS/HPF + Bile Salt -->
 <tr>
-        <td>Pus Cells</td>
-        <td>
-          <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'Pus Cells'">
-        <t t-if="z.result">
-            <t t-esc="z.result"/>
+    <th colspan="2">CELLS/HPF</th>
+    <td>Bile Salt</td>
+    <td>
+        <t t-foreach="o.sticker_line_id" t-as="z">
+            <t t-if="z.test_name == 'Bile Salt'">
+                <t t-if="z.result">
+                    <t t-esc="z.result"/>
+                </t>
+                <t t-if="not z.result">
+                    <t t-esc="'Not Done'"/>
+                </t>
+            </t>
         </t>
-        <t t-if="not z.result">
-            <t t-esc="''"/>
-        </t>
-    </t>
-</t>
-        </td>
-        <td>Ketones</td>
-          <td>
-          <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'Ketones'">
-        <t t-if="z.result">
-            <t t-esc="z.result"/>
-        </t>
-        <t t-if="not z.result">
-            <t t-esc="'Not Done'"/>
-        </t>
-    </t>
-</t>
-        </td>
-      </tr>
-<!--        Epithelial Cells-->
-        <tr>
-        <td>Epithelial cells</td>
-        <td>
-          <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'Epithelial cells'">
-        <t t-if="z.result">
-            <t t-esc="z.result"/>
-        </t>
-        <t t-if="not z.result">
-            <t t-esc="''"/>
-        </t>
-    </t>
-</t>
-        </td>
-        <td>Urobilinogen</td>
-          <td>
-          <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'Urobilinogen'">
-        <t t-if="z.result">
-            <t t-esc="z.result"/>
-        </t>
-        <t t-if="not z.result">
-            <t t-esc="'Not Done'"/>
-        </t>
-    </t>
-</t>
-        </td>
-      </tr>
+    </td>
+</tr>
 
-<!--        last bock-->
+<!-- Pus Cells + Bile Pigment -->
 <tr>
-<td>R.B.C</td>
-          <td>
-          <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'R.B.C'">
-        <t t-if="z.result">
-            <t t-esc="z.result"/>
+    <td>Pus Cells</td>
+    <td>
+        <t t-foreach="o.sticker_line_id" t-as="z">
+            <t t-if="z.test_name == 'Pus Cells'">
+                <t t-if="z.result">
+                    <t t-esc="z.result"/>
+                </t>
+                <t t-if="not z.result">
+                    <t t-esc="''"/>
+                </t>
+            </t>
         </t>
-        <t t-if="not z.result">
-            <t t-esc="'Nil'"/>
+    </td>
+
+    <td>Bile Pigment</td>
+    <td>
+        <t t-foreach="o.sticker_line_id" t-as="z">
+            <t t-if="z.test_name == 'Bile Pigment'">
+                <t t-if="z.result">
+                    <t t-esc="z.result"/>
+                </t>
+                <t t-if="not z.result">
+                    <t t-esc="'Not Done'"/>
+                </t>
+            </t>
         </t>
-    </t>
-</t>
-        </td>
-        <td>B.J. Protein</td>
-          <td>
-          <t t-foreach="o.sticker_line_id" t-as="z">
-    <t t-if="z.test_name == 'B.J. Protein'">
-        <t t-if="z.result">
-            <t t-esc="z.result"/>
+    </td>
+</tr>
+
+<!-- Epithelial cells + Ketones -->
+<tr>
+    <td>Epithelial cells</td>
+    <td>
+        <t t-foreach="o.sticker_line_id" t-as="z">
+            <t t-if="z.test_name == 'Epithelial cells'">
+                <t t-if="z.result">
+                    <t t-esc="z.result"/>
+                </t>
+                <t t-if="not z.result">
+                    <t t-esc="''"/>
+                </t>
+            </t>
         </t>
-        <t t-if="not z.result">
-            <t t-esc="'Not Done'"/>
+    </td>
+
+    <td>Ketones</td>
+    <td>
+        <t t-foreach="o.sticker_line_id" t-as="z">
+            <t t-if="z.test_name == 'Ketones'">
+                <t t-if="z.result">
+                    <t t-esc="z.result"/>
+                </t>
+                <t t-if="not z.result">
+                    <t t-esc="'Not Done'"/>
+                </t>
+            </t>
         </t>
-    </t>
-</t>
-        </td>
-      </tr>
+    </td>
+</tr>
 
+<!-- R.B.C + Urobilinogen -->
+<tr>
+    <td>R.B.C</td>
+    <td>
+        <t t-foreach="o.sticker_line_id" t-as="z">
+            <t t-if="z.test_name == 'R.B.C'">
+                <t t-if="z.result">
+                    <t t-esc="z.result"/>
+                </t>
+                <t t-if="not z.result">
+                    <t t-esc="'Nil'"/>
+                </t>
+            </t>
+        </t>
+    </td>
 
+    <td>Urobilinogen</td>
+    <td>
+        <t t-foreach="o.sticker_line_id" t-as="z">
+            <t t-if="z.test_name == 'Urobilinogen'">
+                <t t-if="z.result">
+                    <t t-esc="z.result"/>
+                </t>
+                <t t-if="not z.result">
+                    <t t-esc="'Not Done'"/>
+                </t>
+            </t>
+        </t>
+    </td>
+</tr>
 
+<!-- blank + B.J. Protein -->
+<tr>
+    <td></td>
+    <td></td>
 
-
+    <td>B.J. Protein</td>
+    <td>
+        <t t-foreach="o.sticker_line_id" t-as="z">
+            <t t-if="z.test_name == 'B.J. Protein'">
+                <t t-if="z.result">
+                    <t t-esc="z.result"/>
+                </t>
+                <t t-if="not z.result">
+                    <t t-esc="'Not Done'"/>
+                </t>
+            </t>
+        </t>
+    </td>
+</tr>
 
       <!-- Continue this pattern for all relevant fields -->
     </tbody>

@@ -5,8 +5,8 @@
             <t t-call="report.html_container">
                 <t t-call="legh.external_layout_pathology">
                 <t t-foreach="docs" t-as="o">
-                    <div class="page" style="font-size:12px; padding-top:20px;">
-                       <h3 style="text-align: center; margin-top: 25px; padding-top: 10px;"><span t-field="o.department_id.name"/></h3>
+                                        <div class="page" style="font-size:12px; padding-top:5px;">
+                       <h3 style="text-align: center; margin-top: 8px; padding-top: 6px;"><span t-field="o.department_id.name"/></h3>
 
     <t t-foreach="o.sticker_line_id" t-as="z">
             <table style="width:100%; border-collapse:collapse; margin-top:20px; font-size:15px; border:1px solid black;">
@@ -24,20 +24,20 @@
             </td>
             <td style="padding:20px 10px; text-align:center; border:1px solid black;">
                 <strong>
-                    <t t-if="z.test_name=='Troponin I'">
+                    <t t-if="z.test_name=='Troponin I (High Sensitive)'">
                         <span t-esc="z.result"/> ng/L
                     </t>
                 </strong>
             </td>
             <td style="padding:10px; line-height:2; border:1px solid black;">
-                <div><strong>&lt; 19 ng/L</strong> &#160;&#160;: Normal</div>
-                <div><strong>&gt;= 100 ng/L</strong> &#160;: AMI</div>
+                <div><strong>&lt; 19 ng/L</strong>   : Normal</div>
+                <div><strong>&gt;= 100 ng/L</strong>  : AMI</div>
             </td>
         </tr>
     </tbody>
 </table>
     </t>
-    <div style="margin-top: 25px; font-size: 18px;">
+    <div style="margin-top: 10px; font-size: 12px;">
                                 <strong><u>INTERPRETATION:-</u></strong>
                             </div>
 
@@ -99,7 +99,7 @@
                             </div>
 
                             <!-- Remarks Paragraphs -->
-                            <div style="margin-top: 20px; font-size: 15px; text-align: justify; line-height: 1.6;">
+                            <div style="margin-top: 10px; font-size: 15px; text-align: justify; line-height: 1.6;">
                                 <p>
                                     The High Sensitive Troponin I assay is intended to be used as an
                                     <strong>aid in the diagnosis of Myocardial Infarction (MI)</strong>
@@ -128,7 +128,7 @@
                                     The final diagnosis must be made in conjunction with the ECG and full clinical context of the patient.
                                 </p>
 
-                                <p style="margin-top: 35px;">
+                                <p style="margin-top: 15px;">
                                     <strong>
                                         Method: VIDAS Fully Automated Immunoassay System using ELFA
                                         (Enzyme Linked Fluorescence Assay) technology
