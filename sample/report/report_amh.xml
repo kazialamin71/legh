@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_amh">
+    <t t-call="report.html_container">
+        <t t-call="legh.external_layout_pathology">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="font-size:12px; padding-top:5px;">
+
+                    <h3 style="text-align:center;margin-top: 3px; padding-top: 3px;">
+                        <span t-field="o.department_id.name"/>
+                    </h3>
+
+                    <!-- Result Table -->
+                    <table style="width:100%; border-collapse:collapse; margin-top:20px; font-size:15px; border:1px solid black;">
+                        <tr>
+                            <th style="border:1px solid black;">TESTS</th>
+                            <th style="border:1px solid black;">RESULTS (ng/ml)</th>
+                        </tr>
+                        <tr>
+                            <td style="border:1px solid black; padding:10px;">
+                                <strong>AMH (ANTI MULLERIAN HORMONE)</strong>
+                            </td>
+                            <td style="border:1px solid black; text-align:center;">
+                                <t t-foreach="o.sticker_line_id" t-as="z">
+                                    <t t-if="z.test_name == 'AMH'">
+                                        <span t-esc="z.result"/>
+                                    </t>
+                                </t>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <!-- Interpretation -->
+                    <div style="margin-top:15px;">
+                        <strong><u>TEST INTERPRETATION</u></strong>
+                        <p style="text-align:justify;">
+                            Anti Mullerian Hormone (AMH) is produced by ovarian follicles and correlates with ovarian reserve.
+                            Lower AMH indicates lower follicular count and reduced oocyte production.
+                        </p>
+                        <p style="text-align:justify;">
+                            AMH is used for predicting fertility potential, ovarian aging, menopause onset and PCOD.
+                        </p>
+                    </div>
+
+                    <!-- Reference Range -->
+                    <div style="margin-top:15px;">
+                        <strong><u>AMH REFERENCE RANGES</u></strong>
+
+                        <table style="width:100%; border-collapse:collapse; margin-top:10px; border:1px solid black;">
+                            <tr>
+                                <th style="border:1px solid black;">STATUS</th>
+                                <th style="border:1px solid black;">VALUES</th>
+                            </tr>
+                            <tr><td style="border:1px solid black;">Optimal Fertility</td><td style="border:1px solid black;">4.0 – 6.79</td></tr>
+                            <tr><td style="border:1px solid black;">Satisfactory</td><td style="border:1px solid black;">2.19 – 4.0</td></tr>
+                            <tr><td style="border:1px solid black;">Low</td><td style="border:1px solid black;">0.3 – 2.19</td></tr>
+                            <tr><td style="border:1px solid black;">Very Low</td><td style="border:1px solid black;">&lt; 0.3</td></tr>
+                            <tr><td style="border:1px solid black;">High</td><td style="border:1px solid black;">&gt; 6.79 (PCOD / Tumor)</td></tr>
+                        </table>
+                    </div>
+
+                    <!-- Method -->
+                    <p style="margin-top:20px;">
+                        The test has been carried out in Fully Automated Immunoassay System using ELFA technology.
+                    </p>
+
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+    </data>
+</openerp>

@@ -63,6 +63,41 @@
                 menu="False"
         />
 
+
+                        <report
+                id="action_amh_report"
+                model="diagnosis.sticker"
+                string="AMH"
+                report_type="qweb-pdf"
+                name="legh.report_amh"
+                file="legh.report_amh"
+                menu="False"
+        />
+
+
+                        <report
+                id="action_hcg_report"
+                model="diagnosis.sticker"
+                string="HCG"
+                report_type="qweb-pdf"
+                name="legh.report_hcg"
+                file="legh.report_hcg"
+                menu="False"
+        />
+
+
+
+                        <report
+                id="action_hla_b27_report"
+                model="diagnosis.sticker"
+                string="HLA27"
+                report_type="qweb-pdf"
+                name="legh.report_hla_b27"
+                file="legh.report_hla_b27"
+                menu="False"
+        />
+
+
                 <report
                 id="action_crossmatching_report"
                 model="diagnosis.sticker"

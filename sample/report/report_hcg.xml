@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_hcg">
+    <t t-call="report.html_container">
+        <t t-call="legh.external_layout_pathology">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="font-size:12px; padding-top:5px;">
+
+                    <h3 style="text-align:center; margin-top: 3px; padding-top: 3px;">
+                        <span t-field="o.department_id.name"/>
+                    </h3>
+
+                    <table style="width:100%; border-collapse:collapse; margin-top:20px; font-size:15px; border:1px solid black;">
+                        <thead>
+                            <tr>
+                                <th style="border:1px solid black;">TESTS</th>
+                                <th style="border:1px solid black;">RESULTS</th>
+                                <th style="border:1px solid black;">NORMAL REFERENCE VALUES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="border:1px solid black; padding:10px;">
+                                    <strong>FERTILITY MARKERS<br/>HCG</strong>
+                                </td>
+
+                                <td style="border:1px solid black; text-align:center;">
+                                    <t t-foreach="o.sticker_line_id" t-as="z">
+                                        <t t-if="z.test_name == 'HCG'">
+                                            <span t-esc="z.result"/> mIU/ml
+                                        </t>
+                                    </t>
+                                </td>
+
+                                <td style="border:1px solid black; padding:10px; line-height:1.6;">
+                                    Cyclic women: &lt; 4 mIU/ml<br/>
+                                    Menopausal women: &lt; 13 mIU/ml<br/><br/>
+
+                                    <strong>Pregnant women:</strong><br/>
+                                    4–5 weeks: 1500 – 23000<br/>
+                                    5–6 weeks: 3400 – 135300<br/>
+                                    6–7 weeks: 10500 – 161000<br/>
+                                    7–8 weeks: 18000 – 209000<br/>
+                                    8–9 weeks: 37500 – 219000<br/>
+                                    9–10 weeks: 42800 – 218000<br/>
+                                    10–11 weeks: 33700 – 218700<br/>
+                                    11–12 weeks: 21800 – 193200<br/>
+                                    12–13 weeks: 20300 – 16100<br/>
+                                    13–14 weeks: 15400 – 190000<br/>
+                                    2nd trimester: 2800 – 176100<br/>
+                                    3rd trimester: 2800 – 144400
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Note -->
+                    <p style="margin-top:15px; font-size:14px;">
+                        <strong>NOTE:</strong>
+                        Higher results may indicate multiple pregnancies.
+                        Lower results with transvaginal USG may indicate ectopic pregnancy.
+                    </p>
+
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+    </data>
+</openerp>

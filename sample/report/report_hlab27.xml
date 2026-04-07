@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="report_hla_b27">
+    <t t-call="report.html_container">
+        <t t-call="legh.external_layout_pathology">
+            <t t-foreach="docs" t-as="o">
+                <div class="page" style="font-size:12px; padding-top:5px;">
+
+                    <h3 style="text-align:center;margin-top: 3px; padding-top: 3px;">
+                        <span t-field="o.department_id.name"/>
+                    </h3>
+
+                    <!-- Result Line -->
+                    <t t-foreach="o.sticker_line_id" t-as="z">
+                        <div style="margin-top:20px; border:1px solid black; padding:11px; text-align:center; font-size:18px;">
+                            <strong>
+                                HLA-B27 in tested specimen :
+                                <t t-if="z.test_name == 'HLA-B27'">
+                                    <span t-esc="z.result"/>
+                                </t>
+                            </strong>
+                        </div>
+                    </t>
+
+                    <!-- Interpretation -->
+                    <div style="margin-top:15px; border:1px solid black; padding:11px; text-align:justify;">
+                        <strong>Interpretation:</strong>
+                        <p>
+                            A negative (normal) test result means HLA-B27 is absent. This test is useful to help determine the cause of joint pain, stiffness or swelling.
+                            HLA-B27 is present in approximately 89% of patients with ankylosing spondylitis, 79% with Reiter syndrome and 42% with juvenile rheumatoid arthritis.
+                            However, it is not diagnostic alone. Approximately 8% of normal population carries HLA-B27.
+                        </p>
+                    </div>
+
+                    <!-- Technical Note -->
+                    <div style="margin-top:10px; border:1px solid black; padding:11px;">
+                        <strong>Technical Note:</strong>
+                        <p>
+                            Real Time PCR method with IVD approved pre-validated kit having Analytical Sensitivity and Specificity of 98%.
+                            Instrument Used: CFX Opus Real Time PCR System (BIO RAD, USA).
+                        </p>
+                    </div>
+
+                    <!-- Note -->
+                 
+
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+    </data>
+</openerp>
