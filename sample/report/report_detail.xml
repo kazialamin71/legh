@@ -23,6 +23,7 @@
                             <tbody style="padding: 5px;">
     <t t-set="last_group" t-value="None"/>
     <t t-foreach="o.sticker_line_id" t-as="z">
+        <t t-if="not z.undone">
         <t t-if="last_group != z.group">
             <!-- Group changed: Insert spacing or visual break -->
             <tr><td colspan="5" style="height: 17px;"></td></tr>
@@ -66,6 +67,7 @@
             </td>
         </tr>
 
+    </t>
     </t>
 </tbody>
                         </table>

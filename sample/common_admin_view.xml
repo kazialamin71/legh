@@ -87,6 +87,7 @@
                                         <field name="bold"/>
                                         <field name="group_by"/>
                                         <field name="remarks"/>
+                                        <field name="undone"/>
                                     </tree>
                                 </field>
                             </page>

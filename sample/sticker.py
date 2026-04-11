@@ -190,7 +190,8 @@ class test_sample(osv.osv):
         'bold':fields.boolean('Bold'),
         'group_by':fields.boolean('Group By'),
         'remarks': fields.char('Remarks'),
-        'group':fields.char('Group')
+        'group':fields.char('Group'),
+        'undone':fields.boolean("Not Done")
 
     }
 
