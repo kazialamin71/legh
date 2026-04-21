@@ -27,7 +27,7 @@
 
                                 <td style="border:1px solid black; text-align:center;">
                                     <t t-foreach="o.sticker_line_id" t-as="z">
-                                        <t t-if="z.test_name == 'HCG'">
+                                        <t t-if="z.test_name == 'B-HCG'">
                                             <span t-esc="z.result"/> mIU/ml
                                         </t>
                                     </t>

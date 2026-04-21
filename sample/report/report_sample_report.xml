@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="report_sample_report">
+
+            <t t-call="report.html_container">
+
+                <t t-foreach="docs" t-as="o">
+
+                    <!-- <t t-call="report.external_layout"> -->
+
+                      <div class="page" style="width:38mm; height:27mm; margin:0; padding:1mm; font-size:12px; page-break-after:always;">
+
+                            <div>
+                                Bill: <t t-esc="o.bill_register_id.name"/>
+</div>
+<div>
+P. Name: <t t-esc="o.bill_register_id.patient_name.name[:15]"/>
+                            </div>
+
+                            <div style="text-align:center;">
+    <img t-att-src="'/report/barcode/?type=Code128&amp;value=%s&amp;width=200&amp;height=20' % (o.bill_register_id.name)"
+         style="height:20px;"/>
+</div>
+
+                            <div style="font-size:9px;">
+                                <t t-set="name" t-value="o.full_name or ''"/>
+                                <t t-esc="name[:120]"/>
+                            </div>
+
+                            <div  style="font-size:7px;">
+                                Ref: <t t-esc="o.name"/>
+                            </div>
+
+                        </div>
+
+                    <!-- </t> -->
+
+                </t>
+
+            </t>
+
+        </template>
+
+    </data>
+</openerp>
