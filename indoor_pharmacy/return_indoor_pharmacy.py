@@ -105,9 +105,9 @@ class return_indoor_pos_order(osv.osv):
 
         for items in self_obj.lines:
 
-            if items.qty > items.product_id.qty_available:
-                found_less_qty = True
-                break
+            # if items.qty > items.product_id.qty_available:
+            #     found_less_qty = True
+            #     break
             move_line.append([0, False, {
                 'product_id': items.product_id.id,
                 'product_uom': 1,
