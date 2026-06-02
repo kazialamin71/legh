@@ -513,7 +513,7 @@ class leih_hospital_admission(osv.osv):
 
                     if len(journal_items)>1:
                         if record.x_income_journal != True:
-                            admission_date = record.date
+                            admission_date = record.release_note_date or record.date
                             j_id = self.create_custom_journal(cr=cr,uid=uid,ref=admission_name,date=admission_date,line_ids=journal_items)
                             self.write(cr, uid, [record.id], {'state': 'released','x_income_journal':True}, context=context)
                             cr.execute('SELECT id, grand_total FROM bill_register WHERE general_admission_id = %s;', (admission_id,))
