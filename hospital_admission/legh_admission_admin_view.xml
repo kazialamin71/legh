@@ -18,7 +18,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form,graph</field>
-            <field name="domain">[('state','in',['activated','released'])]</field>
+            <field name="domain">[('state','in',['activated','released','release_wait'])]</field>
             <field name="context">{}</field>
         </record>
 
