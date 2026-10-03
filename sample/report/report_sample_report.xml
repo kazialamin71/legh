@@ -5,41 +5,38 @@
         <template id="report_sample_report">
 
             <t t-call="report.html_container">
+        <style>
+            html, body, body.container { margin:0 !important; padding:0 !important; width:auto !important; max-width:none !important; }
+        </style>
+        <t t-foreach="docs" t-as="o">
+            <div class="page" t-attf-style="width:38mm; height:24mm; margin:0; padding:0.6mm 1mm; box-sizing:border-box; font-size:10px; line-height:3.8mm; overflow:hidden; #{'' if o_last else 'page-break-after:always;'}">
 
-                <t t-foreach="docs" t-as="o">
+                <div style="font-size:10.5px; font-weight:bold; white-space:nowrap; overflow:hidden;">
+                    Bill: <t t-esc="o.bill_register_id.name"/>
+                </div>
 
-                    <!-- <t t-call="report.external_layout"> -->
+                <div style="font-size:10.5px; font-weight:bold; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; width:100%;">
+                    P. Name: <t t-esc="(o.bill_register_id.patient_name.name or '')[:20]"/>
+                </div>
 
-                      <div class="page" style="width:38mm; height:27mm; margin:0; padding:1mm; font-size:12px; page-break-after:always;">
+                <div style="position:relative; width:36mm; height:7mm; overflow:hidden; margin:0.3mm 0;">
+                    <img t-att-src="'/report/barcode/Code128/%s' % o.bill_register_id.name" style="position:absolute; top:0; left:-6mm; width:48mm; height:7mm;"/>
+                </div>
 
-                            <div>
-                                Bill: <t t-esc="o.bill_register_id.name"/>
-</div>
-<div>
-P. Name: <t t-esc="o.bill_register_id.patient_name.name[:15]"/>
-                            </div>
+                <div style="font-size:7px; line-height:2.7mm; max-height:5.4mm; overflow:hidden;">
+                    <t t-set="name" t-value="o.full_name or ''"/>
+                    <t t-esc="name[:90]"/>
+                </div>
 
-                            <div style="text-align:center;">
-    <img t-att-src="'/report/barcode/?type=Code128&amp;value=%s&amp;width=200&amp;height=20' % (o.bill_register_id.name)"
-         style="height:20px;"/>
-</div>
+                <div style="font-size:7px; line-height:2.7mm; white-space:nowrap; overflow:hidden;">
+                    Ref: <t t-esc="o.name"/>
+                </div>
 
-                            <div style="font-size:9px;">
-                                <t t-set="name" t-value="o.full_name or ''"/>
-                                <t t-esc="name[:120]"/>
-                            </div>
+            </div>
+        </t>
+    </t>
 
-                            <div  style="font-size:7px;">
-                                Ref: <t t-esc="o.name"/>
-                            </div>
-
-                        </div>
-
-                    <!-- </t> -->
-
-                </t>
-
-            </t>
+        
 
         </template>
 
