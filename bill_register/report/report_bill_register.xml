@@ -18,9 +18,9 @@
                             <div class="oe_structure"/>
 
                             <div style="align:center">
-                                <h5>
+                                <h3>
                                     Bill No: <span t-field="o.name"/>
-                                </h5>
+                                </h3>
                             </div>
 
                             <div class="row">
