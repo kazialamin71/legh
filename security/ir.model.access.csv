@@ -208,6 +208,7 @@ access_examination_entry,examination.entry,model_examination_entry,group_billing
 
 access_pathology_report,diagnosis.sticker,model_diagnosis_sticker,group_pathologist,1,1,1,0
 access_pathology_report_line,diagnosis.sticker.line,model_diagnosis_sticker_line,group_pathologist,1,1,1,0
+access_pathologists,pathologist.info,model_pathologist_info,group_pathologist,1,1,1,0
 access_examination_entry_pathologist,examination.entry,model_examination_entry,group_pathologist,1,1,1,0
 access_bill_register_pathologist,bill.register,model_bill_register,group_pathologist,1,0,0,0
 access_bill_register_line_pathologist,bill.register.line,model_bill_register_line,group_pathologist,1,0,0,0
