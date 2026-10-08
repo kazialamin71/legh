@@ -108,37 +108,45 @@
         <!--========================
                 Pathology FOOTER
         ==========================-->
-<template id="pathology_footer">
+        <template id="pathology_footer">
 
-    <table style="width: 100%; margin-top: 30px;">
-        <tr>
+            <!-- Fetch the default (active) pathologist -->
+            <t t-set="pathologist" t-value="docs.env['pathologist.info'].search([('is_default', '=', True)], limit=1)"/>
 
-            <!-- Left Side (col-3) -->
-            <td style="width: 30%; text-align: left; vertical-align: top;">
-                <h5 style="margin: 0;">Prepared By:</h5>
-                <strong>
-                    <t t-esc="user.name"/>
-                </strong>
-                <h5 style="margin: 0;">Medical Technologist</h5>
-            </td>
+            <table style="width: 100%; margin-top: 30px;">
+                <tr>
 
-            <!-- Middle Blank Space (col-5) -->
-            <td style="width: 40%;">
-                <!-- Empty Space -->
-            </td>
+                    <!-- Left Side -->
+                    <td style="width: 30%; text-align: left; vertical-align: top;">
+                        <h5 style="margin: 0;">Prepared By:</h5>
+                        <strong>
+                            <t t-esc="user.name"/>
+                        </strong>
+                        <h5 style="margin: 0;">Medical Technologist</h5>
+                    </td>
 
-            <!-- Right Side (col-4) -->
-            <td style="width: 30%; text-align: left; vertical-align: top;">
-                <h5 style="margin: 0;"><strong>Dr. Shamim Ara Keya</strong></h5>
-                <h5 style="margin: 0;">MBBS, MPhil (Pathology)</h5>
-                <h5 style="margin: 0;">Asst. Professor &amp; Head of Dept.</h5>
-            </td>
+                    <!-- Middle Blank Space -->
+                    <td style="width: 40%;">
+                        <!-- Empty Space -->
+                    </td>
 
-        </tr>
-    </table>
+                    <!-- Right Side: Dynamic Pathologist -->
+                    <td style="width: 30%; text-align: left; vertical-align: top;">
+                        <t t-if="pathologist">
+                            <h5 style="margin: 0;"><strong><t t-esc="pathologist.name"/></strong></h5>
+                            <h5 t-if="pathologist.degree" style="margin: 0;">
+                                <t t-esc="pathologist.degree"/>
+                            </h5>
+                            <h5 t-if="pathologist.designation" style="margin: 0;">
+                                <t t-esc="pathologist.designation"/>
+                            </h5>
+                        </t>
+                    </td>
 
-</template>
+                </tr>
+            </table>
 
+        </template>
 
     </data>
 </openerp>

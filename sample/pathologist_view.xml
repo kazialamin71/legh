@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!-- Tree View -->
+        <record id="view_pathologist_info_tree" model="ir.ui.view">
+            <field name="name">pathologist.info.tree</field>
+            <field name="model">pathologist.info</field>
+            <field name="arch" type="xml">
+                <tree string="Pathologists">
+                    <field name="name"/>
+                    <field name="degree"/>
+                    <field name="designation"/>
+                    <field name="is_default"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Form View -->
+        <record id="view_pathologist_info_form" model="ir.ui.view">
+            <field name="name">pathologist.info.form</field>
+            <field name="model">pathologist.info</field>
+            <field name="arch" type="xml">
+                <form string="Pathologist">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="degree"/>
+                                <field name="designation"/>
+                            </group>
+                            <group>
+                                <field name="is_default"/>
+                                <field name="active"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Search View -->
+        <record id="view_pathologist_info_search" model="ir.ui.view">
+            <field name="name">pathologist.info.search</field>
+            <field name="model">pathologist.info</field>
+            <field name="arch" type="xml">
+                <search string="Pathologists">
+                    <field name="name"/>
+                    <field name="designation"/>
+                    <filter string="Default" name="default" domain="[('is_default','=',True)]"/>
+                    <filter string="Inactive" name="inactive" domain="[('active','=',False)]"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- Action -->
+        <record id="action_pathologist_info" model="ir.actions.act_window">
+            <field name="name">Pathologists</field>
+            <field name="res_model">pathologist.info</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_pathologist_info_search"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to add a pathologist. Mark one as Default to print on pathology reports.
+                </p>
+            </field>
+        </record>
+
+        <!-- Menu: change parent to your own Lab/Pathology configuration menu -->
+        <menuitem id="menu_pathologist_info"
+                  name="Pathologists"
+                  parent="legh_labs_menu"
+                  action="action_pathologist_info"
+                  groups="legh.group_report_reception_menu_common_admin,legh.group_pathologist"
+                  sequence="50"/>
+
+    </data>
+</openerp>
